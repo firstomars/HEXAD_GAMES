@@ -2,35 +2,34 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
 namespace Sandbox.Omar.Behaviour
 {
-    public class Shimmy : Behaviour
+    public class BathroomBehaviour : Behaviour
     {
-        public Shimmy(PlayerController playerController) : base(playerController)
+        public BathroomBehaviour(PlayerController playerController) : base(playerController)
         {
 
         }
 
-        //not derived from monobehaviour - choose a different function name for Start and Update?
         public override void StartBehaviour()
         {
-            Debug.Log("Shimmy Start called");
+            Debug.Log("BathroomBehaviour Start called - press B to test update");
             base.StartBehaviour();
         }
-        
+
         public override void RunBehaviour()
         {
-            //Debug.Log("Shimmy Update called");
+            //Debug.Log("BathroomBehaviour Update called");
 
-            if (Input.GetKeyDown(KeyCode.Return))
-                Debug.Log("enter pressed");
-            
+            if (Input.GetKeyDown(KeyCode.B))
+                Debug.Log("key B has been pressed");
+
             base.RunBehaviour();
         }
 
         public override void EndBehaviour()
         {
+            Debug.Log("BathroomBehaviour End called");
             base.EndBehaviour();
         }
     }

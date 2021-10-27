@@ -2,36 +2,36 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
 namespace Sandbox.Omar.Behaviour
 {
-    public class Shimmy : Behaviour
+    public class SleepBehaviour : Behaviour
     {
-        public Shimmy(PlayerController playerController) : base(playerController)
+        public SleepBehaviour(PlayerController playerController) : base(playerController)
         {
 
         }
 
-        //not derived from monobehaviour - choose a different function name for Start and Update?
         public override void StartBehaviour()
         {
-            Debug.Log("Shimmy Start called");
+            Debug.Log("SleepBehaviour Start called - press L to test update");
             base.StartBehaviour();
         }
-        
+
         public override void RunBehaviour()
         {
-            //Debug.Log("Shimmy Update called");
+            //Debug.Log("SleepBehaviour Update called");
 
-            if (Input.GetKeyDown(KeyCode.Return))
-                Debug.Log("enter pressed");
-            
+            if (Input.GetKeyDown(KeyCode.L))
+                Debug.Log("key L has been pressed");
+
             base.RunBehaviour();
         }
 
         public override void EndBehaviour()
         {
+            Debug.Log("SleepBehaviour End called");
             base.EndBehaviour();
         }
     }
 }
+

@@ -12,22 +12,26 @@ namespace Sandbox.Omar.Behaviour
 
         }
 
-        public override void Start()
+        public override void StartBehaviour()
         {
             Debug.Log("Hop Start called");
-            base.Start();
+            base.StartBehaviour();
         }
 
-        public override void Update()
+        public override void RunBehaviour()
         {
-            Debug.Log("Hop Update called");
-            PlayerController.gameObject.transform.position = new Vector3(0, 2, 0);
-            base.Update();
+            //Debug.Log("Hop Update called");
+
+            if (Input.GetKeyDown(KeyCode.Space))
+                Debug.Log("space pressed");
+
+            base.RunBehaviour();
         }
 
-        public override void End()
+        public override void EndBehaviour()
         {
-            base.End();
+            Debug.Log("Hop End called");
+            base.EndBehaviour();
         }
     }
 }

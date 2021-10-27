@@ -1,8 +1,11 @@
 using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
 
 namespace Sandbox.Omar.Behaviour
 {
-    public abstract class Behaviour
+    public abstract class Behaviour //doesn't work if inherits from monobehaviour?
     {
         protected PlayerController PlayerController;
 
@@ -11,17 +14,17 @@ namespace Sandbox.Omar.Behaviour
             PlayerController = playerController;
         }
 
-        public virtual void Start()
-        {
-            Update();
-        }
-
-        public virtual void Update()
+        public virtual void StartBehaviour()
         {
             
         }
 
-        public virtual void End()
+        public virtual void RunBehaviour()
+        {
+            
+        }
+
+        public virtual void EndBehaviour()
         {
             
         }

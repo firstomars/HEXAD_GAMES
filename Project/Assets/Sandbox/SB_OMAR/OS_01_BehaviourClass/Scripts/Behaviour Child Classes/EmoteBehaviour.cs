@@ -2,36 +2,37 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
 namespace Sandbox.Omar.Behaviour
 {
-    public class Shimmy : Behaviour
+    public class EmoteBehaviour : Behaviour
     {
-        public Shimmy(PlayerController playerController) : base(playerController)
+        public EmoteBehaviour(PlayerController playerController) : base(playerController)
         {
 
         }
 
-        //not derived from monobehaviour - choose a different function name for Start and Update?
         public override void StartBehaviour()
         {
-            Debug.Log("Shimmy Start called");
+            Debug.Log("EmoteBehaviour Start called - press T to test update");
             base.StartBehaviour();
         }
-        
+
         public override void RunBehaviour()
         {
-            //Debug.Log("Shimmy Update called");
+            //Debug.Log("EmoteBehaviour Update called");
 
-            if (Input.GetKeyDown(KeyCode.Return))
-                Debug.Log("enter pressed");
-            
+            if (Input.GetKeyDown(KeyCode.T))
+                Debug.Log("key T has been pressed");
+
             base.RunBehaviour();
         }
 
         public override void EndBehaviour()
         {
+            Debug.Log("EmoteBehaviour End called");
             base.EndBehaviour();
         }
     }
 }
+
+

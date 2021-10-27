@@ -6,14 +6,17 @@ namespace Sandbox.Omar.Behaviour
 {
     public class ExerciseBehaviour : Behaviour
     {
+        private PlayerController PlayerController { get; set; }
         public ExerciseBehaviour(PlayerController playerController) : base(playerController)
         {
-
+            PlayerController = playerController;
         }
 
         public override void StartBehaviour()
         {
             Debug.Log("ExerciseBehaviour Start called - press E to test update");
+            //Debug.Log(GameObject.name);
+            
             base.StartBehaviour();
         }
 
@@ -31,6 +34,11 @@ namespace Sandbox.Omar.Behaviour
         {
             Debug.Log("ExerciseBehaviour End called");
             base.EndBehaviour();
+        }
+
+        public override void OnCollisionEnter()
+        {
+            base.OnCollisionEnter();
         }
     }
 }

@@ -5,18 +5,22 @@ using UnityEngine;
 
 namespace Sandbox.Omar.Behaviour
 {
-    public abstract class Behaviour //doesn't work if inherits from monobehaviour?
+    public abstract class Behaviour
     {
-        protected PlayerController PlayerController;
+        //connected with parent controller class so multiple GOs can use state machine
+        protected BehaviourStateMachine BehaviourStateMachine;
+        
+        //returns GO attached to BehaviourStateMachine (see line 18 in ExerciseBehaviour.cs)
+        protected GameObject GameObject { get; private set; }
 
-        public Behaviour(PlayerController playerController)
+        public Behaviour(BehaviourStateMachine behaviourStateMachine)
         {
-            PlayerController = playerController;
+            BehaviourStateMachine = behaviourStateMachine;
+            GameObject = BehaviourStateMachine.gameObject;
         }
 
         public virtual void StartBehaviour()
         {
-            
         }
 
         public virtual void RunBehaviour()
@@ -28,7 +32,17 @@ namespace Sandbox.Omar.Behaviour
         {
             
         }
+
+        //monobehaviour functions accessed by behaviour classes
+        public virtual void OnCollisionEnter()
+        {
+
+        }
+
+        public virtual void OnCollisionExit()
+        {
+
+        }
+
     }
 }
-
-

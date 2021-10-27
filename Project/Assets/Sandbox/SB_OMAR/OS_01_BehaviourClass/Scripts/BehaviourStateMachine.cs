@@ -28,6 +28,17 @@ namespace Sandbox.Omar.Behaviour
         {
             Behaviour.EndBehaviour();
         }
+
+        private void OnCollisionEnter(Collision collision)
+        {
+            // TODO: forward the event onto the current behaviour
+            Behaviour.OnCollisionEnter(); 
+        }
+
+        private void OnCollisionExit(Collision collision)
+        {
+            // TODO: forward the event onto the current behaviour
+        }
     }
 
 }

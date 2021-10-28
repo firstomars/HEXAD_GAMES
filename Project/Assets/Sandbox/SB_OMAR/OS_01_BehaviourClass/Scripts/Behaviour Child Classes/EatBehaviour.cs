@@ -6,9 +6,11 @@ namespace Sandbox.Omar.Behaviour
 {
     public class EatBehaviour : Behaviour
     {
+        private PlayerController PlayerController { get; set; }
+
         public EatBehaviour(PlayerController playerController) : base(playerController)
         {
-
+            PlayerController = playerController;
         }
 
         public override void StartBehaviour()

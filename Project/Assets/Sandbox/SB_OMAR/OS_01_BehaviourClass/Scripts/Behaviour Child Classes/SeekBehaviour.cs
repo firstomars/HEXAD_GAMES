@@ -6,9 +6,13 @@ namespace Sandbox.Omar.Behaviour
 {
     public class SeekBehaviour : Behaviour
     {
+        private Vector3 targetPosition;
+
+        private PlayerController PlayerController { get; set; }
+
         public SeekBehaviour(PlayerController playerController) : base(playerController)
         {
-
+            PlayerController = playerController;
         }
 
         public override void StartBehaviour()
@@ -19,10 +23,14 @@ namespace Sandbox.Omar.Behaviour
 
         public override void RunBehaviour()
         {
-            //Debug.Log("SeekBehaviour Update called");
+            //set seek destination
+            if (targetPosition != PlayerController.targetPosition) SetPlayerDestination(targetPosition);
 
-            if (Input.GetKeyDown(KeyCode.K))
-                Debug.Log("key K has been pressed");
+            //check if seek destination reached
+            if (isDestinationReached()) Debug.Log("destination reached");
+
+            //DEBUG - DELETE
+            if (Input.GetKeyDown(KeyCode.K)) Debug.Log("key K has been pressed");
 
             base.RunBehaviour();
         }
@@ -32,6 +40,21 @@ namespace Sandbox.Omar.Behaviour
             Debug.Log("SeekBehaviour End called");
             base.EndBehaviour();
         }
+
+        private void SetPlayerDestination(Vector3 targetPos)
+        {
+            targetPosition = PlayerController.targetPosition;
+            PlayerController.SetPlayerDestination(targetPosition);
+        }
+
+        private bool isDestinationReached()
+        {
+            if (Vector3.Distance(targetPosition, GameObject.transform.position) < 5.0f)
+                return true;
+
+            return false;
+        }
+
     }
 }
 

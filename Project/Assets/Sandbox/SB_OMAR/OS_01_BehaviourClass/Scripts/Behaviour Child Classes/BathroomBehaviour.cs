@@ -6,9 +6,11 @@ namespace Sandbox.Omar.Behaviour
 {
     public class BathroomBehaviour : Behaviour
     {
+        private PlayerController PlayerController { get; set; }
+        
         public BathroomBehaviour(PlayerController playerController) : base(playerController)
         {
-
+            PlayerController = playerController;
         }
 
         public override void StartBehaviour()

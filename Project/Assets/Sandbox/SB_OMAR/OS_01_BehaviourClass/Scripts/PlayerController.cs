@@ -1,32 +1,39 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace Sandbox.Omar.Behaviour
 {
     public class PlayerController : BehaviourStateMachine //this is derived from monobehaviour
     {
-        Behaviour HopBehaviour; //DELETE
-        Behaviour ShimmyBehaviour; //DELETE
-        Behaviour ExerciseBehaviour;
-        Behaviour ConverseBehaviour;
-        Behaviour EatBehaviour;
-        Behaviour StatusCheckBehaviour;
-        Behaviour BathroomBehaviour;
-        Behaviour SeekBehaviour;
-        Behaviour SleepBehaviour;
-        Behaviour WanderBehaviour;
-        Behaviour MoodBehaviour;
-        Behaviour EmoteBehaviour;
+        #region BehaviourClasses
 
-        Behaviour currentBehaviour;
-        Behaviour nextBehaviour;
+        private Behaviour ExerciseBehaviour;
+        private Behaviour ConverseBehaviour;
+        private Behaviour EatBehaviour;
+        private Behaviour StatusCheckBehaviour;
+        private Behaviour BathroomBehaviour;
+        private Behaviour SeekBehaviour;
+        private Behaviour SleepBehaviour;
+        private Behaviour WanderBehaviour;
+        private Behaviour MoodBehaviour;
+        private Behaviour EmoteBehaviour;
+
+        #endregion
+
+        private Behaviour currentBehaviour;
+        private Behaviour nextBehaviour;
+
+        [Header("NavMesh Settings")]
+        private NavMeshAgent agent;
+        [SerializeField] private LayerMask whatIsPlayer, whatIsGround;
+        [SerializeField] public Vector3 targetPosition;
 
         // Start is called before the first frame update
         private void Start()
         {
-            HopBehaviour = new HopBehaviour(this); //DELETE
-            ShimmyBehaviour = new Shimmy(this); // DELETE
+            #region SetUpBehaviourClasses
 
             ExerciseBehaviour = new ExerciseBehaviour(this);
             ConverseBehaviour = new ConverseBehaviour(this);
@@ -39,8 +46,12 @@ namespace Sandbox.Omar.Behaviour
             MoodBehaviour = new MoodBehaviour(this);
             EmoteBehaviour = new EmoteBehaviour(this);
 
-            //sets start behaviour as Hop
-            currentBehaviour = HopBehaviour;
+            #endregion
+
+            agent = GetComponent<NavMeshAgent>();
+
+            //set starting behaviour
+            currentBehaviour = WanderBehaviour;
             SetBehaviour(currentBehaviour);
         }
 
@@ -52,7 +63,8 @@ namespace Sandbox.Omar.Behaviour
             {
                 EndBehaviour();
                 currentBehaviour = nextBehaviour;
-                SetBehaviour(nextBehaviour);
+                nextBehaviour = null;
+                SetBehaviour(currentBehaviour);
             }
 
             //call behaviour's update function
@@ -67,12 +79,12 @@ namespace Sandbox.Omar.Behaviour
             if (Input.GetKeyDown(KeyCode.Alpha1))
             {
                 Debug.Log("key 1 pressed");
-                nextBehaviour = HopBehaviour;
+                nextBehaviour = WanderBehaviour;
             }
             else if (Input.GetKeyDown(KeyCode.Alpha2))
             {
                 Debug.Log("key 2 pressed");
-                nextBehaviour = ShimmyBehaviour;
+                nextBehaviour = MoodBehaviour;
             }
             else if (Input.GetKeyDown(KeyCode.Alpha3))
             {
@@ -99,9 +111,9 @@ namespace Sandbox.Omar.Behaviour
                 Debug.Log("key 7 pressed");
                 nextBehaviour = BathroomBehaviour;
             }
-            else if (Input.GetKeyDown(KeyCode.Alpha8))
+            else if (Input.GetMouseButtonDown(0) && isClickPointOnGround(Input.mousePosition))
             {
-                Debug.Log("key 8 pressed");
+                Debug.Log("mouse clicked on ground");
                 nextBehaviour = SeekBehaviour;
             }
             else if (Input.GetKeyDown(KeyCode.Alpha9))
@@ -114,16 +126,29 @@ namespace Sandbox.Omar.Behaviour
                 Debug.Log("key 0 pressed");
                 nextBehaviour = SleepBehaviour;
             }
-            else if (Input.GetKeyDown(KeyCode.Minus))
+        }
+
+        //check whether input is valid movement target for player
+        private bool isClickPointOnGround(Vector3 mouseClickPos)
+        {
+            Ray myRay = Camera.main.ScreenPointToRay(mouseClickPos);
+            RaycastHit hitInfo;
+
+            //check if mouse click pos hits ground
+            if (Physics.Raycast(myRay, out hitInfo, 100, whatIsGround))
             {
-                Debug.Log("key Minus pressed");
-                nextBehaviour = WanderBehaviour;
+                //set target pos accessed by seek.cs
+                targetPosition = hitInfo.point;
+                return true;
             }
-            else if (Input.GetKeyDown(KeyCode.Equals))
-            {
-                Debug.Log("key Equals pressed");
-                nextBehaviour = MoodBehaviour;
-            }
+                
+            return false;
+        }
+
+        //set player destination
+        public void SetPlayerDestination(Vector3 targetPos)
+        {
+            agent.SetDestination(targetPos);
         }
     }
 }

@@ -6,9 +6,11 @@ namespace Sandbox.Omar.Behaviour
 {
     public class MoodBehaviour : Behaviour
     {
+        private PlayerController PlayerController { get; set; }
+        
         public MoodBehaviour(PlayerController playerController) : base(playerController)
         {
-
+            PlayerController = playerController;
         }
 
         public override void StartBehaviour()

@@ -6,9 +6,10 @@ namespace Sandbox.Omar.Behaviour
 {
     public class SleepBehaviour : Behaviour
     {
+        private PlayerController PlayerController { get; set; }
         public SleepBehaviour(PlayerController playerController) : base(playerController)
         {
-
+            PlayerController = playerController;
         }
 
         public override void StartBehaviour()

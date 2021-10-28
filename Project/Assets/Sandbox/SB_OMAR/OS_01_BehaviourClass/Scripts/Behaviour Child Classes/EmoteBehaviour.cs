@@ -6,9 +6,10 @@ namespace Sandbox.Omar.Behaviour
 {
     public class EmoteBehaviour : Behaviour
     {
+        private PlayerController PlayerController { get; set; }
         public EmoteBehaviour(PlayerController playerController) : base(playerController)
         {
-
+            PlayerController = playerController;
         }
 
         public override void StartBehaviour()

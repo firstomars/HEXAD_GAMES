@@ -6,16 +6,13 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Sandbox/01_QuickSceneSelect/QuickSceneSelect.unity
-    guid: f2d47cf8377ad114287afee32be31018
+    path: Assets/Sandbox/SB_OMAR/OS_04_GameManager/OS_04_GameManager_01Splash.unity
+    guid: 9036c28b68f2db84d84cb542bef23aa3
   - enabled: 1
-    path: Assets/Sandbox/03_URP_SampleScene/URP_SampleScene.unity
-    guid: d1c3109bdb54ad54c8a2b2838528e640
+    path: Assets/Sandbox/SB_OMAR/OS_04_GameManager/OS_04_GameManager_02Menu.unity
+    guid: 115fb7d53566d0147898c6610d3655a5
   - enabled: 1
-    path: Assets/Sandbox/02_StarterAssets/FirstPirson.unity
-    guid: 707acc8dffb72b144bb1ffbe1c965f3d
-  - enabled: 1
-    path: Assets/Sandbox/02_StarterAssets/ThirdPerson.unity
-    guid: e9017d5f96b9f09489b4b37e1d6eb914
+    path: Assets/Sandbox/SB_OMAR/OS_04_GameManager/OS_04_GameManager_03Play.unity
+    guid: 2537a979cc4362c428b2f55f2e7a1d11
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 9e7be553448fa2546aea5752021cbcf7, type: 2}

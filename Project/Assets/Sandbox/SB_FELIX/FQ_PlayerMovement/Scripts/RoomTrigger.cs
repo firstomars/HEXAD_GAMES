@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Sandbox.Felix.PlayerMovement
 {
@@ -12,8 +13,11 @@ namespace Sandbox.Felix.PlayerMovement
         private void Start()
         {
             //CameraManager = GetComponentInParent<CameraManager>();
+
+
         }
 
+        
         private void OnTriggerEnter(Collider other)
         {
             if (other.gameObject.tag == "Player")
@@ -23,12 +27,17 @@ namespace Sandbox.Felix.PlayerMovement
 
         }
 
+
         private void OnTriggerExit(Collider other)
         {
             if (other.gameObject.tag == "Player")
             {
                 //CameraManager.SetPlayerPosition();
+                Debug.Log("gameObject.tag" + "hello");
             }
         }
+
+        
+     
     }
 }

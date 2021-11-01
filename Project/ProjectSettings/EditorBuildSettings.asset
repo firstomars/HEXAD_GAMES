@@ -6,13 +6,13 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Sandbox/SB_OMAR/OS_04_GameManager/OS_04_GameManager_01Splash.unity
-    guid: 9036c28b68f2db84d84cb542bef23aa3
+    path: Assets/Scenes/01_Splash.unity
+    guid: 2c5d67529dd5df14a9d562c234057e4b
   - enabled: 1
-    path: Assets/Sandbox/SB_OMAR/OS_04_GameManager/OS_04_GameManager_02Menu.unity
-    guid: 115fb7d53566d0147898c6610d3655a5
+    path: Assets/Scenes/02_Menu.unity
+    guid: 32a26879f8267c5479946de4c3033f93
   - enabled: 1
-    path: Assets/Sandbox/SB_OMAR/OS_04_GameManager/OS_04_GameManager_03Play.unity
-    guid: 2537a979cc4362c428b2f55f2e7a1d11
+    path: Assets/Scenes/03_Play.unity
+    guid: d287bf7b972dd0a4bb565343b5d978a8
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 9e7be553448fa2546aea5752021cbcf7, type: 2}

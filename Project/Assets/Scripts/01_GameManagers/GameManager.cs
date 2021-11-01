@@ -77,6 +77,10 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene(2);
     }
+    public void StagingScene()
+    {
+        SceneManager.LoadScene(3);
+    }
 
 
     public GameObject AssignPlayer()

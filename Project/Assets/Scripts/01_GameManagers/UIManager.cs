@@ -11,6 +11,8 @@ public class UIManager : MonoBehaviour
     [Header("Menu Scene UI")]
     [SerializeField] private GameObject playBtn;
 
+    [Header("Staging Scene UI")]
+    [SerializeField] private GameObject stagingBtn;
 
     private void Start()
     {
@@ -26,6 +28,7 @@ public class UIManager : MonoBehaviour
     public void SetMenuScreenUI(bool value)
     {
         playBtn.SetActive(value);
+        stagingBtn.SetActive(value);
     }
 
     public void GoToMenuScene()
@@ -38,6 +41,13 @@ public class UIManager : MonoBehaviour
     public void GoToPlayScene()
     {
         GameManager.Instance.PlayScene();
+        SetSplashScreenUI(false);
+        SetMenuScreenUI(false);
+    }
+
+    public void GoToStagingScene()
+    {
+        GameManager.Instance.StagingScene();
         SetSplashScreenUI(false);
         SetMenuScreenUI(false);
     }

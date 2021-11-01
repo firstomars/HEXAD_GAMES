@@ -36,10 +36,18 @@ namespace Sandbox.Omar.GameManager
         private int maxScenes;
         private float splashScreenLoad;
 
+
+        [Header("Player")]
+        [SerializeField] private GameObject playerPrefab;
+        private GameObject player;
+
+        [Header("House")]
+        [SerializeField] private GameObject housePrefab;
+        private GameObject house;
+
+
         //TO DO
-        //player prefab
         //player stats
-        //house
         //time 
 
         // Start is called before the first frame update
@@ -50,7 +58,8 @@ namespace Sandbox.Omar.GameManager
             sceneIndex = SceneManager.GetActiveScene().buildIndex;
             nextSceneIndex = sceneIndex + 1;
             maxScenes = SceneManager.sceneCountInBuildSettings;
-            Debug.Log(maxScenes);
+            Debug.Log("Scene Loaded: " + SceneManager.GetActiveScene().name);
+            //Debug.Log(maxScenes);
         }
 
         // Update is called once per frame
@@ -60,10 +69,27 @@ namespace Sandbox.Omar.GameManager
                 GoToNextScene();
         }
 
+        public GameObject AssignPlayer()
+        {
+            //load player stats
+
+            //create and return player
+            player = Instantiate(playerPrefab);
+            return player;
+        }
+
+        public GameObject AssignHouse()
+        {
+            //create and return house
+            house = Instantiate(housePrefab);
+            return house;
+        }
+
+        #region SceneManagement Functions
+
         private void GoToNextScene()
         {
-            SceneManager.LoadScene(nextSceneIndex);
-            Debug.Log("Scene Loaded: " + SceneManager.GetActiveScene().name);
+            SceneManager.LoadScene(nextSceneIndex);            
             sceneIndex = nextSceneIndex;
             nextSceneIndex = sceneIndex + 1;
         }
@@ -72,5 +98,7 @@ namespace Sandbox.Omar.GameManager
         {
             Application.Quit();
         }
+
+        #endregion
     }
 }

@@ -7,6 +7,7 @@ namespace Sandbox.Omar.CameraSetup
     public class GymCollisionController : MonoBehaviour
     {
         CameraManager CameraManager;
+        //PlayerController
 
         private void Start()
         {

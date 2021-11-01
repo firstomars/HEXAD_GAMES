@@ -64,7 +64,6 @@ public class PlayerController : BehaviourStateMachine
         camMgr = GameManager.Instance.house.transform.GetChild(3).gameObject;
         CameraManager = camMgr.GetComponent<CameraManager>();
 
-
         //GameObject ChildGameObject1 = ParentGameObject.transform.GetChild(1).gameObject;
 
 

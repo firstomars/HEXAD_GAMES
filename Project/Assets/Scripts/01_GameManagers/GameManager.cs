@@ -41,6 +41,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject housePrefab;
     public GameObject house;
 
+    [Header("UI")]
+    [SerializeField] private GameObject UIManagerObj;
 
     //TO DO
     //player stats
@@ -51,6 +53,7 @@ public class GameManager : MonoBehaviour
     {
         DontDestroyOnLoad(gameObject);
 
+        //set scenes
         sceneIndex = SceneManager.GetActiveScene().buildIndex;
         nextSceneIndex = sceneIndex + 1;
         maxScenes = SceneManager.sceneCountInBuildSettings;
@@ -64,6 +67,17 @@ public class GameManager : MonoBehaviour
         if (nextSceneIndex < maxScenes && Input.GetKeyDown(KeyCode.Space))
             GoToNextScene();
     }
+
+    public void MenuScene()
+    {
+        SceneManager.LoadScene(1);
+    }
+
+    public void PlayScene()
+    {
+        SceneManager.LoadScene(2);
+    }
+
 
     public GameObject AssignPlayer()
     {

@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 namespace Sandbox.Felix.PlayerMovement
 {
-    public class BathRoomTriggerTest : MonoBehaviour
+    public class TriggerTest : MonoBehaviour
     {
         //CameraManager CameraManager;
 
@@ -13,8 +13,7 @@ namespace Sandbox.Felix.PlayerMovement
         private void Start()
         {
             //CameraManager = GetComponentInParent<CameraManager>();
-            Renderer render = GetComponent<Renderer>();
-            render.material.color = Color.red;
+
 
         }
 
@@ -27,7 +26,6 @@ namespace Sandbox.Felix.PlayerMovement
            if (gameObject.GetComponent<Renderer>().material.color == Color.green)      
             {
                 //CameraManager.SetPlayerPosition("kitchen");
-                Debug.Log("Shower time");
             }
 
         }
@@ -40,11 +38,23 @@ namespace Sandbox.Felix.PlayerMovement
             if (other.gameObject.tag == "Player")
             {
                 //CameraManager.SetPlayerPosition();
-                Debug.Log("That was nice");
+                Debug.Log("hello");
             }
         }
 
      
     }
+
+
+   // private void OnTriggerExit(Collider other)
+    //{
+      //  Renderer render = GetComponent<Renderer>();
+      //  render.material.color = Color.red;
+      //  if (other.gameObject.tag == "Player")
+      //  {
+            //CameraManager.SetPlayerPosition();
+           // Debug.Log("gameObject.tag" + "hello");
+       // }
+   // }
 
 }

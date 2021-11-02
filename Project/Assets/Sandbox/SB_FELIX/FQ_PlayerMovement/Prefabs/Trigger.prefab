@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2029048199107203298}
   - component: {fileID: 2029048199107203299}
   - component: {fileID: 2029048199107203300}
+  - component: {fileID: 2029048199107203301}
   m_Layer: 0
   m_Name: Trigger
   m_TagString: Kitchen
@@ -95,3 +96,15 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 7.257599, y: 3.2430964, z: 8.241746}
   m_Center: {x: 0.13262844, y: -0.117586195, z: 0.5180955}
+--- !u!114 &2029048199107203301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2029048199107203302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e9ed9ab5237bd342a15b914f08a8594, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -44,10 +44,6 @@ public class GameManager : MonoBehaviour
     [Header("UI")]
     [SerializeField] private GameObject UIManagerObj;
 
-    //TO DO
-    //player stats
-    //time 
-
     // Start is called before the first frame update
     void Start()
     {
@@ -58,14 +54,13 @@ public class GameManager : MonoBehaviour
         nextSceneIndex = sceneIndex + 1;
         maxScenes = SceneManager.sceneCountInBuildSettings;
         Debug.Log("Scene Loaded: " + SceneManager.GetActiveScene().name);
-        //Debug.Log(maxScenes);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (nextSceneIndex < maxScenes && Input.GetKeyDown(KeyCode.Space))
-            GoToNextScene();
+        //if (nextSceneIndex < maxScenes && Input.GetKeyDown(KeyCode.Space))
+        //    GoToNextScene();
     }
 
     public void MenuScene()
@@ -77,6 +72,7 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene(2);
     }
+
     public void StagingScene()
     {
         SceneManager.LoadScene(3);
@@ -87,6 +83,15 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(4);
     }
 
+    public void PlayerStatsScene()
+    {
+        SceneManager.LoadScene(5);
+    }
+
+    public void PlayerPrefsScene()
+    {
+        SceneManager.LoadScene(6);
+    }
 
     public GameObject AssignPlayer()
     {

@@ -5,13 +5,14 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
-    [Header("Splash Scene UI")]
+    [Header("Buttons")]
     [SerializeField] private GameObject menuBtn;
-
-    [Header("Menu Scene UI")]
     [SerializeField] private GameObject playBtn;
     [SerializeField] private GameObject stagingBtn;
     [SerializeField] private GameObject timeBtn;
+    [SerializeField] private GameObject playerStatsBtn;
+    [SerializeField] private GameObject playerPrefsBtn;
+    [SerializeField] private GameObject quitBtn;
 
     [Header("Play Scene UI")]
     [SerializeField] private GameObject playUI;
@@ -21,23 +22,46 @@ public class UIManager : MonoBehaviour
         SetSplashScreenUI(true); // rework
         SetMenuScreenUI(false);
         SetPlayScreenUI(false);
+        SetAssetStagingUI(false);
+        SetTimeUI(false);
+        SetPlayerStatsUI(false);
+        SetPlayerPrefsUI(false);
     }
 
-    public void SetSplashScreenUI(bool value)
+    private void SetSplashScreenUI(bool value)
     {
         menuBtn.SetActive(value);
     }
 
-    public void SetMenuScreenUI(bool value)
+    private void SetMenuScreenUI(bool value)
     {
         playBtn.SetActive(value);
+    }
+
+    private void SetPlayScreenUI(bool value)
+    {
+        playUI.SetActive(value);
         stagingBtn.SetActive(value);
+    }
+
+    private void SetAssetStagingUI(bool value)
+    {
         timeBtn.SetActive(value);
     }
 
-    public void SetPlayScreenUI(bool value)
+    private void SetTimeUI(bool value)
     {
-        playUI.SetActive(value);
+        playerStatsBtn.SetActive(value);
+    }
+
+    private void SetPlayerStatsUI(bool value)
+    {
+        playerPrefsBtn.SetActive(value);
+    }
+
+    private void SetPlayerPrefsUI(bool value)
+    {
+        quitBtn.SetActive(value);
     }
 
     public void GoToMenuScene()
@@ -60,6 +84,7 @@ public class UIManager : MonoBehaviour
         GameManager.Instance.StagingScene();
         SetSplashScreenUI(false);
         SetMenuScreenUI(false);
+        SetAssetStagingUI(true);
     }
 
     public void GoToTimeScene()
@@ -67,5 +92,25 @@ public class UIManager : MonoBehaviour
         GameManager.Instance.TimeScene();
         SetSplashScreenUI(false);
         SetMenuScreenUI(false);
+        SetTimeUI(true);
+    }
+
+    public void GoToPlayerStatsScene()
+    {
+        GameManager.Instance.PlayerStatsScene();
+        SetSplashScreenUI(false);
+        SetMenuScreenUI(false);
+        SetTimeUI(false);
+        SetPlayerStatsUI(true);
+    }
+
+    public void GoToPlayerPrefsScene()
+    {
+        GameManager.Instance.PlayerPrefsScene();
+        SetSplashScreenUI(false);
+        SetMenuScreenUI(false);
+        SetTimeUI(false);
+        SetPlayerStatsUI(false);
+        SetPlayerPrefsUI(true);
     }
 }

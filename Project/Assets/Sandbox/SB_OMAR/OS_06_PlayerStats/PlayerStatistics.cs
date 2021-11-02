@@ -107,6 +107,7 @@ namespace Sandbox.Omar.PlayerStats
             else Debug.Log("Only ints can be passed in");
 
             hrsSleptInputField.text = "";
+            RefreshEnergyLevels();
         }
 
         private void ResetFulfilment()

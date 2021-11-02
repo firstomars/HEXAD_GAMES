@@ -82,6 +82,11 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(3);
     }
 
+    public void TimeScene()
+    {
+        SceneManager.LoadScene(4);
+    }
+
 
     public GameObject AssignPlayer()
     {

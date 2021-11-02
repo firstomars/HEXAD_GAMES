@@ -10,9 +10,8 @@ public class UIManager : MonoBehaviour
 
     [Header("Menu Scene UI")]
     [SerializeField] private GameObject playBtn;
-
-    [Header("Staging Scene UI")]
     [SerializeField] private GameObject stagingBtn;
+    [SerializeField] private GameObject timeBtn;
 
     [Header("Play Scene UI")]
     [SerializeField] private GameObject playUI;
@@ -33,6 +32,7 @@ public class UIManager : MonoBehaviour
     {
         playBtn.SetActive(value);
         stagingBtn.SetActive(value);
+        timeBtn.SetActive(value);
     }
 
     public void SetPlayScreenUI(bool value)
@@ -58,6 +58,13 @@ public class UIManager : MonoBehaviour
     public void GoToStagingScene()
     {
         GameManager.Instance.StagingScene();
+        SetSplashScreenUI(false);
+        SetMenuScreenUI(false);
+    }
+
+    public void GoToTimeScene()
+    {
+        GameManager.Instance.TimeScene();
         SetSplashScreenUI(false);
         SetMenuScreenUI(false);
     }

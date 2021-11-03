@@ -38,8 +38,8 @@ public class GameManager : MonoBehaviour
     private GameObject player;
 
     [Header("House")]
-    [SerializeField] private GameObject housePrefab;
-    public GameObject house;
+    [SerializeField] private GameObject worldPrefab;
+    public GameObject world;
 
     [Header("UI")]
     [SerializeField] private GameObject UIManagerObj;
@@ -62,6 +62,24 @@ public class GameManager : MonoBehaviour
         //if (nextSceneIndex < maxScenes && Input.GetKeyDown(KeyCode.Space))
         //    GoToNextScene();
     }
+
+    public GameObject AssignWorld()
+    {
+        //create and return house
+        world = Instantiate(worldPrefab);
+        return world;
+    }
+
+    public GameObject AssignPlayer()
+    {
+        //load player stats
+
+        //create and return player
+        player = Instantiate(playerPrefab);
+        return player;
+    }
+
+    #region SceneManagement Functions
 
     public void MenuScene()
     {
@@ -93,23 +111,6 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(6);
     }
 
-    public GameObject AssignPlayer()
-    {
-        //load player stats
-
-        //create and return player
-        player = Instantiate(playerPrefab);
-        return player;
-    }
-
-    public GameObject AssignHouse()
-    {
-        //create and return house
-        house = Instantiate(housePrefab);
-        return house;
-    }
-
-    #region SceneManagement Functions
 
     private void GoToNextScene()
     {

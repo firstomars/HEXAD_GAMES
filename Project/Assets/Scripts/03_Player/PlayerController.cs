@@ -30,8 +30,8 @@ public class PlayerController : BehaviourStateMachine
     private CameraManager CameraManager;
 
     //navigation variables for camera
-    private Vector3 currentTarget;
-    private bool isTargetReached = true;
+    private Vector3 currentTarget;          // DELETE
+    private bool isTargetReached = true;    // DELETE
 
     [Header("NavMesh Settings")]
     private NavMeshAgent agent;
@@ -60,11 +60,13 @@ public class PlayerController : BehaviourStateMachine
 
         agent = GetComponent<NavMeshAgent>();
 
-        //REWORK
-        camMgr = GameManager.Instance.house.transform.GetChild(3).gameObject;
+        if (camMgr == null)
+            camMgr = GameManager.Instance.world.transform.GetChild(0).gameObject;
+
+        //camMgr = GameManager.Instance.world.transform.GetChild(3).gameObject; --DELETE
         CameraManager = camMgr.GetComponent<CameraManager>();
 
-        //GameObject ChildGameObject1 = ParentGameObject.transform.GetChild(1).gameObject;
+        //GameObject ChildGameObject1 = ParentGameObject.transform.GetChild(1).gameObject; -- DELETE
 
 
         //set starting behaviour

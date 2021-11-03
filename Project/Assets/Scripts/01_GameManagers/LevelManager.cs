@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class LevelManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
         GameManager.Instance.AssignPlayer();
-        GameManager.Instance.AssignHouse();
+        GameManager.Instance.AssignWorld();
     }
 }

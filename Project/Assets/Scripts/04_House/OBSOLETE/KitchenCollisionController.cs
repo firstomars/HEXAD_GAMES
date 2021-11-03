@@ -2,11 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GymCollisionController : MonoBehaviour
+//namespace Obsolete
+public class KitchenCollisionController : MonoBehaviour
 {
     CameraManager CameraManager;
-    //PlayerController
 
+    // Start is called before the first frame update
     private void Start()
     {
         CameraManager = GetComponentInParent<CameraManager>();
@@ -15,7 +16,7 @@ public class GymCollisionController : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Player")
-            CameraManager.SetPlayerPosition("gym");
+            CameraManager.SetPlayerPosition("kitchen");
     }
 
     private void OnTriggerExit(Collider other)

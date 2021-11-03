@@ -7,7 +7,7 @@ namespace Sandbox.Omar.Greybox
     public class LevelManager : MonoBehaviour
     {
         // Start is called before the first frame update
-        void Start()
+        void Awake()
         {
             GameManager.Instance.AssignPlayer();
             GameManager.Instance.AssignWorld();

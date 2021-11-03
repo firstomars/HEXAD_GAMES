@@ -35,7 +35,7 @@ public class GameManager : MonoBehaviour
 
     [Header("Player")]
     [SerializeField] private GameObject playerPrefab;
-    private GameObject player;
+    public GameObject player;
 
     [Header("House")]
     [SerializeField] private GameObject worldPrefab;
@@ -75,7 +75,8 @@ public class GameManager : MonoBehaviour
         //load player stats
 
         //create and return player
-        player = Instantiate(playerPrefab);
+        Vector3 playerLocation = new Vector3(25, 1.5f, -26);
+        player = Instantiate(playerPrefab, playerLocation, transform.rotation);
         return player;
     }
 

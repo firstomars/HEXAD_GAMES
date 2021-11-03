@@ -472,10 +472,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1080, y: 2160}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -1181,6 +1181,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerPrefab: {fileID: 540303742199514401, guid: 8e51bd48fbfaec346a87dc5060069179, type: 3}
+  player: {fileID: 0}
   worldPrefab: {fileID: 9169753044994513113, guid: bb0d6cfeceda16649ab04fb619aabe75, type: 3}
   world: {fileID: 0}
   UIManagerObj: {fileID: 1891789707}

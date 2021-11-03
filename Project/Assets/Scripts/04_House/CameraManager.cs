@@ -67,6 +67,7 @@ public class CameraManager : MonoBehaviour
             gymCam.Priority = 0;
             bedroomCam.Priority = 0;
             bathroomCam.Priority = 0;
+            overworldCamera.LookAt = GameManager.Instance.player.transform;
         }
     }
 

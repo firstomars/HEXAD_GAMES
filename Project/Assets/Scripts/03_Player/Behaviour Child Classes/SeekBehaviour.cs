@@ -28,7 +28,7 @@ public class SeekBehaviour : Behaviour
         if (isDestinationReached())
         {
             PlayerController.CameraSwitch(); //rework
-            Debug.Log("destination reached");
+            //Debug.Log("destination reached");
         } 
 
         //DEBUG - DELETE

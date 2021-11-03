@@ -10,7 +10,7 @@ namespace Sandbox.Omar.Greybox
         void Start()
         {
             GameManager.Instance.AssignPlayer();
-            GameManager.Instance.AssignHouse();
+            GameManager.Instance.AssignWorld();
         }
     }
 }

@@ -23,6 +23,10 @@ namespace Sandbox.Omar.Greybox
         void Start()
         {
             agent = GetComponent<NavMeshAgent>();
+
+            if (camMgr == null) 
+                camMgr = GameManager.Instance.world.transform.GetChild(0).gameObject;
+            
             CameraManager = camMgr.GetComponent<CameraManager>();
         }
 

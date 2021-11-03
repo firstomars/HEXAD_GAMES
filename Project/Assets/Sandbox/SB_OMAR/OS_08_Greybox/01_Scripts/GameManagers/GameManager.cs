@@ -40,8 +40,8 @@ namespace Sandbox.Omar.Greybox
         private GameObject player;
 
         [Header("House")]
-        [SerializeField] private GameObject housePrefab;
-        public GameObject house;
+        [SerializeField] private GameObject worldPrefab;
+        public GameObject world;
 
         [Header("UI")]
         [SerializeField] private GameObject UIManagerObj;
@@ -74,11 +74,11 @@ namespace Sandbox.Omar.Greybox
             return player;
         }
 
-        public GameObject AssignHouse()
+        public GameObject AssignWorld()
         {
             //create and return house
-            house = Instantiate(housePrefab);
-            return house;
+            world = Instantiate(worldPrefab);
+            return world;
         }
 
         #region SceneManagement Functions

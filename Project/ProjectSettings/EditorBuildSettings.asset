@@ -29,8 +29,11 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Sandbox/SB_OMAR/OS_08_Greybox/OS_08_GreyboxSplash.unity
     guid: 701e2d349a505384ebef60ea8d1a543b
-  - enabled: 1
+  - enabled: 0
     path: Assets/Sandbox/SB_OMAR/OS_08_Greybox/OS_08_Greybox.unity
     guid: 8381dff25bb628745bd89126698d62ad
+  - enabled: 1
+    path: Assets/Sandbox/SB_OMAR/OS_08_Greybox/OS_08_GreyboxPlay.unity
+    guid: 3d2069b372c5f7b45a5045e40bcf4274
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 9e7be553448fa2546aea5752021cbcf7, type: 2}

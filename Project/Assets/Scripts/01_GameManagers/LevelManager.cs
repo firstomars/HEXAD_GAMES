@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LevelManager : MonoBehaviour
 {
-    private void Awake()
+    private void Start()
     {
         GameManager.Instance.AssignPlayer();
         GameManager.Instance.AssignWorld();

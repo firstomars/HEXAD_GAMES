@@ -6,6 +6,7 @@ public class RoomTrigger : MonoBehaviour
 {
     [SerializeField] protected GameObject camMgrObj;
     protected CameraManager CameraManager;
+    protected PlayerController PlayerController;
     protected Renderer renderer;
     protected bool isInRoom;
 

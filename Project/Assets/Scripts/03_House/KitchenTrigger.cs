@@ -8,6 +8,7 @@ public class KitchenTrigger : RoomTrigger
     void Start()
     {
         CameraManager = camMgrObj.GetComponent<CameraManager>();
+        PlayerController = GameManager.Instance.player.GetComponent<PlayerController>(); //NEW
         renderer = GetComponent<Renderer>();
         IsInRoom(false);
     }
@@ -17,8 +18,9 @@ public class KitchenTrigger : RoomTrigger
         if (other.gameObject.tag == "Player")
         {
             IsInRoom(true);
-            CameraManager.SetPlayerPosition("kitchen");
-            Debug.Log("I am in the kitchen");
+            CameraManager.SetPlayerPosition("kitchen"); //REFACTOR?
+            PlayerController.SetPlayerPosition("kitchen");
+            //Debug.Log("I am in the kitchen");
         }
     }
 
@@ -27,9 +29,9 @@ public class KitchenTrigger : RoomTrigger
         if (other.gameObject.tag == "Player")
         {
             IsInRoom(false);
-
             CameraManager.SetPlayerPosition();
-            Debug.Log("I am no longer in the kitchen");
+            PlayerController.SetPlayerPosition();
+            //Debug.Log("I am no longer in the kitchen");
         }
     }
 }

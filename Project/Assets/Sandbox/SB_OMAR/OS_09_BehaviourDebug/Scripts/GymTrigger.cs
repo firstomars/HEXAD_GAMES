@@ -6,7 +6,6 @@ namespace Sandbox.Omar.BehaviourDebug
 {
     public class GymTrigger : MonoBehaviour
     {
-
         protected Renderer renderer;
         protected bool isInRoom;
 

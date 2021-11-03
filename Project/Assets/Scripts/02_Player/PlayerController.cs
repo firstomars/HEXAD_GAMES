@@ -39,6 +39,14 @@ public class PlayerController : BehaviourStateMachine
     [SerializeField] public Vector3 targetPosition;
 
 
+    //===
+    //NEW
+    //===
+    private bool isPlayerInGym = false;
+    private bool isPlayerInKitchen = false;
+    private bool isPlayerInBedroom = false;
+    private bool isPlayerInBathroom = false;
+    //===
 
     // Start is called before the first frame update
     void Start()
@@ -94,7 +102,21 @@ public class PlayerController : BehaviourStateMachine
 
     private void RunBehaviourLogic()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        if (Input.GetMouseButtonDown(0) && isClickPointOnGround(Input.mousePosition))
+        {
+            Debug.Log("mouse clicked on ground");
+            nextBehaviour = SeekBehaviour;
+        }
+        else if (isPlayerInKitchen)
+        {
+            nextBehaviour = EatBehaviour;
+        }
+        else if (isPlayerInGym) //(Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            Debug.Log("gym behaviour set");
+            nextBehaviour = ExerciseBehaviour;
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             Debug.Log("key 1 pressed");
             nextBehaviour = WanderBehaviour;
@@ -104,20 +126,10 @@ public class PlayerController : BehaviourStateMachine
             Debug.Log("key 2 pressed");
             nextBehaviour = MoodBehaviour;
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            Debug.Log("key 3 pressed");
-            nextBehaviour = ExerciseBehaviour;
-        }
         else if (Input.GetKeyDown(KeyCode.Alpha4))
         {
             Debug.Log("key 4 pressed");
             nextBehaviour = ConverseBehaviour;
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha5))
-        {
-            Debug.Log("key 5 pressed");
-            nextBehaviour = EatBehaviour;
         }
         else if (Input.GetKeyDown(KeyCode.Alpha6))
         {
@@ -128,11 +140,6 @@ public class PlayerController : BehaviourStateMachine
         {
             Debug.Log("key 7 pressed");
             nextBehaviour = BathroomBehaviour;
-        }
-        else if (Input.GetMouseButtonDown(0) && isClickPointOnGround(Input.mousePosition))
-        {
-            Debug.Log("mouse clicked on ground");
-            nextBehaviour = SeekBehaviour;
         }
         else if (Input.GetKeyDown(KeyCode.Alpha9))
         {
@@ -172,6 +179,52 @@ public class PlayerController : BehaviourStateMachine
     public void CameraSwitch()
     {
         CameraManager.SwitchCamera(); //rework
+    }
+
+    public void SetPlayerPosition(string room = default)
+    {
+        switch (room)
+        {
+            case "gym":
+                Debug.Log("player in gym");
+                isPlayerInGym = true;
+                isPlayerInKitchen = false;
+                isPlayerInBedroom = false;
+                isPlayerInBathroom = false;
+                break;
+
+            case "kitchen":
+                Debug.Log("player in kitchen");
+                isPlayerInGym = false;
+                isPlayerInKitchen = true;
+                isPlayerInBedroom = false;
+                isPlayerInBathroom = false;
+                break;
+
+            case "bedroom":
+                Debug.Log("player in bedroom");
+                isPlayerInGym = false;
+                isPlayerInKitchen = false;
+                isPlayerInBedroom = true;
+                isPlayerInBathroom = false;
+                break;
+
+            case "bathroom":
+                Debug.Log("player in bathroom");
+                isPlayerInGym = false;
+                isPlayerInKitchen = false;
+                isPlayerInBedroom = false;
+                isPlayerInBathroom = true;
+                break;
+
+            default:
+                Debug.Log("player in house");
+                isPlayerInGym = false;
+                isPlayerInKitchen = false;
+                isPlayerInBedroom = false;
+                isPlayerInBathroom = false;
+                break;
+        }
     }
 
 }

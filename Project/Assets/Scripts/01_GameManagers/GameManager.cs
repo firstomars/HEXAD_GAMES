@@ -9,22 +9,12 @@ public class GameManager : MonoBehaviour
 
     private static GameManager _instance;
 
-    public static GameManager Instance
-    {
-        get
-        {
-            if (_instance == null)
-            {
-                GameObject go = new GameObject("GameManager");
-                go.AddComponent<GameManager>();
-            }
-            return _instance;
-        }
-    }
+    public static GameManager Instance { get { return _instance; } }
 
     private void Awake()
     {
-        _instance = this;
+        if(_instance != null)   Destroy(gameObject);
+        else                    _instance = this;
     }
     #endregion
 
@@ -35,11 +25,11 @@ public class GameManager : MonoBehaviour
 
     [Header("Player")]
     [SerializeField] private GameObject playerPrefab;
-    public GameObject player;
+    [HideInInspector] public GameObject player;
 
     [Header("House")]
     [SerializeField] private GameObject worldPrefab;
-    public GameObject world;
+    [HideInInspector] public GameObject world;
 
     [Header("UI")]
     [SerializeField] private GameObject UIManagerObj;

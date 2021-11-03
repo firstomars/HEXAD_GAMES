@@ -7,7 +7,8 @@ public class GymTrigger : RoomTrigger
     // Start is called before the first frame update
     void Start()
     {
-        CameraManager = camMgrObj.GetComponent<CameraManager>(); 
+        CameraManager = camMgrObj.GetComponent<CameraManager>();
+        PlayerController = GameManager.Instance.player.GetComponent<PlayerController>();
         renderer = GetComponent<Renderer>();
         IsInRoom(false);
     }
@@ -18,6 +19,7 @@ public class GymTrigger : RoomTrigger
         {
             IsInRoom(true);
             CameraManager.SetPlayerPosition("gym");
+            PlayerController.SetPlayerPosition("gym");
             Debug.Log("I am in the gym");
         }
     }
@@ -27,8 +29,8 @@ public class GymTrigger : RoomTrigger
         if (other.gameObject.tag == "Player")
         {
             IsInRoom(false);
-
             CameraManager.SetPlayerPosition();
+            PlayerController.SetPlayerPosition();
             Debug.Log("I am no longer in the gym");
         }
     }

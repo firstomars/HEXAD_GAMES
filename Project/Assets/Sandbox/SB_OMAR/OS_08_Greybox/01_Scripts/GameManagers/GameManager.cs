@@ -97,7 +97,8 @@ namespace Sandbox.Omar.Greybox
 
         public void PlayScene()
         {
-            SceneManager.LoadScene(2);
+            //SceneManager.LoadScene(2);
+            SceneManager.LoadScene(1);
         }
 
         public void StagingScene()

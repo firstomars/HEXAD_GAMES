@@ -8,7 +8,7 @@ public class BathroomTrigger : RoomTrigger
     void Start()
     {
         CameraManager = camMgrObj.GetComponent<CameraManager>();
-
+        PlayerController = GameManager.Instance.player.GetComponent<PlayerController>();
         renderer = GetComponent<Renderer>();
         IsInRoom(false);
     }
@@ -19,6 +19,7 @@ public class BathroomTrigger : RoomTrigger
         {
             IsInRoom(true);
             CameraManager.SetPlayerPosition("bathroom");
+            PlayerController.SetPlayerPosition("bathroom");
             Debug.Log("I am in the bathroom");
         }
     }
@@ -28,8 +29,8 @@ public class BathroomTrigger : RoomTrigger
         if (other.gameObject.tag == "Player")
         {
             IsInRoom(false);
-
             CameraManager.SetPlayerPosition();
+            PlayerController.SetPlayerPosition();
             Debug.Log("I am no longer in the bathroom");
         }
     }

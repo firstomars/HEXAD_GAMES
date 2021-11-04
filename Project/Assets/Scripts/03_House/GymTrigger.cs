@@ -20,7 +20,7 @@ public class GymTrigger : RoomTrigger
             IsInRoom(true);
             CameraManager.SetPlayerPosition("gym");
             PlayerController.SetPlayerPosition("gym");
-            Debug.Log("I am in the gym");
+            //Debug.Log("I am in the gym");
         }
     }
 
@@ -31,7 +31,7 @@ public class GymTrigger : RoomTrigger
             IsInRoom(false);
             CameraManager.SetPlayerPosition();
             PlayerController.SetPlayerPosition();
-            Debug.Log("I am no longer in the gym");
+            //Debug.Log("I am no longer in the gym");
         }
     }
 }

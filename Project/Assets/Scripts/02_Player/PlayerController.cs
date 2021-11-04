@@ -26,18 +26,17 @@ public class PlayerController : BehaviourStateMachine
 
     //camera set-up
     [Header("Cameras")]
-    [SerializeField] private GameObject camMgr;
+    private GameObject camMgr;
     private CameraManager CameraManager;
 
     //navigation variables for camera
-    private Vector3 currentTarget;          // DELETE
-    private bool isTargetReached = true;    // DELETE
+    //private Vector3 currentTarget;          // DELETE
+    //private bool isTargetReached = true;    // DELETE
 
     [Header("NavMesh Settings")]
     private NavMeshAgent agent;
     [SerializeField] private LayerMask whatIsPlayer, whatIsGround;
     [SerializeField] public Vector3 targetPosition;
-
 
     //===
     //NEW
@@ -47,6 +46,9 @@ public class PlayerController : BehaviourStateMachine
     private bool isPlayerInBedroom = false;
     private bool isPlayerInBathroom = false;
     //===
+
+    [Header("Player Stats UI")]
+    [SerializeField] private GameObject playerStatsUI;
 
     // Start is called before the first frame update
     void Start()
@@ -68,14 +70,11 @@ public class PlayerController : BehaviourStateMachine
 
         agent = GetComponent<NavMeshAgent>();
 
+        //links Camera Manager to player in run time
         if (camMgr == null)
             camMgr = GameManager.Instance.world.transform.GetChild(0).gameObject;
 
-        //camMgr = GameManager.Instance.world.transform.GetChild(3).gameObject; --DELETE
         CameraManager = camMgr.GetComponent<CameraManager>();
-
-        //GameObject ChildGameObject1 = ParentGameObject.transform.GetChild(1).gameObject; -- DELETE
-
 
         //set starting behaviour
         currentBehaviour = WanderBehaviour;
@@ -104,17 +103,27 @@ public class PlayerController : BehaviourStateMachine
     {
         if (Input.GetMouseButtonDown(0) && isClickPointOnGround(Input.mousePosition))
         {
-            Debug.Log("mouse clicked on ground");
+            Debug.Log("seek behaviour set");
             nextBehaviour = SeekBehaviour;
         }
         else if (isPlayerInKitchen)
         {
             nextBehaviour = EatBehaviour;
         }
-        else if (isPlayerInGym) //(Input.GetKeyDown(KeyCode.Alpha3))
+        else if (isPlayerInGym) 
         {
             Debug.Log("gym behaviour set");
             nextBehaviour = ExerciseBehaviour;
+        }
+        else if (isPlayerInBedroom)
+        {
+            Debug.Log("sleep behaviour set");
+            nextBehaviour = SleepBehaviour;
+        }
+        else if (isPlayerInBathroom) //(Input.GetKeyDown(KeyCode.Alpha7))
+        {
+            Debug.Log("bathroom behaviour set");
+            nextBehaviour = BathroomBehaviour;
         }
         else if (Input.GetKeyDown(KeyCode.Alpha1))
         {
@@ -136,20 +145,10 @@ public class PlayerController : BehaviourStateMachine
             Debug.Log("key 6 pressed");
             nextBehaviour = StatusCheckBehaviour;
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha7))
-        {
-            Debug.Log("key 7 pressed");
-            nextBehaviour = BathroomBehaviour;
-        }
         else if (Input.GetKeyDown(KeyCode.Alpha9))
         {
             Debug.Log("key 9 pressed");
             nextBehaviour = EmoteBehaviour;
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha0))
-        {
-            Debug.Log("key 0 pressed");
-            nextBehaviour = SleepBehaviour;
         }
     }
 
@@ -225,6 +224,11 @@ public class PlayerController : BehaviourStateMachine
                 isPlayerInBathroom = false;
                 break;
         }
+    }
+
+    public void TogglePlayerStats(bool value)
+    {
+        playerStatsUI.SetActive(value);
     }
 
 }

@@ -13,7 +13,6 @@ public class ExerciseBehaviour : Behaviour
     public override void StartBehaviour()
     {
         Debug.Log("ExerciseBehaviour Start called - press E to test update");
-        //Debug.Log(GameObject.name);
 
         base.StartBehaviour();
     }

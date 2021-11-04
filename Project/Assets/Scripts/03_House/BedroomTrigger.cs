@@ -8,6 +8,7 @@ public class BedroomTrigger : RoomTrigger
     void Start()
     {
         CameraManager = camMgrObj.GetComponent<CameraManager>();
+        PlayerController = GameManager.Instance.player.GetComponent<PlayerController>();
         renderer = GetComponent<Renderer>();
         IsInRoom(false);
     }
@@ -18,6 +19,7 @@ public class BedroomTrigger : RoomTrigger
         {
             IsInRoom(true);
             CameraManager.SetPlayerPosition("bedroom");
+            PlayerController.SetPlayerPosition("bedroom");
             Debug.Log("I am in the bedroom");
         }
     }
@@ -29,6 +31,7 @@ public class BedroomTrigger : RoomTrigger
             IsInRoom(false);
 
             CameraManager.SetPlayerPosition();
+            PlayerController.SetPlayerPosition();
             Debug.Log("I am no longer in the bedroom");
         }
     }

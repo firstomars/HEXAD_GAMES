@@ -13,6 +13,15 @@ public class DialogueSystem : MonoBehaviour
     private int index;
 
 
+    [System.Serializable]
+    public class Tips
+    {
+        public string tipType;
+        public string[] tipText;
+        //public Tuple<Transform, int>[] enemyPrefabCount;???
+        
+    }
+    [SerializeField] Tips[] tips;
 
     void Start()
     {

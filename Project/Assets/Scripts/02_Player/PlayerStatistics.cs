@@ -71,7 +71,7 @@ public class PlayerStatistics : MonoBehaviour
         while (energyLevel > minEnergyLevel)
         {
             energyLevel -= energyReductionAmount;
-            Debug.Log("energy is now: " + energyLevel);
+            //Debug.Log("energy is now: " + energyLevel);
             yield return new WaitForSeconds(secsToWaitBeforeEnergyReduction);
         }
     }

@@ -101,9 +101,11 @@ public class PlayerController : BehaviourStateMachine
 
     private void RunBehaviourLogic()
     {
-        if (Input.GetMouseButtonDown(0) && isClickPointOnGround(Input.mousePosition))
+        //if mouse clicked or not in any action rooms, set to seekbehaviour
+        if (Input.GetMouseButtonDown(0) && isClickPointOnGround(Input.mousePosition) ||
+            !isPlayerInBathroom && !isPlayerInBedroom && !isPlayerInGym && !isPlayerInKitchen)
         {
-            Debug.Log("seek behaviour set");
+            //Debug.Log("seek behaviour set");
             nextBehaviour = SeekBehaviour;
         }
         else if (isPlayerInKitchen)
@@ -112,20 +114,20 @@ public class PlayerController : BehaviourStateMachine
         }
         else if (isPlayerInGym) 
         {
-            Debug.Log("gym behaviour set");
+            //Debug.Log("gym behaviour set");
             nextBehaviour = ExerciseBehaviour;
         }
         else if (isPlayerInBedroom)
         {
-            Debug.Log("sleep behaviour set");
+            //Debug.Log("sleep behaviour set");
             nextBehaviour = SleepBehaviour;
         }
-        else if (isPlayerInBathroom) //(Input.GetKeyDown(KeyCode.Alpha7))
+        else if (isPlayerInBathroom)
         {
-            Debug.Log("bathroom behaviour set");
+            //Debug.Log("bathroom behaviour set");
             nextBehaviour = BathroomBehaviour;
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha1))
+        else if (Input.GetKeyDown(KeyCode.Alpha1)) // set to top
         {
             Debug.Log("key 1 pressed");
             nextBehaviour = WanderBehaviour;

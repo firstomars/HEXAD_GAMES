@@ -51,12 +51,10 @@ public class SeekBehaviour : Behaviour
 
     private bool isDestinationReached()
     {
-        if (Vector3.Distance(targetPosition, GameObject.transform.position) < 5.0f)
+        if (Vector3.Distance(targetPosition, GameObject.transform.position) < 10.0f)
         {
             return true;
         }
-            
-
         return false;
     }
 

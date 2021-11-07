@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class StatusCheckBehaviour : Behaviour
 {
-    private PlayerController PlayerController { get; set; }
     public StatusCheckBehaviour(PlayerController playerController) : base(playerController)
     {
         PlayerController = playerController;

@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class WanderBehaviour : Behaviour
 {
-    private PlayerController PlayerController { get; set; }
-
     public WanderBehaviour(PlayerController playerController) : base(playerController)
     {
         PlayerController = playerController;

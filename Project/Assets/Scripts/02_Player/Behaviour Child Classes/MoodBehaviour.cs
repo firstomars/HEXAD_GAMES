@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class MoodBehaviour : Behaviour
 {
-    private PlayerController PlayerController { get; set; }
-
     public MoodBehaviour(PlayerController playerController) : base(playerController)
     {
         PlayerController = playerController;

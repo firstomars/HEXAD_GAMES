@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class ConverseBehaviour : Behaviour
 {
-    private PlayerController PlayerController { get; set; }
     public ConverseBehaviour(PlayerController playerController) : base(playerController)
     {
         PlayerController = playerController;

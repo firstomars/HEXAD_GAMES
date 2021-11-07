@@ -29,23 +29,16 @@ public class PlayerController : BehaviourStateMachine
     private GameObject camMgr;
     private CameraManager CameraManager;
 
-    //navigation variables for camera
-    //private Vector3 currentTarget;          // DELETE
-    //private bool isTargetReached = true;    // DELETE
-
     [Header("NavMesh Settings")]
     private NavMeshAgent agent;
     [SerializeField] private LayerMask whatIsPlayer, whatIsGround;
     [SerializeField] public Vector3 targetPosition;
 
-    //===
-    //NEW
-    //===
+
     private bool isPlayerInGym = false;
     private bool isPlayerInKitchen = false;
     private bool isPlayerInBedroom = false;
     private bool isPlayerInBathroom = false;
-    //===
 
     [Header("Player Stats UI")]
     [SerializeField] private GameObject playerStatsUI;
@@ -232,5 +225,4 @@ public class PlayerController : BehaviourStateMachine
     {
         playerStatsUI.SetActive(value);
     }
-
 }

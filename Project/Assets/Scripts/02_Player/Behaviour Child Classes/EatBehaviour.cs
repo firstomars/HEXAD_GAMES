@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class EatBehaviour : Behaviour
 {
-    private PlayerController PlayerController { get; set; }
-
     public EatBehaviour(PlayerController playerController) : base(playerController)
     {
         PlayerController = playerController;

@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class EmoteBehaviour : Behaviour
 {
-    private PlayerController PlayerController { get; set; }
     public EmoteBehaviour(PlayerController playerController) : base(playerController)
     {
         PlayerController = playerController;

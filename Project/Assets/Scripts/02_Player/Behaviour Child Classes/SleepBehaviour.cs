@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class SleepBehaviour : Behaviour
 {
-    private PlayerController PlayerController { get; set; }
     public SleepBehaviour(PlayerController playerController) : base(playerController)
     {
         PlayerController = playerController;

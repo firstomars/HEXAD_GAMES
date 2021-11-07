@@ -7,6 +7,8 @@ public abstract class Behaviour
     //connected with parent controller class so multiple GOs can use state machine
     protected BehaviourStateMachine BehaviourStateMachine;
 
+    protected PlayerController PlayerController { get; set; }
+
     //returns GO attached to BehaviourStateMachine (see line 18 in ExerciseBehaviour.cs)
     protected GameObject GameObject { get; private set; }
 
@@ -14,6 +16,7 @@ public abstract class Behaviour
     {
         BehaviourStateMachine = behaviourStateMachine;
         GameObject = BehaviourStateMachine.gameObject;
+        PlayerController = GameObject.GetComponent<PlayerController>();
     }
 
     public virtual void StartBehaviour()
@@ -27,7 +30,7 @@ public abstract class Behaviour
 
     public virtual void EndBehaviour()
     {
-
+        PlayerController.CameraSwitch();
     }
 
     //monobehaviour functions accessed by behaviour classes

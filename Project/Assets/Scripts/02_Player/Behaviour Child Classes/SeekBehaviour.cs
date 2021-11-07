@@ -6,8 +6,6 @@ public class SeekBehaviour : Behaviour
 {
     private Vector3 targetPosition;
 
-    private PlayerController PlayerController { get; set; }
-
     public SeekBehaviour(PlayerController playerController) : base(playerController)
     {
         PlayerController = playerController;
@@ -23,13 +21,6 @@ public class SeekBehaviour : Behaviour
     {
         //set seek destination
         if (targetPosition != PlayerController.targetPosition) SetPlayerDestination(targetPosition);
-
-        //check if seek destination reached
-        if (isDestinationReached())
-        {
-            PlayerController.CameraSwitch(); //rework
-            //Debug.Log("destination reached");
-        } 
 
         //DEBUG - DELETE
         if (Input.GetKeyDown(KeyCode.K)) Debug.Log("key K has been pressed");
@@ -49,6 +40,7 @@ public class SeekBehaviour : Behaviour
         PlayerController.SetPlayerDestination(targetPosition);
     }
 
+    //not currently called
     private bool isDestinationReached()
     {
         if (Vector3.Distance(targetPosition, GameObject.transform.position) < 10.0f)

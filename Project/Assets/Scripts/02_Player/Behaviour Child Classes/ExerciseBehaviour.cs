@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class ExerciseBehaviour : Behaviour
 {
-    private PlayerController PlayerController { get; set; }
     public ExerciseBehaviour(PlayerController playerController) : base(playerController)
     {
         PlayerController = playerController;

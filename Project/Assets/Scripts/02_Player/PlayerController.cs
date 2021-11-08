@@ -24,10 +24,14 @@ public class PlayerController : BehaviourStateMachine
     private Behaviour currentBehaviour;
     private Behaviour nextBehaviour;
 
-    //camera set-up
-    [Header("Cameras")]
+    //camera class
     private GameObject camMgr;
     private CameraManager CameraManager;
+
+    //time controller class
+    private GameObject timeCtrlr;
+    //private TimeController TimeController;
+    [HideInInspector] public TimeController TimeController { get; private set; }
 
     [Header("NavMesh Settings")]
     private NavMeshAgent agent;
@@ -47,6 +51,7 @@ public class PlayerController : BehaviourStateMachine
 
     [Header("Player Stats Logic")]
     [SerializeField] public float minEnergyLevelToGym;
+    [SerializeField] public int petBedTime;
 
     // Start is called before the first frame update
     void Start()
@@ -76,6 +81,11 @@ public class PlayerController : BehaviourStateMachine
         if (camMgr == null)
             camMgr = GameManager.Instance.world.transform.GetChild(0).gameObject;
         CameraManager = camMgr.GetComponent<CameraManager>();
+
+        //links Time Controller to player in run time
+        if (timeCtrlr == null)
+            timeCtrlr = GameManager.Instance.world.transform.GetChild(1).gameObject;
+        TimeController = timeCtrlr.GetComponent<TimeController>();
         
         //set starting behaviour
         currentBehaviour = WanderBehaviour;
@@ -101,7 +111,7 @@ public class PlayerController : BehaviourStateMachine
     }
 
     private void RunBehaviourLogic()
-    {
+    {        
         //if mouse clicked or not in any action rooms, set to seekbehaviour
         if (Input.GetMouseButtonDown(0) && isClickPointOnGround(Input.mousePosition) ||
             !isPlayerInBathroom && !isPlayerInBedroom && !isPlayerInGym && !isPlayerInKitchen)

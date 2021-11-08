@@ -9,6 +9,9 @@ namespace Sandbox.Omar.Time
 {
     public class TimeController : MonoBehaviour
     {
+        [Header("UI Toggle")]
+        [SerializeField] private GameObject timeUI;
+
         [Header("SkyBox")]
         [SerializeField] private GameObject skyboxDay;
         [SerializeField] private GameObject skyboxNight;
@@ -164,6 +167,11 @@ namespace Sandbox.Omar.Time
         {
             if (gameTimeHours < hour) return true;
             return false;
+        }
+
+        public void ToggleTimeUI(bool value)
+        {
+            timeUI.SetActive(value);
         }
 
         #region Helper Functions

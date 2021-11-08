@@ -40,8 +40,13 @@ public class PlayerController : BehaviourStateMachine
     private bool isPlayerInBedroom = false;
     private bool isPlayerInBathroom = false;
 
-    [Header("Player Stats UI")]
+    [Header("Player Stats")]
     [SerializeField] private GameObject playerStatsUI;
+    [SerializeField] private GameObject playerStatsGameObject;
+    [HideInInspector] public PlayerStatistics PlayerStatistics { get; private set; }
+
+    [Header("Player Stats Logic")]
+    [SerializeField] public float minEnergyLevelToGym;
 
     // Start is called before the first frame update
     void Start()
@@ -61,14 +66,17 @@ public class PlayerController : BehaviourStateMachine
 
         #endregion
 
+        //set-up navmesh agent
         agent = GetComponent<NavMeshAgent>();
+
+        //connect player stats
+        PlayerStatistics = playerStatsGameObject.GetComponent<PlayerStatistics>();
 
         //links Camera Manager to player in run time
         if (camMgr == null)
             camMgr = GameManager.Instance.world.transform.GetChild(0).gameObject;
-
         CameraManager = camMgr.GetComponent<CameraManager>();
-
+        
         //set starting behaviour
         currentBehaviour = WanderBehaviour;
         SetBehaviour(currentBehaviour);

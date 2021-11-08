@@ -18,7 +18,7 @@ public class PlayerStatistics : MonoBehaviour
     [SerializeField] private float spiritLevel;
 
     [Header("STAT: Energy")]
-    [SerializeField] private float energyLevel; //reduces slowly overtime
+    [SerializeField] public float energyLevel; //reduces slowly overtime
     [SerializeField] private float maxEnergyLevel;
     [SerializeField] private float minEnergyLevel;
     [SerializeField] private float energyReductionAmount;

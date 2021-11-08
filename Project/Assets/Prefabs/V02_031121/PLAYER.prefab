@@ -272,6 +272,8 @@ MonoBehaviour:
     m_Bits: 128
   targetPosition: {x: 0, y: 0, z: 0}
   playerStatsUI: {fileID: 735632514148163362}
+  playerStatsGameObject: {fileID: 735632514488125598}
+  minEnergyLevelToGym: 75
 --- !u!1 &735632513058682818
 GameObject:
   m_ObjectHideFlags: 0
@@ -1360,7 +1362,7 @@ MonoBehaviour:
   energyLevel: 100
   maxEnergyLevel: 100
   minEnergyLevel: 10
-  energyReductionAmount: 5
+  energyReductionAmount: 1
   secsToWaitBeforeEnergyReduction: 1
   fulfilLevel: 0
   maxfulfilLevel: 100

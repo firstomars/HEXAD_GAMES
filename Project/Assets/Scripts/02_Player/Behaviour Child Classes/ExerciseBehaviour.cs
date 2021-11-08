@@ -21,8 +21,13 @@ public class ExerciseBehaviour : Behaviour
         //Debug.Log("ExerciseBehaviour Update called");
 
         if (Input.GetKeyDown(KeyCode.E))
-            Debug.Log("key E has been pressed");
-
+        {
+            if (PlayerController.PlayerStatistics.energyLevel > PlayerController.minEnergyLevelToGym)
+                Debug.Log("key E has been pressed");
+            else
+                Debug.Log("Energy too low to work out");
+        }
+            
         base.RunBehaviour();
     }
 

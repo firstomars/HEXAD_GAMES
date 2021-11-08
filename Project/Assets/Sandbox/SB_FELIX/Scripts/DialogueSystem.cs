@@ -18,7 +18,6 @@ public class DialogueSystem : MonoBehaviour
     {
         public string tipType;
         public string[] tipText;
-        //public Tuple<Transform, int>[] enemyPrefabCount;???
         
     }
     [SerializeField] Tips[] tips;
@@ -31,14 +30,22 @@ public class DialogueSystem : MonoBehaviour
         public string[] IntroText;
 
     }
-    [SerializeField] Introduction[] Intro2;
+    [SerializeField] Introduction[] IntroDialogue;
+
+    [System.Serializable]
+    public class PetDialogue
+    {
+        public string Dialogue;
+        public string[] PetText;
+
+    }
+    [SerializeField] PetDialogue[] petDialogue;
 
     void Start()
     {
         textComponent.text = string.Empty;
         StartDialogue();
     }
-
 
     void Update()
     {

@@ -263,7 +263,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-24228
+  m_Name: pb_Mesh-5680
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -591,7 +591,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-24144
+  m_Name: pb_Mesh-5596
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -860,7 +860,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-24252
+  m_Name: pb_Mesh-5704
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1573,7 +1573,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-24192
+  m_Name: pb_Mesh-5644
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1901,7 +1901,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-24216
+  m_Name: pb_Mesh-5668
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2235,7 +2235,6 @@ GameObject:
   - component: {fileID: 1321293588}
   - component: {fileID: 1321293587}
   - component: {fileID: 1321293590}
-  - component: {fileID: 1321293591}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2340,22 +2339,6 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
---- !u!114 &1321293591
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1321293586}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 548a03500cf50ff41bb6e65c5f913331, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MorningSky: {fileID: 2100000, guid: 8fc56946a1b593c4d8e3e0e94483338e, type: 2}
-  DaySky: {fileID: 2100000, guid: ddbcbb3899687ea469ed4a5fce1532df, type: 2}
-  SunsetSky: {fileID: 2100000, guid: 20f6d22d93779de4ea6f62f8ab305593, type: 2}
-  NightSky: {fileID: 2100000, guid: 52fcefd712182d743a781fde12426775, type: 2}
 --- !u!43 &1444032439
 Mesh:
   m_ObjectHideFlags: 0
@@ -2526,7 +2509,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-24156
+  m_Name: pb_Mesh-5608
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2920,7 +2903,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-24180
+  m_Name: pb_Mesh-5632
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -3133,14 +3116,6 @@ MonoBehaviour:
   lines:
   - hey
   - Hello
-  - Hello
-  - Hello
-  - Hello
-  - Hello
-  - Hello
-  - Hello
-  - Hello
-  - Hello
   textSpeed: 0.3
   tips:
   - tipType: 
@@ -3158,9 +3133,23 @@ MonoBehaviour:
     tipText: []
   - tipType: 
     tipText: []
-  Intro2:
+  IntroDialogue:
   - Intro: 
     IntroText: []
+  petDialogue:
+  - Dialogue: First Conversation
+    PetText:
+    - Hi, its nice to meet you
+    - 'What''s your name? '
+    - 
+  - Dialogue: 
+    PetText:
+    - Hello
+    - Hello
+  - Dialogue: 
+    PetText:
+    - Hello
+    - Hello
 --- !u!114 &1853598276
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3404,6 +3393,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1956136123}
   - component: {fileID: 1956136122}
+  - component: {fileID: 1956136124}
   m_Layer: 0
   m_Name: Directional Light
   m_TagString: Untagged
@@ -3487,6 +3477,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!114 &1956136124
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1956136121}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f3b50b73f9e8b041ac1085ddec37aef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mat: {fileID: 2100000, guid: 8fc56946a1b593c4d8e3e0e94483338e, type: 2}
+  day: {fileID: 2100000, guid: 7caa487975366904fb2e3e7d63969110, type: 2}
+  skyBox: {fileID: 2100000, guid: 52fcefd712182d743a781fde12426775, type: 2}
 --- !u!43 &2017341477
 Mesh:
   m_ObjectHideFlags: 0
@@ -3657,7 +3662,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-24240
+  m_Name: pb_Mesh-5692
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -3998,7 +4003,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-24204
+  m_Name: pb_Mesh-5656
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -4162,7 +4167,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-24168
+  m_Name: pb_Mesh-5620
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2

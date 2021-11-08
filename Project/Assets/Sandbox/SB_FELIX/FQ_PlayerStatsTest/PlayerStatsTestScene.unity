@@ -744,7 +744,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2106092293520533791, guid: 7c01328b5692221469eba11e4f8a9775, type: 3}
   m_PrefabInstance: {fileID: 1062710751}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 2011358979}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d71af7e287749674baa4790efcfe3555, type: 3}
@@ -833,3 +833,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2011358979 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3006019594248357080, guid: 7c01328b5692221469eba11e4f8a9775, type: 3}
+  m_PrefabInstance: {fileID: 1062710751}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2011358981
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2011358979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 548a03500cf50ff41bb6e65c5f913331, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MorningSky: {fileID: 2100000, guid: 8fc56946a1b593c4d8e3e0e94483338e, type: 2}
+  DaySky: {fileID: 2100000, guid: ddbcbb3899687ea469ed4a5fce1532df, type: 2}
+  SunsetSky: {fileID: 2100000, guid: 20f6d22d93779de4ea6f62f8ab305593, type: 2}
+  NightSky: {fileID: 2100000, guid: 52fcefd712182d743a781fde12426775, type: 2}

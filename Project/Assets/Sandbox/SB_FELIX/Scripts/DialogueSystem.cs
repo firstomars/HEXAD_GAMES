@@ -23,6 +23,16 @@ public class DialogueSystem : MonoBehaviour
     }
     [SerializeField] Tips[] tips;
 
+
+    [System.Serializable]
+    public class Introduction
+    {
+        public string Intro;
+        public string[] IntroText;
+
+    }
+    [SerializeField] Introduction[] Intro2;
+
     void Start()
     {
         textComponent.text = string.Empty;

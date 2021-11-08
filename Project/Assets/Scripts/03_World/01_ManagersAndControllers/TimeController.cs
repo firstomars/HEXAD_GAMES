@@ -12,6 +12,12 @@ public class TimeController : MonoBehaviour
     [Header("SkyBox")]
     [SerializeField] private GameObject skyboxDay;
     [SerializeField] private GameObject skyboxNight;
+    [SerializeField] Material[] skyboxes;
+    [SerializeField] private int sunriseTime;
+    [SerializeField] private int dayTime;
+    [SerializeField] private int sunsetTime;
+    [SerializeField] private int nightTime;
+    //private int currentSkybox;
 
     [Header("Debug Text Fields")]
     [SerializeField] private Text actualTimeText;
@@ -39,6 +45,9 @@ public class TimeController : MonoBehaviour
 
         skyboxDay.SetActive(false);
         skyboxNight.SetActive(false);
+
+        //currentSkybox = 0;
+        //ChangeSkybox();
     }
 
     // Update is called once per frame
@@ -51,8 +60,24 @@ public class TimeController : MonoBehaviour
         //debug game time
         DebugTime();
 
+        CheckTimeForSkybox();
+
+
         if (IsTimeAfter(20) || IsTimeBefore(4)) SetNight();
         else SetDay();
+    }
+
+    private void CheckTimeForSkybox()
+    {
+        if (IsTimeAfter(5) && IsTimeBefore(9)) SwitchSkybox(0); //morning
+        else if (IsTimeAfter(9) && IsTimeBefore(17)) SwitchSkybox(1); //day
+        else if (IsTimeAfter(17) && IsTimeBefore(21)) SwitchSkybox(2); //sunset
+        else if (IsTimeAfter(21) || IsTimeBefore(4)) SwitchSkybox(3); //night
+    }
+
+    private void SwitchSkybox(int skyboxIndex)
+    {
+        RenderSettings.skybox = skyboxes[skyboxIndex];
     }
 
     private void SetNight()
@@ -153,7 +178,7 @@ public class TimeController : MonoBehaviour
 
     public bool IsTimeAfter(int hour)
     {
-        if (gameTimeHours > hour) return true;
+        if (gameTimeHours >= hour) return true;
 
         return false;
     }

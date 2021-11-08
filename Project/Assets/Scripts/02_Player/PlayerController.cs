@@ -41,7 +41,7 @@ public class PlayerController : BehaviourStateMachine
     private bool isPlayerInBathroom = false;
 
     [Header("Player Stats")]
-    [SerializeField] private GameObject playerStatsUI;
+    //[SerializeField] private GameObject playerStatsUI;
     [SerializeField] private GameObject playerStatsGameObject;
     [HideInInspector] public PlayerStatistics PlayerStatistics { get; private set; }
 
@@ -229,8 +229,8 @@ public class PlayerController : BehaviourStateMachine
         }
     }
 
-    public void TogglePlayerStats(bool value)
-    {
-        playerStatsUI.SetActive(value);
-    }
+    //public void TogglePlayerStats(bool value)
+    //{
+    //    playerStatsUI.SetActive(value);
+    //}
 }

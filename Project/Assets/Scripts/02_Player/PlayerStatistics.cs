@@ -6,6 +6,9 @@ using UnityEngine.UI;
 
 public class PlayerStatistics : MonoBehaviour
 {
+    [Header("UI Toggle")]
+    [SerializeField] private GameObject playerStatsUI;
+
     [Header("Debug Input Variables")]
     [SerializeField] private int DebugSleepHoursNightOne;
     [SerializeField] private int DebugSleepHoursNightTwo;
@@ -130,5 +133,10 @@ public class PlayerStatistics : MonoBehaviour
         spiritLevel = (energyLevel + fulfilLevel + hrsSleptNightOne) / 3;
 
         return spiritLevel.ToString();
+    }
+
+    public void TogglePlayerStats(bool value)
+    {
+        playerStatsUI.SetActive(value);
     }
 }

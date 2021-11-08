@@ -9,15 +9,14 @@ public class TimeController : MonoBehaviour
     [Header("UI Toggle")]
     [SerializeField] private GameObject timeUI;
 
-    [Header("SkyBox")]
-    [SerializeField] private GameObject skyboxDay;
-    [SerializeField] private GameObject skyboxNight;
+    //skyboxes
     [SerializeField] Material[] skyboxes;
+
+    [Header("Key Skybox Times (int)")]
     [SerializeField] private int sunriseTime;
     [SerializeField] private int dayTime;
     [SerializeField] private int sunsetTime;
     [SerializeField] private int nightTime;
-    //private int currentSkybox;
 
     [Header("Debug Text Fields")]
     [SerializeField] private Text actualTimeText;
@@ -42,12 +41,6 @@ public class TimeController : MonoBehaviour
 
         gameTimeHours = GetCurrentHours();
         gameDate = GetCurrentDay();
-
-        skyboxDay.SetActive(false);
-        skyboxNight.SetActive(false);
-
-        //currentSkybox = 0;
-        //ChangeSkybox();
     }
 
     // Update is called once per frame
@@ -60,19 +53,16 @@ public class TimeController : MonoBehaviour
         //debug game time
         DebugTime();
 
+        //check time and set skybox
         CheckTimeForSkybox();
-
-
-        if (IsTimeAfter(20) || IsTimeBefore(4)) SetNight();
-        else SetDay();
     }
 
     private void CheckTimeForSkybox()
     {
-        if (IsTimeAfter(5) && IsTimeBefore(9)) SwitchSkybox(0); //morning
-        else if (IsTimeAfter(9) && IsTimeBefore(17)) SwitchSkybox(1); //day
-        else if (IsTimeAfter(17) && IsTimeBefore(21)) SwitchSkybox(2); //sunset
-        else if (IsTimeAfter(21) || IsTimeBefore(4)) SwitchSkybox(3); //night
+        if (IsTimeAfter(sunriseTime) && IsTimeBefore(dayTime)) SwitchSkybox(0); //morning
+        else if (IsTimeAfter(dayTime) && IsTimeBefore(sunsetTime)) SwitchSkybox(1); //day
+        else if (IsTimeAfter(sunsetTime) && IsTimeBefore(nightTime)) SwitchSkybox(2); //sunset
+        else if (IsTimeAfter(nightTime) || IsTimeBefore(sunriseTime)) SwitchSkybox(3); //night
     }
 
     private void SwitchSkybox(int skyboxIndex)
@@ -80,25 +70,13 @@ public class TimeController : MonoBehaviour
         RenderSettings.skybox = skyboxes[skyboxIndex];
     }
 
-    private void SetNight()
-    {
-        skyboxNight.SetActive(true);
-        skyboxDay.SetActive(false);
-    }
-
-    private void SetDay()
-    {
-        skyboxNight.SetActive(false);
-        skyboxDay.SetActive(true);
-    }
-
     private void DebugTime()
     {
         //check if game date / time has changed
-        if (hasTimeChanged) GetNewGameTime();
-        else gameTimeText.text = GetActualTime();
-        if (hasDateChanged) GetNewGameDate();
-        else gameDateText.text = GetActualDate();
+        if (hasTimeChanged)     GetNewGameTime();
+        else                    gameTimeText.text = GetActualTime();
+        if (hasDateChanged)     GetNewGameDate();
+        else                    gameDateText.text = GetActualDate();
     }
 
     private void GetNewGameDate()

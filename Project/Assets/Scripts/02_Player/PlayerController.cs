@@ -34,7 +34,7 @@ public class PlayerController : BehaviourStateMachine
     [SerializeField] private LayerMask whatIsPlayer, whatIsGround;
     [SerializeField] public Vector3 targetPosition;
 
-
+    //room trigger bools
     private bool isPlayerInGym = false;
     private bool isPlayerInKitchen = false;
     private bool isPlayerInBedroom = false;

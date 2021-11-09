@@ -19,6 +19,8 @@ public class UIScript : MonoBehaviour
     [Header("UI Panels")]
     [SerializeField] private GameObject playerResponsePanel;
     [SerializeField] private GameObject petColourPanel;
+    [SerializeField] private GameObject mainFlyoutPanel;
+    [SerializeField] private GameObject walkFlyoutPanel;
 
     [Header("UIButton Prefabs")]
     [SerializeField] private GameObject playerResponseButtonPrefab;
@@ -30,7 +32,49 @@ public class UIScript : MonoBehaviour
     [Header("Pet Colours")]
     [SerializeField] private string[] petColours;
 
+    // Local class variables
+    private bool mainFlyoutActivated = false;
+    private bool walkFlyoutActivated = false;
 
+    // Main flyout button pressed
+    public void ActivateMainFlyoutMenu()
+    {
+        if (!mainFlyoutActivated)
+        {
+            mainFlyoutPanel.SetActive(true);
+            mainFlyoutActivated = true;
+        }
+        else
+        {
+            CloseAllFlyouts();
+        }
+    }
+
+    // Walk flyout button pressed
+    public void ActivateWalkFlyoutMenu()
+    {
+        if (!walkFlyoutActivated)
+        {
+            walkFlyoutPanel.SetActive(true);
+            walkFlyoutActivated = true;
+        }
+        else
+        {
+            walkFlyoutPanel.SetActive(false);
+            walkFlyoutActivated = false;
+        }
+    }
+
+    private void CloseAllFlyouts()
+    {
+        if (walkFlyoutActivated)
+        {
+            walkFlyoutPanel.SetActive(false);
+            walkFlyoutActivated = false;
+        }
+        mainFlyoutPanel.SetActive(false);
+        mainFlyoutActivated = false;
+    }
 
     // Player colour selection
     public void DisplayColourSelections()
@@ -50,7 +94,11 @@ public class UIScript : MonoBehaviour
     private void PetColourSelection()
     {
         GameObject clickedButton = EventSystem.current.currentSelectedGameObject;
+
+        // This is not UI related
         playerMaterial.color = clickedButton.transform.GetChild(0).gameObject.GetComponent<Image>().color;
+
+        //UI related
         DestroyUIButtons(petColourPanel);
         petColourPanel.SetActive(false);
     }
@@ -69,15 +117,34 @@ public class UIScript : MonoBehaviour
         }
     }
 
-    private void RoomButtonClicked()
+    /* Old funtion
+    public void RoomButtonClicked()
     {
         string clickedButton = EventSystem.current.currentSelectedGameObject.GetComponentInChildren<TextMeshProUGUI>().text;
         Debug.Log("Player selected " + clickedButton);
+
+        // Not UI related
         MovePet(clickedButton);
+
+        // UI related
         DestroyUIButtons(playerResponsePanel);
         playerResponsePanel.SetActive(false);
     }
+    */
+    public void RoomButtonClicked()
+    {
+        string clickedButton = EventSystem.current.currentSelectedGameObject.name;
+        string selectedRoom = clickedButton.Substring(4);
+        Debug.Log("Player selected " + clickedButton);
 
+        // Not UI related
+        MovePet(selectedRoom);
+
+        // UI related
+        CloseAllFlyouts();
+    }
+
+    // Not UI related
     private void MovePet(string destination)
     {
         Vector3 petDestination = playerObject.transform.position;

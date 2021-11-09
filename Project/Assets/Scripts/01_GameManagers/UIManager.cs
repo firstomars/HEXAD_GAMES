@@ -159,4 +159,63 @@ public class UIManager : MonoBehaviour
     {
         SetPetPnlUI(true);
     }
+
+    /*
+     * Testing functions to show UI in build ONLY!!!!
+     * Not Final
+     * Do not fuick with!!!
+     */
+
+    [Header("Testing only -- not final")]
+    [SerializeField] private GameObject mainFlyoutPanel;
+    [SerializeField] private GameObject walkFlyoutPanel;
+
+    // Local class variables
+    private bool mainFlyoutActivated = false;
+    private bool walkFlyoutActivated = false;
+
+    // Main flyout button pressed
+    public void ActivateMainFlyoutMenu()
+    {
+        if (!mainFlyoutActivated)
+        {
+            mainFlyoutPanel.SetActive(true);
+            mainFlyoutActivated = true;
+        }
+        else
+        {
+            CloseAllFlyouts();
+        }
+    }
+
+    // Walk flyout button pressed
+    public void ActivateWalkFlyoutMenu()
+    {
+        if (!walkFlyoutActivated)
+        {
+            walkFlyoutPanel.SetActive(true);
+            walkFlyoutActivated = true;
+        }
+        else
+        {
+            walkFlyoutPanel.SetActive(false);
+            walkFlyoutActivated = false;
+        }
+    }
+
+    private void CloseAllFlyouts()
+    {
+        if (walkFlyoutActivated)
+        {
+            walkFlyoutPanel.SetActive(false);
+            walkFlyoutActivated = false;
+        }
+        mainFlyoutPanel.SetActive(false);
+        mainFlyoutActivated = false;
+    }
+
+    /*
+     * End testing code
+     * Fuck away!!!
+     */
 }

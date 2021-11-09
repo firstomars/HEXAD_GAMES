@@ -49,8 +49,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //if (nextSceneIndex < maxScenes && Input.GetKeyDown(KeyCode.Space))
-        //    GoToNextScene();
+
     }
 
     public GameObject AssignWorld()
@@ -60,13 +59,12 @@ public class GameManager : MonoBehaviour
         return world;
     }
 
-    public GameObject AssignPlayer()
+    public GameObject AssignPlayer(Transform playerStartPos)
     {
         //load player stats
 
         //create and return player
-        Vector3 playerLocation = new Vector3(25, 1.5f, -26);
-        player = Instantiate(playerPrefab, playerLocation, transform.rotation);
+        player = Instantiate(playerPrefab, playerStartPos.position, transform.rotation);
         return player;
     }
 

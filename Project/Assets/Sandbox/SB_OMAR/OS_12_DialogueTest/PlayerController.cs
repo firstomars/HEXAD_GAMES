@@ -91,12 +91,6 @@ namespace Sandbox.Omar.DialogueTest
                 isTipDelivered = true;
                 isTextActive = true;
             }
-
-            //if (Input.GetMouseButtonDown(0))
-            //    DialogueSystem.AccessLine();
-
-            //if (Input.GetMouseButtonDown(1))
-            //    DialogueSystem.AccessTip("EXERCISING");
         }
 
         private void MovePlayer()

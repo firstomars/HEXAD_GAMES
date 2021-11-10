@@ -19,8 +19,13 @@ public class StatusCheckBehaviour : Behaviour
     {
         //Debug.Log("StatusCheckBehaviour Update called");
 
-        if (Input.GetKeyDown(KeyCode.S))
-            Debug.Log("key S has been pressed");
+        PlayerController.TrophyController.TrophyConditionCheck();
+
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            Debug.Log("key T has been pressed");
+            PlayerController.TrophyController.InstantiateTrophy();
+        }
 
         base.RunBehaviour();
     }

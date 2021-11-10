@@ -27,13 +27,13 @@ public class TrophyController : MonoBehaviour
     void Update()
     {
         //condition check
-        TrophyConditionCheck();
+        //TrophyConditionCheck();
 
-        //instantiate
-        if (Input.GetKeyDown(KeyCode.Space)) InstantiateTrophy();
+        ////instantiate
+        //if (Input.GetKeyDown(KeyCode.Space)) InstantiateTrophy();
     }
 
-    private void TrophyConditionCheck()
+    public void TrophyConditionCheck()
     {
         //replace with actual trophy conditions
         if (!trophies[0].isConditionMet && Input.GetKeyDown(KeyCode.Alpha1))
@@ -52,7 +52,7 @@ public class TrophyController : MonoBehaviour
             trophies[4].isConditionMet = true;
     }
 
-    private void InstantiateTrophy()
+    public void InstantiateTrophy()
     {
         foreach (Trophy trophy in trophies)
         {

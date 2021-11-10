@@ -17,8 +17,6 @@ public class WanderBehaviour : Behaviour
 
     public override void RunBehaviour()
     {
-        //Debug.Log("WanderBehaviour Update called");
-
         if (Input.GetKeyDown(KeyCode.W))
             Debug.Log("key W has been pressed");
 

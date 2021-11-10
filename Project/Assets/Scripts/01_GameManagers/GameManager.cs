@@ -43,7 +43,6 @@ public class GameManager : MonoBehaviour
         sceneIndex = SceneManager.GetActiveScene().buildIndex;
         nextSceneIndex = sceneIndex + 1;
         maxScenes = SceneManager.sceneCountInBuildSettings;
-        Debug.Log("Scene Loaded: " + SceneManager.GetActiveScene().name);
     }
 
     // Update is called once per frame
@@ -98,14 +97,6 @@ public class GameManager : MonoBehaviour
     public void PlayerPrefsScene()
     {
         SceneManager.LoadScene(6);
-    }
-
-
-    private void GoToNextScene()
-    {
-        SceneManager.LoadScene(nextSceneIndex);
-        sceneIndex = nextSceneIndex;
-        nextSceneIndex = sceneIndex + 1;
     }
 
     public void QuitGame()

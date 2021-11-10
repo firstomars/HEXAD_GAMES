@@ -13,7 +13,7 @@ public class SeekBehaviour : Behaviour
 
     public override void StartBehaviour()
     {
-        Debug.Log("SeekBehaviour Start called - press K to test update");
+        Debug.Log("SeekBehaviour Start called");
         base.StartBehaviour();
     }
 
@@ -21,10 +21,6 @@ public class SeekBehaviour : Behaviour
     {
         //set seek destination
         if (targetPosition != PlayerController.targetPosition) SetPlayerDestination(targetPosition);
-
-        //DEBUG - DELETE
-        if (Input.GetKeyDown(KeyCode.K)) Debug.Log("key K has been pressed");
-
         base.RunBehaviour();
     }
 
@@ -39,16 +35,5 @@ public class SeekBehaviour : Behaviour
         targetPosition = PlayerController.targetPosition;
         PlayerController.SetPlayerDestination(targetPosition);
     }
-
-    //not currently called
-    private bool isDestinationReached()
-    {
-        if (Vector3.Distance(targetPosition, GameObject.transform.position) < 10.0f)
-        {
-            return true;
-        }
-        return false;
-    }
-
 }
 

@@ -30,22 +30,25 @@ public class PlayerController : BehaviourStateMachine
 
     //time controller class
     private GameObject timeCtrlr;
-    //private TimeController TimeController;
     [HideInInspector] public TimeController TimeController { get; private set; }
 
-    [Header("NavMesh Settings")]
-    private NavMeshAgent agent;
-    [SerializeField] private LayerMask whatIsPlayer, whatIsGround;
-    [SerializeField] public Vector3 targetPosition;
+    //trophy controller class
+    private GameObject trophyCtrlr;
+    [HideInInspector] public TrophyController TrophyController { get; private set; }
 
     //room trigger bools
     private bool isPlayerInGym = false;
     private bool isPlayerInKitchen = false;
     private bool isPlayerInBedroom = false;
     private bool isPlayerInBathroom = false;
+    private bool isPlayerAtTrophyCabinet = false;
+
+    [Header("NavMesh Settings")]
+    private NavMeshAgent agent;
+    [SerializeField] private LayerMask whatIsPlayer, whatIsGround;
+    [SerializeField] public Vector3 targetPosition;
 
     [Header("Player Stats")]
-    //[SerializeField] private GameObject playerStatsUI;
     [SerializeField] private GameObject playerStatsGameObject;
     [HideInInspector] public PlayerStatistics PlayerStatistics { get; private set; }
 
@@ -86,7 +89,12 @@ public class PlayerController : BehaviourStateMachine
         if (timeCtrlr == null)
             timeCtrlr = GameManager.Instance.world.transform.GetChild(1).gameObject;
         TimeController = timeCtrlr.GetComponent<TimeController>();
-        
+
+        //links Tropher Controller to player in run time
+        if (trophyCtrlr == null)
+            trophyCtrlr = GameManager.Instance.world.transform.GetChild(3).gameObject;
+        TrophyController = trophyCtrlr.GetComponentInChildren<TrophyController>();
+
         //set starting behaviour
         currentBehaviour = WanderBehaviour;
         SetBehaviour(currentBehaviour);
@@ -114,7 +122,7 @@ public class PlayerController : BehaviourStateMachine
     {        
         //if mouse clicked or not in any action rooms, set to seekbehaviour
         if (Input.GetMouseButtonDown(0) && isClickPointOnGround(Input.mousePosition) ||
-            !isPlayerInBathroom && !isPlayerInBedroom && !isPlayerInGym && !isPlayerInKitchen)
+            !isPlayerInBathroom && !isPlayerInBedroom && !isPlayerInGym && !isPlayerInKitchen && !isPlayerAtTrophyCabinet)
         {
             //Debug.Log("seek behaviour set");
             nextBehaviour = SeekBehaviour;
@@ -138,31 +146,30 @@ public class PlayerController : BehaviourStateMachine
             //Debug.Log("bathroom behaviour set");
             nextBehaviour = BathroomBehaviour;
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha1)) // set to top
+        else if (isPlayerAtTrophyCabinet)
         {
-            Debug.Log("key 1 pressed");
-            nextBehaviour = WanderBehaviour;
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            Debug.Log("key 2 pressed");
-            nextBehaviour = MoodBehaviour;
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha4))
-        {
-            Debug.Log("key 4 pressed");
-            nextBehaviour = ConverseBehaviour;
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha6))
-        {
-            Debug.Log("key 6 pressed");
             nextBehaviour = StatusCheckBehaviour;
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha9))
-        {
-            Debug.Log("key 9 pressed");
-            nextBehaviour = EmoteBehaviour;
-        }
+        //else if (Input.GetKeyDown(KeyCode.Alpha1)) // set to top - UNUSED BEHAVIOURS
+        //{
+        //    Debug.Log("key 1 pressed");
+        //    nextBehaviour = WanderBehaviour;
+        //}
+        //else if (Input.GetKeyDown(KeyCode.Alpha2))
+        //{
+        //    Debug.Log("key 2 pressed");
+        //    nextBehaviour = MoodBehaviour;
+        //}
+        //else if (Input.GetKeyDown(KeyCode.Alpha4))
+        //{
+        //    Debug.Log("key 4 pressed");
+        //    nextBehaviour = ConverseBehaviour;
+        //}
+        //else if (Input.GetKeyDown(KeyCode.Alpha9))
+        //{
+        //    Debug.Log("key 9 pressed");
+        //    nextBehaviour = EmoteBehaviour;
+        //}
     }
 
     //check whether input is valid movement target for player
@@ -198,49 +205,53 @@ public class PlayerController : BehaviourStateMachine
         switch (room)
         {
             case "gym":
-                Debug.Log("player in gym");
                 isPlayerInGym = true;
                 isPlayerInKitchen = false;
                 isPlayerInBedroom = false;
                 isPlayerInBathroom = false;
+                isPlayerAtTrophyCabinet = false;
                 break;
 
             case "kitchen":
-                Debug.Log("player in kitchen");
                 isPlayerInGym = false;
                 isPlayerInKitchen = true;
                 isPlayerInBedroom = false;
                 isPlayerInBathroom = false;
+                isPlayerAtTrophyCabinet = false;
                 break;
 
             case "bedroom":
-                Debug.Log("player in bedroom");
                 isPlayerInGym = false;
                 isPlayerInKitchen = false;
                 isPlayerInBedroom = true;
                 isPlayerInBathroom = false;
+                isPlayerAtTrophyCabinet = false;
                 break;
 
             case "bathroom":
-                Debug.Log("player in bathroom");
                 isPlayerInGym = false;
                 isPlayerInKitchen = false;
                 isPlayerInBedroom = false;
                 isPlayerInBathroom = true;
+                isPlayerAtTrophyCabinet = false;
                 break;
 
-            default:
-                Debug.Log("player in house");
+            case "trophycabinet":
+                Debug.Log("player at trophy cabinet"); //DELETE
                 isPlayerInGym = false;
                 isPlayerInKitchen = false;
                 isPlayerInBedroom = false;
                 isPlayerInBathroom = false;
+                isPlayerAtTrophyCabinet = true;
+                break;
+
+            default:
+                isPlayerInGym = false;
+                isPlayerInKitchen = false;
+                isPlayerInBedroom = false;
+                isPlayerInBathroom = false;
+                isPlayerAtTrophyCabinet = false;
                 break;
         }
     }
-
-    //public void TogglePlayerStats(bool value)
-    //{
-    //    playerStatsUI.SetActive(value);
-    //}
 }

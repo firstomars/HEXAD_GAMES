@@ -121,6 +121,7 @@ namespace Sandbox.Omar.DialogueTest
             {
                 //gameObject.SetActive(false);
                 isLineTextActive = false;
+                lineTextComponent.text = string.Empty;
             }
         }
 
@@ -132,12 +133,12 @@ namespace Sandbox.Omar.DialogueTest
             else StartDialogue();
         }
 
-        public void AccessTip(string type)
+        public void AccessTip(string type = default)
         {
             if (isTipTextActive)
             {
                 isTipTextActive = false;
-                SetTipGameobject(false);
+                SetTipGameobject(isTipTextActive);
             }
             else
             {
@@ -155,8 +156,15 @@ namespace Sandbox.Omar.DialogueTest
             tipTextComponent.text = tipType.tipText[GetRandomNumber(0, tipType.tipText.Length)];
             isTipTextActive = true;
             SetTipGameobject(isTipTextActive);
-            //Debug.Log(GetRandomNumber(0, tipType.tipText.Length));
         }
+
+        public void CloseTip()
+        {
+            tipTextComponent.text = string.Empty;
+            isTipTextActive = false;
+            SetTipGameobject(isTipTextActive);
+        }
+
 
         public int GetRandomNumber(int min, int max)
         {

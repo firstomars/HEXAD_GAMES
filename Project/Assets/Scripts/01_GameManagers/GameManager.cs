@@ -20,8 +20,8 @@ public class GameManager : MonoBehaviour
 
     //scene management variables
     private int sceneIndex;
-    private int nextSceneIndex;
-    private int maxScenes;
+    //private int nextSceneIndex; -- DELETE
+    //private int maxScenes;    --DELETE
 
     [Header("Player")]
     [SerializeField] private GameObject playerPrefab;
@@ -31,9 +31,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject worldPrefab;
     [HideInInspector] public GameObject world;
 
-    [Header("UI")]
-    [SerializeField] private GameObject UIManagerObj;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -41,8 +38,8 @@ public class GameManager : MonoBehaviour
 
         //set scenes
         sceneIndex = SceneManager.GetActiveScene().buildIndex;
-        nextSceneIndex = sceneIndex + 1;
-        maxScenes = SceneManager.sceneCountInBuildSettings;
+        //nextSceneIndex = sceneIndex + 1; --DELETE
+        //maxScenes = SceneManager.sceneCountInBuildSettings; --DELETE
     }
 
     // Update is called once per frame

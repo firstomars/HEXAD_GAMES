@@ -11,7 +11,7 @@ public class StatusCheckBehaviour : Behaviour
 
     public override void StartBehaviour()
     {
-        Debug.Log("StatusCheckBehaviour Start called - press S to test update");
+        Debug.Log("StatusCheckBehaviour Start called");
         base.StartBehaviour();
     }
 

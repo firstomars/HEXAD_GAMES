@@ -6,6 +6,20 @@ using TMPro;
 
 public class UIManager : MonoBehaviour
 {
+    #region Singelton
+
+    private static UIManager _UIManagerInstance;
+
+    public static UIManager UIManagerInstance { get { return _UIManagerInstance; } }
+
+    private void Awake()
+    {
+        if (_UIManagerInstance != null) Destroy(gameObject);
+        else _UIManagerInstance = this;
+    }
+    #endregion
+
+
     [Header("Panels")]
     [SerializeField] private GameObject backgrdPnl;
     [SerializeField] private GameObject responsePnl;
@@ -26,6 +40,8 @@ public class UIManager : MonoBehaviour
 
     private void Start()
     {
+        DontDestroyOnLoad(gameObject);
+
         SetSplashScreenUI(true); // rework
         SetMenuScreenUI(false);
         SetAssetStagingUI(false);

@@ -28,7 +28,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject petSpeechPnl;
     [SerializeField] private GameObject spiritLevelSldr;
 
-    [Header("Buttons")]
+    [Header("Scene Buttons")]
     [SerializeField] private GameObject menuBtn;
     [SerializeField] private GameObject playBtn;
     [SerializeField] private GameObject stagingBtn;
@@ -37,23 +37,129 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject playerPrefsBtn;
     [SerializeField] private GameObject quitBtn;
 
+    //===
+    //NEW
+
+    //variables set in runtime
+    [HideInInspector] public PlayerController PlayerController;
+
+    [Header("PLAY SCENE INTERACTABLES - UI")]
+    [SerializeField] private GameObject interactablesUIGO;
+
+    [Header("Bedroom Interactables UI")]
+    [SerializeField] private GameObject sendToBedBtnGO;
+    private Button sendToBedBtn;
+
+    //===
 
     private void Start()
     {
         DontDestroyOnLoad(gameObject);
 
-        SetSplashScreenUI(true); // rework
-        SetMenuScreenUI(false);
-        SetAssetStagingUI(false);
-        SetTimeUI(false);
-        SetPlayerStatsUI(false);
-        SetPlayerPrefsUI(false);
-        SetPlayUI(false);
+        //===
+        //CLARIFY BELOW
         SetResponsePnlUI(false);
         SetColourPnlUI(false);
         SetEntryPnlUI(false);
         SetPetPnlUI(false);
+        //===
+
+
+        //===
+        //NEW
+
+        //setup play scene buttons in runtime
+        sendToBedBtn = sendToBedBtnGO.GetComponent<Button>();
+        //===
     }
+
+    //===
+    //NEW
+
+    //setup player ui
+    public void SetupPlayerUI()
+    {
+        sendToBedBtn.onClick.AddListener(PlayerController.SendToBed);
+    }
+
+    //switch scene UI
+    public void SwitchSceneUI(string sceneName)
+    {
+        switch(sceneName)
+        {
+            case "01_Splash":
+                SetSplashScreenUI(true);    //sceneIndex 0
+                SetMenuScreenUI(false);     //sceneIndex 1
+                SetPlayUI(false);           //sceneIndex 2
+                SetAssetStagingUI(false);   //sceneIndex 3
+                SetTimeUI(false);           //sceneIndex 4
+                SetPlayerStatsUI(false);    //sceneIndex 5
+                SetPlayerPrefsUI(false);    //sceneIndex 6
+                break;
+
+            case "02_Menu":
+                SetSplashScreenUI(false);   //sceneIndex 0
+                SetMenuScreenUI(true);      //sceneIndex 1
+                SetPlayUI(false);           //sceneIndex 2
+                SetAssetStagingUI(false);   //sceneIndex 3
+                SetTimeUI(false);           //sceneIndex 4
+                SetPlayerStatsUI(false);    //sceneIndex 5
+                SetPlayerPrefsUI(false);    //sceneIndex 6
+                break;
+
+            case "03_Play_V02":
+                SetSplashScreenUI(false);   //sceneIndex 0
+                SetMenuScreenUI(false);     //sceneIndex 1
+                SetPlayUI(true);            //sceneIndex 2
+                SetAssetStagingUI(false);   //sceneIndex 3
+                SetTimeUI(false);           //sceneIndex 4
+                SetPlayerStatsUI(false);    //sceneIndex 5
+                SetPlayerPrefsUI(false);    //sceneIndex 6
+                break;
+
+            case "04_AssetStaging":
+                SetSplashScreenUI(false);   //sceneIndex 0
+                SetMenuScreenUI(false);     //sceneIndex 1
+                SetPlayUI(false);           //sceneIndex 2
+                SetAssetStagingUI(true);    //sceneIndex 3
+                SetTimeUI(false);           //sceneIndex 4
+                SetPlayerStatsUI(false);    //sceneIndex 5
+                SetPlayerPrefsUI(false);    //sceneIndex 6
+                break;
+
+            case "05_Time":
+                SetSplashScreenUI(false);   //sceneIndex 0
+                SetMenuScreenUI(false);     //sceneIndex 1
+                SetPlayUI(false);           //sceneIndex 2
+                SetAssetStagingUI(false);   //sceneIndex 3
+                SetTimeUI(true);            //sceneIndex 4
+                SetPlayerStatsUI(false);    //sceneIndex 5
+                SetPlayerPrefsUI(false);    //sceneIndex 6
+                break;
+
+            case "06_PlayerStats":
+                SetSplashScreenUI(false);   //sceneIndex 0
+                SetMenuScreenUI(false);     //sceneIndex 1
+                SetPlayUI(false);           //sceneIndex 2
+                SetAssetStagingUI(false);   //sceneIndex 3
+                SetTimeUI(false);           //sceneIndex 4
+                SetPlayerStatsUI(true);     //sceneIndex 5
+                SetPlayerPrefsUI(false);    //sceneIndex 6
+                break;
+
+            case "07_PlayerPrefs":
+                SetSplashScreenUI(false);   //sceneIndex 0
+                SetMenuScreenUI(false);     //sceneIndex 1
+                SetPlayUI(false);           //sceneIndex 2
+                SetAssetStagingUI(false);   //sceneIndex 3
+                SetTimeUI(false);           //sceneIndex 4
+                SetPlayerStatsUI(false);    //sceneIndex 5
+                SetPlayerPrefsUI(true);     //sceneIndex 6
+                break;
+        }
+    }
+
+    //===
 
     private void SetSplashScreenUI(bool value)
     {
@@ -64,7 +170,6 @@ public class UIManager : MonoBehaviour
     {
         playBtn.SetActive(value);
     }
-    
 
     private void SetAssetStagingUI(bool value)
     {
@@ -88,10 +193,37 @@ public class UIManager : MonoBehaviour
 
     private void SetPlayUI(bool value)
     {
-        backgrdPnl.SetActive(value);
         stagingBtn.SetActive(value);
-        spiritLevelSldr.SetActive(value);
+
+        spiritLevelSldr.SetActive(false); // set to false for debugging purposes
+        backgrdPnl.SetActive(false); // set to false for debugging purposes
+
+        //NEW
+        interactablesUIGO.SetActive(value);
+
+        if(value) SwitchPlayRoomUI();
     }
+
+    public void SwitchPlayRoomUI(string room = default)
+    {
+        switch(room)
+        {
+            case "bedroom":
+                SetBedroomUI(true);
+                break;
+
+            default:
+                SetBedroomUI(false);
+                break;
+        }
+    }
+
+    private void SetBedroomUI(bool value)
+    {
+        Debug.Log("bedroom UI set to " + value);
+        sendToBedBtnGO.SetActive(value);
+    }
+
 
     private void SetResponsePnlUI(bool value)
     {
@@ -117,6 +249,8 @@ public class UIManager : MonoBehaviour
     {
         
     }
+
+    #region Scene Management
 
     public void GoToMenuScene()
     {
@@ -168,6 +302,8 @@ public class UIManager : MonoBehaviour
         SetPlayerStatsUI(false);
         SetPlayerPrefsUI(true);
     }
+
+    #endregion
 
     // Methods called from converse class
 

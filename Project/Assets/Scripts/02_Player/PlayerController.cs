@@ -43,6 +43,9 @@ public class PlayerController : BehaviourStateMachine
     private bool isPlayerInBathroom = false;
     private bool isPlayerAtTrophyCabinet = false;
 
+    //pet behaviour bools
+    private bool isPetSleeping = false;
+
     [Header("NavMesh Settings")]
     private NavMeshAgent agent;
     [SerializeField] private LayerMask whatIsPlayer, whatIsGround;
@@ -98,6 +101,13 @@ public class PlayerController : BehaviourStateMachine
         //set starting behaviour
         currentBehaviour = WanderBehaviour;
         SetBehaviour(currentBehaviour);
+
+        //===
+        //NEW SET-UP UI
+        
+        //connect playercontroller to ui manager
+        UIManager.UIManagerInstance.PlayerController = this;
+        UIManager.UIManagerInstance.SetupPlayerUI();
     }
 
     private void Update()
@@ -121,7 +131,7 @@ public class PlayerController : BehaviourStateMachine
     private void RunBehaviourLogic()
     {        
         //if mouse clicked or not in any action rooms, set to seekbehaviour
-        if (Input.GetMouseButtonDown(0) && isClickPointOnGround(Input.mousePosition) ||
+        if (!isPetSleeping && Input.GetMouseButtonDown(0) && isClickPointOnGround(Input.mousePosition) ||
             !isPlayerInBathroom && !isPlayerInBedroom && !isPlayerInGym && !isPlayerInKitchen && !isPlayerAtTrophyCabinet)
         {
             //Debug.Log("seek behaviour set");
@@ -140,6 +150,7 @@ public class PlayerController : BehaviourStateMachine
         {
             //Debug.Log("sleep behaviour set");
             nextBehaviour = SleepBehaviour;
+
         }
         else if (isPlayerInBathroom)
         {
@@ -254,4 +265,20 @@ public class PlayerController : BehaviourStateMachine
                 break;
         }
     }
+
+
+    //===
+    //NEW - not happy with this... should be contained within sleep behaviour?
+    public void SendToBed()
+    {
+        Debug.Log("Pet sent to bed");
+        isPetSleeping = true;
+    }
+
+    public void WakePetUp()
+    {
+        Debug.Log("pet woken up");
+        isPetSleeping = false;
+    }
+    //===
 }

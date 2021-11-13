@@ -33,6 +33,11 @@ public abstract class Behaviour
         PlayerController.CameraSwitch();
     }
 
+    public virtual void SetUI(string room = default)
+    {
+        UIManager.UIManagerInstance.SwitchPlayRoomUI(room);
+    }
+
     //monobehaviour functions accessed by behaviour classes
     public virtual void OnCollisionEnter()
     {

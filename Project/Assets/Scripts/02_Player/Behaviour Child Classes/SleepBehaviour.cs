@@ -17,6 +17,8 @@ public class SleepBehaviour : Behaviour
 
         petBedTime = PlayerController.petBedTime;
 
+        SetUI("bedroom");
+
         base.StartBehaviour();
     }
 
@@ -42,6 +44,7 @@ public class SleepBehaviour : Behaviour
     public override void EndBehaviour()
     {
         Debug.Log("SleepBehaviour End called");
+        SetUI();
         base.EndBehaviour();
     }
 }

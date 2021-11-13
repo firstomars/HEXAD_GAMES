@@ -20,8 +20,7 @@ public class GameManager : MonoBehaviour
 
     //scene management variables
     private int sceneIndex;
-    //private int nextSceneIndex; -- DELETE
-    //private int maxScenes;    --DELETE
+    private string sceneName;
 
     [Header("Player")]
     [SerializeField] private GameObject playerPrefab;
@@ -38,8 +37,10 @@ public class GameManager : MonoBehaviour
 
         //set scenes
         sceneIndex = SceneManager.GetActiveScene().buildIndex;
-        //nextSceneIndex = sceneIndex + 1; --DELETE
-        //maxScenes = SceneManager.sceneCountInBuildSettings; --DELETE
+        sceneName = SceneManager.GetActiveScene().name;
+        
+        UIManager.UIManagerInstance.SwitchSceneUI(sceneName);
+
     }
 
     // Update is called once per frame

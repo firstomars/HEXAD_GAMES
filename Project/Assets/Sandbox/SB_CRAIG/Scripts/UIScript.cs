@@ -11,7 +11,6 @@ using UnityEngine.EventSystems;
 //Add namespace to ensure that this class is not accessed globally while in sandbox mode
 //e.g. namespace Sandbox.Craig.UITesting { //script in here }
 
-
 public class UIScript : MonoBehaviour
 {
     [Header("Game Objects")]

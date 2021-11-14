@@ -19,8 +19,13 @@ public class UIScript : MonoBehaviour
     [Header("UI Panels")]
     [SerializeField] private GameObject playerResponsePanel;
     [SerializeField] private GameObject petColourPanel;
+    [SerializeField] private GameObject flyoutButtonPanel;
     [SerializeField] private GameObject mainFlyoutPanel;
     [SerializeField] private GameObject walkFlyoutPanel;
+
+    [Header("Flyout Button Images")]
+    [SerializeField] private Sprite activateFlyoutImage;
+    [SerializeField] private Sprite deactivateFlyoutImage;
 
     [Header("UIButton Prefabs")]
     [SerializeField] private GameObject playerResponseButtonPrefab;
@@ -43,6 +48,7 @@ public class UIScript : MonoBehaviour
         {
             mainFlyoutPanel.SetActive(true);
             mainFlyoutActivated = true;
+            flyoutButtonPanel.transform.GetChild(0).GetComponentInChildren<Image>().sprite = deactivateFlyoutImage;
         }
         else
         {
@@ -74,6 +80,7 @@ public class UIScript : MonoBehaviour
         }
         mainFlyoutPanel.SetActive(false);
         mainFlyoutActivated = false;
+        flyoutButtonPanel.transform.GetChild(0).GetComponentInChildren<Image>().sprite = activateFlyoutImage;
     }
 
     // Player colour selection

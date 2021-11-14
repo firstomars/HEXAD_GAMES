@@ -271,9 +271,12 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   targetPosition: {x: 0, y: 0, z: 0}
+  bed: {fileID: 0}
+  trophyCabinetPosition: {fileID: 0}
   playerStatsGameObject: {fileID: 735632514488125598}
   minEnergyLevelToGym: 75
-  petBedTime: 17
+  petBedTime: 21
+  petWakeUpTime: 6
 --- !u!1 &735632513058682818
 GameObject:
   m_ObjectHideFlags: 0
@@ -1488,7 +1491,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 510.70038, y: -32.00067}
+  m_AnchoredPosition: {x: 510.70038, y: -32.000732}
   m_SizeDelta: {x: 223.83002, y: 52.929504}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &735632514537273139

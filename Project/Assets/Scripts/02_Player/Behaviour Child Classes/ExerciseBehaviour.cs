@@ -36,9 +36,4 @@ public class ExerciseBehaviour : Behaviour
         Debug.Log("ExerciseBehaviour End called");
         base.EndBehaviour();
     }
-
-    public override void OnCollisionEnter()
-    {
-        base.OnCollisionEnter();
-    }
 }

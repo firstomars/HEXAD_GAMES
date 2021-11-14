@@ -5,8 +5,7 @@ using UnityEngine.AI;
 
 public class PlayerController : BehaviourStateMachine
 {
-    //behvaviour set-up
-    #region BehaviourClasses
+    #region Behaviours Setup
 
     private Behaviour ExerciseBehaviour;
     private Behaviour ConverseBehaviour;
@@ -19,22 +18,27 @@ public class PlayerController : BehaviourStateMachine
     private Behaviour MoodBehaviour;
     private Behaviour EmoteBehaviour;
 
-    #endregion
-
     private Behaviour currentBehaviour;
     private Behaviour nextBehaviour;
 
-    //camera class
+    #endregion
+
+    #region Camera Class
     private GameObject camMgr;
     private CameraManager CameraManager;
+    #endregion
 
+    #region Time Controller Class
     //time controller class
     private GameObject timeCtrlr;
     [HideInInspector] public TimeController TimeController { get; private set; }
+    #endregion
 
+    #region Trophy Controller Class
     //trophy controller class
     private GameObject trophyCtrlr;
     [HideInInspector] public TrophyController TrophyController { get; private set; }
+    #endregion
 
     //room trigger bools
     private bool isPlayerInGym = false;
@@ -50,6 +54,8 @@ public class PlayerController : BehaviourStateMachine
     private NavMeshAgent agent;
     [SerializeField] private LayerMask whatIsPlayer, whatIsGround;
     [SerializeField] public Vector3 targetPosition;
+    [SerializeField] public Transform bed;
+    [SerializeField] public Transform trophyCabinetPosition;
 
     [Header("Player Stats")]
     [SerializeField] private GameObject playerStatsGameObject;
@@ -58,6 +64,7 @@ public class PlayerController : BehaviourStateMachine
     [Header("Player Stats Logic")]
     [SerializeField] public float minEnergyLevelToGym;
     [SerializeField] public int petBedTime;
+    [SerializeField] public int petWakeUpTime;
 
     // Start is called before the first frame update
     void Start()
@@ -101,13 +108,6 @@ public class PlayerController : BehaviourStateMachine
         //set starting behaviour
         currentBehaviour = WanderBehaviour;
         SetBehaviour(currentBehaviour);
-
-        //===
-        //NEW SET-UP UI
-        
-        //connect playercontroller to ui manager
-        UIManager.UIManagerInstance.PlayerController = this;
-        UIManager.UIManagerInstance.SetupPlayerUI();
     }
 
     private void Update()
@@ -130,8 +130,12 @@ public class PlayerController : BehaviourStateMachine
 
     private void RunBehaviourLogic()
     {        
+        if (isPetSleeping)
+        {
+            return;
+        }
         //if mouse clicked or not in any action rooms, set to seekbehaviour
-        if (!isPetSleeping && Input.GetMouseButtonDown(0) && isClickPointOnGround(Input.mousePosition) ||
+        else if (Input.GetMouseButtonDown(0) && isClickPointOnGround(Input.mousePosition) ||
             !isPlayerInBathroom && !isPlayerInBedroom && !isPlayerInGym && !isPlayerInKitchen && !isPlayerAtTrophyCabinet)
         {
             //Debug.Log("seek behaviour set");
@@ -266,19 +270,8 @@ public class PlayerController : BehaviourStateMachine
         }
     }
 
-
-    //===
-    //NEW - not happy with this... should be contained within sleep behaviour?
-    public void SendToBed()
+    public void IsPetSleeping(bool value)
     {
-        Debug.Log("Pet sent to bed");
-        isPetSleeping = true;
+        isPetSleeping = value;
     }
-
-    public void WakePetUp()
-    {
-        Debug.Log("pet woken up");
-        isPetSleeping = false;
-    }
-    //===
 }

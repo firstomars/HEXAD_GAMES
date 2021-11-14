@@ -19,7 +19,7 @@ public class UIManager : MonoBehaviour
     }
     #endregion
 
-
+    #region Inspector - Panels
     [Header("Panels")]
     [SerializeField] private GameObject backgrdPnl;
     [SerializeField] private GameObject responsePnl;
@@ -27,7 +27,9 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject entryPnl;
     [SerializeField] private GameObject petSpeechPnl;
     [SerializeField] private GameObject spiritLevelSldr;
+    #endregion
 
+    #region Inspector - Scene Buttons
     [Header("Scene Buttons")]
     [SerializeField] private GameObject menuBtn;
     [SerializeField] private GameObject playBtn;
@@ -36,12 +38,15 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject playerStatsBtn;
     [SerializeField] private GameObject playerPrefsBtn;
     [SerializeField] private GameObject quitBtn;
+    #endregion
 
     //===
     //NEW
 
-    //variables set in runtime
-    [HideInInspector] public PlayerController PlayerController;
+    //classes set during runtime
+    //[HideInInspector] public SleepBehaviour SleepBehaviour; -- DELETE
+    [HideInInspector] public Behaviour CurrentBehaviour;
+
 
     [Header("PLAY SCENE INTERACTABLES - UI")]
     [SerializeField] private GameObject interactablesUIGO;
@@ -49,6 +54,8 @@ public class UIManager : MonoBehaviour
     [Header("Bedroom Interactables UI")]
     [SerializeField] private GameObject sendToBedBtnGO;
     private Button sendToBedBtn;
+    [SerializeField] private GameObject wakeUpBtnGO;
+    private Button wakeUpBtn;
 
     //===
 
@@ -70,19 +77,10 @@ public class UIManager : MonoBehaviour
 
         //setup play scene buttons in runtime
         sendToBedBtn = sendToBedBtnGO.GetComponent<Button>();
+        wakeUpBtn = wakeUpBtnGO.GetComponent<Button>();
         //===
     }
 
-    //===
-    //NEW
-
-    //setup player ui
-    public void SetupPlayerUI()
-    {
-        sendToBedBtn.onClick.AddListener(PlayerController.SendToBed);
-    }
-
-    //switch scene UI
     public void SwitchSceneUI(string sceneName)
     {
         switch(sceneName)
@@ -159,8 +157,6 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    //===
-
     private void SetSplashScreenUI(bool value)
     {
         menuBtn.SetActive(value);
@@ -200,12 +196,13 @@ public class UIManager : MonoBehaviour
 
         //NEW
         interactablesUIGO.SetActive(value);
-
         if(value) SwitchPlayRoomUI();
     }
 
     public void SwitchPlayRoomUI(string room = default)
     {
+        ManageRoomUIListeners(room);
+
         switch(room)
         {
             case "bedroom":
@@ -218,13 +215,51 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    private void ManageRoomUIListeners(string room = default)
+    {
+        if (CurrentBehaviour == null) return;
+
+        switch (room)
+        {
+            case "bedroom":
+                sendToBedBtn.onClick.AddListener(CurrentBehaviour.SendToBed);
+                wakeUpBtn.onClick.AddListener(CurrentBehaviour.WakePetUp);
+                break;
+
+            //add other cases
+
+            default:
+                sendToBedBtn.onClick.RemoveAllListeners();
+                wakeUpBtn.onClick.RemoveAllListeners();
+                break;
+        }
+    }
+
+    #region BedroomUI
+
     private void SetBedroomUI(bool value)
     {
         Debug.Log("bedroom UI set to " + value);
         sendToBedBtnGO.SetActive(value);
+        if (value == false) wakeUpBtnGO.SetActive(value);
     }
 
+    public void SendToBedBtnClicked()
+    {
+        sendToBedBtnGO.SetActive(false);
+        wakeUpBtnGO.SetActive(true);
+    }
 
+    public void WakeUpBtnClicked()
+    {
+        sendToBedBtnGO.SetActive(false);
+        wakeUpBtnGO.SetActive(false);
+    }
+
+    #endregion
+
+    //CLARIFY ON BEST SPORT
+    #region Panel UI
     private void SetResponsePnlUI(bool value)
     {
         responsePnl.SetActive(value);
@@ -244,6 +279,8 @@ public class UIManager : MonoBehaviour
     {
         petSpeechPnl.SetActive(value);
     }
+
+    #endregion
 
     private void UpdateSpiritLevelUI(bool value)
     {

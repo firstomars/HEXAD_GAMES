@@ -73,13 +73,13 @@ public class TimeController : MonoBehaviour
     private void DebugTime()
     {
         //check if game date / time has changed
-        if (hasTimeChanged)     GetNewGameTime();
+        if (hasTimeChanged)     CalculateNewGameTime();
         else                    gameTimeText.text = GetActualTime();
-        if (hasDateChanged)     GetNewGameDate();
+        if (hasDateChanged)     CalculateNewGameDate();
         else                    gameDateText.text = GetActualDate();
     }
 
-    private void GetNewGameDate()
+    private void CalculateNewGameDate()
     {
         //calculate new date
         int newDate = gameDate + daysToChange;
@@ -94,7 +94,7 @@ public class TimeController : MonoBehaviour
         gameDate = newDate;
     }
 
-    private void GetNewGameTime()
+    private void CalculateNewGameTime()
     {
         //calculate new time
         int hours = gameTimeHours + hoursToChange;
@@ -167,6 +167,17 @@ public class TimeController : MonoBehaviour
         return false;
     }
 
+    public int GetGameDate()
+    {
+        return gameDate;
+    }
+
+    public bool IsNextDay(int previousDay)
+    {
+        if (gameDate > previousDay) return true;
+        else                        return false;
+    }
+
     public void ToggleTimeUI(bool value)
     {
         timeUI.SetActive(value);
@@ -190,15 +201,15 @@ public class TimeController : MonoBehaviour
         return Int16.Parse(currentHours);
     }
 
+    private string GetCurrentMinutes()
+    {
+        return DateTime.UtcNow.ToLocalTime().ToString("mm");
+    }
+
     private int GetCurrentDay()
     {
         string currentDay = DateTime.UtcNow.ToString("dd");
         return Int16.Parse(currentDay);
-    }
-
-    private string GetCurrentMinutes()
-    {
-        return DateTime.UtcNow.ToLocalTime().ToString("mm");
     }
 
     private string GetMonthYear()

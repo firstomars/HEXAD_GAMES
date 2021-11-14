@@ -31,6 +31,7 @@ public abstract class Behaviour
     public virtual void EndBehaviour()
     {
         PlayerController.CameraSwitch();
+        UIManager.UIManagerInstance.CurrentBehaviour = null;
     }
 
     public virtual void SetUI(string room = default)
@@ -45,6 +46,16 @@ public abstract class Behaviour
     }
 
     public virtual void OnCollisionExit()
+    {
+
+    }
+
+    public virtual void SendToBed()
+    {
+
+    }
+
+    public virtual void WakePetUp()
     {
 
     }

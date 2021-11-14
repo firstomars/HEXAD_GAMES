@@ -39,6 +39,7 @@ public class GameManager : MonoBehaviour
         sceneIndex = SceneManager.GetActiveScene().buildIndex;
         sceneName = SceneManager.GetActiveScene().name;
         
+        //switch UI to current scene
         UIManager.UIManagerInstance.SwitchSceneUI(sceneName);
 
     }

@@ -6,6 +6,12 @@ using TMPro;
 using UnityEngine.AI;
 using UnityEngine.EventSystems;
 
+//===
+//OMAR FEEDBACK - namespace
+//Add namespace to ensure that this class is not accessed globally while in sandbox mode
+//e.g. namespace Sandbox.Craig.UITesting { //script in here }
+
+
 public class UIScript : MonoBehaviour
 {
     [Header("Game Objects")]
@@ -83,6 +89,12 @@ public class UIScript : MonoBehaviour
         flyoutButtonPanel.transform.GetChild(0).GetComponentInChildren<Image>().sprite = activateFlyoutImage;
     }
 
+    //===
+    //OMAR FEEDBACK - display colour selections + pet colour selections functions
+    //where is the best place for these functions to go?
+    //separate script entirely that is called during the introduction period of the game?
+    //and then accesses the UI script to activate panels etc.?
+
     // Player colour selection
     public void DisplayColourSelections()
     {
@@ -109,6 +121,10 @@ public class UIScript : MonoBehaviour
         DestroyUIButtons(petColourPanel);
         petColourPanel.SetActive(false);
     }
+
+    //===
+    //OMAR FEEDBACK - this would be a great function in a parent class
+    //pass a string[] into the parent class to display the options for menu or player "dialogue" responses
 
     // Player text response selection
     public void DisplayPlayerResponseSelection()
@@ -138,8 +154,15 @@ public class UIScript : MonoBehaviour
         playerResponsePanel.SetActive(false);
     }
     */
+
+
+
     public void RoomButtonClicked()
     {
+        //===
+        //OMAR FEEDBACK - explainer comments
+        //add some comments in this function to explain what's being done
+
         string clickedButton = EventSystem.current.currentSelectedGameObject.name;
         string selectedRoom = clickedButton.Substring(4);
         Debug.Log("Player selected " + clickedButton);
@@ -150,6 +173,11 @@ public class UIScript : MonoBehaviour
         // UI related
         CloseAllFlyouts();
     }
+
+    //===
+    //OMAR FEEDBACK - MovePet to be broken out across UI & Seek.cs connections
+    //lets get some time in on Monday to break this out
+    //I've got some foundation logic working at the moment which we can lean on
 
     // Not UI related
     private void MovePet(string destination)
@@ -177,6 +205,7 @@ public class UIScript : MonoBehaviour
         playerObject.SetDestination(petDestination);
     }
 
+    
     private void DestroyUIButtons(GameObject UIParent)
     {
         foreach (Transform child in UIParent.transform)

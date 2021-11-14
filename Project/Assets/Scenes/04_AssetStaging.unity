@@ -6734,14 +6734,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -3640878157691374733, guid: 52d1897d381e17b4dbae42276725f1ba, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 6745cff503fa8d84e9153c53c4821a58, type: 2}
     - target: {fileID: -3472116988632760106, guid: 52d1897d381e17b4dbae42276725f1ba, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: e83c4f9767ba0894da655c8359894233, type: 2}
+      objectReference: {fileID: 2100000, guid: 6745cff503fa8d84e9153c53c4821a58, type: 2}
     - target: {fileID: 919132149155446097, guid: 52d1897d381e17b4dbae42276725f1ba, type: 3}
       propertyPath: m_Name
       value: bathtub
       objectReference: {fileID: 0}
+    - target: {fileID: 1404398194051991861, guid: 52d1897d381e17b4dbae42276725f1ba, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 6745cff503fa8d84e9153c53c4821a58, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 52d1897d381e17b4dbae42276725f1ba, type: 3}
 --- !u!4 &1311531686 stripped

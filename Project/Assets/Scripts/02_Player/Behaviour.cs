@@ -21,6 +21,7 @@ public abstract class Behaviour
 
     public virtual void StartBehaviour()
     {
+
     }
 
     public virtual void RunBehaviour()
@@ -30,7 +31,6 @@ public abstract class Behaviour
 
     public virtual void EndBehaviour()
     {
-        //PlayerController.CameraSwitch();
         UIManager.UIManagerInstance.CurrentBehaviour = null;
     }
 
@@ -87,5 +87,14 @@ public abstract class Behaviour
     public virtual void SeekLivingRoom()
     {
 
+    }
+
+    public virtual Vector3 FindWaypointHelper(string room)
+    {
+        foreach (var waypoint in PlayerController.HouseWaypoints.waypoints)
+        {
+            if (waypoint.name == room) return waypoint.position;
+        }
+        return Vector3.zero;
     }
 }

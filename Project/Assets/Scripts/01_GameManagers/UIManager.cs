@@ -46,7 +46,7 @@ public class UIManager : MonoBehaviour
 
     //classes set during runtime
     [HideInInspector] public Behaviour CurrentBehaviour;
-    [HideInInspector] public SeekBehaviour SeekBehaviour;
+    //[HideInInspector] public SeekBehaviour SeekBehaviour;
 
     [Header("PLAY SCENE INTERACTABLES - UI")]
     [SerializeField] private GameObject interactablesUIGO;
@@ -278,13 +278,19 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    public void SetNavigationUIListeners(SeekBehaviour seekBehaviour)
+    {
+        kitchenBtn.onClick.AddListener(seekBehaviour.SeekKitchen);
+        gymBtn.onClick.AddListener(seekBehaviour.SeekGym);
+        bathroomBtn.onClick.AddListener(seekBehaviour.SeekBathroom);
+        bedroomBtn.onClick.AddListener(seekBehaviour.SeekBedroom);
+        trophyCabinetBtn.onClick.AddListener(seekBehaviour.SeekTrophyCabinet);
+        livingRoomBtn.onClick.AddListener(seekBehaviour.SeekLivingRoom);
+    }
+
     private void ManageRoomUIListeners(string room = default)
     {
-        if (CurrentBehaviour == null)
-        {
-            //SetNavigationUIListeners();
-            return;
-        }
+        if (CurrentBehaviour == null) return;
 
         switch (room)
         {
@@ -296,12 +302,7 @@ public class UIManager : MonoBehaviour
             //add other cases
 
             default:
-                kitchenBtn.onClick.AddListener(CurrentBehaviour.SeekKitchen);
-                gymBtn.onClick.AddListener(CurrentBehaviour.SeekGym);
-                bathroomBtn.onClick.AddListener(CurrentBehaviour.SeekBathroom);
-                bedroomBtn.onClick.AddListener(CurrentBehaviour.SeekBedroom);
-                trophyCabinetBtn.onClick.AddListener(CurrentBehaviour.SeekTrophyCabinet);
-                livingRoomBtn.onClick.AddListener(CurrentBehaviour.SeekLivingRoom);
+
                 sendToBedBtn.onClick.RemoveAllListeners();
                 wakeUpBtn.onClick.RemoveAllListeners();
                 break;

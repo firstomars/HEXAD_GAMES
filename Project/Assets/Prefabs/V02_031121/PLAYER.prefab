@@ -240,8 +240,8 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 8.88
-  m_Acceleration: 8
+  m_Speed: 8
+  m_Acceleration: 100
   avoidancePriority: 50
   m_AngularSpeed: 120
   m_StoppingDistance: 0
@@ -273,6 +273,7 @@ MonoBehaviour:
   targetPosition: {x: 0, y: 0, z: 0}
   bed: {fileID: 0}
   trophyCabinetPosition: {fileID: 0}
+  HouseWaypoints: {fileID: 0}
   playerStatsGameObject: {fileID: 735632514488125598}
   minEnergyLevelToGym: 75
   petBedTime: 21
@@ -956,7 +957,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerStatsUI: {fileID: 735632514148163362}
-  inputField: {fileID: 0}
   minSpiritLevel: 1
   maxSpiritLevel: 100
   spiritLevel: 0

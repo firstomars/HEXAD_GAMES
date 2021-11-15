@@ -55,11 +55,9 @@ public class PlayerController : BehaviourStateMachine
     private NavMeshAgent agent;
     [SerializeField] private LayerMask whatIsPlayer, whatIsGround;
     [SerializeField] public Vector3 targetPosition;
-    [SerializeField] public Transform bed;
-    [SerializeField] public Transform trophyCabinetPosition;
+    [HideInInspector] public Transform bed;
+    [HideInInspector] public Transform trophyCabinetPosition;
     [HideInInspector] public HouseWaypoints HouseWaypoints;
-    
-    //[SerializeField] public List<Vector3> houseWaypoints;
 
     [Header("Player Stats")]
     [SerializeField] private GameObject playerStatsGameObject;
@@ -73,7 +71,7 @@ public class PlayerController : BehaviourStateMachine
     // Start is called before the first frame update
     void Start()
     {
-        #region SetUpBehaviourClasses
+        #region Set Up Behaviour Classes
 
         ExerciseBehaviour = new ExerciseBehaviour(this);
         ConverseBehaviour = new ConverseBehaviour(this);
@@ -91,6 +89,7 @@ public class PlayerController : BehaviourStateMachine
         //set-up navmesh agent
         agent = GetComponent<NavMeshAgent>();
 
+        #region Connect Camera, Time, Trophy Classes
         //connect player stats
         PlayerStatistics = playerStatsGameObject.GetComponent<PlayerStatistics>();
 
@@ -109,9 +108,14 @@ public class PlayerController : BehaviourStateMachine
             trophyCtrlr = GameManager.Instance.world.transform.GetChild(3).gameObject;
         TrophyController = trophyCtrlr.GetComponentInChildren<TrophyController>();
 
+        #endregion
+
         //set starting behaviour
-        currentBehaviour = WanderBehaviour;
+        currentBehaviour = SeekBehaviour;
         SetBehaviour(currentBehaviour);
+
+        //set camera at start
+        CameraSwitch();
     }
 
     private void Update()
@@ -149,11 +153,11 @@ public class PlayerController : BehaviourStateMachine
         //    //Debug.Log("seek behaviour set");
         //    nextBehaviour = SeekBehaviour;
         //}
-        else if (Input.GetKeyDown(KeyCode.Alpha1) ||
-            !isPlayerInBathroom && !isPlayerInBedroom && !isPlayerInGym && !isPlayerInKitchen && !isPlayerAtTrophyCabinet)
-        {
-            nextBehaviour = SeekBehaviour;
-        }
+        //else if (Input.GetKeyDown(KeyCode.Alpha1) ||
+        //    !isPlayerInBathroom && !isPlayerInBedroom && !isPlayerInGym && !isPlayerInKitchen && !isPlayerAtTrophyCabinet)
+        //{
+        //    nextBehaviour = SeekBehaviour;
+        //}
         else if (isPlayerInKitchen)
         {
             nextBehaviour = EatBehaviour;
@@ -221,6 +225,7 @@ public class PlayerController : BehaviourStateMachine
     public void SetPlayerDestination(Vector3 targetPos)
     {
         agent.SetDestination(targetPos);
+        gameObject.transform.LookAt(agent.steeringTarget);
     }
 
     public void CameraSwitch()
@@ -291,5 +296,11 @@ public class PlayerController : BehaviourStateMachine
     public void IsReportDelivered(bool value)
     {
         isReportDelivered = value;
+    }
+
+    public bool IsPetAbleToSeek()
+    {
+        if (!isPetSleeping && isReportDelivered) return true;
+        else return false;
     }
 }

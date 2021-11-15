@@ -12,7 +12,7 @@ public class StatusCheckBehaviour : Behaviour
     public override void StartBehaviour()
     {
         Debug.Log("StatusCheckBehaviour Start called");
-        PlayerController.SetPlayerDestination(PlayerController.trophyCabinetPosition.position);
+        PlayerController.SetPlayerDestination(FindWaypointHelper("trophycabinet"));
         base.StartBehaviour();
     }
 

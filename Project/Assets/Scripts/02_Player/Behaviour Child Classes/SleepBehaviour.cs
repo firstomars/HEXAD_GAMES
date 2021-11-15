@@ -15,8 +15,6 @@ public class SleepBehaviour : Behaviour
     {
         Debug.Log("SleepBehaviour Start called - press L to test update");
 
-        //petBedTime = PlayerController.petBedTime;
-
         UIManager.UIManagerInstance.CurrentBehaviour = this;
 
         SetUI("bedroom");
@@ -26,8 +24,6 @@ public class SleepBehaviour : Behaviour
 
     public override void RunBehaviour()
     {
-        //Debug.Log("SleepBehaviour Update called");
-
         if (Input.GetKeyDown(KeyCode.L))
         {
             if (PlayerController.TimeController.IsTimeAfter(PlayerController.petBedTime))
@@ -78,8 +74,6 @@ public class SleepBehaviour : Behaviour
         {
             UIManager.UIManagerInstance.WakeUpBtnClicked();
             PlayerController.IsReportDelivered(false);
-            
-            //PlayerController.SetPlayerDestination(PlayerController.trophyCabinetPosition.position);
             dayFellAsleep = -1;
         }
     }

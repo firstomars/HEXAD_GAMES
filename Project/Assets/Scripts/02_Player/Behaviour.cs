@@ -25,12 +25,12 @@ public abstract class Behaviour
 
     public virtual void RunBehaviour()
     {
-
+        PlayerController.CameraSwitch();
     }
 
     public virtual void EndBehaviour()
     {
-        PlayerController.CameraSwitch();
+        //PlayerController.CameraSwitch();
         UIManager.UIManagerInstance.CurrentBehaviour = null;
     }
 

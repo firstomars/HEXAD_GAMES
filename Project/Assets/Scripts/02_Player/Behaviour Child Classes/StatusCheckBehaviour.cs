@@ -12,19 +12,29 @@ public class StatusCheckBehaviour : Behaviour
     public override void StartBehaviour()
     {
         Debug.Log("StatusCheckBehaviour Start called");
+        PlayerController.SetPlayerDestination(PlayerController.trophyCabinetPosition.position);
         base.StartBehaviour();
     }
 
     public override void RunBehaviour()
     {
-        //Debug.Log("StatusCheckBehaviour Update called");
+        if (Input.GetKeyDown(KeyCode.Space))
+            SetUI("report");
 
-        PlayerController.TrophyController.TrophyConditionCheck();
-
-        if (Input.GetKeyDown(KeyCode.T))
+        if (UIManager.UIManagerInstance.bedTime != -1 && UIManager.UIManagerInstance.wakeUpTime != -1)
         {
-            Debug.Log("key T has been pressed");
+            int bedTime = UIManager.UIManagerInstance.GetBedtime();
+            int wakeUpTime = UIManager.UIManagerInstance.GetWakeUpTime();
+
+            int hrsSlept = PlayerController.PlayerStatistics.CalculateHoursSlept(bedTime, wakeUpTime);
+
+            UIManager.UIManagerInstance.SetHoursSleptText(hrsSlept);
+            
+            //REFACTOR BELOW
+            PlayerController.TrophyController.TrophyConditionCheck();
             PlayerController.TrophyController.InstantiateTrophy();
+
+            PlayerController.IsReportDelivered(true);
         }
 
         base.RunBehaviour();
@@ -33,6 +43,7 @@ public class StatusCheckBehaviour : Behaviour
     public override void EndBehaviour()
     {
         Debug.Log("StatusCheckBehaviour End called");
+        SetUI();
         base.EndBehaviour();
     }
 }

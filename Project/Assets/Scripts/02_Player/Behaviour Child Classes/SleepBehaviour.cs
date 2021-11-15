@@ -77,7 +77,9 @@ public class SleepBehaviour : Behaviour
             PlayerController.TimeController.IsTimeAfter(PlayerController.petWakeUpTime))
         {
             UIManager.UIManagerInstance.WakeUpBtnClicked();
-            PlayerController.SetPlayerDestination(PlayerController.trophyCabinetPosition.position);
+            PlayerController.IsReportDelivered(false);
+            
+            //PlayerController.SetPlayerDestination(PlayerController.trophyCabinetPosition.position);
             dayFellAsleep = -1;
         }
     }

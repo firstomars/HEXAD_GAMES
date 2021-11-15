@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System;
 
 public class UIManager : MonoBehaviour
 {
@@ -44,9 +45,7 @@ public class UIManager : MonoBehaviour
     //NEW
 
     //classes set during runtime
-    //[HideInInspector] public SleepBehaviour SleepBehaviour; -- DELETE
     [HideInInspector] public Behaviour CurrentBehaviour;
-
 
     [Header("PLAY SCENE INTERACTABLES - UI")]
     [SerializeField] private GameObject interactablesUIGO;
@@ -56,6 +55,24 @@ public class UIManager : MonoBehaviour
     private Button sendToBedBtn;
     [SerializeField] private GameObject wakeUpBtnGO;
     private Button wakeUpBtn;
+
+    [Header("Report Interactables UI")]
+    [SerializeField] private GameObject reportUiObj;
+    [SerializeField] private GameObject reportText;
+    [SerializeField] private GameObject bedTimeInputFieldObj;
+    private InputField bedTimeInputField;
+    [SerializeField] private GameObject wakeUpTimeInputFieldObj;
+    private InputField wakeUpTimeInputField;
+    [SerializeField] private GameObject hrsSleptNightOneTitle;
+    [SerializeField] private GameObject hrsSleptNightTwoTitle;
+    [SerializeField] private GameObject hrsSleptNightOneTextObj;
+    [SerializeField] private GameObject hrsSleptNightTwoTextObj;
+    private Text hrsSleptNightOneText;
+    private Text hrsSleptNightTwoText;
+    [SerializeField] private GameObject closeReportBtnObj;
+    private Button closeReportBtn;
+    [HideInInspector] public int bedTime = -1;
+    [HideInInspector] public int wakeUpTime = -1;
 
     //===
 
@@ -76,8 +93,17 @@ public class UIManager : MonoBehaviour
         //NEW
 
         //setup play scene buttons in runtime
+
+        //bedroom UI
         sendToBedBtn = sendToBedBtnGO.GetComponent<Button>();
         wakeUpBtn = wakeUpBtnGO.GetComponent<Button>();
+
+        //report UI
+        bedTimeInputField = bedTimeInputFieldObj.GetComponent<InputField>();
+        wakeUpTimeInputField = wakeUpTimeInputFieldObj.GetComponent<InputField>();
+        hrsSleptNightOneText = hrsSleptNightOneTextObj.GetComponent<Text>();
+        hrsSleptNightTwoText = hrsSleptNightTwoTextObj.GetComponent<Text>();
+        closeReportBtn = closeReportBtnObj.GetComponent<Button>();
         //===
     }
 
@@ -207,10 +233,17 @@ public class UIManager : MonoBehaviour
         {
             case "bedroom":
                 SetBedroomUI(true);
+                SetReportUI(false);
+                break;
+
+            case "report":
+                SetBedroomUI(false);
+                SetReportUI(true);
                 break;
 
             default:
                 SetBedroomUI(false);
+                SetReportUI(false);
                 break;
         }
     }
@@ -234,6 +267,56 @@ public class UIManager : MonoBehaviour
                 break;
         }
     }
+
+    #region ReportUI
+
+    private void SetReportUI(bool value)
+    {
+        reportUiObj.SetActive(value);
+    }
+
+    public void CloseReportButton()
+    {
+        reportUiObj.SetActive(false);
+    }
+
+    //bedtime input field
+    public void BedtimeInputField(string bedTimeInput)
+    {
+        bool isNumeric = int.TryParse(bedTimeInput, out _);
+        if (isNumeric) bedTime = Int16.Parse(bedTimeInput);
+        else Debug.Log("Only ints can be passed in");
+    }
+
+    //wake up time input field
+    public void WakeUpTimeInputField(string wakeUpInput)
+    {
+        bool isNumeric = int.TryParse(wakeUpInput, out _);
+        if (isNumeric) wakeUpTime = Int16.Parse(wakeUpInput);
+        else Debug.Log("Only ints can be passed in");
+    }
+
+    public int GetBedtime()
+    {
+        int timeToReturn = bedTime;
+        bedTime = -1;
+        return timeToReturn;
+    }
+
+    public int GetWakeUpTime()
+    {
+        int timeToReturn = wakeUpTime;
+        wakeUpTime= -1;
+        return timeToReturn;
+    }
+
+    public void SetHoursSleptText(int hrsSlept)
+    {
+        hrsSleptNightOneText.text = hrsSlept.ToString();
+    }
+
+    #endregion
+
 
     #region BedroomUI
 

@@ -49,6 +49,7 @@ public class PlayerController : BehaviourStateMachine
 
     //pet behaviour bools
     private bool isPetSleeping = false;
+    private bool isReportDelivered = true;
 
     [Header("NavMesh Settings")]
     private NavMeshAgent agent;
@@ -134,6 +135,10 @@ public class PlayerController : BehaviourStateMachine
         {
             return;
         }
+        else if (!isReportDelivered)
+        {
+            nextBehaviour = StatusCheckBehaviour;
+        }
         //if mouse clicked or not in any action rooms, set to seekbehaviour
         else if (Input.GetMouseButtonDown(0) && isClickPointOnGround(Input.mousePosition) ||
             !isPlayerInBathroom && !isPlayerInBedroom && !isPlayerInGym && !isPlayerInKitchen && !isPlayerAtTrophyCabinet)
@@ -161,10 +166,10 @@ public class PlayerController : BehaviourStateMachine
             //Debug.Log("bathroom behaviour set");
             nextBehaviour = BathroomBehaviour;
         }
-        else if (isPlayerAtTrophyCabinet)
-        {
-            nextBehaviour = StatusCheckBehaviour;
-        }
+        //else if (isPlayerAtTrophyCabinet)
+        //{
+        //    nextBehaviour = StatusCheckBehaviour;
+        //}
         //else if (Input.GetKeyDown(KeyCode.Alpha1)) // set to top - UNUSED BEHAVIOURS
         //{
         //    Debug.Log("key 1 pressed");
@@ -273,5 +278,10 @@ public class PlayerController : BehaviourStateMachine
     public void IsPetSleeping(bool value)
     {
         isPetSleeping = value;
+    }
+
+    public void IsReportDelivered(bool value)
+    {
+        isReportDelivered = value;
     }
 }

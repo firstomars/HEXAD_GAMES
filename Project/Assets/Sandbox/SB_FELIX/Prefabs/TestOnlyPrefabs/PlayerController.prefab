@@ -1,19 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!136 &202125571467835520
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5192786383473672957}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.6095607
-  m_Height: 1.6559658
-  m_Direction: 1
-  m_Center: {x: -0.0020883083, y: 0.6420119, z: -0.026885271}
 --- !u!54 &412762438
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -30,6 +16,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!136 &202125571467835520
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5192786383473672957}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.6095607
+  m_Height: 1.6559658
+  m_Direction: 1
+  m_Center: {x: -0.0020883083, y: 0.6420119, z: -0.026885271}
 --- !u!195 &412762439
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -52,24 +52,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &412762440
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5192786383473672957}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 429814f46dd414f4f8e4e4c1a318ca39, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  whatIsGround:
-    serializedVersion: 2
-    m_Bits: 128
-  whatIsPlayer:
-    serializedVersion: 2
-    m_Bits: 64
 --- !u!114 &240699171
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -141,7 +123,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 0a3075b7c2af82149a6cf68b4d4da354, type: 3}
       propertyPath: m_Name
-      value: PlayerConfig
+      value: PlayerController
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 0a3075b7c2af82149a6cf68b4d4da354, type: 3}
       propertyPath: m_Layer

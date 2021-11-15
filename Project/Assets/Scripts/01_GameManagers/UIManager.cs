@@ -46,9 +46,25 @@ public class UIManager : MonoBehaviour
 
     //classes set during runtime
     [HideInInspector] public Behaviour CurrentBehaviour;
+    [HideInInspector] public SeekBehaviour SeekBehaviour;
 
     [Header("PLAY SCENE INTERACTABLES - UI")]
     [SerializeField] private GameObject interactablesUIGO;
+
+    [Header("Navigation - UI")]
+    [SerializeField] private GameObject kitchenBtnGO;
+    private Button kitchenBtn;
+    [SerializeField] private GameObject gymBtnGO;
+    private Button gymBtn;
+    [SerializeField] private GameObject bathroomBtnGO;
+    private Button bathroomBtn;
+    [SerializeField] private GameObject bedroomBtnGO;
+    private Button bedroomBtn;
+    [SerializeField] private GameObject trophyCabinetBtnGO;
+    private Button trophyCabinetBtn;
+    [SerializeField] private GameObject livingRoomBtnGO;
+    private Button livingRoomBtn;
+
 
     [Header("Bedroom Interactables UI")]
     [SerializeField] private GameObject sendToBedBtnGO;
@@ -60,9 +76,9 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject reportUiObj;
     [SerializeField] private GameObject reportText;
     [SerializeField] private GameObject bedTimeInputFieldObj;
-    private InputField bedTimeInputField;
+    private InputField bedTimeInputField; //DELETE
     [SerializeField] private GameObject wakeUpTimeInputFieldObj;
-    private InputField wakeUpTimeInputField;
+    private InputField wakeUpTimeInputField; //DELETE
     [SerializeField] private GameObject hrsSleptNightOneTitle;
     [SerializeField] private GameObject hrsSleptNightTwoTitle;
     [SerializeField] private GameObject hrsSleptNightOneTextObj;
@@ -93,6 +109,14 @@ public class UIManager : MonoBehaviour
         //NEW
 
         //setup play scene buttons in runtime
+
+        //navigation UI
+        kitchenBtn = kitchenBtnGO.GetComponent<Button>();
+        gymBtn = gymBtnGO.GetComponent<Button>();
+        bathroomBtn = bathroomBtnGO.GetComponent<Button>();
+        bedroomBtn = bedroomBtnGO.GetComponent<Button>();
+        trophyCabinetBtn = trophyCabinetBtnGO.GetComponent<Button>();
+        livingRoomBtn = livingRoomBtnGO.GetComponent<Button>();
 
         //bedroom UI
         sendToBedBtn = sendToBedBtnGO.GetComponent<Button>();
@@ -222,8 +246,14 @@ public class UIManager : MonoBehaviour
 
         //NEW
         interactablesUIGO.SetActive(value);
+
+        //SetNavigationUIListeners();
+
+        //needs if statement?
         if(value) SwitchPlayRoomUI();
     }
+
+
 
     public void SwitchPlayRoomUI(string room = default)
     {
@@ -250,7 +280,11 @@ public class UIManager : MonoBehaviour
 
     private void ManageRoomUIListeners(string room = default)
     {
-        if (CurrentBehaviour == null) return;
+        if (CurrentBehaviour == null)
+        {
+            //SetNavigationUIListeners();
+            return;
+        }
 
         switch (room)
         {
@@ -262,6 +296,12 @@ public class UIManager : MonoBehaviour
             //add other cases
 
             default:
+                kitchenBtn.onClick.AddListener(CurrentBehaviour.SeekKitchen);
+                gymBtn.onClick.AddListener(CurrentBehaviour.SeekGym);
+                bathroomBtn.onClick.AddListener(CurrentBehaviour.SeekBathroom);
+                bedroomBtn.onClick.AddListener(CurrentBehaviour.SeekBedroom);
+                trophyCabinetBtn.onClick.AddListener(CurrentBehaviour.SeekTrophyCabinet);
+                livingRoomBtn.onClick.AddListener(CurrentBehaviour.SeekLivingRoom);
                 sendToBedBtn.onClick.RemoveAllListeners();
                 wakeUpBtn.onClick.RemoveAllListeners();
                 break;

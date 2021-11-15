@@ -57,6 +57,9 @@ public class PlayerController : BehaviourStateMachine
     [SerializeField] public Vector3 targetPosition;
     [SerializeField] public Transform bed;
     [SerializeField] public Transform trophyCabinetPosition;
+    [HideInInspector] public HouseWaypoints HouseWaypoints;
+    
+    //[SerializeField] public List<Vector3> houseWaypoints;
 
     [Header("Player Stats")]
     [SerializeField] private GameObject playerStatsGameObject;
@@ -130,7 +133,7 @@ public class PlayerController : BehaviourStateMachine
     }
 
     private void RunBehaviourLogic()
-    {        
+    {
         if (isPetSleeping)
         {
             return;
@@ -140,10 +143,15 @@ public class PlayerController : BehaviourStateMachine
             nextBehaviour = StatusCheckBehaviour;
         }
         //if mouse clicked or not in any action rooms, set to seekbehaviour
-        else if (Input.GetMouseButtonDown(0) && isClickPointOnGround(Input.mousePosition) ||
+        //else if (Input.GetMouseButtonDown(0) && isClickPointOnGround(Input.mousePosition) ||
+        //    !isPlayerInBathroom && !isPlayerInBedroom && !isPlayerInGym && !isPlayerInKitchen && !isPlayerAtTrophyCabinet)
+        //{
+        //    //Debug.Log("seek behaviour set");
+        //    nextBehaviour = SeekBehaviour;
+        //}
+        else if (Input.GetKeyDown(KeyCode.Alpha1) ||
             !isPlayerInBathroom && !isPlayerInBedroom && !isPlayerInGym && !isPlayerInKitchen && !isPlayerAtTrophyCabinet)
         {
-            //Debug.Log("seek behaviour set");
             nextBehaviour = SeekBehaviour;
         }
         else if (isPlayerInKitchen)

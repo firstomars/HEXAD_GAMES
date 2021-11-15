@@ -59,4 +59,33 @@ public abstract class Behaviour
     {
 
     }
+
+    public virtual void SeekKitchen()
+    {
+
+    }
+
+    public virtual void SeekGym()
+    {
+
+    }
+
+    public virtual void SeekBathroom()
+    {
+
+    }
+    public virtual void SeekBedroom()
+    {
+
+    }
+
+    public virtual void SeekTrophyCabinet()
+    {
+
+    }
+
+    public virtual void SeekLivingRoom()
+    {
+
+    }
 }

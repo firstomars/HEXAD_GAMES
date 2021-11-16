@@ -34,7 +34,7 @@ public class PlayerStatistics : MonoBehaviour
     [SerializeField] private float maxfulfilLevel;
     [SerializeField] private float minfulfilLevel;
     [SerializeField] private int fulfilGainedPerGame;
-    [SerializeField] private int numGamesPlayed;
+    //[SerializeField] private int numGamesPlayed;
     [SerializeField] private int fulfilGainedFromFood = 5;
     [SerializeField] private int fulfilGainedFromJunkFood = 10;
     [SerializeField] private int fulfilGainedFromBenchPress = 10;
@@ -86,10 +86,12 @@ public class PlayerStatistics : MonoBehaviour
     {
         if (fulfilLevel + fulfilGainedPerGame < maxfulfilLevel && energyLevel > 26)
         {
-            numGamesPlayed++;
-            fulfilLevel = numGamesPlayed * fulfilGainedPerGame;
+            //numGamesPlayed++;
+            //fulfilLevel = numGamesPlayed * fulfilGainedPerGame;
+            fulfilLevel += fulfilGainedPerGame;
             sleepDollarsLevel += sleepDollarsIncrementPerGame;
             energyLevel -= 25;
+            Debug.Log("played minigame");
         }
         else Debug.Log("Unable to play any more games");
     }
@@ -118,11 +120,13 @@ public class PlayerStatistics : MonoBehaviour
         {
             energyLevel -= energyReducedFromBenchPress;
         }
+        else Debug.Log("energy level at max");
 
         if (fulfilLevel < maxfulfilLevel - fulfilGainedFromBenchPress)
         {
             fulfilLevel += fulfilGainedFromBenchPress;
         }
+        else Debug.Log("fulfil level at max");
     }
 
     //hrs slept input field
@@ -140,7 +144,6 @@ public class PlayerStatistics : MonoBehaviour
 
     private void ResetFulfilment()
     {
-        numGamesPlayed = 0;
         fulfilLevel = 0;
     }
 
@@ -168,7 +171,9 @@ public class PlayerStatistics : MonoBehaviour
 
     public int CalculateHoursSlept(int bedTime, int wakeUpTime)
     {
-        hrsSleptNightOne = (24 - bedTime) + wakeUpTime;
+        hrsSleptNightTwo = hrsSleptNightOne;
+        
+        hrsSleptNightOne = (24 - bedTime) + wakeUpTime; //REFACTOR
         energyLevel = maxEnergyLevel;
 
         Debug.Log("PlayerStats " + hrsSleptNightOne);
@@ -178,6 +183,24 @@ public class PlayerStatistics : MonoBehaviour
 
         return hrsSleptNightOne;
     }
+
+    public Vector2Int CalculateHoursSleptNightOneTwo(int bedTime, int wakeUpTime)
+    {
+        hrsSleptNightTwo = hrsSleptNightOne;
+
+        hrsSleptNightOne = (24 - bedTime) + wakeUpTime; //REFACTOR
+        energyLevel = maxEnergyLevel;
+
+        Debug.Log("PlayerStats " + hrsSleptNightOne);
+
+        //add if statements to see what new energy levels are
+        SetNewEnergyLevels();
+
+        Vector2Int hrsSlept = new Vector2Int(hrsSleptNightOne, hrsSleptNightTwo);
+
+        return hrsSlept;
+    }
+
 
     public int GetHrsSleptNightOne()
     {

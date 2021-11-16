@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class SeekBehaviour : Behaviour
 {
-    private Vector3 targetPosition;
-    private string targetPos;
-    private bool isTargetReached;
+    //private Vector3 targetPosition;
+    //private string targetPos;
+    //private bool isTargetReached;
+
+    private bool isUIListenersSet = false;
 
     public SeekBehaviour(PlayerController playerController) : base(playerController)
     {
@@ -17,8 +19,12 @@ public class SeekBehaviour : Behaviour
     {
         Debug.Log("SeekBehaviour Start called");
 
-        UIManager.UIManagerInstance.SetNavigationUIListeners(this);
-        
+        if (!isUIListenersSet)
+        {
+            UIManager.UIManagerInstance.SetNavigationUIListeners(this);
+            isUIListenersSet = true;
+        }
+            
         SetUI();
 
         base.StartBehaviour();

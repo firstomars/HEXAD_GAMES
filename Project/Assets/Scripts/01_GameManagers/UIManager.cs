@@ -270,17 +270,11 @@ public class UIManager : MonoBehaviour
         spiritLevelSldr.SetActive(false); // set to false for debugging purposes
         backgrdPnl.SetActive(false); // set to false for debugging purposes
 
-        //NEW
         interactablesUIGO.SetActive(value);
-
-        //needs if statement?
-        if(value) SwitchPlayRoomUI();
     }
 
     public void SwitchPlayRoomUI(string room = default)
     {
-        ManageRoomUIListeners(room);
-
         switch(room)
         {
             case "bedroom":
@@ -320,6 +314,8 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    #region Seek UI Listeners
+
     public void SetNavigationUIListeners(SeekBehaviour seekBehaviour)
     {
         kitchenBtn.onClick.AddListener(seekBehaviour.SeekKitchen);
@@ -329,34 +325,7 @@ public class UIManager : MonoBehaviour
         livingRoomBtn.onClick.AddListener(seekBehaviour.SeekLivingRoom);
     }
 
-    private void ManageRoomUIListeners(string room = default)
-    {
-        if (CurrentBehaviour == null) return;
-
-        switch (room)
-        {
-            case "bedroom":
-                sendToBedBtn.onClick.AddListener(CurrentBehaviour.SendToBed);
-                wakeUpBtn.onClick.AddListener(CurrentBehaviour.WakePetUp);
-                miniGameBtn.onClick.AddListener(CurrentBehaviour.PlayMiniGame);
-                break;
-
-            case "kitchen":
-                eatFoodBtn.onClick.AddListener(CurrentBehaviour.EatFood);
-                eatJunkFoodBtn.onClick.AddListener(CurrentBehaviour.EatJunkFood);
-                break;
-            //add other cases
-
-            case "gym":
-                benchPressBtn.onClick.AddListener(CurrentBehaviour.BenchPress);
-                break;
-
-            default:
-                sendToBedBtn.onClick.RemoveAllListeners();
-                wakeUpBtn.onClick.RemoveAllListeners();
-                break;
-        }
-    }
+    #endregion 
 
     #region Main Menu
 
@@ -462,6 +431,15 @@ public class UIManager : MonoBehaviour
         hrsSleptNightOneText.text = hrsSlept.ToString();
     }
 
+    public void SetHoursSleptTextNightOneTwo(Vector2Int hrsSlept)
+    {
+        hrsSleptNightOneText.text = hrsSlept[0].ToString();
+        hrsSleptNightTwoText.text = hrsSlept[1].ToString();  
+        
+        //hrsSleptNightTwoText.text = hrsSleptNightTwo.ToString();
+        //hrsSleptNightOneText.text = hrsSleptNightOne.ToString();
+    }
+
     #endregion
 
     #region BedroomUI
@@ -471,7 +449,26 @@ public class UIManager : MonoBehaviour
         Debug.Log("bedroom UI set to " + value);
         miniGameBtnGO.SetActive(value);
         sendToBedBtnGO.SetActive(value);
+
         if (value == false) wakeUpBtnGO.SetActive(value);
+
+        SetBedroomUIListeners(value);
+    }
+
+    private void SetBedroomUIListeners(bool value)
+    {
+        if (value == true)
+        {
+            sendToBedBtn.onClick.AddListener(CurrentBehaviour.SendToBed);
+            wakeUpBtn.onClick.AddListener(CurrentBehaviour.WakePetUp);
+            miniGameBtn.onClick.AddListener(CurrentBehaviour.PlayMiniGame);
+        }
+        else
+        {
+            sendToBedBtn.onClick.RemoveAllListeners();
+            wakeUpBtn.onClick.RemoveAllListeners();
+            miniGameBtn.onClick.RemoveAllListeners();
+        }
     }
 
     public void SendToBedBtnClicked()
@@ -495,6 +492,22 @@ public class UIManager : MonoBehaviour
         //Debug.Log("kitchen UI set to " + value);
         eatFoodBtnGO.SetActive(value);
         eatJunkFoodBtnGO.SetActive(value);
+
+        SetKitchenUIListeners(value);
+    }
+
+    private void SetKitchenUIListeners(bool value)
+    {
+        if (value == true)
+        {
+            eatFoodBtn.onClick.AddListener(CurrentBehaviour.EatFood);
+            eatJunkFoodBtn.onClick.AddListener(CurrentBehaviour.EatJunkFood);
+        }
+        else
+        {
+            eatFoodBtn.onClick.RemoveAllListeners();
+            eatJunkFoodBtn.onClick.RemoveAllListeners();
+        }
     }
 
     #endregion
@@ -505,6 +518,20 @@ public class UIManager : MonoBehaviour
     {
         Debug.Log("gym UI set to " + value);
         benchPressBtnGO.SetActive(value);
+
+        SetGymUIListeners(value);
+    }
+
+    private void SetGymUIListeners(bool value)
+    {
+        if (value == true)
+        {
+            benchPressBtn.onClick.AddListener(CurrentBehaviour.BenchPress);
+        }
+        else
+        {
+            benchPressBtn.onClick.RemoveAllListeners();
+        }
     }
 
     #endregion

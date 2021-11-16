@@ -41,7 +41,7 @@ public class ExerciseBehaviour : Behaviour
 
     public override void BenchPress()
     {
-        Debug.Log("bench press called");
+        //Debug.Log("bench press called");
         PlayerController.PlayerStatistics.BenchPressStatsImpact();
     }
 }

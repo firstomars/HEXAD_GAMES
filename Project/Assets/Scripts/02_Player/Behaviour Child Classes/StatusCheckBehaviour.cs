@@ -26,9 +26,12 @@ public class StatusCheckBehaviour : Behaviour
             int bedTime = UIManager.UIManagerInstance.GetBedtime();
             int wakeUpTime = UIManager.UIManagerInstance.GetWakeUpTime();
 
-            int hrsSlept = PlayerController.PlayerStatistics.CalculateHoursSlept(bedTime, wakeUpTime);
+            Vector2Int hrsSlept = PlayerController.PlayerStatistics.CalculateHoursSleptNightOneTwo(bedTime, wakeUpTime);
 
-            UIManager.UIManagerInstance.SetHoursSleptText(hrsSlept);
+            //int hrsSlept = PlayerController.PlayerStatistics.CalculateHoursSlept(bedTime, wakeUpTime);
+
+            //UIManager.UIManagerInstance.SetHoursSleptText(hrsSlept);
+            UIManager.UIManagerInstance.SetHoursSleptTextNightOneTwo(hrsSlept);
             
             //REFACTOR BELOW
             PlayerController.TrophyController.TrophyConditionCheck();

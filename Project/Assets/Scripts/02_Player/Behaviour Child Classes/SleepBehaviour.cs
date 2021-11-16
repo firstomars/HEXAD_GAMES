@@ -80,11 +80,7 @@ public class SleepBehaviour : Behaviour
 
     public override void PlayMiniGame()
     {
-        Debug.Log("played minigame");
         PlayerController.PlayerStatistics.MinigameStatsImpact();
-        
     }
-
-
 }
 

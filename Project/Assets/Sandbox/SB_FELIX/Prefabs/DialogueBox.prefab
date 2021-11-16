@@ -150,21 +150,23 @@ MonoBehaviour:
       your body temperature and effects the hormones that promote sleep.
   IntroDialogue:
   - Intro: 
-    IntroText: []
+    IntroText:
+    - 
   petDialogue:
-  - Dialogue: First Conversation
+  - Dialogue: Introduction
     PetText:
     - Hi, its nice to meet you
     - 'What''s your name? '
-    - 
-  - Dialogue: 
+  - Dialogue: Colour Select
     PetText:
-    - Hello
-    - Hello
-  - Dialogue: 
+    - "Let me get to know you a little more. What\u2019s your favourite colour?"
+  - Dialogue: Initial Sleep Data Input
     PetText:
-    - Hello
-    - Hello
+    - Say, when did you get to sleep last night?
+    - What time do you wake up?
+  - Dialogue: If player gets poor sleep
+    PetText:
+    - "Hey, don\u2019t you think you should try get a little more sleep?"
   achievements:
   - name: Baby Steps
     achievementText:

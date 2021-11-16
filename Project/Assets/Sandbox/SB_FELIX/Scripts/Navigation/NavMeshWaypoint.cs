@@ -14,6 +14,7 @@ public class NavMeshWaypoint : MonoBehaviour
 
     public bool random = false;
     public bool start = true;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -49,17 +50,18 @@ public class NavMeshWaypoint : MonoBehaviour
                 else
                 {
                     num = Random.Range(0, waypoints.Length);
+                    
                 }
             }
+
         }
-
-
     }
 
     public void Move()
     {
         gameObject.transform.LookAt(waypoints[num].transform.position); //Rotating the player towards the position
         agent.destination = waypoints[num].transform.position;
+
         //gameObject.transform.position += gameObject.transform.forward * speed * Time.deltaTime; //Moving the player forward
     }
 }

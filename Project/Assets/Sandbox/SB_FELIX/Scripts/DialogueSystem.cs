@@ -32,8 +32,8 @@ public class DialogueSystem : MonoBehaviour
     {
         public string Intro;
         public string[] IntroText;
-
     }
+
     //=== Comment Craig
     // pascal case for local variables e.g. introDialogue
     [SerializeField] Introduction[] IntroDialogue;
@@ -43,9 +43,18 @@ public class DialogueSystem : MonoBehaviour
     {
         public string Dialogue;
         public string[] PetText;
-
     }
     [SerializeField] PetDialogue[] petDialogue;
+
+
+    [System.Serializable]
+    public class Achievements 
+    {
+        public string name;
+        public string[] achievementText;
+    }
+    [SerializeField] Achievements[] achievements;
+
 
     void Start()
     {

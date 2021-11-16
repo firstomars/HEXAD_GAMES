@@ -12,7 +12,8 @@ public class ExerciseBehaviour : Behaviour
     public override void StartBehaviour()
     {
         Debug.Log("ExerciseBehaviour Start called - press E to test update");
-
+        UIManager.UIManagerInstance.CurrentBehaviour = this;
+        SetUI("gym");
         base.StartBehaviour();
     }
 
@@ -34,6 +35,13 @@ public class ExerciseBehaviour : Behaviour
     public override void EndBehaviour()
     {
         Debug.Log("ExerciseBehaviour End called");
+        SetUI();
         base.EndBehaviour();
+    }
+
+    public override void BenchPress()
+    {
+        Debug.Log("bench press called");
+        PlayerController.PlayerStatistics.BenchPressStatsImpact();
     }
 }

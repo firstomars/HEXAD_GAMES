@@ -77,5 +77,14 @@ public class SleepBehaviour : Behaviour
             dayFellAsleep = -1;
         }
     }
+
+    public override void PlayMiniGame()
+    {
+        Debug.Log("played minigame");
+        PlayerController.PlayerStatistics.MinigameStatsImpact();
+        
+    }
+
+
 }
 

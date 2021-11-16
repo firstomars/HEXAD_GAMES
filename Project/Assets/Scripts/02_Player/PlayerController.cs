@@ -146,6 +146,10 @@ public class PlayerController : BehaviourStateMachine
         {
             nextBehaviour = StatusCheckBehaviour;
         }
+        else if(!isPlayerInBathroom && !isPlayerInBedroom && !isPlayerInGym && !isPlayerInKitchen && !isPlayerAtTrophyCabinet)
+        {
+            nextBehaviour = SeekBehaviour;
+        }
         //if mouse clicked or not in any action rooms, set to seekbehaviour
         //else if (Input.GetMouseButtonDown(0) && isClickPointOnGround(Input.mousePosition) ||
         //    !isPlayerInBathroom && !isPlayerInBedroom && !isPlayerInGym && !isPlayerInKitchen && !isPlayerAtTrophyCabinet)

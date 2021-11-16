@@ -8,16 +8,12 @@ public class PlayerStatistics : MonoBehaviour
 {
     private UIManager UIManager;
     
-    [Header("UI Toggle")]
-    //[SerializeField] private GameObject playerStatsUI;
+    private int hrsSleptNightOne;
+    private int hrsSleptNightTwo;
 
-    [Header("Debug Input Variables")]
-    //[SerializeField] private int DebugSleepHoursNightOne;
-    //[SerializeField] private int DebugSleepHoursNightTwo;
-    //[SerializeField] private GameObject inputField;
-    //private InputField hrsSleptInputField;
-
-    private int NEWhrsSleptNightOne;
+    //set by intro scene
+    private int wakeUpTime;
+    private int bedTime;
 
     [Header("STAT: Spirit")]
     [SerializeField] private float minSpiritLevel;
@@ -32,7 +28,6 @@ public class PlayerStatistics : MonoBehaviour
     [SerializeField] private float secsToWaitBeforeEnergyReduction;
     [SerializeField] private int energyGainedFromFood = 5;
     [SerializeField] private int energyReducedFromBenchPress = 10;
-    //[SerializeField] private int energyGainedFromJunkFood = 0;
 
     [Header("STAT: Fulfilment")]
     [SerializeField] private float fulfilLevel; //reduces slowly overtime
@@ -48,23 +43,6 @@ public class PlayerStatistics : MonoBehaviour
     [SerializeField] private int sleepDollarsLevel = 0;
     [SerializeField] private int sleepDollarsIncrementPerGame = 10;
 
-
-    //[Header("GameObjects")]
-    //[SerializeField] private Text energyLevelText;
-    //[SerializeField] private Text fulfilLevelText;
-    //[SerializeField] private Text spiritLevelText;
-    //[SerializeField] private Text hrsSleptNightOneText;
-    //[SerializeField] private Text hrsSleptNightTwoText;
-
-    //connect with timecontroller
-    private int hrsSleptNightOne;
-    private int hrsSleptNightTwo;
-
-    //set by intro scene
-    private int wakeUpTime;
-    private int bedTime;
-
-
     // Start is called before the first frame update
     void Start()
     {
@@ -78,9 +56,6 @@ public class PlayerStatistics : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //hrsSleptNightOneText.text = hrsSleptNightOne.ToString();
-        //hrsSleptNightTwoText.text = hrsSleptNightTwo.ToString();
-
         UIManager.StatsUpdate(
             energyLevel.ToString(), 
             fulfilLevel.ToString(), 
@@ -98,18 +73,10 @@ public class PlayerStatistics : MonoBehaviour
         }
     }
 
-    //sleep button
-    //public void RefreshEnergyLevels()
-    //{
-    //    energyLevel = maxEnergyLevel;
-
-    //    ResetFulfilment();
-    //}
-
-    //NEW
     public void SetNewEnergyLevels()
     {
         energyLevel = maxEnergyLevel;
+        StartCoroutine(ReduceEnergyOverTime());
 
         ResetFulfilment();
     }
@@ -201,23 +168,19 @@ public class PlayerStatistics : MonoBehaviour
 
     public int CalculateHoursSlept(int bedTime, int wakeUpTime)
     {
-        NEWhrsSleptNightOne = (24 - bedTime) + wakeUpTime;
+        hrsSleptNightOne = (24 - bedTime) + wakeUpTime;
         energyLevel = maxEnergyLevel;
 
-        Debug.Log("PlayerStats " + NEWhrsSleptNightOne);
+        Debug.Log("PlayerStats " + hrsSleptNightOne);
 
         //add if statements to see what new energy levels are
         SetNewEnergyLevels();
 
-        //int debugTimeSlept = (24 - bedTime) + wakeUpTime;
-
-        //hrsSleptNightOneText.text = debugTimeSlept.ToString();
-
-        return NEWhrsSleptNightOne;
+        return hrsSleptNightOne;
     }
 
     public int GetHrsSleptNightOne()
     {
-        return NEWhrsSleptNightOne;
+        return hrsSleptNightOne;
     }
 }

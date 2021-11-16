@@ -46,18 +46,30 @@ public class UIManager : MonoBehaviour
 
     //classes set during runtime
     [HideInInspector] public Behaviour CurrentBehaviour;
-    //[HideInInspector] public SeekBehaviour SeekBehaviour;
 
     [Header("PLAY SCENE INTERACTABLES - UI")]
     [SerializeField] private GameObject interactablesUIGO;
 
-    [Header("Navigation - UI")]
+    [Header("Navigation - UI Panels")]
+    [SerializeField] private GameObject flyoutButtonPanel;
+    [SerializeField] private GameObject mainFlyoutPanel;
+    [SerializeField] private GameObject walkFlyoutPanel;
+
+    [Header("Flyout Button Images")]
+    [SerializeField] private Sprite activateFlyoutImage;
+    [SerializeField] private Sprite deactivateFlyoutImage;
+
+    // Local class variables
+    private bool mainFlyoutActivated = false;
+    private bool walkFlyoutActivated = false;
+
+    [Header("Navigation - UI - OLD")]
     [SerializeField] private GameObject kitchenBtnGO;
     private Button kitchenBtn;
     [SerializeField] private GameObject gymBtnGO;
     private Button gymBtn;
-    [SerializeField] private GameObject bathroomBtnGO;
-    private Button bathroomBtn;
+    //[SerializeField] private GameObject bathroomBtnGO;
+    //private Button bathroomBtn;
     [SerializeField] private GameObject bedroomBtnGO;
     private Button bedroomBtn;
     [SerializeField] private GameObject trophyCabinetBtnGO;
@@ -76,9 +88,9 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject reportUiObj;
     [SerializeField] private GameObject reportText;
     [SerializeField] private GameObject bedTimeInputFieldObj;
-    private InputField bedTimeInputField; //DELETE
+    //private InputField bedTimeInputField; //DELETE
     [SerializeField] private GameObject wakeUpTimeInputFieldObj;
-    private InputField wakeUpTimeInputField; //DELETE
+    //private InputField wakeUpTimeInputField; //DELETE
     [SerializeField] private GameObject hrsSleptNightOneTitle;
     [SerializeField] private GameObject hrsSleptNightTwoTitle;
     [SerializeField] private GameObject hrsSleptNightOneTextObj;
@@ -113,7 +125,7 @@ public class UIManager : MonoBehaviour
         //navigation UI
         kitchenBtn = kitchenBtnGO.GetComponent<Button>();
         gymBtn = gymBtnGO.GetComponent<Button>();
-        bathroomBtn = bathroomBtnGO.GetComponent<Button>();
+        //bathroomBtn = bathroomBtnGO.GetComponent<Button>();
         bedroomBtn = bedroomBtnGO.GetComponent<Button>();
         trophyCabinetBtn = trophyCabinetBtnGO.GetComponent<Button>();
         livingRoomBtn = livingRoomBtnGO.GetComponent<Button>();
@@ -123,8 +135,8 @@ public class UIManager : MonoBehaviour
         wakeUpBtn = wakeUpBtnGO.GetComponent<Button>();
 
         //report UI
-        bedTimeInputField = bedTimeInputFieldObj.GetComponent<InputField>();
-        wakeUpTimeInputField = wakeUpTimeInputFieldObj.GetComponent<InputField>();
+        //bedTimeInputField = bedTimeInputFieldObj.GetComponent<InputField>();
+        //wakeUpTimeInputField = wakeUpTimeInputFieldObj.GetComponent<InputField>();
         hrsSleptNightOneText = hrsSleptNightOneTextObj.GetComponent<Text>();
         hrsSleptNightTwoText = hrsSleptNightTwoTextObj.GetComponent<Text>();
         closeReportBtn = closeReportBtnObj.GetComponent<Button>();
@@ -247,13 +259,9 @@ public class UIManager : MonoBehaviour
         //NEW
         interactablesUIGO.SetActive(value);
 
-        //SetNavigationUIListeners();
-
         //needs if statement?
         if(value) SwitchPlayRoomUI();
     }
-
-
 
     public void SwitchPlayRoomUI(string room = default)
     {
@@ -282,7 +290,7 @@ public class UIManager : MonoBehaviour
     {
         kitchenBtn.onClick.AddListener(seekBehaviour.SeekKitchen);
         gymBtn.onClick.AddListener(seekBehaviour.SeekGym);
-        bathroomBtn.onClick.AddListener(seekBehaviour.SeekBathroom);
+        //bathroomBtn.onClick.AddListener(seekBehaviour.SeekBathroom);
         bedroomBtn.onClick.AddListener(seekBehaviour.SeekBedroom);
         trophyCabinetBtn.onClick.AddListener(seekBehaviour.SeekTrophyCabinet);
         livingRoomBtn.onClick.AddListener(seekBehaviour.SeekLivingRoom);
@@ -302,12 +310,56 @@ public class UIManager : MonoBehaviour
             //add other cases
 
             default:
-
                 sendToBedBtn.onClick.RemoveAllListeners();
                 wakeUpBtn.onClick.RemoveAllListeners();
                 break;
         }
     }
+
+    #region Main Menu
+
+    public void ActivateMainFlyoutMenu()
+    {
+        if (!mainFlyoutActivated)
+        {
+            mainFlyoutPanel.SetActive(true);
+            mainFlyoutActivated = true;
+            flyoutButtonPanel.transform.GetChild(0).GetComponentInChildren<Image>().sprite = deactivateFlyoutImage;
+        }
+        else
+        {
+            CloseAllFlyouts();
+        }
+    }
+
+    // Walk flyout button pressed
+    public void ActivateWalkFlyoutMenu()
+    {
+        if (!walkFlyoutActivated)
+        {
+            walkFlyoutPanel.SetActive(true);
+            walkFlyoutActivated = true;
+        }
+        else
+        {
+            walkFlyoutPanel.SetActive(false);
+            walkFlyoutActivated = false;
+        }
+    }
+
+    public void CloseAllFlyouts()
+    {
+        if (walkFlyoutActivated)
+        {
+            walkFlyoutPanel.SetActive(false);
+            walkFlyoutActivated = false;
+        }
+        mainFlyoutPanel.SetActive(false);
+        mainFlyoutActivated = false;
+        flyoutButtonPanel.transform.GetChild(0).GetComponentInChildren<Image>().sprite = activateFlyoutImage;
+    }
+
+    #endregion
 
     #region ReportUI
 
@@ -472,63 +524,4 @@ public class UIManager : MonoBehaviour
     {
         SetPetPnlUI(true);
     }
-
-    /*
-     * Testing functions to show UI in build ONLY!!!!
-     * Not Final
-     * Do not fuick with!!!
-     */
-
-    [Header("Testing only -- not final")]
-    [SerializeField] private GameObject mainFlyoutPanel;
-    [SerializeField] private GameObject walkFlyoutPanel;
-
-    // Local class variables
-    private bool mainFlyoutActivated = false;
-    private bool walkFlyoutActivated = false;
-
-    // Main flyout button pressed
-    public void ActivateMainFlyoutMenu()
-    {
-        if (!mainFlyoutActivated)
-        {
-            mainFlyoutPanel.SetActive(true);
-            mainFlyoutActivated = true;
-        }
-        else
-        {
-            CloseAllFlyouts();
-        }
-    }
-
-    // Walk flyout button pressed
-    public void ActivateWalkFlyoutMenu()
-    {
-        if (!walkFlyoutActivated)
-        {
-            walkFlyoutPanel.SetActive(true);
-            walkFlyoutActivated = true;
-        }
-        else
-        {
-            walkFlyoutPanel.SetActive(false);
-            walkFlyoutActivated = false;
-        }
-    }
-
-    private void CloseAllFlyouts()
-    {
-        if (walkFlyoutActivated)
-        {
-            walkFlyoutPanel.SetActive(false);
-            walkFlyoutActivated = false;
-        }
-        mainFlyoutPanel.SetActive(false);
-        mainFlyoutActivated = false;
-    }
-
-    /*
-     * End testing code
-     * Fuck away!!!
-     */
 }

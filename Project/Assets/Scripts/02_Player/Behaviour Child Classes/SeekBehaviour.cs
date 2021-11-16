@@ -52,6 +52,7 @@ public class SeekBehaviour : Behaviour
         if (PlayerController.IsPetAbleToSeek())
             PlayerController.SetPlayerDestination(FindWaypointHelper("bathroom"));
     }
+
     public override void SeekBedroom()
     {
         if (PlayerController.IsPetAbleToSeek())

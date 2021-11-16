@@ -225,7 +225,7 @@ public class PlayerController : BehaviourStateMachine
     public void SetPlayerDestination(Vector3 targetPos)
     {
         agent.SetDestination(targetPos);
-        gameObject.transform.LookAt(agent.steeringTarget);
+        //gameObject.transform.LookAt(agent.steeringTarget);
     }
 
     public void CameraSwitch()

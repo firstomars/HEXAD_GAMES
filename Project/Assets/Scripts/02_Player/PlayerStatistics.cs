@@ -6,8 +6,10 @@ using UnityEngine.UI;
 
 public class PlayerStatistics : MonoBehaviour
 {
+    private UIManager UIManager;
+    
     [Header("UI Toggle")]
-    [SerializeField] private GameObject playerStatsUI;
+    //[SerializeField] private GameObject playerStatsUI;
 
     [Header("Debug Input Variables")]
     //[SerializeField] private int DebugSleepHoursNightOne;
@@ -28,6 +30,9 @@ public class PlayerStatistics : MonoBehaviour
     [SerializeField] private float minEnergyLevel;
     [SerializeField] private float energyReductionAmount;
     [SerializeField] private float secsToWaitBeforeEnergyReduction;
+    [SerializeField] private int energyGainedFromFood = 5;
+    [SerializeField] private int energyReducedFromBenchPress = 10;
+    //[SerializeField] private int energyGainedFromJunkFood = 0;
 
     [Header("STAT: Fulfilment")]
     [SerializeField] private float fulfilLevel; //reduces slowly overtime
@@ -35,11 +40,19 @@ public class PlayerStatistics : MonoBehaviour
     [SerializeField] private float minfulfilLevel;
     [SerializeField] private int fulfilGainedPerGame;
     [SerializeField] private int numGamesPlayed;
+    [SerializeField] private int fulfilGainedFromFood = 5;
+    [SerializeField] private int fulfilGainedFromJunkFood = 10;
+    [SerializeField] private int fulfilGainedFromBenchPress = 10;
 
-    [Header("GameObjects")]
-    [SerializeField] private Text energyLevelText;
-    [SerializeField] private Text fulfilLevelText;
-    [SerializeField] private Text spiritLevelText;
+    [Header("SLEEP DOLLARS")]
+    [SerializeField] private int sleepDollarsLevel = 0;
+    [SerializeField] private int sleepDollarsIncrementPerGame = 10;
+
+
+    //[Header("GameObjects")]
+    //[SerializeField] private Text energyLevelText;
+    //[SerializeField] private Text fulfilLevelText;
+    //[SerializeField] private Text spiritLevelText;
     //[SerializeField] private Text hrsSleptNightOneText;
     //[SerializeField] private Text hrsSleptNightTwoText;
 
@@ -57,6 +70,8 @@ public class PlayerStatistics : MonoBehaviour
     {
         //hrsSleptInputField = inputField.GetComponent<InputField>();
 
+        UIManager = UIManager.UIManagerInstance;
+
         StartCoroutine(ReduceEnergyOverTime());
     }
 
@@ -66,9 +81,11 @@ public class PlayerStatistics : MonoBehaviour
         //hrsSleptNightOneText.text = hrsSleptNightOne.ToString();
         //hrsSleptNightTwoText.text = hrsSleptNightTwo.ToString();
 
-        energyLevelText.text = energyLevel.ToString();
-        fulfilLevelText.text = fulfilLevel.ToString();
-        spiritLevelText.text = CalculateSpiritLevel();
+        UIManager.StatsUpdate(
+            energyLevel.ToString(), 
+            fulfilLevel.ToString(), 
+            CalculateSpiritLevel().ToString(), 
+            sleepDollarsLevel.ToString());
     }
 
     IEnumerator ReduceEnergyOverTime()
@@ -98,14 +115,47 @@ public class PlayerStatistics : MonoBehaviour
     }
 
     //how many games played?
-    public void CalculateFulfilmentMeter()
+    public void MinigameStatsImpact()
     {
-        if (fulfilLevel + fulfilGainedPerGame < maxfulfilLevel)
+        if (fulfilLevel + fulfilGainedPerGame < maxfulfilLevel && energyLevel > 26)
         {
             numGamesPlayed++;
             fulfilLevel = numGamesPlayed * fulfilGainedPerGame;
+            sleepDollarsLevel += sleepDollarsIncrementPerGame;
+            energyLevel -= 25;
         }
         else Debug.Log("Unable to play any more games");
+    }
+
+    public void FoodEatenStatsImpact()
+    {
+        if (energyLevel < maxEnergyLevel - 6) energyLevel += energyGainedFromFood;
+        else energyLevel = maxEnergyLevel;
+
+        if (fulfilLevel < maxfulfilLevel - 6) fulfilLevel += fulfilGainedFromFood;
+        else fulfilLevel = maxfulfilLevel;
+    }
+
+    public void JunkFoodEatenStatsImpact()
+    {
+        //Debug.Log(fulfilGainedFromJunkFood);
+        
+        if (fulfilLevel < maxfulfilLevel - 11) 
+            fulfilLevel += fulfilGainedFromJunkFood;
+        else fulfilLevel = maxfulfilLevel;
+    }
+
+    public void BenchPressStatsImpact()
+    {
+        if (energyLevel > minEnergyLevel + energyReducedFromBenchPress)
+        {
+            energyLevel -= energyReducedFromBenchPress;
+        }
+
+        if (fulfilLevel < maxfulfilLevel - fulfilGainedFromBenchPress)
+        {
+            fulfilLevel += fulfilGainedFromBenchPress;
+        }
     }
 
     //hrs slept input field
@@ -140,14 +190,13 @@ public class PlayerStatistics : MonoBehaviour
         //Hours slept previous night
         //Pet fullilment(has he played?)
 
-        spiritLevel = (energyLevel + fulfilLevel + hrsSleptNightOne) / 3;
+        spiritLevel = (energyLevel - 10) + fulfilLevel;
+
+        if (spiritLevel > 100) spiritLevel = 100;
+
+        //spiritLevel = (energyLevel + fulfilLevel + hrsSleptNightOne) / 3;
 
         return spiritLevel.ToString();
-    }
-
-    public void TogglePlayerStats(bool value)
-    {
-        playerStatsUI.SetActive(value);
     }
 
     public int CalculateHoursSlept(int bedTime, int wakeUpTime)
@@ -157,6 +206,7 @@ public class PlayerStatistics : MonoBehaviour
 
         Debug.Log("PlayerStats " + NEWhrsSleptNightOne);
 
+        //add if statements to see what new energy levels are
         SetNewEnergyLevels();
 
         //int debugTimeSlept = (24 - bedTime) + wakeUpTime;

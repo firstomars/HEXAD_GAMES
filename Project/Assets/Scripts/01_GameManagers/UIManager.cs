@@ -77,12 +77,31 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject livingRoomBtnGO;
     private Button livingRoomBtn;
 
+    [Header("Player Statistics - UI")]
+    //[SerializeField] private Text energyLevelTitle;
+    [SerializeField] private Text energyLevelText;
+    //[SerializeField] private Text fulfillmentLevelTitle;
+    [SerializeField] private Text fulfillmentLevelText;
+    [SerializeField] private Text spiritLevelText;
+    [SerializeField] private Text sleepDollarsLevelText;
 
-    [Header("Bedroom Interactables UI")]
+    [Header("Bedroom Interactables - UI")]
     [SerializeField] private GameObject sendToBedBtnGO;
     private Button sendToBedBtn;
     [SerializeField] private GameObject wakeUpBtnGO;
     private Button wakeUpBtn;
+    [SerializeField] private GameObject miniGameBtnGO;
+    private Button miniGameBtn;
+
+    [Header("Kitchen Interactables - UI")]
+    [SerializeField] private GameObject eatFoodBtnGO;
+    private Button eatFoodBtn;
+    [SerializeField] private GameObject eatJunkFoodBtnGO;
+    private Button eatJunkFoodBtn;
+
+    [Header("Gym Interactables - UI")]
+    [SerializeField] private GameObject benchPressBtnGO;
+    private Button benchPressBtn;
 
     [Header("Report Interactables UI")]
     [SerializeField] private GameObject reportUiObj;
@@ -133,6 +152,14 @@ public class UIManager : MonoBehaviour
         //bedroom UI
         sendToBedBtn = sendToBedBtnGO.GetComponent<Button>();
         wakeUpBtn = wakeUpBtnGO.GetComponent<Button>();
+        miniGameBtn = miniGameBtnGO.GetComponent<Button>();
+
+        //kitchen UI
+        eatFoodBtn = eatFoodBtnGO.GetComponent<Button>();
+        eatJunkFoodBtn = eatJunkFoodBtnGO.GetComponent<Button>();
+
+        //gym UI
+        benchPressBtn = benchPressBtnGO.GetComponent<Button>();
 
         //report UI
         //bedTimeInputField = bedTimeInputFieldObj.GetComponent<InputField>();
@@ -272,16 +299,36 @@ public class UIManager : MonoBehaviour
             case "bedroom":
                 SetBedroomUI(true);
                 SetReportUI(false);
+                SetKitchenUI(false);
+                SetGymUI(false);
                 break;
 
             case "report":
                 SetBedroomUI(false);
                 SetReportUI(true);
+                SetKitchenUI(false);
+                SetGymUI(false);
+                break;
+
+            case "kitchen":
+                SetBedroomUI(false);
+                SetReportUI(false);
+                SetKitchenUI(true);
+                SetGymUI(false);
+                break;
+
+            case "gym":
+                SetBedroomUI(false);
+                SetReportUI(false);
+                SetKitchenUI(false);
+                SetGymUI(true);
                 break;
 
             default:
                 SetBedroomUI(false);
                 SetReportUI(false);
+                SetKitchenUI(false);
+                SetGymUI(false);
                 break;
         }
     }
@@ -305,9 +352,18 @@ public class UIManager : MonoBehaviour
             case "bedroom":
                 sendToBedBtn.onClick.AddListener(CurrentBehaviour.SendToBed);
                 wakeUpBtn.onClick.AddListener(CurrentBehaviour.WakePetUp);
+                miniGameBtn.onClick.AddListener(CurrentBehaviour.PlayMiniGame);
                 break;
 
+            case "kitchen":
+                eatFoodBtn.onClick.AddListener(CurrentBehaviour.EatFood);
+                eatJunkFoodBtn.onClick.AddListener(CurrentBehaviour.EatJunkFood);
+                break;
             //add other cases
+
+            case "gym":
+                benchPressBtn.onClick.AddListener(CurrentBehaviour.BenchPress);
+                break;
 
             default:
                 sendToBedBtn.onClick.RemoveAllListeners();
@@ -357,6 +413,18 @@ public class UIManager : MonoBehaviour
         mainFlyoutPanel.SetActive(false);
         mainFlyoutActivated = false;
         flyoutButtonPanel.transform.GetChild(0).GetComponentInChildren<Image>().sprite = activateFlyoutImage;
+    }
+
+    #endregion
+
+    #region Stats
+    
+    public void StatsUpdate(string energyLevel, string fulfillmentLevel, string spiritLevel, string sleepDollars)
+    {
+        energyLevelText.text = energyLevel;
+        fulfillmentLevelText.text = fulfillmentLevel;
+        spiritLevelText.text = spiritLevel;
+        sleepDollarsLevelText.text = sleepDollars;
     }
 
     #endregion
@@ -411,11 +479,13 @@ public class UIManager : MonoBehaviour
     #endregion
 
 
+
     #region BedroomUI
 
     private void SetBedroomUI(bool value)
     {
         Debug.Log("bedroom UI set to " + value);
+        miniGameBtnGO.SetActive(value);
         sendToBedBtnGO.SetActive(value);
         if (value == false) wakeUpBtnGO.SetActive(value);
     }
@@ -430,6 +500,27 @@ public class UIManager : MonoBehaviour
     {
         sendToBedBtnGO.SetActive(false);
         wakeUpBtnGO.SetActive(false);
+    }
+
+    #endregion
+
+    #region KitchenUI
+
+    private void SetKitchenUI(bool value)
+    {
+        //Debug.Log("kitchen UI set to " + value);
+        eatFoodBtnGO.SetActive(value);
+        eatJunkFoodBtnGO.SetActive(value);
+    }
+
+    #endregion
+
+    #region GymUI
+
+    private void SetGymUI(bool value)
+    {
+        Debug.Log("gym UI set to " + value);
+        benchPressBtnGO.SetActive(value);
     }
 
     #endregion

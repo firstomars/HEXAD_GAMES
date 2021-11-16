@@ -60,6 +60,11 @@ public abstract class Behaviour
 
     }
 
+    public virtual void PlayMiniGame()
+    {
+
+    }
+
     public virtual void SeekKitchen()
     {
 
@@ -96,5 +101,20 @@ public abstract class Behaviour
             if (waypoint.name == room) return waypoint.position;
         }
         return Vector3.zero;
+    }
+
+    public virtual void EatFood()
+    {
+
+    }
+
+    public virtual void EatJunkFood()
+    {
+
+    }
+
+    public virtual void BenchPress()
+    {
+
     }
 }

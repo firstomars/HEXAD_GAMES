@@ -144,6 +144,11 @@ public class TimeController : MonoBehaviour
         }
     }
 
+    public int GetGameTime()
+    {
+        return gameTimeHours;
+    }
+
     //reset button function
     public void ResetGameTime()
     {

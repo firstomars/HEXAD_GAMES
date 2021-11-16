@@ -358,6 +358,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4248571909747300062, guid: 599c0a02013dfea44ab05b80d9571a13, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5069210358555427483, guid: 599c0a02013dfea44ab05b80d9571a13, type: 3}
       propertyPath: m_Name
       value: UIManager_V4

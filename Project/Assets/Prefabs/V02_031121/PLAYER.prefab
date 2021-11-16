@@ -745,7 +745,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &735632514148163374
 RectTransform:
   m_ObjectHideFlags: 0
@@ -956,7 +956,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c14427478ec737f4b88630d82756d850, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerStatsUI: {fileID: 735632514148163362}
   minSpiritLevel: 1
   maxSpiritLevel: 100
   spiritLevel: 0
@@ -970,9 +969,6 @@ MonoBehaviour:
   minfulfilLevel: 1
   fulfilGainedPerGame: 30
   numGamesPlayed: 0
-  energyLevelText: {fileID: 735632514512035447}
-  fulfilLevelText: {fileID: 735632515060055201}
-  spiritLevelText: {fileID: 735632514133737185}
 --- !u!1 &735632514512035433
 GameObject:
   m_ObjectHideFlags: 0
@@ -1419,7 +1415,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8024141184599119722
 RectTransform:
   m_ObjectHideFlags: 0

@@ -41,9 +41,6 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject quitBtn;
     #endregion
 
-    //===
-    //NEW
-
     //classes set during runtime
     [HideInInspector] public Behaviour CurrentBehaviour;
 
@@ -68,8 +65,6 @@ public class UIManager : MonoBehaviour
     private Button kitchenBtn;
     [SerializeField] private GameObject gymBtnGO;
     private Button gymBtn;
-    //[SerializeField] private GameObject bathroomBtnGO;
-    //private Button bathroomBtn;
     [SerializeField] private GameObject bedroomBtnGO;
     private Button bedroomBtn;
     [SerializeField] private GameObject trophyCabinetBtnGO;
@@ -78,9 +73,7 @@ public class UIManager : MonoBehaviour
     private Button livingRoomBtn;
 
     [Header("Player Statistics - UI")]
-    //[SerializeField] private Text energyLevelTitle;
     [SerializeField] private Text energyLevelText;
-    //[SerializeField] private Text fulfillmentLevelTitle;
     [SerializeField] private Text fulfillmentLevelText;
     [SerializeField] private Text spiritLevelText;
     [SerializeField] private Text sleepDollarsLevelText;
@@ -107,9 +100,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject reportUiObj;
     [SerializeField] private GameObject reportText;
     [SerializeField] private GameObject bedTimeInputFieldObj;
-    //private InputField bedTimeInputField; //DELETE
     [SerializeField] private GameObject wakeUpTimeInputFieldObj;
-    //private InputField wakeUpTimeInputField; //DELETE
     [SerializeField] private GameObject hrsSleptNightOneTitle;
     [SerializeField] private GameObject hrsSleptNightTwoTitle;
     [SerializeField] private GameObject hrsSleptNightOneTextObj;
@@ -135,16 +126,12 @@ public class UIManager : MonoBehaviour
         SetPetPnlUI(false);
         //===
 
-
-        //===
-        //NEW
-
+        #region PlayScene Buttons
         //setup play scene buttons in runtime
 
         //navigation UI
         kitchenBtn = kitchenBtnGO.GetComponent<Button>();
         gymBtn = gymBtnGO.GetComponent<Button>();
-        //bathroomBtn = bathroomBtnGO.GetComponent<Button>();
         bedroomBtn = bedroomBtnGO.GetComponent<Button>();
         trophyCabinetBtn = trophyCabinetBtnGO.GetComponent<Button>();
         livingRoomBtn = livingRoomBtnGO.GetComponent<Button>();
@@ -162,12 +149,12 @@ public class UIManager : MonoBehaviour
         benchPressBtn = benchPressBtnGO.GetComponent<Button>();
 
         //report UI
-        //bedTimeInputField = bedTimeInputFieldObj.GetComponent<InputField>();
-        //wakeUpTimeInputField = wakeUpTimeInputFieldObj.GetComponent<InputField>();
         hrsSleptNightOneText = hrsSleptNightOneTextObj.GetComponent<Text>();
         hrsSleptNightTwoText = hrsSleptNightTwoTextObj.GetComponent<Text>();
         closeReportBtn = closeReportBtnObj.GetComponent<Button>();
         //===
+
+        #endregion
     }
 
     public void SwitchSceneUI(string sceneName)
@@ -337,7 +324,6 @@ public class UIManager : MonoBehaviour
     {
         kitchenBtn.onClick.AddListener(seekBehaviour.SeekKitchen);
         gymBtn.onClick.AddListener(seekBehaviour.SeekGym);
-        //bathroomBtn.onClick.AddListener(seekBehaviour.SeekBathroom);
         bedroomBtn.onClick.AddListener(seekBehaviour.SeekBedroom);
         trophyCabinetBtn.onClick.AddListener(seekBehaviour.SeekTrophyCabinet);
         livingRoomBtn.onClick.AddListener(seekBehaviour.SeekLivingRoom);
@@ -478,8 +464,6 @@ public class UIManager : MonoBehaviour
 
     #endregion
 
-
-
     #region BedroomUI
 
     private void SetBedroomUI(bool value)
@@ -549,11 +533,6 @@ public class UIManager : MonoBehaviour
 
     #endregion
 
-    private void UpdateSpiritLevelUI(bool value)
-    {
-        
-    }
-
     #region Scene Management
 
     public void GoToMenuScene()
@@ -607,10 +586,19 @@ public class UIManager : MonoBehaviour
         SetPlayerPrefsUI(true);
     }
 
+    public void QuitGame()
+    {
+        SetSplashScreenUI(false);
+        SetMenuScreenUI(false);
+        SetTimeUI(false);
+        SetPlayerStatsUI(false);
+        SetPlayerPrefsUI(false);
+        GameManager.Instance.QuitGame();
+    }
+
     #endregion
 
     // Methods called from converse class
-
     public void DisplayPetSpeechBubble(string textToDisplay)
     {
         SetPetPnlUI(true);

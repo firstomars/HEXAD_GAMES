@@ -30,6 +30,14 @@ public class UIScript : MonoBehaviour
     [SerializeField] private GameObject flyoutButtonPanel;
     [SerializeField] private GameObject mainFlyoutPanel;
     [SerializeField] private GameObject walkFlyoutPanel;
+    [SerializeField] private GameObject playerReportBackgroundPanel;
+    [SerializeField] private GameObject playerStatisticsPanel;
+    [SerializeField] private GameObject playerDailyReportPanel;
+
+    [Header("Sliders")]
+    [SerializeField] private Slider petSpiritLevel;
+    [SerializeField] private Slider petEnergyLevel;
+    [SerializeField] private Slider petFulfillmentLevel;
 
     [Header("Pet Dialogue Text Panel")]
     [SerializeField] private GameObject petDialoguePanel;
@@ -61,11 +69,15 @@ public class UIScript : MonoBehaviour
     public string UIStoredInputTime { get; private set; }
     private bool mainFlyoutActivated = false;
     private bool walkFlyoutActivated = false;
-    private readonly List<string> hours = new List<string> { "00:00", "01:00", "02:00", "03:00", "04:00", "05:00", 
+    private int nextHoursPage = 0;
+    private bool spiritLevelPressed = false;
+    private readonly List<string> inputHours = new List<string> { "00:00", "01:00", "02:00", "03:00", "04:00", "05:00", 
                                                             "06:00", "07:00", "08:00", "09:00", "10:00", "11:00", 
                                                             "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", 
                                                             "18:00", "19:00", "20:00", "21:00", "22:00", "23:00" };
-    private int nextHoursPage = 0;
+    
+
+    #region Flyout Menus
 
     // Main flyout button pressed
     public void ActivateMainFlyoutMenu()
@@ -130,6 +142,10 @@ public class UIScript : MonoBehaviour
         flyoutBtnImage.sizeDelta = new Vector2(200, 200);
     }
 
+    #endregion
+
+    #region Pet Dialogue
+
     // Non overload method to be used for displaying pet dialogue
     public void EnablePetDialogueText(string petDialogue)
     {
@@ -145,15 +161,9 @@ public class UIScript : MonoBehaviour
         StartCoroutine(DisableUIElementsAfterSeconds(timeToDisplay, new[] { petDialoguePanel }));
     }
 
-    // Coroutine used to disable multiple UI elements after a set period of time
-    IEnumerator DisableUIElementsAfterSeconds(int timeToDisplay, GameObject[] UIElements)
-    {
-        yield return new WaitForSeconds(timeToDisplay);
-        foreach(GameObject UIElement in UIElements)
-        {
-            UIElement.SetActive(false);
-        }
-    }
+    #endregion
+
+    #region Player Responses
 
     //===
     //OMAR FEEDBACK - display colour selections + pet colour selections functions
@@ -242,7 +252,7 @@ public class UIScript : MonoBehaviour
         int pageSize = 6;
         // Set how many pages to skip based on current page
         int pageCount = pageToFetch * pageSize;
-        IEnumerable<string> currentPage = hours.Skip(pageCount).Take(pageSize);
+        IEnumerable<string> currentPage = inputHours.Skip(pageCount).Take(pageSize);
         // Get the time button panel and create the new page of buttons
         GameObject timeButtonPanel = timeEntryPanel.transform.GetChild(0).gameObject;
         DestroyUIButtons(timeButtonPanel);
@@ -288,6 +298,48 @@ public class UIScript : MonoBehaviour
         Debug.Log("Player stored " + UIStoredInputTime);
     }
 
+    #endregion
+
+    #region Player Reports
+
+    public void SpiritLevelPressed()
+    {
+        if (!spiritLevelPressed)
+        {
+            ViewPlayerStatistics();
+            spiritLevelPressed = true;
+        }
+
+        else
+        {
+            StartCoroutine(DisableUIElementsAfterSeconds(0, new[] { playerStatisticsPanel, playerReportBackgroundPanel }));
+            spiritLevelPressed = false;
+        }
+    }
+    public void ViewPlayerStatistics()
+    {
+        playerReportBackgroundPanel.SetActive(true);
+        playerStatisticsPanel.SetActive(true);
+    }
+
+    public void ViewDailyReport()
+    {
+        playerReportBackgroundPanel.SetActive(true);
+        playerDailyReportPanel.SetActive(true);
+    }
+
+    #endregion
+
+    // Coroutine used to disable multiple UI elements after a set period of time
+    IEnumerator DisableUIElementsAfterSeconds(int timeToDisplay, GameObject[] UIElements)
+    {
+        yield return new WaitForSeconds(timeToDisplay);
+        foreach (GameObject UIElement in UIElements)
+        {
+            UIElement.SetActive(false);
+        }
+    }
+
     //===
     //OMAR FEEDBACK - MovePet to be broken out across UI & Seek.cs connections
     //lets get some time in on Monday to break this out
@@ -318,10 +370,4 @@ public class UIScript : MonoBehaviour
         }
         playerObject.SetDestination(petDestination);
     }
-
-    private void Start()
-    {
-        DisplayTimeEntry();
-    }
-
 }

@@ -21,13 +21,13 @@ public class UIManager : MonoBehaviour
     #endregion
 
     #region Inspector - Panels
-    [Header("Panels")]
-    [SerializeField] private GameObject backgrdPnl;
-    [SerializeField] private GameObject responsePnl;
-    [SerializeField] private GameObject colourPnl;
-    [SerializeField] private GameObject entryPnl;
-    [SerializeField] private GameObject petSpeechPnl;
-    [SerializeField] private GameObject spiritLevelSldr;
+    //[Header("Panels")]
+    //[SerializeField] private GameObject backgrdPnl;
+    //[SerializeField] private GameObject responsePnl;
+    //[SerializeField] private GameObject colourPnl;
+    //[SerializeField] private GameObject entryPnl;
+    //[SerializeField] private GameObject petSpeechPnl;
+    //[SerializeField] private GameObject spiritLevelSldr;
     #endregion
 
     #region Inspector - Scene Buttons
@@ -78,6 +78,19 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Text spiritLevelText;
     [SerializeField] private Text sleepDollarsLevelText;
     [SerializeField] private Slider spiritSlider;
+    [SerializeField] private Slider energySlider;
+    [SerializeField] private Slider fulfilmentSlider;
+    [SerializeField] private TextMeshProUGUI hoursSleptText;
+    [SerializeField] private TextMeshProUGUI minigamesPlayed;
+    [SerializeField] private TextMeshProUGUI mealsEatenValue;
+    [SerializeField] private TextMeshProUGUI sleepGoalsValue;
+    [SerializeField] private TextMeshProUGUI sleepDollarsValue;
+    [SerializeField] private TextMeshProUGUI completionValue;
+
+    //NEW
+    [SerializeField] private GameObject playerReportBackgroundPanel;
+    [SerializeField] private GameObject playerStatisticsPanel;
+    private bool spiritLevelPressed;
 
     [Header("Bedroom Interactables - UI")]
     [SerializeField] private GameObject sendToBedBtnGO;
@@ -129,10 +142,10 @@ public class UIManager : MonoBehaviour
 
         //===
         //CLARIFY BELOW
-        SetResponsePnlUI(false);
-        SetColourPnlUI(false);
-        SetEntryPnlUI(false);
-        SetPetPnlUI(false);
+        //SetResponsePnlUI(false);
+        //SetColourPnlUI(false);
+        //SetEntryPnlUI(false);
+        //SetPetPnlUI(false);
         //===
 
         #region PlayScene Buttons
@@ -277,8 +290,8 @@ public class UIManager : MonoBehaviour
     {
         stagingBtn.SetActive(value);
 
-        spiritLevelSldr.SetActive(false); // set to false for debugging purposes
-        backgrdPnl.SetActive(false); // set to false for debugging purposes
+        //spiritLevelSldr.SetActive(false); // set to false for debugging purposes
+        //backgrdPnl.SetActive(false); // set to false for debugging purposes
 
         interactablesUIGO.SetActive(value);
     }
@@ -391,6 +404,39 @@ public class UIManager : MonoBehaviour
         spiritLevelText.text = spiritLevel;
         spiritSlider.value = spiritSliderLevel;
         sleepDollarsLevelText.text = sleepDollars;
+    }
+    public void StatisticsUpdate(float energyValue, float fulfilValue, float spiritValue, string hrsSleptLastNight, string minigamesPlayedToday, string mealsEatenToday, string sleepGoalsMet, string sleepDollarsAmt)
+    {
+        energySlider.value = energyValue;
+        fulfilmentSlider.value = fulfilValue;
+        spiritSlider.value = spiritValue;
+
+        hoursSleptText.text = hrsSleptLastNight;
+        minigamesPlayed.text = minigamesPlayedToday;
+        mealsEatenValue.text = mealsEatenToday;
+        sleepGoalsValue.text = sleepGoalsMet;
+        sleepDollarsValue.text = sleepDollarsAmt;
+        //add completion value
+    }
+
+    public void SpiritLevelPressed()
+    {
+        if (!spiritLevelPressed)
+        {
+            ViewPlayerStatistics();
+            spiritLevelPressed = true;
+        }
+        else
+        {
+            StartCoroutine(DisableUIElementsAfterSeconds(0, new[] { playerStatisticsPanel, playerReportBackgroundPanel }));
+            spiritLevelPressed = false;
+        }
+    }
+
+    private void ViewPlayerStatistics()
+    {
+        playerReportBackgroundPanel.SetActive(true);
+        playerStatisticsPanel.SetActive(true);
     }
 
     #endregion
@@ -564,25 +610,25 @@ public class UIManager : MonoBehaviour
 
     //CLARIFY ON BEST SPORT
     #region Panel UI
-    private void SetResponsePnlUI(bool value)
-    {
-        responsePnl.SetActive(value);
-    }
+    //private void SetResponsePnlUI(bool value)
+    //{
+    //    responsePnl.SetActive(value);
+    //}
 
-    private void SetColourPnlUI(bool value)
-    {
-        colourPnl.SetActive(value);
-    }
+    //private void SetColourPnlUI(bool value)
+    //{
+    //    colourPnl.SetActive(value);
+    //}
 
-    private void SetEntryPnlUI(bool value)
-    {
-        entryPnl.SetActive(value);
-    }
+    //private void SetEntryPnlUI(bool value)
+    //{
+    //    entryPnl.SetActive(value);
+    //}
 
-    private void SetPetPnlUI(bool value)
-    {
-        petSpeechPnl.SetActive(value);
-    }
+    //private void SetPetPnlUI(bool value)
+    //{
+    //    petSpeechPnl.SetActive(value);
+    //}
 
     #endregion
 
@@ -652,8 +698,18 @@ public class UIManager : MonoBehaviour
     #endregion
 
     // Methods called from converse class
-    public void DisplayPetSpeechBubble(string textToDisplay)
+    //public void DisplayPetSpeechBubble(string textToDisplay)
+    //{
+    //    SetPetPnlUI(true);
+    //}
+
+    // Coroutine used to disable multiple UI elements after a set period of time
+    IEnumerator DisableUIElementsAfterSeconds(int timeToDisplay, GameObject[] UIElements)
     {
-        SetPetPnlUI(true);
+        yield return new WaitForSeconds(timeToDisplay);
+        foreach (GameObject UIElement in UIElements)
+        {
+            UIElement.SetActive(false);
+        }
     }
 }

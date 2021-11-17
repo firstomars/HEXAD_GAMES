@@ -45,6 +45,9 @@ public class PlayerStatistics : MonoBehaviour
     [SerializeField] private int sleepDollarsLevel = 0;
     [SerializeField] private int sleepDollarsIncrementPerGame = 10;
 
+    private int minigamesPlayed = 0;
+    private int mealsEatenToday = 0;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -55,12 +58,22 @@ public class PlayerStatistics : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        UIManager.StatsUpdate(
-            energyLevel.ToString(), 
-            fulfilLevel.ToString(), 
-            CalculateSpiritLevel().ToString(),
+        UIManager.UIManagerInstance.StatisticsUpdate(
+            CalculateEnergySliderLevel(),
+            CalculateFulfillmentSliderLevel(),
             CalculateSpiritSliderLevel(),
+            hrsSleptNightOne.ToString(),
+            minigamesPlayed.ToString(),
+            mealsEatenToday.ToString(),
+            "1",
             sleepDollarsLevel.ToString());
+
+        //UIManager.StatsUpdate(
+        //    energyLevel.ToString(), 
+        //    fulfilLevel.ToString(), 
+        //    CalculateSpiritLevel().ToString(),
+        //    CalculateSpiritSliderLevel(),
+        //    sleepDollarsLevel.ToString());
     }
 
     IEnumerator ReduceEnergyOverTime()
@@ -76,6 +89,10 @@ public class PlayerStatistics : MonoBehaviour
     public void SetNewEnergyLevels()
     {
         energyLevel = maxEnergyLevel;
+        
+        mealsEatenToday = 0;
+        minigamesPlayed = 0;
+
         StartCoroutine(ReduceEnergyOverTime());
 
         ResetFulfilment();
@@ -85,6 +102,7 @@ public class PlayerStatistics : MonoBehaviour
     {
         if (fulfilLevel + fulfilGainedPerGame < maxfulfilLevel && energyLevel > 26)
         {
+            minigamesPlayed++;
             fulfilLevel += fulfilGainedPerGame;
             sleepDollarsLevel += sleepDollarsIncrementPerGame;
             energyLevel -= 25;
@@ -95,20 +113,37 @@ public class PlayerStatistics : MonoBehaviour
 
     public void FoodEatenStatsImpact()
     {
-        if (energyLevel < maxEnergyLevel - 6) energyLevel += energyGainedFromFood;
+        bool mealEaten = false;
+
+        if (energyLevel < maxEnergyLevel - 6)
+        {
+            energyLevel += energyGainedFromFood;
+            mealEaten = true;
+        }
         else energyLevel = maxEnergyLevel;
 
-        if (fulfilLevel < maxfulfilLevel - 6) fulfilLevel += fulfilGainedFromFood;
+        if (fulfilLevel < maxfulfilLevel - 6)
+        {
+            fulfilLevel += fulfilGainedFromFood;
+            mealEaten = true;
+        }
         else fulfilLevel = maxfulfilLevel;
+
+        if (mealEaten) mealsEatenToday++;
     }
 
     public void JunkFoodEatenStatsImpact()
     {
-        //Debug.Log(fulfilGainedFromJunkFood);
-        
-        if (fulfilLevel < maxfulfilLevel - 11) 
+        bool mealEaten = false;
+
+        if (fulfilLevel < maxfulfilLevel - 11)
+        {
             fulfilLevel += fulfilGainedFromJunkFood;
+            mealEaten = true;
+        }
         else fulfilLevel = maxfulfilLevel;
+
+        if (mealEaten) mealsEatenToday++;
     }
 
     public void BenchPressStatsImpact()
@@ -130,6 +165,17 @@ public class PlayerStatistics : MonoBehaviour
     {
         fulfilLevel = 0;
     }
+
+    private float CalculateEnergySliderLevel()
+    {
+        return (energyLevel / maxEnergyLevel);
+    }
+
+    private float CalculateFulfillmentSliderLevel()
+    {
+        return (fulfilLevel / maxfulfilLevel);
+    }
+
 
     private float CalculateSpiritSliderLevel()
     {

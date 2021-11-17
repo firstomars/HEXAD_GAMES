@@ -2576,36 +2576,6 @@ Transform:
   m_Father: {fileID: 4094293382867488675}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &5378876858172941850
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 502318346560016085}
-  m_Layer: 0
-  m_Name: TrophyCabinetPosition
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &502318346560016085
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5378876858172941850}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.06, y: 0, z: 0.49}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 6253849199409561348}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6056726141675849209
 GameObject:
   m_ObjectHideFlags: 0
@@ -7518,6 +7488,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3d733e399d7c1694eb9bfea778daa421, type: 3}
+--- !u!4 &1388946714351414696 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1532793051590817883, guid: 3d733e399d7c1694eb9bfea778daa421, type: 3}
+  m_PrefabInstance: {fileID: 433212551872730611}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &9192527710848346195 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8759923191139384736, guid: 3d733e399d7c1694eb9bfea778daa421, type: 3}
@@ -7528,24 +7503,9 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6545438556645140867, guid: 3d733e399d7c1694eb9bfea778daa421, type: 3}
   m_PrefabInstance: {fileID: 433212551872730611}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &2919709689027208955 stripped
+--- !u!4 &1538959664044637690 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 3352913410158686984, guid: 3d733e399d7c1694eb9bfea778daa421, type: 3}
-  m_PrefabInstance: {fileID: 433212551872730611}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &2708432626347920688 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2564058482707175619, guid: 3d733e399d7c1694eb9bfea778daa421, type: 3}
-  m_PrefabInstance: {fileID: 433212551872730611}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &1388946714351414696 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1532793051590817883, guid: 3d733e399d7c1694eb9bfea778daa421, type: 3}
-  m_PrefabInstance: {fileID: 433212551872730611}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &6615981973771184583 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6760927820175227956, guid: 3d733e399d7c1694eb9bfea778daa421, type: 3}
+  m_CorrespondingSourceObject: {fileID: 1393986321211828233, guid: 3d733e399d7c1694eb9bfea778daa421, type: 3}
   m_PrefabInstance: {fileID: 433212551872730611}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &594227710018557609 stripped
@@ -7553,9 +7513,19 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1025706297624150874, guid: 3d733e399d7c1694eb9bfea778daa421, type: 3}
   m_PrefabInstance: {fileID: 433212551872730611}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &1538959664044637690 stripped
+--- !u!4 &2708432626347920688 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 1393986321211828233, guid: 3d733e399d7c1694eb9bfea778daa421, type: 3}
+  m_CorrespondingSourceObject: {fileID: 2564058482707175619, guid: 3d733e399d7c1694eb9bfea778daa421, type: 3}
+  m_PrefabInstance: {fileID: 433212551872730611}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &2919709689027208955 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3352913410158686984, guid: 3d733e399d7c1694eb9bfea778daa421, type: 3}
+  m_PrefabInstance: {fileID: 433212551872730611}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &6615981973771184583 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6760927820175227956, guid: 3d733e399d7c1694eb9bfea778daa421, type: 3}
   m_PrefabInstance: {fileID: 433212551872730611}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &497221440776153796
@@ -10823,14 +10793,14 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 8ffa56f1dc9e6314fa14e352e8c748c6, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 99bb3ddfc19314443a44735f20a8e2c4, type: 3}
---- !u!1 &3718296052696929561 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 99bb3ddfc19314443a44735f20a8e2c4, type: 3}
-  m_PrefabInstance: {fileID: 4565351906317297736}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4094293382867488675 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 99bb3ddfc19314443a44735f20a8e2c4, type: 3}
+  m_PrefabInstance: {fileID: 4565351906317297736}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &3718296052696929561 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 99bb3ddfc19314443a44735f20a8e2c4, type: 3}
   m_PrefabInstance: {fileID: 4565351906317297736}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4591996187257426334
@@ -11475,9 +11445,21 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2185118541491557353, guid: cff99e4022bbf4948bb25bee475bc96b, type: 3}
-      propertyPath: petTrophyPos
-      value: 
-      objectReference: {fileID: 502318346560016085}
+      propertyPath: trophies.Array.data[3].name
+      value: On The Right Track
+      objectReference: {fileID: 0}
+    - target: {fileID: 2185118541491557353, guid: cff99e4022bbf4948bb25bee475bc96b, type: 3}
+      propertyPath: trophies.Array.data[4].name
+      value: Getting Your Zen On
+      objectReference: {fileID: 0}
+    - target: {fileID: 2185118541491557353, guid: cff99e4022bbf4948bb25bee475bc96b, type: 3}
+      propertyPath: trophies.Array.data[3].trophyConditions
+      value: Log in for first time after sleeping
+      objectReference: {fileID: 0}
+    - target: {fileID: 2185118541491557353, guid: cff99e4022bbf4948bb25bee475bc96b, type: 3}
+      propertyPath: trophies.Array.data[4].trophyConditions
+      value: Log in 7 days in a row
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cff99e4022bbf4948bb25bee475bc96b, type: 3}
 --- !u!4 &6253849199409561348 stripped

@@ -60,7 +60,7 @@ public class CameraManager : MonoBehaviour
         }
         else if (isPlayerAtTrophyCabinet)
         {
-            Debug.Log("trophy camera switched on"); //DELETE
+            //Debug.Log("trophy camera switched on");
             overworldCamera.Priority = 0;
             kitchenCam.Priority = 0;
             gymCam.Priority = 0;

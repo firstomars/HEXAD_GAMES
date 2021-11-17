@@ -77,6 +77,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Text fulfillmentLevelText;
     [SerializeField] private Text spiritLevelText;
     [SerializeField] private Text sleepDollarsLevelText;
+    [SerializeField] private Slider spiritSlider;
 
     [Header("Bedroom Interactables - UI")]
     [SerializeField] private GameObject sendToBedBtnGO;
@@ -109,6 +110,14 @@ public class UIManager : MonoBehaviour
     private Text hrsSleptNightTwoText;
     [SerializeField] private GameObject closeReportBtnObj;
     private Button closeReportBtn;
+    [SerializeField] private GameObject viewGoalsBtnObj;
+    private Button viewGoalsBtn;
+    [SerializeField] private GameObject goals;
+    [SerializeField] private Text goalOneText;
+    [SerializeField] private Text goalTwoText;
+    [SerializeField] private Text goalThreeText;
+    [SerializeField] private Text goalFourText;
+    [SerializeField] private Text goalFiveText;
     [HideInInspector] public int bedTime = -1;
     [HideInInspector] public int wakeUpTime = -1;
 
@@ -152,6 +161,7 @@ public class UIManager : MonoBehaviour
         hrsSleptNightOneText = hrsSleptNightOneTextObj.GetComponent<Text>();
         hrsSleptNightTwoText = hrsSleptNightTwoTextObj.GetComponent<Text>();
         closeReportBtn = closeReportBtnObj.GetComponent<Button>();
+        viewGoalsBtn = viewGoalsBtnObj.GetComponent<Button>();
         //===
 
         #endregion
@@ -374,11 +384,12 @@ public class UIManager : MonoBehaviour
 
     #region Stats
     
-    public void StatsUpdate(string energyLevel, string fulfillmentLevel, string spiritLevel, string sleepDollars)
+    public void StatsUpdate(string energyLevel, string fulfillmentLevel, string spiritLevel, float spiritSliderLevel, string sleepDollars)
     {
         energyLevelText.text = energyLevel;
         fulfillmentLevelText.text = fulfillmentLevel;
         spiritLevelText.text = spiritLevel;
+        spiritSlider.value = spiritSliderLevel;
         sleepDollarsLevelText.text = sleepDollars;
     }
 
@@ -389,11 +400,26 @@ public class UIManager : MonoBehaviour
     private void SetReportUI(bool value)
     {
         reportUiObj.SetActive(value);
+        goals.SetActive(false);
     }
 
     public void CloseReportButton()
     {
         reportUiObj.SetActive(false);
+    }
+
+    public void ViewGoalsButton()
+    {
+        goals.SetActive(true);
+    }
+
+    public void SetGoalsText(string[] goalsText)
+    {
+        goalOneText.text = goalsText[0];
+        goalTwoText.text = goalsText[1];
+        goalThreeText.text = goalsText[2];
+        goalFourText.text = goalsText[3];
+        goalFiveText.text = goalsText[4];
     }
 
     //bedtime input field

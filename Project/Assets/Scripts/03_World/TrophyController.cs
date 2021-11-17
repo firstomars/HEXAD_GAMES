@@ -10,12 +10,13 @@ public class TrophyController : MonoBehaviour
     [System.Serializable]
     public class Trophy
     {
-        [SerializeField] public string trophyName;
-        [SerializeField] private string trophyConditions;
+        [SerializeField] public string name;
+        [SerializeField] public string trophyConditions;
         [SerializeField] public bool isTrophyCreated;
         [SerializeField] public bool isConditionMet;
         [SerializeField] public GameObject trophyPrefab;
         [SerializeField] public Transform trophyPosition;
+        [SerializeField] public int sleepDollarReward;
     }
 
     [SerializeField] Trophy[] trophies;
@@ -32,11 +33,7 @@ public class TrophyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //condition check
-        //TrophyConditionCheck();
 
-        ////instantiate
-        //if (Input.GetKeyDown(KeyCode.Space)) InstantiateTrophy();
     }
 
     public void TrophyConditionCheck()
@@ -45,10 +42,10 @@ public class TrophyController : MonoBehaviour
         if (!trophies[0].isConditionMet && IsTrophyOneConditionMet())
             trophies[0].isConditionMet = true;
 
-        if (!trophies[1].isConditionMet && Input.GetKeyDown(KeyCode.Alpha2))
+        if (!trophies[1].isConditionMet && IsTrophyTwoConditionMet())
             trophies[1].isConditionMet = true;
 
-        if (!trophies[2].isConditionMet && Input.GetKeyDown(KeyCode.Alpha3))
+        if (!trophies[2].isConditionMet && IsTrophyThreeConditionMet())
             trophies[2].isConditionMet = true;
 
         if (!trophies[3].isConditionMet && Input.GetKeyDown(KeyCode.Alpha4))
@@ -66,6 +63,7 @@ public class TrophyController : MonoBehaviour
             {
                 Instantiate(trophy.trophyPrefab, trophy.trophyPosition);
                 trophy.isTrophyCreated = true;
+                PlayerController.PlayerStatistics.SleepDollarsReward(trophy.sleepDollarReward);
             }
         }
         //store data in player prefs
@@ -74,7 +72,42 @@ public class TrophyController : MonoBehaviour
     private bool IsTrophyOneConditionMet()
     {
         if (PlayerController.PlayerStatistics.GetHrsSleptNightOne() > 7) return true;
-        
+
         return false;
+    }
+
+    private bool IsTrophyTwoConditionMet()
+    {
+        int[] hoursSleptPastThreeNights = PlayerController.PlayerStatistics.GetHoursSleptLastFiveNights();
+
+        for (int i = 0; i < 3; i++)
+        {
+            if (hoursSleptPastThreeNights[i] < 7) return false;
+        }
+
+        return true;
+    }
+
+    private bool IsTrophyThreeConditionMet()
+    {
+        int[] hoursSleptPastFiveNights = PlayerController.PlayerStatistics.GetHoursSleptLastFiveNights();
+
+        for (int i = 0; i < 5; i++)
+        {
+            if (hoursSleptPastFiveNights[i] < 7) return false;
+        }
+
+        return true;
+    }
+
+    public string[] GetGoalsText()
+    {
+        string[] goalsText = { trophies[0].trophyConditions,
+            trophies[1].trophyConditions,
+            trophies[2].trophyConditions,
+            trophies[3].trophyConditions,
+            trophies[4].trophyConditions };
+
+        return goalsText;
     }
 }

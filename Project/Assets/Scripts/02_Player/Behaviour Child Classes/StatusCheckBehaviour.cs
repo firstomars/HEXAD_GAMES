@@ -19,7 +19,12 @@ public class StatusCheckBehaviour : Behaviour
     public override void RunBehaviour()
     {
         if (Input.GetKeyDown(KeyCode.Space))
+        {
             SetUI("report");
+            UIManager.UIManagerInstance.SetGoalsText(
+                PlayerController.TrophyController.GetGoalsText());
+        }
+            
 
         if (UIManager.UIManagerInstance.bedTime != -1 && UIManager.UIManagerInstance.wakeUpTime != -1)
         {

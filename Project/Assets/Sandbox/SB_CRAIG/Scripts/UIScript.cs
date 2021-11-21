@@ -33,11 +33,19 @@ public class UIScript : MonoBehaviour
     [SerializeField] private GameObject playerReportBackgroundPanel;
     [SerializeField] private GameObject playerStatisticsPanel;
     [SerializeField] private GameObject playerDailyReportPanel;
+    [SerializeField] private GameObject trophyAwardPanel;
 
     [Header("Sliders")]
     [SerializeField] private Slider petSpiritLevel;
     [SerializeField] private Slider petEnergyLevel;
     [SerializeField] private Slider petFulfillmentLevel;
+
+    [Header("Daily Report Fields")]
+    [SerializeField] private TextMeshProUGUI setBedTime;
+    [SerializeField] private TextMeshProUGUI setWakeTime;
+    [SerializeField] private TextMeshProUGUI hoursSleptLastNight;
+    [SerializeField] private TextMeshProUGUI hoursSleptPreviousNight;
+    [SerializeField] private TextMeshProUGUI trophyDescriptionText;
 
     [Header("Pet Dialogue Text Panel")]
     [SerializeField] private GameObject petDialoguePanel;
@@ -322,11 +330,28 @@ public class UIScript : MonoBehaviour
         playerStatisticsPanel.SetActive(true);
     }
 
-    public void ViewDailyReport()
+    // Non overload to display report without achievments
+    public void ViewDailyReport(string trophyText)
     {
-        playerReportBackgroundPanel.SetActive(true);
-        playerDailyReportPanel.SetActive(true);
+        EnableUIElements(new[] { playerReportBackgroundPanel, playerDailyReportPanel });
+        trophyDescriptionText.text = trophyText;
     }
+
+    // Overload to allow display with achievements
+    public void ViewDailyReport(string trophyText, string achievement, string achievementText)
+    {
+        EnableUIElements(new[] { playerReportBackgroundPanel, playerDailyReportPanel });
+        trophyDescriptionText.text = trophyText;
+        trophyAwardPanel.SetActive(true);
+        
+    }
+
+    // Button function to close currently open report
+    public void CloseReportButtonPressed()
+    {
+
+    }
+
 
     #endregion
 
@@ -337,6 +362,14 @@ public class UIScript : MonoBehaviour
         foreach (GameObject UIElement in UIElements)
         {
             UIElement.SetActive(false);
+        }
+    }
+
+    private void EnableUIElements(GameObject[] UIElements)
+    {
+        foreach (GameObject UIElement in UIElements)
+        {
+            UIElement.SetActive(true);
         }
     }
 

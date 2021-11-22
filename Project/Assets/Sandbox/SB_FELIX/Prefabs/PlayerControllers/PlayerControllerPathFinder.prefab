@@ -1,39 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &1634322560
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2530457032968167975}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4094860e176920849b3863d7cecf97f6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PathToFollow: {fileID: 0}
-  CurrentWayPointID: 0
-  speed: 4
-  reachDistance: 1.5
-  rotationSpeed: 4
-  pathName: 
-  start: 1
---- !u!114 &1634322565
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2530457032968167975}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7928fcfdee3259149bc0a3b190d8848c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  allPaths:
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!1001 &7713970135326515418
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -103,7 +69,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5192786383473672957, guid: 7eb420c9651b3cf4dbdf70244793e45a, type: 3}
       propertyPath: m_Name
-      value: PlayerController
+      value: PlayerControllerPathFinder
       objectReference: {fileID: 0}
     - target: {fileID: 5192786383473672957, guid: 7eb420c9651b3cf4dbdf70244793e45a, type: 3}
       propertyPath: m_IsActive
@@ -111,8 +77,3 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7eb420c9651b3cf4dbdf70244793e45a, type: 3}
---- !u!1 &2530457032968167975 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5192786383473672957, guid: 7eb420c9651b3cf4dbdf70244793e45a, type: 3}
-  m_PrefabInstance: {fileID: 7713970135326515418}
-  m_PrefabAsset: {fileID: 0}

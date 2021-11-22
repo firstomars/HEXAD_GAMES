@@ -30,17 +30,27 @@ namespace Sandbox.Omar.UpgradeObjectTesting
         [HideInInspector] public Bed bedController;
         [HideInInspector] public Treadmill treadmillController;
 
+        private bool isInitialised = false;
+
         // Start is called before the first frame update
         void Start()
         {
             btnUpgradeBed = btnUpgradeBedObj.GetComponent<Button>();
             btnUpgradeTreadmill = btnUpgradeTreadmillObj.GetComponent<Button>();
-            
-            if (bedController != null)
-                btnUpgradeBed.onClick.AddListener(bedController.UpgradeObject);
+        }
 
-            if (treadmillController != null)
-                btnUpgradeTreadmill.onClick.AddListener(treadmillController.UpgradeObject);
+        private void Update()
+        {
+            if (!isInitialised)
+            {
+                if (bedController != null)
+                    btnUpgradeBed.onClick.AddListener(bedController.UpgradeObject);
+
+                if (treadmillController != null)
+                    btnUpgradeTreadmill.onClick.AddListener(treadmillController.UpgradeObject);
+
+                isInitialised = true;
+            }
         }
     }
 }

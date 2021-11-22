@@ -2,18 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Sandbox.Omar.UpgradeObjectTesting
+namespace Sandbox.Ewan.UpgradeObjsTesting
 {
     public class Treadmill : UpgradeableObject
     {
         void Awake()
         {
-            ConnectToUIManagerOnStartUp();
+
         }
 
         // Start is called before the first frame update
         void Start()
         {
+            ConnectToUIManagerOnStartUp();
+
             currentUpgradeIndex = 0;
             maxUpgradeIndex = upgrades.Length - 2;
 

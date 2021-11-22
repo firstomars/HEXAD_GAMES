@@ -8,12 +8,14 @@ namespace Sandbox.Omar.UpgradeObjectTesting
     {
         void Awake()
         {
-            ConnectToUIManagerOnStartUp();
+            
         }
         
         // Start is called before the first frame update
         void Start()
         {
+            ConnectToUIManagerOnStartUp();
+
             currentUpgradeIndex = 0;
             maxUpgradeIndex = upgrades.Length - 2;
             CreateObjectOnStartUp();

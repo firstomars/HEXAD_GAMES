@@ -73,7 +73,6 @@ namespace Sandbox.Omar.WanderBehaviour
             gameObject.transform.LookAt(agent.steeringTarget);
         }
 
-
         public Vector3 FindWaypointHelper(string room)
         {
             foreach (var waypoint in houseWaypoints)

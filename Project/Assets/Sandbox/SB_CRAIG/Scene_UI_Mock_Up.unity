@@ -2179,7 +2179,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &482914285
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5555,7 +5555,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0.69, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -10191,6 +10191,91 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2028851775}
   m_CullTransparentMesh: 1
+--- !u!1 &2061937976
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2061937978}
+  - component: {fileID: 2061937977}
+  m_Layer: 0
+  m_Name: DialogueManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2061937977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2061937976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82f8fe3092008ba41804917f742a433c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UIManager: {fileID: 656363324}
+  petTips:
+  - tipType: RandomTips
+    tipList:
+    - Circadian rhythms are your bodies internal clocks, the most important is your
+      'sleep-wake' cycle.
+    - Your chronotype, or when your body prefers to sleep is genetic. It can be trained
+      but it is built into your body clock.
+    - Sleep plays a role in our physical wellness but also affects our concentration,
+      memory, and ability to learn new things.
+    - Avoiding caffine after 6pm can aid in falling asleep later in the night. Coffee,
+      energy drinks, black and green tea, and chocolate all contain caffine.
+    - Studies have linked an increase in risk taking behaviour by young adults with
+      anxiety and poor sleep behaviour.
+    - Studies of students with academic excellence showed they had earlier bedtimes
+      than students with poor grades.
+  gameIntro:
+  - dialogueText: Hey there! My name is Chunky Peanut Butter, let's get to know each
+      other.
+    playerResponses:
+    - Hi there Chunky.
+  - dialogueText: Lets start by choosing our favourite colour.
+    playerResponses:
+    - colour
+  - dialogueText: Nice choice, I look excellent in that colour!
+    playerResponses:
+    - If you say so.
+  - dialogueText: I need to know some stuff to set everything up, is that ok?
+    playerResponses:
+    - Ask away little dude.
+  - dialogueText: What time do you usually go to bed at night?
+    playerResponses:
+    - bedtime
+  - dialogueText: What time do you usually wake up in the morning?
+    playerResponses:
+    - waketime
+  - dialogueText: What time did you go to bed last night?
+    playerResponses:
+    - bedtimelastnight
+  - dialogueText: What time did you wake up this morning?
+    playerResponses:
+    - waketimelastnight
+--- !u!4 &2061937978
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2061937976}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2066033548
 GameObject:
   m_ObjectHideFlags: 0
@@ -10358,7 +10443,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0.383, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}

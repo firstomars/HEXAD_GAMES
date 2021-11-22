@@ -365,6 +365,7 @@ public class UIScript : MonoBehaviour
         }
     }
 
+    // Helper function to enable multiple UI elements at the same time
     private void EnableUIElements(GameObject[] UIElements)
     {
         foreach (GameObject UIElement in UIElements)

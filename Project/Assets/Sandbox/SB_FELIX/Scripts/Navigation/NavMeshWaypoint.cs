@@ -14,12 +14,18 @@ public class NavMeshWaypoint : MonoBehaviour
 
     public bool random = false;
     public bool start = true;
+
     
+
+
+    Animator m_Animator;
 
     // Start is called before the first frame update
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+
+        m_Animator = gameObject.GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -30,10 +36,11 @@ public class NavMeshWaypoint : MonoBehaviour
         if (start)
 
         {
-            if (dist > minimumDistance)
+            if (dist > minimumDistance && Input.GetKeyDown(KeyCode.Space))
             {
-                Move();
+                Move(); 
             }
+
             else
             {
                 if(!random) //If random is not checked in the inspector
@@ -55,6 +62,25 @@ public class NavMeshWaypoint : MonoBehaviour
             }
 
         }
+
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            m_Animator.SetTrigger("Move");
+            m_Animator.SetBool("IsIdle", false);
+
+        }
+
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+           
+            m_Animator.SetBool("IsIdle", true);
+
+        }
+    }
+
+    public void IdleToWalk()
+    {
+
     }
 
     public void Move()

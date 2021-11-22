@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class AnimationScript : MonoBehaviour
 {
-    Animator anim;
-   // int moveHash = Animator.StringTohash("Move");
-   // int runStateHash = Animator.StringToHash("Base Layer.Run");
+    //Animator anim;
+   //int moveHash = Animator.StringTohash("Move");
+   //int runStateHash = Animator.StringToHash("Base Layer.Run");
 
     // Start is called before the first frame update
     void Start()
     {
-        anim = GetComponent<Animator>();
+       // anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame

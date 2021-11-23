@@ -15,9 +15,6 @@ public class NavMeshWaypoint : MonoBehaviour
     public bool random = false;
     public bool start = true;
 
-    
-
-
     Animator m_Animator;
 
     // Start is called before the first frame update
@@ -38,14 +35,14 @@ public class NavMeshWaypoint : MonoBehaviour
         {
             if (dist > minimumDistance && Input.GetKeyDown(KeyCode.Space))
             {
-                Move(); 
+                Move();
             }
 
             else
             {
-                if(!random) //If random is not checked in the inspector
+                if (!random) //If random is not checked in the inspector
                 {
-                    if(num + 1 == waypoints.Length) //See if this is the last waypoint in the array
+                    if (num + 1 == waypoints.Length) //See if this is the last waypoint in the array
                     {
                         num = 0; //If it is the last waypoint, set to 0
                     }
@@ -57,37 +54,42 @@ public class NavMeshWaypoint : MonoBehaviour
                 else
                 {
                     num = Random.Range(0, waypoints.Length);
-                    
+
                 }
             }
 
+
         }
 
-        if(Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            m_Animator.SetTrigger("Move");
-            m_Animator.SetBool("IsIdle", false);
-
+            IdleToWalk();
         }
 
-        if (Input.GetKeyDown(KeyCode.Mouse0))
-        {
-           
-            m_Animator.SetBool("IsIdle", true);
+        
+    }
 
-        }
+    private void OnTriggerEnter(Collider other) 
+    {
+        WalkToIdle();
     }
 
     public void IdleToWalk()
     {
-
+        m_Animator.SetBool("IsIdle", false);
     }
 
-    public void Move()
+    public void WalkToIdle()
+    {
+        m_Animator.SetBool("IsIdle", true);
+    }
+
+
+    public void MoveCharacter()
     {
         gameObject.transform.LookAt(waypoints[num].transform.position); //Rotating the player towards the position
         agent.destination = waypoints[num].transform.position;
 
-        //gameObject.transform.position += gameObject.transform.forward * speed * Time.deltaTime; //Moving the player forward
+        
     }
 }

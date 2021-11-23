@@ -264,15 +264,27 @@ MonoBehaviour:
   sounds:
   - name: BackgroundMusic
     clip: {fileID: 8300000, guid: 44fe15fedb9838544bc249cf488e0ae8, type: 3}
-    volume: 0.184
+    volume: 0
     pitch: 1
     loop: 1
     source: {fileID: 0}
-  - name: Test
-    clip: {fileID: 8300000, guid: dfce66b9e3ecd894ba634fb2985484b2, type: 3}
-    volume: 0.5
+  - name: Sleeping
+    clip: {fileID: 8300000, guid: 565d9a126aabbd74a88f6acae5652a43, type: 3}
+    volume: 1
     pitch: 1
     loop: 0
+    source: {fileID: 0}
+  - name: FootStep
+    clip: {fileID: 8300000, guid: 06c0f51ee46f3f5428630e8861d372f4, type: 3}
+    volume: 1
+    pitch: 0.581
+    loop: 1
+    source: {fileID: 0}
+  - name: Gym
+    clip: {fileID: 8300000, guid: fd7469abc7664394d8cb87c3590c12fb, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
     source: {fileID: 0}
 --- !u!1 &713674478
 GameObject:

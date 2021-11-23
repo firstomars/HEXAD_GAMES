@@ -16,10 +16,31 @@ public class SoundTrigger : MonoBehaviour
 
         //play test sound example
         if (Input.GetKeyDown(KeyCode.Space)) 
-            AudioManager.AudioManagerInstance.PlaySound("Test");
+            AudioManager.AudioManagerInstance.PlaySound("FootStep");
 
         //stop test sound example
         if (Input.GetKeyDown(KeyCode.Return))
-            AudioManager.AudioManagerInstance.StopSound("Test");
+            AudioManager.AudioManagerInstance.StopSound("FootStep");
+
+
+
+        //play Snoring sound example
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+            AudioManager.AudioManagerInstance.PlaySound("Sleeping");
+
+        //stop Snoring sound example
+        if (Input.GetKeyDown(KeyCode.Return))
+            AudioManager.AudioManagerInstance.StopSound("Sleeping");
+
+
+        //play Gym sound example
+        if (Input.GetKeyDown(KeyCode.Mouse1))
+            AudioManager.AudioManagerInstance.PlaySound("Gym");
+
+        //stop Gym sound example
+        if (Input.GetKeyDown(KeyCode.Return))
+            AudioManager.AudioManagerInstance.StopSound("Gym");
+
     }
+
 }

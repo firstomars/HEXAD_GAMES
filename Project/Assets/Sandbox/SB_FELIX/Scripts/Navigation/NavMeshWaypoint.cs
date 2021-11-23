@@ -35,7 +35,7 @@ public class NavMeshWaypoint : MonoBehaviour
         {
             if (dist > minimumDistance && Input.GetKeyDown(KeyCode.Space))
             {
-                Move();
+                //Move();
             }
 
             else

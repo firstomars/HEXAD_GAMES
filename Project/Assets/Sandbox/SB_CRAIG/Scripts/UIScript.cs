@@ -16,6 +16,7 @@ using UnityEngine.EventSystems;
 public class UIScript : MonoBehaviour
 {
     [Header("Game Objects")]
+    [SerializeField] private DialogueManager dialogueManager;
     [SerializeField] private Transform loungeTransform;
     [SerializeField] private Transform gymTransform;
     [SerializeField] private Transform kitchenTransform;
@@ -232,9 +233,10 @@ public class UIScript : MonoBehaviour
         UIStoredPlayerResponse = EventSystem.current.currentSelectedGameObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text;
         DestroyUIButtons(playerResponsePanel);
         StartCoroutine(DisableUIElementsAfterSeconds(0, new[] { playerResponsePanel, petDialoguePanel }));
+        dialogueManager.AdvanceLine(UIStoredPlayerResponse);
     }
 
-    // Used to reset a UI panel button options
+    // Used to reset a UI panels button options
     private void DestroyUIButtons(GameObject UIParent)
     {
         foreach (Transform child in UIParent.transform)

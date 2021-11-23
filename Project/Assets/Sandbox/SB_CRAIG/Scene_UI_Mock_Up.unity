@@ -3054,6 +3054,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 235f525de706467408cbee1bc73de443, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dialogueManager: {fileID: 2061937977}
   loungeTransform: {fileID: 1504292583}
   gymTransform: {fileID: 1071832486}
   kitchenTransform: {fileID: 2088184348}
@@ -9687,7 +9688,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1954748355
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10262,6 +10263,67 @@ MonoBehaviour:
   - dialogueText: What time did you wake up this morning?
     playerResponses:
     - waketimelastnight
+  roomDialogue:
+  - dialogueText: Hey, what should we get to eat?
+    playerResponses:
+    - Chicken Salad
+    - Pizza
+  - dialogueText: What kind of exercise are we doing?
+    playerResponses:
+    - Weights
+    - Running
+  - dialogueText: Should we play a game?
+    playerResponses:
+    - Yes
+    - No
+  - dialogueText: Should we take a nap?
+    playerResponses:
+    - Yes
+    - No
+  tiredPet:
+  - dialogueText: 
+    playerResponses: []
+  - dialogueText: 
+    playerResponses: []
+  - dialogueText: 
+    playerResponses: []
+  - dialogueText: 
+    playerResponses: []
+  testingArrays:
+  - conversationList:
+    - dialogueText: Hey there! My name is Chunky Peanut Butter, let's get to know
+        each other.
+      playerResponses:
+      - Hi there Chunky.
+    - dialogueText: Lets start by choosing our favourite colour.
+      playerResponses:
+      - colour
+    - dialogueText: Nice choice, I look excellent in that colour!
+      playerResponses:
+      - If you say so.
+    - dialogueText: I need to know some stuff to set everything up, is that ok?
+      playerResponses:
+      - Ask away little dude.
+    - dialogueText: What time do you usually go to bed at night?
+      playerResponses:
+      - time
+    - dialogueText: What time do you usually wake up in the morning?
+      playerResponses:
+      - time
+    - dialogueText: What time did you go to bed last night?
+      playerResponses:
+      - time
+    - dialogueText: What time did you wake up this morning?
+      playerResponses:
+      - time
+  - conversationList:
+    - dialogueText: Hey, What should we get to eat?
+      playerResponses:
+      - Chicken Salad
+      - Pizza
+  - conversationList: []
+  - conversationList: []
+  - conversationList: []
 --- !u!4 &2061937978
 Transform:
   m_ObjectHideFlags: 0

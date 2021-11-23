@@ -245,4 +245,16 @@ public class PlayerStatistics : MonoBehaviour
     {
         sleepDollarsLevel += rewardAmt;
     }
+
+    public int GetSleepDollars()
+    {
+        return sleepDollarsLevel;
+    }
+
+    public void ReduceSleepDollars(int reduceAmt)
+    {
+        Debug.Log("Sleep dollars " + sleepDollarsLevel + " reduced by " + reduceAmt);
+        sleepDollarsLevel -= reduceAmt;
+        Debug.Log("New sleep dollars is " + sleepDollarsLevel);
+    }
 }

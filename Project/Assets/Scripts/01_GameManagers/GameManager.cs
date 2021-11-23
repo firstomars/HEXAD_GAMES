@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    #region Singelton
+    #region Singleton
 
     private static GameManager _instance;
 

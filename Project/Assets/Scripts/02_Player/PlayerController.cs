@@ -50,6 +50,7 @@ public class PlayerController : BehaviourStateMachine
     //pet behaviour bools
     private bool isPetSleeping = false;
     private bool isReportDelivered = true;
+    private bool isPetSeeking = false;
 
     [Header("NavMesh Settings")]
     private NavMeshAgent agent;
@@ -120,6 +121,10 @@ public class PlayerController : BehaviourStateMachine
 
     private void Update()
     {
+        //countDownTimer -= Time.deltaTime;
+
+        //Debug.Log(countDownTimer);
+
         //set new behaviour if required
         if (nextBehaviour != null && nextBehaviour != currentBehaviour)
         {
@@ -137,7 +142,7 @@ public class PlayerController : BehaviourStateMachine
     }
 
     private void RunBehaviourLogic()
-    {
+    {       
         if (isPetSleeping)
         {
             return;
@@ -146,9 +151,15 @@ public class PlayerController : BehaviourStateMachine
         {
             nextBehaviour = StatusCheckBehaviour;
         }
+        //else if (HasPlayerReachedDestination() && IsCountDownComplete()) //
+        //{
+        //    //Debug.Log("agent reached destination - call wander now");
+        //    nextBehaviour = WanderBehaviour;
+        //}
         else if(!isPlayerInBathroom && !isPlayerInBedroom && !isPlayerInGym && !isPlayerInKitchen && !isPlayerAtTrophyCabinet)
         {
             nextBehaviour = SeekBehaviour;
+            ResetCountDownTimer();
         }
         //if mouse clicked or not in any action rooms, set to seekbehaviour
         //else if (Input.GetMouseButtonDown(0) && isClickPointOnGround(Input.mousePosition) ||
@@ -182,10 +193,6 @@ public class PlayerController : BehaviourStateMachine
             //Debug.Log("bathroom behaviour set");
             nextBehaviour = BathroomBehaviour;
         }
-        //else if (isPlayerAtTrophyCabinet)
-        //{
-        //    nextBehaviour = StatusCheckBehaviour;
-        //}
         //else if (Input.GetKeyDown(KeyCode.Alpha1)) // set to top - UNUSED BEHAVIOURS
         //{
         //    Debug.Log("key 1 pressed");
@@ -230,6 +237,15 @@ public class PlayerController : BehaviourStateMachine
     {
         agent.SetDestination(targetPos);
         //gameObject.transform.LookAt(agent.steeringTarget);
+    }
+
+    public bool HasPlayerReachedDestination()
+    {
+        if (Vector3.Distance(agent.destination, gameObject.transform.position) < 3.0f)
+        {
+            return true;
+        }
+        return false;
     }
 
     public void CameraSwitch()
@@ -304,7 +320,32 @@ public class PlayerController : BehaviourStateMachine
 
     public bool IsPetAbleToSeek()
     {
-        if (!isPetSleeping && isReportDelivered) return true;
+        if (!isPetSleeping && isReportDelivered)
+        {
+            isPetSeeking = true;
+            return true;
+        }
         else return false;
+    }
+
+    private bool IsPetAbleToWander()
+    {
+        return false;
+    }
+
+    private float countDownTimer = 1.0f;
+    private float maxCountDown = 1.0f;
+
+    private bool IsCountDownComplete()
+    {
+        if (countDownTimer < 0)
+            return true;
+
+        return false;
+    }
+
+    private void ResetCountDownTimer()
+    {
+        countDownTimer = maxCountDown;
     }
 }

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1376663149371227510}
   - component: {fileID: 1243434460}
   m_Layer: 0
-  m_Name: AudioManager
+  m_Name: AudioManager_V1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -46,7 +46,7 @@ MonoBehaviour:
   sounds:
   - name: BackgroundMusic
     clip: {fileID: 8300000, guid: 44fe15fedb9838544bc249cf488e0ae8, type: 3}
-    volume: 0.5
+    volume: 0
     pitch: 1
     loop: 1
     source: {fileID: 0}

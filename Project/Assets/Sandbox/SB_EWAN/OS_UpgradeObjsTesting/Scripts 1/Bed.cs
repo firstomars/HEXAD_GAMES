@@ -24,7 +24,10 @@ namespace Sandbox.Ewan.UpgradeObjsTesting
         // Update is called once per frame
         void Update()
         {
-
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                UpgradeObject();
+            }
         }
 
         public override void UpgradeObject()
@@ -35,7 +38,7 @@ namespace Sandbox.Ewan.UpgradeObjsTesting
 
         public override void ConnectToUIManagerOnStartUp()
         {
-            UIManager.UIManagerInstance.bedController = this;
+           // UIManager.UIManagerInstance.bedController = this;
         }
     }
 

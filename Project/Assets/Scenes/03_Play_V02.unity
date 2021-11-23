@@ -243,18 +243,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevelManager
       objectReference: {fileID: 0}
-    - target: {fileID: 7011895302191128503, guid: f17a1438d6ddba04f96f80b19898cc17, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 7011895302191128503, guid: f17a1438d6ddba04f96f80b19898cc17, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7011895302191128503, guid: f17a1438d6ddba04f96f80b19898cc17, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -20
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f17a1438d6ddba04f96f80b19898cc17, type: 3}
 --- !u!1 &891418418
@@ -528,5 +516,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4180209988242791789, guid: a385c632c7b11d24d8107eb053e58ee9, type: 3}
+      propertyPath: worldPrefab
+      value: 
+      objectReference: {fileID: 9169753044994513113, guid: 6bd279321f96cc64e925c990442246c2, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a385c632c7b11d24d8107eb053e58ee9, type: 3}

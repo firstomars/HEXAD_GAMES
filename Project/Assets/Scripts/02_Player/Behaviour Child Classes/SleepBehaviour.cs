@@ -13,7 +13,7 @@ public class SleepBehaviour : Behaviour
 
     public override void StartBehaviour()
     {
-        Debug.Log("SleepBehaviour Start called - press L to test update");
+        //Debug.Log("SleepBehaviour Start called - press L to test update");
 
         UIManager.UIManagerInstance.CurrentBehaviour = this;
 
@@ -56,6 +56,10 @@ public class SleepBehaviour : Behaviour
             if (dayFellAsleep == -1) dayFellAsleep = PlayerController.TimeController.GetGameDate();
             PlayerController.IsPetSleeping(true);
             PlayerController.SetPlayerDestination(PlayerController.bed.position);
+
+            AudioManager.AudioManagerInstance.PlaySound("Sleeping");
+
+
             UIManager.UIManagerInstance.SendToBedBtnClicked();
         }
         else
@@ -68,6 +72,7 @@ public class SleepBehaviour : Behaviour
     {
         Debug.Log("pet woken up");
         PlayerController.IsPetSleeping(false);
+        AudioManager.AudioManagerInstance.StopSound("Sleeping");
 
         if (PlayerController.TimeController.IsNextDay(dayFellAsleep) && 
             PlayerController.TimeController.IsTimeAfter(PlayerController.petWakeUpTime))
@@ -75,6 +80,10 @@ public class SleepBehaviour : Behaviour
             UIManager.UIManagerInstance.WakeUpBtnClicked();
             PlayerController.IsReportDelivered(false);
             dayFellAsleep = -1;
+        }
+        else
+        {
+            PlayerController.SetPlayerDestination(FindWaypointHelper("bedroom"));
         }
     }
 

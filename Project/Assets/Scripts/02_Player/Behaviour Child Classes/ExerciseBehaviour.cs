@@ -35,6 +35,7 @@ public class ExerciseBehaviour : Behaviour
     public override void EndBehaviour()
     {
         Debug.Log("ExerciseBehaviour End called");
+        AudioManager.AudioManagerInstance.StopSound("Gym");
         SetUI();
         base.EndBehaviour();
     }
@@ -43,5 +44,6 @@ public class ExerciseBehaviour : Behaviour
     {
         //Debug.Log("bench press called");
         PlayerController.PlayerStatistics.BenchPressStatsImpact();
+        AudioManager.AudioManagerInstance.PlaySound("Gym");
     }
 }

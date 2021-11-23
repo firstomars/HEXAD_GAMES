@@ -41,6 +41,15 @@ public class SoundTrigger : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Return))
             AudioManager.AudioManagerInstance.StopSound("Gym");
 
+
+        //play Chew sound example
+        if (Input.GetKeyDown(KeyCode.Mouse2))
+            AudioManager.AudioManagerInstance.PlaySound("Chew");
+
+        //stop Chew sound example
+        if (Input.GetKeyDown(KeyCode.Return))
+            AudioManager.AudioManagerInstance.StopSound("Chew");
+
     }
 
 }

@@ -80,6 +80,7 @@ public class UIScript : MonoBehaviour
     private bool walkFlyoutActivated = false;
     private int nextHoursPage = 0;
     private bool spiritLevelPressed = false;
+    private bool UIReady = true;
     private readonly List<string> inputHours = new List<string> { "00:00", "01:00", "02:00", "03:00", "04:00", "05:00", 
                                                             "06:00", "07:00", "08:00", "09:00", "10:00", "11:00", 
                                                             "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", 
@@ -206,7 +207,11 @@ public class UIScript : MonoBehaviour
 
         // UI related
         DestroyUIButtons(petColourPanel);
-        StartCoroutine(DisableUIElementsAfterSeconds(0, new[] { petColourPanel, petDialoguePanel }));
+        //StartCoroutine(DisableUIElementsAfterSeconds(0, new[] { petColourPanel, petDialoguePanel }));
+        //DisableUIElementsAfterSeconds(0, new[] { petColourPanel, petDialoguePanel });
+        petColourPanel.SetActive(false);
+        petDialoguePanel.SetActive(false);
+        dialogueManager.AdvanceLine(UIStoredPlayerResponse);
     }
 
     // Player text response selection
@@ -232,7 +237,10 @@ public class UIScript : MonoBehaviour
     {
         UIStoredPlayerResponse = EventSystem.current.currentSelectedGameObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text;
         DestroyUIButtons(playerResponsePanel);
-        StartCoroutine(DisableUIElementsAfterSeconds(0, new[] { playerResponsePanel, petDialoguePanel }));
+        //StartCoroutine(DisableUIElementsAfterSeconds(0, new[] { playerResponsePanel, petDialoguePanel }));
+        //DisableUIElementsAfterSeconds(0, new[] { playerResponsePanel, petDialoguePanel });
+        playerResponsePanel.SetActive(false);
+        petDialoguePanel.SetActive(false);
         dialogueManager.AdvanceLine(UIStoredPlayerResponse);
     }
 
@@ -303,9 +311,11 @@ public class UIScript : MonoBehaviour
     //When the player clicks a time entry button the time is stored in a public variable
     public void StoreTimeEntry()
     {
-        Debug.Log("Player stored time");
         UIStoredInputTime = EventSystem.current.currentSelectedGameObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text;
-        Debug.Log("Player stored " + UIStoredInputTime);
+        //DisableUIElementsAfterSeconds(0, new[] { timeEntryPanel, petDialoguePanel });
+        timeEntryPanel.SetActive(false);
+        petDialoguePanel.SetActive(false);
+        dialogueManager.AdvanceLine(UIStoredInputTime);
     }
 
     #endregion
@@ -360,11 +370,13 @@ public class UIScript : MonoBehaviour
     // Coroutine used to disable multiple UI elements after a set period of time
     IEnumerator DisableUIElementsAfterSeconds(int timeToDisplay, GameObject[] UIElements)
     {
+        UIReady = false;
         yield return new WaitForSeconds(timeToDisplay);
         foreach (GameObject UIElement in UIElements)
         {
             UIElement.SetActive(false);
         }
+        UIReady = true;
     }
 
     // Helper function to enable multiple UI elements at the same time

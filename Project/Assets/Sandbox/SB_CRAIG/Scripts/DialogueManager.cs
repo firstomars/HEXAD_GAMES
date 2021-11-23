@@ -113,18 +113,18 @@ public class DialogueManager : MonoBehaviour
             conversationStarted = true;
             Debug.Log("Player started " + room + " conversation");
             /* Object Key
-             * 0 - Kitchen
-             * 1 - Gym
+             * 0 - Game Intro
+             * 1 - Kitchen
              * 2 - Lounge
              * 3 - Bedroom
-             * 4 - Game Intro
+             * 4 - Gym
         */
             switch (room)
             {
-                case "Kitchen":
+                case "Intro":
                     currentConversationID = 0;
                     break;
-                case "Gym":
+                case "Kitchen":
                     currentConversationID = 1;
                     break;
                 case "Lounge":
@@ -133,8 +133,8 @@ public class DialogueManager : MonoBehaviour
                 case "Bedroom":
                     currentConversationID = 3;
                     break;
-                case "Intro":
-                    currentConversationID = 0;
+                case "Gym":
+                    currentConversationID = 4;
                     break;
                 case "default":
                     conversationStarted = false;
@@ -147,7 +147,6 @@ public class DialogueManager : MonoBehaviour
     // Start conversation with current conversation ID
     private void StartConversation(int conversationID)
     {
-        //DisplayDialogueLine(roomDialogue[conversationID].dialogueText, roomDialogue[conversationID].playerResponses);
         DisplayDialogueLine(testingArrays[conversationID].conversationList[0].dialogueText, testingArrays[conversationID].conversationList[0].playerResponses);
     }
 
@@ -155,13 +154,13 @@ public class DialogueManager : MonoBehaviour
     // Called from UI manager with player response
     public void AdvanceLine(string response)
     {
-        Debug.Log("player responded with " + response);
+        Debug.Log("Player responded with " + response);
+        Debug.Log("Current conversation node count is " + testingArrays[currentConversationID].conversationList.Length);
         currentLineIndex++;
         if (currentLineIndex < testingArrays[currentConversationID].conversationList.Length)
         {
-            DisplayDialogueLine(testingArrays[currentConversationID].conversationList[currentLineIndex].dialogueText, testingArrays[currentConversationID].conversationList[currentLineIndex].playerResponses);
             Debug.Log("There is more conversation");
-            ///conversationStarted = false;
+            DisplayDialogueLine(testingArrays[currentConversationID].conversationList[currentLineIndex].dialogueText, testingArrays[currentConversationID].conversationList[currentLineIndex].playerResponses);
         }
         else
         {
@@ -176,17 +175,21 @@ public class DialogueManager : MonoBehaviour
     private void DisplayDialogueLine(string petText, string[] playerResponses)
     {
         UIManager.EnablePetDialogueText(petText);
-        UIManager.DisplayPlayerResponses(playerResponses);
-        //recompile
+        if (playerResponses[0] == "colour")
+        {
+            UIManager.DisplayColourSelections();
+        }
+        else if (playerResponses[0] == "time")
+        {
+            UIManager.DisplayTimeEntry();
+        }
+        else
+        {
+            UIManager.DisplayPlayerResponses(playerResponses);
+        }
     }
 
     // Temporary functions to test functionality
-    private void Start()
-    {
-        //DisplayTip("RandomTips");
-        //StartConversation();
-    }
-
     private void Update()
     {        
         if (Input.GetKeyDown(KeyCode.T))

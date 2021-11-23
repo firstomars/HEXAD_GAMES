@@ -73,11 +73,13 @@ public class SleepBehaviour : Behaviour
         Debug.Log("pet woken up");
         PlayerController.IsPetSleeping(false);
         AudioManager.AudioManagerInstance.StopSound("Sleeping");
+        UIManager.UIManagerInstance.WakeUpBtnClicked();
 
         if (PlayerController.TimeController.IsNextDay(dayFellAsleep) && 
             PlayerController.TimeController.IsTimeAfter(PlayerController.petWakeUpTime))
         {
-            UIManager.UIManagerInstance.WakeUpBtnClicked();
+            //UIManager.UIManagerInstance.WakeUpBtnClicked();
+            UIManager.UIManagerInstance.WakeUpNextDayBtnClicked();
             PlayerController.IsReportDelivered(false);
             dayFellAsleep = -1;
         }

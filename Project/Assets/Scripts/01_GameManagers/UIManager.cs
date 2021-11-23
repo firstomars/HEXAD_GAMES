@@ -43,6 +43,8 @@ public class UIManager : MonoBehaviour
 
     //classes set during runtime
     [HideInInspector] public Behaviour CurrentBehaviour;
+    [HideInInspector] public UpgradeManager UpgradeManager;
+
 
     [Header("PLAY SCENE INTERACTABLES - UI")]
     [SerializeField] private GameObject interactablesUIGO;
@@ -57,8 +59,9 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Sprite deactivateFlyoutImage;
 
     // Local class variables
-    private bool mainFlyoutActivated = false;
-    private bool walkFlyoutActivated = false;
+    private bool isMainFlyoutActivated = false;
+    private bool isWalkFlyoutActivated = false;
+    private bool isUpgradeFlyoutActivated = false;
 
     [Header("Navigation - UI - OLD")]
     [SerializeField] private GameObject kitchenBtnGO;
@@ -134,6 +137,12 @@ public class UIManager : MonoBehaviour
     [HideInInspector] public int bedTime = -1;
     [HideInInspector] public int wakeUpTime = -1;
 
+    [Header("Upgrade Interactables UI")]
+    [SerializeField] private GameObject upgradeBedBtnGO;
+    private Button upgradeBedBtn;
+
+
+
     //===
 
     private void Start()
@@ -175,6 +184,9 @@ public class UIManager : MonoBehaviour
         hrsSleptNightTwoText = hrsSleptNightTwoTextObj.GetComponent<Text>();
         closeReportBtn = closeReportBtnObj.GetComponent<Button>();
         viewGoalsBtn = viewGoalsBtnObj.GetComponent<Button>();
+
+        //upgrades UI
+        upgradeBedBtn = upgradeBedBtnGO.GetComponent<Button>();
         //===
 
         #endregion
@@ -354,10 +366,10 @@ public class UIManager : MonoBehaviour
 
     public void ActivateMainFlyoutMenu()
     {
-        if (!mainFlyoutActivated)
+        if (!isMainFlyoutActivated)
         {
             mainFlyoutPanel.SetActive(true);
-            mainFlyoutActivated = true;
+            isMainFlyoutActivated = true;
             flyoutButtonPanel.transform.GetChild(0).GetComponentInChildren<Image>().sprite = deactivateFlyoutImage;
         }
         else
@@ -369,34 +381,50 @@ public class UIManager : MonoBehaviour
     // Walk flyout button pressed
     public void ActivateWalkFlyoutMenu()
     {
-        if (!walkFlyoutActivated)
+        if (!isWalkFlyoutActivated)
         {
             walkFlyoutPanel.SetActive(true);
-            walkFlyoutActivated = true;
+            isWalkFlyoutActivated = true;
         }
         else
         {
             walkFlyoutPanel.SetActive(false);
-            walkFlyoutActivated = false;
+            isWalkFlyoutActivated = false;
         }
+    }
+
+    //upgrade flyout button pressed
+    public void ActivateUpgradeFlyoutMenu()
+    {
+        isUpgradeFlyoutActivated = !isUpgradeFlyoutActivated;
+        upgradeBedBtnGO.SetActive(isUpgradeFlyoutActivated);
     }
 
     public void CloseAllFlyouts()
     {
-        if (walkFlyoutActivated)
+        if (isWalkFlyoutActivated)
         {
             walkFlyoutPanel.SetActive(false);
-            walkFlyoutActivated = false;
+            isWalkFlyoutActivated = false;
         }
         mainFlyoutPanel.SetActive(false);
-        mainFlyoutActivated = false;
+        isMainFlyoutActivated = false;
         flyoutButtonPanel.transform.GetChild(0).GetComponentInChildren<Image>().sprite = activateFlyoutImage;
     }
 
     #endregion
 
+    #region UpgradesUI
+
+    public void UpgradeBed()
+    {
+        UpgradeManager.UpgradeObject("UpgradeBed 1");
+    }
+
+    #endregion
+
     #region Stats
-    
+
     public void StatsUpdate(string energyLevel, string fulfillmentLevel, string spiritLevel, float spiritSliderLevel, string sleepDollars)
     {
         energyLevelText.text = energyLevel;
@@ -550,6 +578,12 @@ public class UIManager : MonoBehaviour
     }
 
     public void WakeUpBtnClicked()
+    {
+        sendToBedBtnGO.SetActive(true);
+        wakeUpBtnGO.SetActive(false);
+    }
+
+    public void WakeUpNextDayBtnClicked()
     {
         sendToBedBtnGO.SetActive(false);
         wakeUpBtnGO.SetActive(false);

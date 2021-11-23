@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5773019790882654546
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2196409855761257584}
+  m_Layer: 0
+  m_Name: BedPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2196409855761257584
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5773019790882654546}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.22, y: 0, z: -0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8025915998794660408}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8897768412659453089
 GameObject:
   m_ObjectHideFlags: 0
@@ -9,7 +39,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8025915998794660408}
-  - component: {fileID: 6384383604078512129}
+  - component: {fileID: 9009519216233121424}
+  - component: {fileID: 500719244382944941}
   m_Layer: 0
   m_Name: UpgradeBed 1
   m_TagString: Untagged
@@ -24,14 +55,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8897768412659453089}
-  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0.00000058114523}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: -23.49, y: 36.292675, z: 45.97}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 2196409855761257584}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
---- !u!114 &6384383604078512129
+--- !u!114 &9009519216233121424
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -40,7 +72,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 8897768412659453089}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8c636692d768a5c44bdd881f9cde1c83, type: 3}
+  m_Script: {fileID: 11500000, guid: d13dac22e4e1ca043bf28a85837f6427, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  petBedPos: {fileID: 2196409855761257584}
+--- !u!114 &500719244382944941
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8897768412659453089}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 170dd7e2e69c07c4995e7d76619afc4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   upgrades:
@@ -48,3 +93,4 @@ MonoBehaviour:
   - {fileID: 919132149155446097, guid: 1b5073c408a9ce14984f3d09039002ac, type: 3}
   - {fileID: 919132149155446097, guid: 6edddec1da62cb94787611918cec42da, type: 3}
   currentUpgradeIndex: 0
+  upgradeCost: 3

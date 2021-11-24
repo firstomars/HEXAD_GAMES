@@ -37,6 +37,8 @@ public class TimeController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        UIManager.UIManagerInstance.TimeController = this;
+        
         hoursInputField = inputField.GetComponent<InputField>();
 
         gameTimeHours = GetCurrentHours();

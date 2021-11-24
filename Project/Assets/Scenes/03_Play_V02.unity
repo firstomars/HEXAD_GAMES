@@ -253,6 +253,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5069210358223579581, guid: c549eb6ad40caaf4a803470c0a81a9d3, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 353
+      objectReference: {fileID: 0}
+    - target: {fileID: 5069210358223579581, guid: c549eb6ad40caaf4a803470c0a81a9d3, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -405
+      objectReference: {fileID: 0}
     - target: {fileID: 5069210358555427483, guid: c549eb6ad40caaf4a803470c0a81a9d3, type: 3}
       propertyPath: m_Name
       value: UIManager_V6
@@ -299,6 +307,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5069210358555427484, guid: c549eb6ad40caaf4a803470c0a81a9d3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6660339774112335123, guid: c549eb6ad40caaf4a803470c0a81a9d3, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6660339774112335123, guid: c549eb6ad40caaf4a803470c0a81a9d3, type: 3}
+      propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -508,9 +524,5 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4180209988242791789, guid: a385c632c7b11d24d8107eb053e58ee9, type: 3}
-      propertyPath: worldPrefab
-      value: 
-      objectReference: {fileID: 9169753044994513113, guid: 6bd279321f96cc64e925c990442246c2, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a385c632c7b11d24d8107eb053e58ee9, type: 3}

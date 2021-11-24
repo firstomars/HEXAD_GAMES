@@ -44,6 +44,7 @@ public class UIManager : MonoBehaviour
     //classes set during runtime
     [HideInInspector] public Behaviour CurrentBehaviour;
     [HideInInspector] public UpgradeManager UpgradeManager;
+    [HideInInspector] public TimeController TimeController;
 
 
     [Header("PLAY SCENE INTERACTABLES - UI")]
@@ -62,6 +63,7 @@ public class UIManager : MonoBehaviour
     private bool isMainFlyoutActivated = false;
     private bool isWalkFlyoutActivated = false;
     private bool isUpgradeFlyoutActivated = false;
+    private bool isSettingsFlyoutActivated = false;
 
     [Header("Navigation - UI - OLD")]
     [SerializeField] private GameObject kitchenBtnGO;
@@ -295,12 +297,14 @@ public class UIManager : MonoBehaviour
 
     private void SetPlayerPrefsUI(bool value)
     {
-        quitBtn.SetActive(value);
+        //quitBtn.SetActive(value);
     }
 
     private void SetPlayUI(bool value)
     {
-        stagingBtn.SetActive(value);
+        stagingBtn.SetActive(false);
+
+        quitBtn.SetActive(false);
 
         //spiritLevelSldr.SetActive(false); // set to false for debugging purposes
         //backgrdPnl.SetActive(false); // set to false for debugging purposes
@@ -398,6 +402,14 @@ public class UIManager : MonoBehaviour
     {
         isUpgradeFlyoutActivated = !isUpgradeFlyoutActivated;
         upgradeBedBtnGO.SetActive(isUpgradeFlyoutActivated);
+    }
+
+    //setting flyout button pressed
+    public void ActivateSettingsFlyoutMenu()
+    {
+        isSettingsFlyoutActivated = !isSettingsFlyoutActivated;
+        quitBtn.SetActive(isSettingsFlyoutActivated);
+        if (TimeController != null) TimeController.ToggleTimeUI(isSettingsFlyoutActivated);
     }
 
     public void CloseAllFlyouts()

@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+
 public class DialogueManager : MonoBehaviour
 {
-    // Classes for dialogue database
+    // Helper classes for dialogue database
     [System.Serializable]
     public class PetTips
     {
@@ -14,27 +15,26 @@ public class DialogueManager : MonoBehaviour
     }
 
     [System.Serializable]
-    public class Conversations
+    public class Conversation
     {
         public string dialogueText;
         public string[] playerResponses;
     }
 
     [System.Serializable]
-    public class Test
+    public class ConversationLibrary
     {
-        public Conversations[] conversationList;
+        public string conversationRoom;
+        public Conversation[] conversationChain;
     }
 
+    // Inspector fields
     [Header("Game Objects")]
     [SerializeField] private UIScript UIManager;
 
     [Header("Dialogue Database")]
     [SerializeField] private PetTips[] petTips;
-    [SerializeField] private Conversations[] gameIntro;
-    [SerializeField] private Conversations[] roomDialogue;
-    [SerializeField] private Conversations[] tiredPet;
-    [SerializeField] private Test[] testingArrays;
+    [SerializeField] private ConversationLibrary[] petConversations;
 
     // Local variables
     private bool gameIntroComplete = false;
@@ -45,7 +45,7 @@ public class DialogueManager : MonoBehaviour
 
     #region Display Pet Tips
 
-    // Find tip type in tips class depending on passed string
+    // Find the tip type in tips class depending on passed string
     private int GetTipDepth(string tipType)
     {
         for (int i = 0; i < petTips.Length; i++)
@@ -59,6 +59,7 @@ public class DialogueManager : MonoBehaviour
                 return 0;
             }
         }
+        Debug.LogError("Error displaying tip. Check that " + tipType + " tip type exists in the dialogue database");
         return 99;
     }
 
@@ -72,13 +73,13 @@ public class DialogueManager : MonoBehaviour
         // Check if the tip has been displayed recently and reroll if true
         while (tipsDisplayed.Exists(x => x == tipID))
         {
-            Debug.Log("Tip ID " + tipID + " already shown in last " + (tipListLength / 2) + " displays.");
+            Debug.Log("Tip ID " + tipID + " already shown in last " + (tipListLength / 2) + " tip displays.");
             tipID = Random.Range(0, tipListLength);
         }
         // Clear the already displayed tips once half the tips have been displayed
         if (tipsDisplayed.Count > (tipListLength / 2))
         {
-            Debug.Log("Tips already displayed has been cleared");
+            Debug.Log("Tips already displayed list has been cleared");
             tipsDisplayed.Clear();
             tipsDisplayed.Add(tipID);
         }
@@ -91,19 +92,6 @@ public class DialogueManager : MonoBehaviour
     }
 
     #endregion
-
-    // Game introduction conversation
-    public void GameIntroConversation()
-    {
-        if (!gameIntroComplete)
-        {
-            DisplayDialogueLine(gameIntro[currentLineIndex].dialogueText, gameIntro[currentLineIndex].playerResponses);
-        }
-        else
-        {
-            DisplayDialogueLine("We already went through the game setup", new[] { "Ok then" });
-        }
-    }
 
     // Pet conversations main function
     public void PetConversation(string room = default)
@@ -118,6 +106,8 @@ public class DialogueManager : MonoBehaviour
              * 2 - Lounge
              * 3 - Bedroom
              * 4 - Gym
+             * 5 - Daily Login
+             * 6 - Update Settings
         */
             switch (room)
             {
@@ -136,6 +126,12 @@ public class DialogueManager : MonoBehaviour
                 case "Gym":
                     currentConversationID = 4;
                     break;
+                case "Daily":
+                    currentConversationID = 5;
+                    break;
+                case "Settings":
+                    currentConversationID = 6;
+                    break;
                 case "default":
                     conversationStarted = false;
                     break;
@@ -147,28 +143,25 @@ public class DialogueManager : MonoBehaviour
     // Start conversation with current conversation ID
     private void StartConversation(int conversationID)
     {
-        DisplayDialogueLine(testingArrays[conversationID].conversationList[0].dialogueText, testingArrays[conversationID].conversationList[0].playerResponses);
+        DisplayDialogueLine(petConversations[conversationID].conversationChain[0].dialogueText, petConversations[conversationID].conversationChain[0].playerResponses);
     }
 
-    // Advance to the next line in the current dialogue chain if required
+    // Advance to the next line in the current conversation chain if required
     // Called from UI manager with player response
     public void AdvanceLine(string response)
     {
         Debug.Log("Player responded with " + response);
-        Debug.Log("Current conversation node count is " + testingArrays[currentConversationID].conversationList.Length);
+        Debug.Log("Current conversation node count is " + petConversations[currentConversationID].conversationChain.Length);
         currentLineIndex++;
-        if (currentLineIndex < testingArrays[currentConversationID].conversationList.Length)
+        if (currentLineIndex < petConversations[currentConversationID].conversationChain.Length)
         {
-            Debug.Log("There is more conversation");
-            DisplayDialogueLine(testingArrays[currentConversationID].conversationList[currentLineIndex].dialogueText, testingArrays[currentConversationID].conversationList[currentLineIndex].playerResponses);
+            DisplayDialogueLine(petConversations[currentConversationID].conversationChain[currentLineIndex].dialogueText, petConversations[currentConversationID].conversationChain[currentLineIndex].playerResponses);
         }
         else
         {
             conversationStarted = false;
             currentLineIndex = 0;
         }
-        
-
     }
 
     // Pet conversation display dialogue
@@ -199,8 +192,6 @@ public class DialogueManager : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.I))
         {
-            Debug.Log("Player started the game intro conversation");
-            //GameIntroConversation();
             PetConversation("Intro");
         }
         else if (Input.GetKeyDown(KeyCode.K))
@@ -218,6 +209,14 @@ public class DialogueManager : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.B))
         {
             PetConversation("Bedroom");
+        }
+        else if (Input.GetKeyDown(KeyCode.D))
+        {
+            PetConversation("Daily");
+        }
+        else if (Input.GetKeyDown(KeyCode.S))
+        {
+            PetConversation("Settings");
         }
     }
 }

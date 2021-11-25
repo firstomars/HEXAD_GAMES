@@ -65,7 +65,7 @@ public class UIScript : MonoBehaviour
     [SerializeField] private string[] rooms;
 
     [Header("Pet Colours")]
-    [SerializeField] private string[] colours;
+    [SerializeField] private string[] petColours;
 
     // Sub class to manage time inputs
     public class TimeBoxes
@@ -189,7 +189,7 @@ public class UIScript : MonoBehaviour
         // Display pet colour swatch selection
         petColourPanel.SetActive(true);
         // Create a button for each pet colour listed in the UIManager
-        foreach(string colour in colours)
+        foreach(string colour in petColours)
         {
             GameObject newButton = Instantiate(colourSwatchButtonPrefab, petColourPanel.transform);
             ColorUtility.TryParseHtmlString(colour, out Color col);

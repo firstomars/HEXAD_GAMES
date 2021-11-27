@@ -380,6 +380,8 @@ public class UIManager : MonoBehaviour
             mainFlyoutPanel.SetActive(true);
             isMainFlyoutActivated = true;
             flyoutButtonPanel.transform.GetChild(0).GetComponentInChildren<Image>().sprite = deactivateFlyoutImage;
+
+            if (spiritLevelPressed) SpiritLevelPressed();
         }
         else
         {
@@ -485,8 +487,6 @@ public class UIManager : MonoBehaviour
             //close room ui
             isRoomSet = true;
             SwitchPlayRoomUI();
-
-            flyoutButtonPanel.SetActive(false);
         }
         else
         {
@@ -497,8 +497,6 @@ public class UIManager : MonoBehaviour
             //reopen room ui
             isRoomSet = false;
             SwitchPlayRoomUI(currentRoom);
-
-            flyoutButtonPanel.SetActive(true);
         }
     }
 

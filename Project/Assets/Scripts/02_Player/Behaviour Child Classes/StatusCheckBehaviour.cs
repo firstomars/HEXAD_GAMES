@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class StatusCheckBehaviour : Behaviour
 {
+    private bool isReportUIActivated = false;
+    
     public StatusCheckBehaviour(PlayerController playerController) : base(playerController)
     {
         PlayerController = playerController;
@@ -18,14 +20,29 @@ public class StatusCheckBehaviour : Behaviour
 
     public override void RunBehaviour()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (!isReportUIActivated && Vector2.Distance(PlayerController.GetAgentPosition(), FindWaypointHelper("trophycabinet")) < 3.0f)
         {
             SetUI("report");
             UIManager.UIManagerInstance.SetGoalsText(
                 PlayerController.TrophyController.GetGoalsText());
-        }
-            
 
+            isReportUIActivated = true;
+        }
+
+        //if (PlayerController.HasPlayerReachedDestination())
+        //{
+        //    SetUI("report");
+        //    UIManager.UIManagerInstance.SetGoalsText(
+        //        PlayerController.TrophyController.GetGoalsText());
+        //}
+        
+        //if (Input.GetKeyDown(KeyCode.Space))
+        //{
+        //    SetUI("report");
+        //    UIManager.UIManagerInstance.SetGoalsText(
+        //        PlayerController.TrophyController.GetGoalsText());
+        //}
+            
         if (UIManager.UIManagerInstance.bedTime != -1 && UIManager.UIManagerInstance.wakeUpTime != -1)
         {
             int bedTime = UIManager.UIManagerInstance.GetBedtime();

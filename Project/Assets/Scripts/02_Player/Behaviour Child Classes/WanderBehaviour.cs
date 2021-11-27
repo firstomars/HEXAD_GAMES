@@ -21,7 +21,8 @@ public class WanderBehaviour : Behaviour
 
     public override void RunBehaviour()
     {
-        if(PlayerController.HasPlayerReachedDestination() && !isCoroutineCalled)
+        //&& Vector2.Distance(PlayerController.GetAgentPosition(), FindWaypointHelper("trophycabinet")) > 3.0f
+        if (PlayerController.HasPlayerReachedDestination() && !isCoroutineCalled) 
         {
             isCoroutineCalled = true;
             PlayerController.StartCoroutine(WaitBeforeWander());

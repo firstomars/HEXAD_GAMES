@@ -65,7 +65,7 @@ public class UIManager : MonoBehaviour
     private bool isUpgradeFlyoutActivated = false;
     private bool isSettingsFlyoutActivated = false;
 
-    [Header("Navigation - UI - OLD")]
+    [Header("Navigation - UI")]
     [SerializeField] private GameObject kitchenBtnGO;
     private Button kitchenBtn;
     [SerializeField] private GameObject gymBtnGO;
@@ -78,10 +78,10 @@ public class UIManager : MonoBehaviour
     private Button livingRoomBtn;
 
     [Header("Player Statistics - UI")]
-    [SerializeField] private Text energyLevelText;
-    [SerializeField] private Text fulfillmentLevelText;
-    [SerializeField] private Text spiritLevelText;
-    [SerializeField] private Text sleepDollarsLevelText;
+    //[SerializeField] private Text energyLevelText;
+    //[SerializeField] private Text fulfillmentLevelText;
+    //[SerializeField] private Text spiritLevelText;
+    //[SerializeField] private Text sleepDollarsLevelText;
     [SerializeField] private Slider spiritSlider;
     [SerializeField] private Slider energySlider;
     [SerializeField] private Slider fulfilmentSlider;
@@ -96,6 +96,9 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject playerReportBackgroundPanel;
     [SerializeField] private GameObject playerStatisticsPanel;
     private bool spiritLevelPressed;
+    private bool isRoomSet = false;
+    private string currentRoom = "default";
+
 
     [Header("Bedroom Interactables - UI")]
     [SerializeField] private GameObject sendToBedBtnGO;
@@ -314,7 +317,9 @@ public class UIManager : MonoBehaviour
 
     public void SwitchPlayRoomUI(string room = default)
     {
-        switch(room)
+        if (!isRoomSet) currentRoom = room;
+
+        switch (room)
         {
             case "bedroom":
                 SetBedroomUI(true);
@@ -387,6 +392,9 @@ public class UIManager : MonoBehaviour
     {
         if (!isWalkFlyoutActivated)
         {
+            if (isUpgradeFlyoutActivated) ActivateUpgradeFlyoutMenu();
+            if (isSettingsFlyoutActivated) ActivateSettingsFlyoutMenu();
+
             walkFlyoutPanel.SetActive(true);
             isWalkFlyoutActivated = true;
         }
@@ -402,6 +410,12 @@ public class UIManager : MonoBehaviour
     {
         isUpgradeFlyoutActivated = !isUpgradeFlyoutActivated;
         upgradeBedBtnGO.SetActive(isUpgradeFlyoutActivated);
+
+        if (isUpgradeFlyoutActivated)
+        {
+            if (isWalkFlyoutActivated) ActivateWalkFlyoutMenu();
+            if (isSettingsFlyoutActivated) ActivateSettingsFlyoutMenu();
+        }
     }
 
     //setting flyout button pressed
@@ -410,6 +424,12 @@ public class UIManager : MonoBehaviour
         isSettingsFlyoutActivated = !isSettingsFlyoutActivated;
         quitBtn.SetActive(isSettingsFlyoutActivated);
         if (TimeController != null) TimeController.ToggleTimeUI(isSettingsFlyoutActivated);
+
+        if (isSettingsFlyoutActivated)
+        {
+            if (isWalkFlyoutActivated) ActivateWalkFlyoutMenu();
+            if (isUpgradeFlyoutActivated) ActivateUpgradeFlyoutMenu();
+        }
     }
 
     public void CloseAllFlyouts()
@@ -430,21 +450,13 @@ public class UIManager : MonoBehaviour
 
     public void UpgradeBed()
     {
-        UpgradeManager.UpgradeObject("UpgradeBed 1");
+        UpgradeManager.UpgradeObject("UpgradeBed (1)");
     }
 
     #endregion
 
     #region Stats
 
-    public void StatsUpdate(string energyLevel, string fulfillmentLevel, string spiritLevel, float spiritSliderLevel, string sleepDollars)
-    {
-        energyLevelText.text = energyLevel;
-        fulfillmentLevelText.text = fulfillmentLevel;
-        spiritLevelText.text = spiritLevel;
-        spiritSlider.value = spiritSliderLevel;
-        sleepDollarsLevelText.text = sleepDollars;
-    }
     public void StatisticsUpdate(float energyValue, float fulfilValue, float spiritValue, string hrsSleptLastNight, string minigamesPlayedToday, string mealsEatenToday, string sleepGoalsMet, string sleepDollarsAmt)
     {
         energySlider.value = energyValue;
@@ -463,13 +475,26 @@ public class UIManager : MonoBehaviour
     {
         if (!spiritLevelPressed)
         {
+            //close flyouts
+            CloseAllFlyouts();
+
+            //view stats
             ViewPlayerStatistics();
             spiritLevelPressed = true;
+
+            //close room ui
+            isRoomSet = true;
+            SwitchPlayRoomUI();
         }
         else
         {
+            //close stats
             StartCoroutine(DisableUIElementsAfterSeconds(0, new[] { playerStatisticsPanel, playerReportBackgroundPanel }));
             spiritLevelPressed = false;
+
+            //reopen room ui
+            isRoomSet = false;
+            SwitchPlayRoomUI(currentRoom);
         }
     }
 

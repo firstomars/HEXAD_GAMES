@@ -117,7 +117,7 @@ public class CameraManager : MonoBehaviour
                 break;
 
             case "trophycabinet":
-                Debug.Log("player at trophy cabinet"); //DELETE
+                //Debug.Log("player at trophy cabinet"); //DELETE
                 isPlayerInGym = false;
                 isPlayerInKitchen = false;
                 isPlayerInBedroom = false;

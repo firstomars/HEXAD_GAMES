@@ -23,7 +23,7 @@ public class UpgradeableObject : MonoBehaviour
             return;
         }
 
-        if (PlayerStatistics.GetSleepDollars() > upgradeCost)
+        if (PlayerStatistics.GetSleepDollars() >= upgradeCost)
         {
             PlayerStatistics.ReduceSleepDollars(upgradeCost);
             currentUpgradeIndex++;

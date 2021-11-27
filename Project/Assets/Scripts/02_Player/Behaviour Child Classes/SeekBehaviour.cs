@@ -35,6 +35,8 @@ public class SeekBehaviour : Behaviour
         if (PlayerController.HasPlayerReachedDestination())
         {
             PlayerController.IsPetSeeking(false);
+            //if (Vector2.Distance(PlayerController.GetAgentPosition(), FindWaypointHelper("trophycabinet")) > 3.0f)
+            //if (PlayerController.GetAgentPosition() != FindWaypointHelper("trophycabinet"))
         }
     }
 
@@ -98,6 +100,7 @@ public class SeekBehaviour : Behaviour
     {
         if (PlayerController.IsPetAbleToSeek())
         {
+            UIManager.UIManagerInstance.CloseAllFlyouts();
             PlayerController.IsPetSeeking(true);
             PlayerController.SetPlayerDestination(FindWaypointHelper("trophycabinet"));
         }

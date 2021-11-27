@@ -15,6 +15,7 @@ public class PlayerController : BehaviourStateMachine
     private Behaviour SeekBehaviour;
     private Behaviour SleepBehaviour;
     private Behaviour WanderBehaviour;
+    private Behaviour ViewTrophyBehaviour;
     private Behaviour MoodBehaviour;
     private Behaviour EmoteBehaviour;
 
@@ -83,6 +84,7 @@ public class PlayerController : BehaviourStateMachine
         SeekBehaviour = new SeekBehaviour(this);
         SleepBehaviour = new SleepBehaviour(this);
         WanderBehaviour = new WanderBehaviour(this);
+        ViewTrophyBehaviour = new ViewTrophyBehaviour(this);
         MoodBehaviour = new MoodBehaviour(this);
         EmoteBehaviour = new EmoteBehaviour(this);
 
@@ -189,6 +191,10 @@ public class PlayerController : BehaviourStateMachine
             //Debug.Log("bathroom behaviour set");
             nextBehaviour = BathroomBehaviour;
         }
+        else if (isPlayerAtTrophyCabinet)
+        {
+            nextBehaviour = ViewTrophyBehaviour;
+        }
         else //(HasPlayerReachedDestination() && IsCountDownComplete()) 
         {
             //Debug.Log("agent reached destination - call wander now");
@@ -251,6 +257,11 @@ public class PlayerController : BehaviourStateMachine
         return false;
     }
 
+    public Vector3 GetAgentPosition()
+    {
+        return agent.transform.position;
+    }
+
     public void CameraSwitch()
     {
         CameraManager.SwitchCamera(); //rework
@@ -293,7 +304,7 @@ public class PlayerController : BehaviourStateMachine
                 break;
 
             case "trophycabinet":
-                Debug.Log("player at trophy cabinet"); //DELETE
+                //Debug.Log("player at trophy cabinet"); //DELETE
                 isPlayerInGym = false;
                 isPlayerInKitchen = false;
                 isPlayerInBedroom = false;

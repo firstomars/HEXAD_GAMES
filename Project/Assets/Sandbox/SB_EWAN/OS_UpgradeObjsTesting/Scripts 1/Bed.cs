@@ -38,7 +38,7 @@ namespace Sandbox.Ewan.UpgradeObjsTesting
 
         public override void ConnectToUIManagerOnStartUp()
         {
-           // UIManager.UIManagerInstance.bedController = this;
+           //UIManager.UIManagerInstance.bedController = this;
         }
     }
 

@@ -551,7 +551,7 @@ GameObject:
   - component: {fileID: 1532793051590817883}
   - component: {fileID: 227699342594964958}
   m_Layer: 0
-  m_Name: Waypoints
+  m_Name: WaypointsV_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -609,7 +609,6 @@ GameObject:
   - component: {fileID: 7766940206468445781}
   - component: {fileID: 690406552430114370}
   - component: {fileID: 6515188301000339131}
-  - component: {fileID: 744500245592774889}
   m_Layer: 0
   m_Name: new_Bed
   m_TagString: Untagged
@@ -693,18 +692,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &744500245592774889
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6936746852491608522}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cab07bb82d7e36a4da952676f3152932, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &8755248803219908926
 GameObject:
   m_ObjectHideFlags: 0

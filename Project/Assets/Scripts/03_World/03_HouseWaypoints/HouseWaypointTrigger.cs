@@ -11,15 +11,15 @@ public class HouseWaypointTrigger : MonoBehaviour
         PlayerAnimations = GameManager.Instance.player.GetComponent<PlayerAnimations>();
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        AudioManager.AudioManagerInstance.StopSound("FootStep");
-        PlayerAnimations.WalkToIdle();
-    }
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    AudioManager.AudioManagerInstance.StopSound("FootStep");
+    //    PlayerAnimations.WalkToIdle();
+    //}
 
-    private void OnTriggerExit(Collider other)
-    {
-        AudioManager.AudioManagerInstance.PlaySound("FootStep");
-        PlayerAnimations.IdleToWalk();
-    }
+    //private void OnTriggerExit(Collider other)
+    //{
+    //    AudioManager.AudioManagerInstance.PlaySound("FootStep");
+    //    PlayerAnimations.IdleToWalk();
+    //}
 }

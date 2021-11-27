@@ -5,6 +5,8 @@ using UnityEngine.AI;
 
 public class PlayerController : BehaviourStateMachine
 {
+    private PlayerAnimations PlayerAnimations;
+    
     #region Behaviours Setup
 
     private Behaviour ExerciseBehaviour;
@@ -74,6 +76,8 @@ public class PlayerController : BehaviourStateMachine
     // Start is called before the first frame update
     void Start()
     {
+        PlayerAnimations = GetComponent<PlayerAnimations>();
+        
         #region Set Up Behaviour Classes
 
         ExerciseBehaviour = new ExerciseBehaviour(this);
@@ -144,8 +148,48 @@ public class PlayerController : BehaviourStateMachine
         RunBehaviourLogic();
     }
 
+    private void PetStartsWalking()
+    {
+        //Debug.Log("idle to walk");
+        if (!AudioManager.AudioManagerInstance.IsAudioPlaying("FootStep"))
+            AudioManager.AudioManagerInstance.PlaySound("FootStep");
+
+        PlayerAnimations.IdleToWalk();
+    }
+
+    private void PetStopsWalking()
+    {
+        PlayerAnimations.WalkToIdle();
+
+        if (AudioManager.AudioManagerInstance.IsAudioPlaying("FootStep"))
+            AudioManager.AudioManagerInstance.StopSound("FootStep");
+
+        FaceTarget(Camera.main.transform.position);
+    }
+
     private void RunBehaviourLogic()
-    {       
+    {
+        if (agent.remainingDistance > (agent.stoppingDistance + 0.1f)) PetStartsWalking();
+        //{
+
+        //    //Debug.Log("idle to walk");
+        //    if (!AudioManager.AudioManagerInstance.IsAudioPlaying("FootStep"))
+        //        AudioManager.AudioManagerInstance.PlaySound("FootStep");
+
+        //    PlayerAnimations.IdleToWalk();
+        //}
+        else PetStopsWalking();
+        //{
+        //    PlayerAnimations.WalkToIdle();
+
+        //    if (AudioManager.AudioManagerInstance.IsAudioPlaying("FootStep"))
+        //        AudioManager.AudioManagerInstance.StopSound("FootStep");
+
+        //    FaceTarget(Camera.main.transform.position);
+        //}
+
+        //===
+
         if (isPetSleeping)
         {
             return;
@@ -157,20 +201,8 @@ public class PlayerController : BehaviourStateMachine
         else if(isPetSeeking) //!isPlayerInBathroom && !isPlayerInBedroom && !isPlayerInGym && !isPlayerInKitchen && !isPlayerAtTrophyCabinet
         {
             nextBehaviour = SeekBehaviour;
-            ResetCountDownTimer();
+            //ResetCountDownTimer();
         }
-        //if mouse clicked or not in any action rooms, set to seekbehaviour
-        //else if (Input.GetMouseButtonDown(0) && isClickPointOnGround(Input.mousePosition) ||
-        //    !isPlayerInBathroom && !isPlayerInBedroom && !isPlayerInGym && !isPlayerInKitchen && !isPlayerAtTrophyCabinet)
-        //{
-        //    //Debug.Log("seek behaviour set");
-        //    nextBehaviour = SeekBehaviour;
-        //}
-        //else if (Input.GetKeyDown(KeyCode.Alpha1) ||
-        //    !isPlayerInBathroom && !isPlayerInBedroom && !isPlayerInGym && !isPlayerInKitchen && !isPlayerAtTrophyCabinet)
-        //{
-        //    nextBehaviour = SeekBehaviour;
-        //}
         else if (isPlayerInKitchen)
         {
             nextBehaviour = EatBehaviour;
@@ -195,7 +227,7 @@ public class PlayerController : BehaviourStateMachine
         {
             nextBehaviour = ViewTrophyBehaviour;
         }
-        else //(HasPlayerReachedDestination() && IsCountDownComplete()) 
+        else
         {
             //Debug.Log("agent reached destination - call wander now");
             nextBehaviour = WanderBehaviour;
@@ -366,5 +398,13 @@ public class PlayerController : BehaviourStateMachine
     private void ResetCountDownTimer()
     {
         countDownTimer = maxCountDown;
+    }
+
+    private void FaceTarget(Vector3 destination)
+    {
+        Vector3 lookPos = destination - transform.position;
+        lookPos.y = 0;
+        Quaternion rotation = Quaternion.LookRotation(lookPos);
+        transform.rotation = Quaternion.Slerp(transform.rotation, rotation, 0.05f);
     }
 }

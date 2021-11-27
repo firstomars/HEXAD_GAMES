@@ -32,12 +32,8 @@ public class SeekBehaviour : Behaviour
 
     public override void RunBehaviour()
     {
-        if (PlayerController.HasPlayerReachedDestination())
-        {
-            PlayerController.IsPetSeeking(false);
-            //if (Vector2.Distance(PlayerController.GetAgentPosition(), FindWaypointHelper("trophycabinet")) > 3.0f)
-            //if (PlayerController.GetAgentPosition() != FindWaypointHelper("trophycabinet"))
-        }
+        if (PlayerController.HasPlayerReachedDestination()) PlayerController.IsPetSeeking(false);
+        base.RunBehaviour();
     }
 
     public override void EndBehaviour()

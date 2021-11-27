@@ -485,6 +485,8 @@ public class UIManager : MonoBehaviour
             //close room ui
             isRoomSet = true;
             SwitchPlayRoomUI();
+
+            flyoutButtonPanel.SetActive(false);
         }
         else
         {
@@ -495,6 +497,8 @@ public class UIManager : MonoBehaviour
             //reopen room ui
             isRoomSet = false;
             SwitchPlayRoomUI(currentRoom);
+
+            flyoutButtonPanel.SetActive(true);
         }
     }
 

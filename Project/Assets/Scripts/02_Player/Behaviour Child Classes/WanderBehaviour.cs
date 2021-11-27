@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class WanderBehaviour : Behaviour
 {
-    private bool isWanderDestinationSet = false;
+    private bool isWanderDestinationSet = true;
     private bool isCoroutineCalled = false;
 
     public WanderBehaviour(PlayerController playerController) : base(playerController)
@@ -14,7 +14,8 @@ public class WanderBehaviour : Behaviour
 
     public override void StartBehaviour()
     {
-        //Debug.Log("WanderBehaviour Start called - press W to test update");
+        Debug.Log("WanderBehaviour Started");
+        PlayerController.WanderWaypoints.SetWanderWaypoints();
         base.StartBehaviour();
     }
 
@@ -24,7 +25,6 @@ public class WanderBehaviour : Behaviour
         {
             isCoroutineCalled = true;
             PlayerController.StartCoroutine(WaitBeforeWander());
-            Debug.Log("Coroutine called");
         }
 
         if (!isWanderDestinationSet)
@@ -40,21 +40,21 @@ public class WanderBehaviour : Behaviour
     public override void EndBehaviour()
     {
         Debug.Log("WanderBehaviour End called");
+        PlayerController.WanderWaypoints.SetWanderWaypoints();
         base.EndBehaviour();
     }
 
     private void SetWanderDestination()
     {
         int min = 0;
-        //int max = houseWaypoints.Length;
-        int max = PlayerController.HouseWaypoints.waypoints.Length;
+        int max = PlayerController.WanderWaypoints.wanderWaypoints.Length;
 
         System.Random randomNum = new System.Random();
 
         int randomIndex = randomNum.Next(min, max);
 
-        PlayerController.SetPlayerDestination(PlayerController.HouseWaypoints.waypoints[randomIndex].position);
-        Debug.Log("random destination set to " + PlayerController.HouseWaypoints.waypoints[randomIndex].name);
+        PlayerController.SetPlayerDestination(PlayerController.WanderWaypoints.wanderWaypoints[randomIndex].position);
+        //Debug.Log("random destination set to " + PlayerController.WanderWaypoints.wanderWaypoints[randomIndex].name);
     }
 
     private IEnumerator WaitBeforeWander()

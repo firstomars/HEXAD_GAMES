@@ -54,7 +54,7 @@ public class SleepBehaviour : Behaviour
         {
             Debug.Log("Pet sent to bed");
             if (dayFellAsleep == -1) dayFellAsleep = PlayerController.TimeController.GetGameDate();
-            PlayerController.IsPetSleeping(true);
+            //PlayerController.IsPetSleeping(true);
             PlayerController.SetPlayerDestination(PlayerController.bed.position);
 
             AudioManager.AudioManagerInstance.PlaySound("Sleeping");
@@ -71,7 +71,7 @@ public class SleepBehaviour : Behaviour
     public override void WakePetUp()
     {
         Debug.Log("pet woken up");
-        PlayerController.IsPetSleeping(false);
+        //PlayerController.IsPetSleeping(false);
         AudioManager.AudioManagerInstance.StopSound("Sleeping");
         UIManager.UIManagerInstance.WakeUpBtnClicked();
 

@@ -15,12 +15,12 @@ public class PlayerAnimations : MonoBehaviour
     public void IdleToWalk()
     {
         anim.SetBool("IsIdle", false);
-        Debug.Log("walking");
+        //Debug.Log("walking");
     }
 
     public void WalkToIdle()
     {
         anim.SetBool("IsIdle", true);
-        Debug.Log("idling");
+        //Debug.Log("idling");
     }
 }

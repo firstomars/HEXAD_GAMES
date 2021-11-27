@@ -20,7 +20,7 @@ public class BedroomTrigger : RoomTrigger
             IsInRoom(true);
             CameraManager.SetPlayerPosition("bedroom");
             PlayerController.SetPlayerPosition("bedroom");
-            Debug.Log("I am in the bedroom");
+            //Debug.Log("I am in the bedroom");
         }
     }
 
@@ -32,7 +32,7 @@ public class BedroomTrigger : RoomTrigger
 
             CameraManager.SetPlayerPosition();
             PlayerController.SetPlayerPosition();
-            Debug.Log("I am no longer in the bedroom");
+            //Debug.Log("I am no longer in the bedroom");
         }
     }
 }

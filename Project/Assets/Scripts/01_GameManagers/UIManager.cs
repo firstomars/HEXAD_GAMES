@@ -356,7 +356,7 @@ public class UIManager : MonoBehaviour
     #region Seek UI Listeners
 
     public void SetNavigationUIListeners(SeekBehaviour seekBehaviour)
-    {
+    {          
         kitchenBtn.onClick.AddListener(seekBehaviour.SeekKitchen);
         gymBtn.onClick.AddListener(seekBehaviour.SeekGym);
         bedroomBtn.onClick.AddListener(seekBehaviour.SeekBedroom);
@@ -558,7 +558,7 @@ public class UIManager : MonoBehaviour
 
     private void SetBedroomUI(bool value)
     {
-        Debug.Log("bedroom UI set to " + value);
+        //Debug.Log("bedroom UI set to " + value);
         miniGameBtnGO.SetActive(value);
         sendToBedBtnGO.SetActive(value);
 
@@ -634,7 +634,7 @@ public class UIManager : MonoBehaviour
 
     private void SetGymUI(bool value)
     {
-        Debug.Log("gym UI set to " + value);
+        //Debug.Log("gym UI set to " + value);
         benchPressBtnGO.SetActive(value);
 
         SetGymUIListeners(value);

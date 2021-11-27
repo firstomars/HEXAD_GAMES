@@ -59,6 +59,7 @@ public class PlayerController : BehaviourStateMachine
     [HideInInspector] public Transform bed;
     [HideInInspector] public Transform trophyCabinetPosition;
     [HideInInspector] public HouseWaypoints HouseWaypoints;
+    [HideInInspector] public WanderWaypoints WanderWaypoints;
 
     [Header("Player Stats")]
     [SerializeField] private GameObject playerStatsGameObject;
@@ -151,12 +152,7 @@ public class PlayerController : BehaviourStateMachine
         {
             nextBehaviour = StatusCheckBehaviour;
         }
-        //else if (HasPlayerReachedDestination() && IsCountDownComplete()) //
-        //{
-        //    //Debug.Log("agent reached destination - call wander now");
-        //    nextBehaviour = WanderBehaviour;
-        //}
-        else if(!isPlayerInBathroom && !isPlayerInBedroom && !isPlayerInGym && !isPlayerInKitchen && !isPlayerAtTrophyCabinet)
+        else if(isPetSeeking) //!isPlayerInBathroom && !isPlayerInBedroom && !isPlayerInGym && !isPlayerInKitchen && !isPlayerAtTrophyCabinet
         {
             nextBehaviour = SeekBehaviour;
             ResetCountDownTimer();
@@ -192,6 +188,11 @@ public class PlayerController : BehaviourStateMachine
         {
             //Debug.Log("bathroom behaviour set");
             nextBehaviour = BathroomBehaviour;
+        }
+        else //(HasPlayerReachedDestination() && IsCountDownComplete()) 
+        {
+            //Debug.Log("agent reached destination - call wander now");
+            nextBehaviour = WanderBehaviour;
         }
         //else if (Input.GetKeyDown(KeyCode.Alpha1)) // set to top - UNUSED BEHAVIOURS
         //{
@@ -241,10 +242,12 @@ public class PlayerController : BehaviourStateMachine
 
     public bool HasPlayerReachedDestination()
     {
-        if (Vector3.Distance(agent.destination, gameObject.transform.position) < 3.0f)
+        if (agent.remainingDistance < 1.0f)
         {
+            //Debug.Log("agent reached destination");
             return true;
         }
+
         return false;
     }
 
@@ -326,6 +329,11 @@ public class PlayerController : BehaviourStateMachine
             return true;
         }
         else return false;
+    }
+
+    public void IsPetSeeking(bool value)
+    {
+        isPetSeeking = value;
     }
 
     private bool IsPetAbleToWander()

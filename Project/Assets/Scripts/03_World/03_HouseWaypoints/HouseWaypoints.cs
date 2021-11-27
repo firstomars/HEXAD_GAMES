@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class HouseWaypoints : MonoBehaviour
 {
-
     private PlayerController PlayerController;
     [SerializeField] public Transform[] waypoints;
     
@@ -13,13 +12,5 @@ public class HouseWaypoints : MonoBehaviour
     {
         PlayerController = GameManager.Instance.player.GetComponent<PlayerController>();
         PlayerController.HouseWaypoints = this;
-        
-        //PlayerController.SetHouseWaypoints(waypoints);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

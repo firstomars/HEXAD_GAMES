@@ -58,7 +58,7 @@ public class SleepBehaviour : Behaviour
             PlayerController.SetPlayerDestination(PlayerController.bed.position);
 
             AudioManager.AudioManagerInstance.PlaySound("Sleeping");
-            AudioManager.AudioManagerInstance.StopSound("FootsStep");
+            AudioManager.AudioManagerInstance.StopSound("FootStep");
 
             UIManager.UIManagerInstance.SendToBedBtnClicked();
         }

@@ -8,11 +8,11 @@ public class PlayerStatistics : MonoBehaviour
 {
     private UIManager UIManager;
     
-    private int hrsSleptNightOne;
-    private int hrsSleptNightTwo;
-    private int hrsSleptNightThree;
-    private int hrsSleptNightFour;
-    private int hrsSleptNightFive;
+    [SerializeField] private int hrsSleptNightOne;
+    [SerializeField] private int hrsSleptNightTwo;
+    [SerializeField] private int hrsSleptNightThree;
+    [SerializeField] private int hrsSleptNightFour;
+    [SerializeField] private int hrsSleptNightFive;
 
     //set by intro scene
     private int wakeUpTime;
@@ -48,32 +48,29 @@ public class PlayerStatistics : MonoBehaviour
     private int minigamesPlayed = 0;
     private int mealsEatenToday = 0;
 
+    [HideInInspector] public int SleepTrophyGoals { get; set; }
+
     // Start is called before the first frame update
     void Start()
     {
         UIManager = UIManager.UIManagerInstance;
         StartCoroutine(ReduceEnergyOverTime());
+
+        SleepTrophyGoals = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
-        UIManager.UIManagerInstance.StatisticsUpdate(
+        UIManager.StatisticsUpdate(
             CalculateEnergySliderLevel(),
             CalculateFulfillmentSliderLevel(),
             CalculateSpiritSliderLevel(),
             hrsSleptNightOne.ToString(),
             minigamesPlayed.ToString(),
             mealsEatenToday.ToString(),
-            "1",
+            SleepTrophyGoals.ToString(),
             sleepDollarsLevel.ToString());
-
-        //UIManager.StatsUpdate(
-        //    energyLevel.ToString(), 
-        //    fulfilLevel.ToString(), 
-        //    CalculateSpiritLevel().ToString(),
-        //    CalculateSpiritSliderLevel(),
-        //    sleepDollarsLevel.ToString());
     }
 
     IEnumerator ReduceEnergyOverTime()

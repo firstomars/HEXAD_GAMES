@@ -71,4 +71,32 @@ public class StatusCheckBehaviour : Behaviour
         SetUI();
         base.EndBehaviour();
     }
+
+    /*
+    
+    new Update
+
+    if (UIMorningReport.hasTimesBeenSubmitted) && hasAlreadyBeenCalled?
+    {
+        //get and set hours slept
+        int bedTime = UIMorningReport.GetBedtime();
+        int wakeUpTime = UIMorningReport.GetWakeUpTime();
+        Vector2Int hrsSlept = PlayerController.PlayerStatistics.CalculateHoursSleptNightOneTwo(bedTime, wakeUpTime);
+        UIMorningReport.SetHoursSleptTextNightOneTwo(hrsSlept);    
+        
+        //if achievement unlcoked set trophy titles
+        string[] trophyReceivedTitles = PlayerController.TrophyController.NEWTrophyConditionCheck();
+        if (trophiesReceive > 0) UIMorningReport.ActivateUnlockAchievementButton(true, trophyReceivedTitles);
+        
+        //set goals text
+        UIMorningReport.SetGoalsText(PlayerController.TrophyController.GetGoalsText())
+    }
+
+
+    call later (close report button?)
+
+            PlayerController.TrophyController.InstantiateTrophy();
+
+     */
+
 }

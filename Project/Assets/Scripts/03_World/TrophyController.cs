@@ -6,7 +6,7 @@ public class TrophyController : MonoBehaviour
 {
     [SerializeField] private Transform petTrophyPos;
     private PlayerController PlayerController;
-
+    
     [System.Serializable]
     public class Trophy
     {
@@ -55,6 +55,65 @@ public class TrophyController : MonoBehaviour
             trophies[4].isConditionMet = true;
     }
 
+    public string[] NEWTrophyConditionCheck()
+    {
+        string[] unlockedTrophyTitles = { "null", "null" };
+
+        //replace with actual trophy conditions
+        if (!trophies[0].isConditionMet && IsTrophyOneConditionMet())
+        {
+            trophies[0].isConditionMet = true;
+
+            unlockedTrophyTitles[0] = trophies[0].name;
+            unlockedTrophyTitles[1] = trophies[0].trophyConditions;
+
+            return unlockedTrophyTitles;
+        }
+            
+
+        if (!trophies[1].isConditionMet && IsTrophyTwoConditionMet())
+        {
+            trophies[1].isConditionMet = true;
+            unlockedTrophyTitles[0] = trophies[1].name;
+            unlockedTrophyTitles[1] = trophies[1].trophyConditions;
+
+            return unlockedTrophyTitles;
+        }
+            
+
+        if (!trophies[2].isConditionMet && IsTrophyThreeConditionMet())
+        {
+            trophies[2].isConditionMet = true;
+            unlockedTrophyTitles[0] = trophies[2].name;
+            unlockedTrophyTitles[1] = trophies[2].trophyConditions;
+
+            return unlockedTrophyTitles;
+        }
+            
+
+        if (!trophies[3].isConditionMet && Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            trophies[3].isConditionMet = true;
+            unlockedTrophyTitles[0] = trophies[3].name;
+            unlockedTrophyTitles[1] = trophies[3].trophyConditions;
+
+            return unlockedTrophyTitles;
+        }
+            
+
+        if (!trophies[4].isConditionMet && Input.GetKeyDown(KeyCode.Alpha5))
+        {
+            trophies[4].isConditionMet = true;
+            unlockedTrophyTitles[0] = trophies[4].name;
+            unlockedTrophyTitles[1] = trophies[4].trophyConditions;
+
+            return unlockedTrophyTitles;
+        }
+
+        return unlockedTrophyTitles;
+    }
+
+
     public void InstantiateTrophy()
     {
         foreach (Trophy trophy in trophies)
@@ -63,6 +122,7 @@ public class TrophyController : MonoBehaviour
             {
                 Instantiate(trophy.trophyPrefab, trophy.trophyPosition);
                 trophy.isTrophyCreated = true;
+                PlayerController.PlayerStatistics.SleepTrophyGoals++;
                 PlayerController.PlayerStatistics.SleepDollarsReward(trophy.sleepDollarReward);
             }
         }

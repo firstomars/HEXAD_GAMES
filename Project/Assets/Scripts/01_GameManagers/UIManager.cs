@@ -78,10 +78,6 @@ public class UIManager : MonoBehaviour
     private Button livingRoomBtn;
 
     [Header("Player Statistics - UI")]
-    //[SerializeField] private Text energyLevelText;
-    //[SerializeField] private Text fulfillmentLevelText;
-    //[SerializeField] private Text spiritLevelText;
-    //[SerializeField] private Text sleepDollarsLevelText;
     [SerializeField] private Slider spiritSlider;
     [SerializeField] private Slider energySlider;
     [SerializeField] private Slider fulfilmentSlider;
@@ -91,8 +87,6 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI sleepGoalsValue;
     [SerializeField] private TextMeshProUGUI sleepDollarsValue;
     [SerializeField] private TextMeshProUGUI completionValue;
-
-    //NEW
     [SerializeField] private GameObject playerReportBackgroundPanel;
     [SerializeField] private GameObject playerStatisticsPanel;
     private bool spiritLevelPressed;
@@ -145,8 +139,6 @@ public class UIManager : MonoBehaviour
     [Header("Upgrade Interactables UI")]
     [SerializeField] private GameObject upgradeBedBtnGO;
     private Button upgradeBedBtn;
-
-
 
     //===
 
@@ -382,6 +374,7 @@ public class UIManager : MonoBehaviour
             flyoutButtonPanel.transform.GetChild(0).GetComponentInChildren<Image>().sprite = deactivateFlyoutImage;
 
             if (spiritLevelPressed) SpiritLevelPressed();
+            if (isSettingsFlyoutActivated) ActivateSettingsFlyoutMenu();
         }
         else
         {
@@ -441,6 +434,9 @@ public class UIManager : MonoBehaviour
             walkFlyoutPanel.SetActive(false);
             isWalkFlyoutActivated = false;
         }
+
+        if (isSettingsFlyoutActivated) ActivateSettingsFlyoutMenu();
+
         mainFlyoutPanel.SetActive(false);
         isMainFlyoutActivated = false;
         flyoutButtonPanel.transform.GetChild(0).GetComponentInChildren<Image>().sprite = activateFlyoutImage;

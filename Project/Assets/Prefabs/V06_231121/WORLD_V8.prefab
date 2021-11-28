@@ -9556,22 +9556,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2185118541491557353, guid: cff99e4022bbf4948bb25bee475bc96b, type: 3}
-      propertyPath: trophies.Array.data[3].name
-      value: On The Right Track
-      objectReference: {fileID: 0}
-    - target: {fileID: 2185118541491557353, guid: cff99e4022bbf4948bb25bee475bc96b, type: 3}
-      propertyPath: trophies.Array.data[4].name
-      value: Getting Your Zen On
-      objectReference: {fileID: 0}
-    - target: {fileID: 2185118541491557353, guid: cff99e4022bbf4948bb25bee475bc96b, type: 3}
-      propertyPath: trophies.Array.data[3].trophyConditions
-      value: Log in for first time after sleeping
-      objectReference: {fileID: 0}
-    - target: {fileID: 2185118541491557353, guid: cff99e4022bbf4948bb25bee475bc96b, type: 3}
-      propertyPath: trophies.Array.data[4].trophyConditions
-      value: Log in 7 days in a row
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cff99e4022bbf4948bb25bee475bc96b, type: 3}
 --- !u!4 &6253849199409561348 stripped

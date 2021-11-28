@@ -60,7 +60,7 @@ public class PlayerController : BehaviourStateMachine
     [SerializeField] private LayerMask whatIsPlayer, whatIsGround;
     [SerializeField] public Vector3 targetPosition;
     [HideInInspector] public Transform bed;
-    [HideInInspector] public Transform trophyCabinetPosition;
+    [HideInInspector] public Transform trophyCabinetPosition; // DELETE
     [HideInInspector] public HouseWaypoints HouseWaypoints;
     [HideInInspector] public WanderWaypoints WanderWaypoints;
 

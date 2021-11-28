@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TrophyController : MonoBehaviour
 {
-    [SerializeField] private Transform petTrophyPos;
+    [SerializeField] private Transform petTrophyPos; //DELETE
     private PlayerController PlayerController;
     
     [System.Serializable]
@@ -27,7 +27,7 @@ public class TrophyController : MonoBehaviour
         //get data from player prefs
 
         PlayerController = GameManager.Instance.player.GetComponent<PlayerController>();
-        PlayerController.trophyCabinetPosition = petTrophyPos;
+        PlayerController.trophyCabinetPosition = petTrophyPos; //DELETE
     }
 
     // Update is called once per frame

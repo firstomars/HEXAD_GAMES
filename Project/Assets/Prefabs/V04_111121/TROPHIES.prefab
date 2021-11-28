@@ -349,15 +349,15 @@ MonoBehaviour:
     trophyPrefab: {fileID: 3115532345704486240, guid: efd12a3f0f2746947ae588e4c1841313, type: 3}
     trophyPosition: {fileID: 2185118540058341323}
     sleepDollarReward: 60
-  - name: 
-    trophyConditions: 
+  - name: On The Right Track
+    trophyConditions: Log in for first time after sleeping
     isTrophyCreated: 0
     isConditionMet: 0
     trophyPrefab: {fileID: 5153470230046544660, guid: e563826020dc7404b93f851c721acd00, type: 3}
     trophyPosition: {fileID: 2185118540148158833}
     sleepDollarReward: 0
-  - name: 
-    trophyConditions: 
+  - name: Getting Your Zen On
+    trophyConditions: Log in 7 days in a row
     isTrophyCreated: 0
     isConditionMet: 0
     trophyPrefab: {fileID: 3115532345704486240, guid: efd12a3f0f2746947ae588e4c1841313, type: 3}

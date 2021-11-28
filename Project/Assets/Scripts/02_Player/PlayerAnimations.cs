@@ -20,7 +20,7 @@ public class PlayerAnimations : MonoBehaviour
 
     public void WalkToIdle()
     {
-        Debug.Log(anim);
+        //Debug.Log(anim);
         
         anim.SetBool("IsIdle", true);
         //Debug.Log("idling");

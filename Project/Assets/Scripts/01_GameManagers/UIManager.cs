@@ -114,30 +114,6 @@ public class UIManager : MonoBehaviour
 
     [Header("Report Interactables UI")]
     [SerializeField] public GameObject UIMorningReportObj;
-    //OLD
-
-    //[SerializeField] private GameObject reportUiObj;
-    //[SerializeField] private GameObject reportText;
-    //[SerializeField] private GameObject bedTimeInputFieldObj;
-    //[SerializeField] private GameObject wakeUpTimeInputFieldObj;
-    //[SerializeField] private GameObject hrsSleptNightOneTitle;
-    //[SerializeField] private GameObject hrsSleptNightTwoTitle;
-    //[SerializeField] private GameObject hrsSleptNightOneTextObj;
-    //[SerializeField] private GameObject hrsSleptNightTwoTextObj;
-    //private Text hrsSleptNightOneText;
-    //private Text hrsSleptNightTwoText;
-    //[SerializeField] private GameObject closeReportBtnObj;
-    //private Button closeReportBtn;
-    //[SerializeField] private GameObject viewGoalsBtnObj;
-    //private Button viewGoalsBtn;
-    //[SerializeField] private GameObject goals;
-    //[SerializeField] private Text goalOneText;
-    //[SerializeField] private Text goalTwoText;
-    //[SerializeField] private Text goalThreeText;
-    //[SerializeField] private Text goalFourText;
-    //[SerializeField] private Text goalFiveText;
-    //[HideInInspector] public int bedTime = -1;
-    //[HideInInspector] public int wakeUpTime = -1;
 
     [Header("Upgrade Interactables UI")]
     [SerializeField] private GameObject upgradeBedBtnGO;
@@ -178,13 +154,6 @@ public class UIManager : MonoBehaviour
 
         //gym UI
         benchPressBtn = benchPressBtnGO.GetComponent<Button>();
-
-        //report UI
-        //old
-        //hrsSleptNightOneText = hrsSleptNightOneTextObj.GetComponent<Text>();// DELETE
-        //hrsSleptNightTwoText = hrsSleptNightTwoTextObj.GetComponent<Text>();// DELETE
-        //closeReportBtn = closeReportBtnObj.GetComponent<Button>();          // DELETE
-        //viewGoalsBtn = viewGoalsBtnObj.GetComponent<Button>();              // DELETE
 
         //upgrades UI
         upgradeBedBtn = upgradeBedBtnGO.GetComponent<Button>();
@@ -440,6 +409,7 @@ public class UIManager : MonoBehaviour
         }
 
         if (isSettingsFlyoutActivated) ActivateSettingsFlyoutMenu();
+        if (isUpgradeFlyoutActivated) ActivateUpgradeFlyoutMenu();
 
         mainFlyoutPanel.SetActive(false);
         isMainFlyoutActivated = false;

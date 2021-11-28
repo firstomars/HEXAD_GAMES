@@ -170,25 +170,7 @@ public class PlayerController : BehaviourStateMachine
     private void RunBehaviourLogic()
     {
         if (agent.remainingDistance > (agent.stoppingDistance + 0.1f)) PetStartsWalking();
-        //{
-
-        //    //Debug.Log("idle to walk");
-        //    if (!AudioManager.AudioManagerInstance.IsAudioPlaying("FootStep"))
-        //        AudioManager.AudioManagerInstance.PlaySound("FootStep");
-
-        //    PlayerAnimations.IdleToWalk();
-        //}
         else PetStopsWalking();
-        //{
-        //    PlayerAnimations.WalkToIdle();
-
-        //    if (AudioManager.AudioManagerInstance.IsAudioPlaying("FootStep"))
-        //        AudioManager.AudioManagerInstance.StopSound("FootStep");
-
-        //    FaceTarget(Camera.main.transform.position);
-        //}
-
-        //===
 
         if (isPetSleeping)
         {

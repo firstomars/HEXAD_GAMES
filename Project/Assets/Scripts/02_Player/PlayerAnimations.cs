@@ -7,7 +7,7 @@ public class PlayerAnimations : MonoBehaviour
     Animator anim;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         anim = GetComponent<Animator>();
     }
@@ -20,6 +20,8 @@ public class PlayerAnimations : MonoBehaviour
 
     public void WalkToIdle()
     {
+        Debug.Log(anim);
+        
         anim.SetBool("IsIdle", true);
         //Debug.Log("idling");
     }

@@ -5,6 +5,9 @@ using UnityEngine;
 public class StatusCheckBehaviour : Behaviour
 {
     private bool isReportUIActivated = false;
+    private bool isMorningReportDelivered = false;
+
+    private UIMorningReport UIMorningReport;
     
     public StatusCheckBehaviour(PlayerController playerController) : base(playerController)
     {
@@ -15,19 +18,57 @@ public class StatusCheckBehaviour : Behaviour
     {
         Debug.Log("StatusCheckBehaviour Start called");
         PlayerController.SetPlayerDestination(FindWaypointHelper("trophycabinet"));
+
+        UIMorningReport = UIManager.UIManagerInstance.UIMorningReportObj.GetComponent<UIMorningReport>();
+
         base.StartBehaviour();
     }
 
     public override void RunBehaviour()
     {
-        if (!isReportUIActivated && Vector2.Distance(PlayerController.GetAgentPosition(), FindWaypointHelper("trophycabinet")) < 3.0f)
+        if (!isReportUIActivated && Vector2.Distance(PlayerController.GetAgentPosition(), FindWaypointHelper("trophycabinet")) < 2.0f)
         {
             SetUI("report");
-            UIManager.UIManagerInstance.SetGoalsText(
-                PlayerController.TrophyController.GetGoalsText());
-
             isReportUIActivated = true;
         }
+
+        if (UIMorningReport.hasTimesBeenSubmitted && !isMorningReportDelivered) //&& hasAlreadyBeenCalled ?
+        {
+            //get and set hours slept
+            int bedTime = UIMorningReport.GetBedtime();
+            int wakeUpTime = UIMorningReport.GetWakeUpTime();
+
+            //Debug.Log("Bedtime " + bedTime + "WakeUpTime " + wakeUpTime);
+
+            Vector2Int hrsSlept = PlayerController.PlayerStatistics.CalculateHoursSleptNightOneTwo(bedTime, wakeUpTime);
+
+            //if achievement unlcoked set trophy titles
+            string[] trophyReceivedTitles = PlayerController.TrophyController.NEWTrophyConditionCheck();
+
+            if (trophyReceivedTitles[0] != "null")
+                UIMorningReport.IsAchieveUnlocked(true, trophyReceivedTitles);
+
+            UIMorningReport.DeliverMorningReport(hrsSlept);
+
+            //set goals text
+            UIMorningReport.SetGoalsText(PlayerController.TrophyController.GetGoalsText());
+
+            isMorningReportDelivered = true;
+        }
+
+        if(UIMorningReport.IsMorningReportClosed)
+        {
+            PlayerController.TrophyController.InstantiateTrophy();
+
+            isReportUIActivated = false;
+            isMorningReportDelivered = false;
+
+            UIMorningReport.IsMorningReportClosed = false;
+
+            PlayerController.IsReportDelivered(true); //leads to end behaviour
+        }
+
+        #region OLD REPORT UI
 
         //if (PlayerController.HasPlayerReachedDestination())
         //{
@@ -35,32 +76,34 @@ public class StatusCheckBehaviour : Behaviour
         //    UIManager.UIManagerInstance.SetGoalsText(
         //        PlayerController.TrophyController.GetGoalsText());
         //}
-        
+
         //if (Input.GetKeyDown(KeyCode.Space))
         //{
         //    SetUI("report");
         //    UIManager.UIManagerInstance.SetGoalsText(
         //        PlayerController.TrophyController.GetGoalsText());
         //}
-            
-        if (UIManager.UIManagerInstance.bedTime != -1 && UIManager.UIManagerInstance.wakeUpTime != -1)
-        {
-            int bedTime = UIManager.UIManagerInstance.GetBedtime();
-            int wakeUpTime = UIManager.UIManagerInstance.GetWakeUpTime();
 
-            Vector2Int hrsSlept = PlayerController.PlayerStatistics.CalculateHoursSleptNightOneTwo(bedTime, wakeUpTime);
+        //if (UIManager.UIManagerInstance.bedTime != -1 && UIManager.UIManagerInstance.wakeUpTime != -1)
+        //{
+        //    int bedTime = UIManager.UIManagerInstance.GetBedtime();
+        //    int wakeUpTime = UIManager.UIManagerInstance.GetWakeUpTime();
 
-            //int hrsSlept = PlayerController.PlayerStatistics.CalculateHoursSlept(bedTime, wakeUpTime);
+        //    Vector2Int hrsSlept = PlayerController.PlayerStatistics.CalculateHoursSleptNightOneTwo(bedTime, wakeUpTime);
 
-            //UIManager.UIManagerInstance.SetHoursSleptText(hrsSlept);
-            UIManager.UIManagerInstance.SetHoursSleptTextNightOneTwo(hrsSlept);
-            
-            //REFACTOR BELOW
-            PlayerController.TrophyController.TrophyConditionCheck();
-            PlayerController.TrophyController.InstantiateTrophy();
+        //    //int hrsSlept = PlayerController.PlayerStatistics.CalculateHoursSlept(bedTime, wakeUpTime);
 
-            PlayerController.IsReportDelivered(true);
-        }
+        //    //UIManager.UIManagerInstance.SetHoursSleptText(hrsSlept);
+        //    UIManager.UIManagerInstance.SetHoursSleptTextNightOneTwo(hrsSlept);
+
+        //    //REFACTOR BELOW
+        //    PlayerController.TrophyController.TrophyConditionCheck();
+        //    PlayerController.TrophyController.InstantiateTrophy();
+
+        //    PlayerController.IsReportDelivered(true);
+        //}
+
+        #endregion
 
         base.RunBehaviour();
     }

@@ -113,28 +113,31 @@ public class UIManager : MonoBehaviour
     private Button benchPressBtn;
 
     [Header("Report Interactables UI")]
-    [SerializeField] private GameObject reportUiObj;
-    [SerializeField] private GameObject reportText;
-    [SerializeField] private GameObject bedTimeInputFieldObj;
-    [SerializeField] private GameObject wakeUpTimeInputFieldObj;
-    [SerializeField] private GameObject hrsSleptNightOneTitle;
-    [SerializeField] private GameObject hrsSleptNightTwoTitle;
-    [SerializeField] private GameObject hrsSleptNightOneTextObj;
-    [SerializeField] private GameObject hrsSleptNightTwoTextObj;
-    private Text hrsSleptNightOneText;
-    private Text hrsSleptNightTwoText;
-    [SerializeField] private GameObject closeReportBtnObj;
-    private Button closeReportBtn;
-    [SerializeField] private GameObject viewGoalsBtnObj;
-    private Button viewGoalsBtn;
-    [SerializeField] private GameObject goals;
-    [SerializeField] private Text goalOneText;
-    [SerializeField] private Text goalTwoText;
-    [SerializeField] private Text goalThreeText;
-    [SerializeField] private Text goalFourText;
-    [SerializeField] private Text goalFiveText;
-    [HideInInspector] public int bedTime = -1;
-    [HideInInspector] public int wakeUpTime = -1;
+    [SerializeField] public GameObject UIMorningReportObj;
+    //OLD
+
+    //[SerializeField] private GameObject reportUiObj;
+    //[SerializeField] private GameObject reportText;
+    //[SerializeField] private GameObject bedTimeInputFieldObj;
+    //[SerializeField] private GameObject wakeUpTimeInputFieldObj;
+    //[SerializeField] private GameObject hrsSleptNightOneTitle;
+    //[SerializeField] private GameObject hrsSleptNightTwoTitle;
+    //[SerializeField] private GameObject hrsSleptNightOneTextObj;
+    //[SerializeField] private GameObject hrsSleptNightTwoTextObj;
+    //private Text hrsSleptNightOneText;
+    //private Text hrsSleptNightTwoText;
+    //[SerializeField] private GameObject closeReportBtnObj;
+    //private Button closeReportBtn;
+    //[SerializeField] private GameObject viewGoalsBtnObj;
+    //private Button viewGoalsBtn;
+    //[SerializeField] private GameObject goals;
+    //[SerializeField] private Text goalOneText;
+    //[SerializeField] private Text goalTwoText;
+    //[SerializeField] private Text goalThreeText;
+    //[SerializeField] private Text goalFourText;
+    //[SerializeField] private Text goalFiveText;
+    //[HideInInspector] public int bedTime = -1;
+    //[HideInInspector] public int wakeUpTime = -1;
 
     [Header("Upgrade Interactables UI")]
     [SerializeField] private GameObject upgradeBedBtnGO;
@@ -177,10 +180,11 @@ public class UIManager : MonoBehaviour
         benchPressBtn = benchPressBtnGO.GetComponent<Button>();
 
         //report UI
-        hrsSleptNightOneText = hrsSleptNightOneTextObj.GetComponent<Text>();
-        hrsSleptNightTwoText = hrsSleptNightTwoTextObj.GetComponent<Text>();
-        closeReportBtn = closeReportBtnObj.GetComponent<Button>();
-        viewGoalsBtn = viewGoalsBtnObj.GetComponent<Button>();
+        //old
+        //hrsSleptNightOneText = hrsSleptNightOneTextObj.GetComponent<Text>();// DELETE
+        //hrsSleptNightTwoText = hrsSleptNightTwoTextObj.GetComponent<Text>();// DELETE
+        //closeReportBtn = closeReportBtnObj.GetComponent<Button>();          // DELETE
+        //viewGoalsBtn = viewGoalsBtnObj.GetComponent<Button>();              // DELETE
 
         //upgrades UI
         upgradeBedBtn = upgradeBedBtnGO.GetComponent<Button>();
@@ -508,72 +512,81 @@ public class UIManager : MonoBehaviour
 
     private void SetReportUI(bool value)
     {
-        reportUiObj.SetActive(value);
-        goals.SetActive(false);
+        CloseAllFlyouts();
+        flyoutButtonPanel.SetActive(!value);
+
+        //if (value == true)
+        //{
+        //    CloseAllFlyouts();
+        //    flyoutButtonPanel.SetActive(false);
+        //}
+
+        UIMorningReportObj.SetActive(value);
     }
 
-    public void CloseReportButton()
-    {
-        reportUiObj.SetActive(false);
-    }
+    //delete report fns
 
-    public void ViewGoalsButton()
-    {
-        goals.SetActive(true);
-    }
+    //public void CloseReportButton()
+    //{
+    //    reportUiObj.SetActive(false);
+    //}
 
-    public void SetGoalsText(string[] goalsText)
-    {
-        goalOneText.text = goalsText[0];
-        goalTwoText.text = goalsText[1];
-        goalThreeText.text = goalsText[2];
-        goalFourText.text = goalsText[3];
-        goalFiveText.text = goalsText[4];
-    }
+    //public void ViewGoalsButton()
+    //{
+    //    goals.SetActive(true);
+    //}
 
-    //bedtime input field
-    public void BedtimeInputField(string bedTimeInput)
-    {
-        bool isNumeric = int.TryParse(bedTimeInput, out _);
-        if (isNumeric) bedTime = Int16.Parse(bedTimeInput);
-        else Debug.Log("Only ints can be passed in");
-    }
+    //public void SetGoalsText(string[] goalsText)
+    //{
+    //    goalOneText.text = goalsText[0];
+    //    goalTwoText.text = goalsText[1];
+    //    goalThreeText.text = goalsText[2];
+    //    goalFourText.text = goalsText[3];
+    //    goalFiveText.text = goalsText[4];
+    //}
 
-    //wake up time input field
-    public void WakeUpTimeInputField(string wakeUpInput)
-    {
-        bool isNumeric = int.TryParse(wakeUpInput, out _);
-        if (isNumeric) wakeUpTime = Int16.Parse(wakeUpInput);
-        else Debug.Log("Only ints can be passed in");
-    }
+    ////bedtime input field
+    //public void BedtimeInputField(string bedTimeInput)
+    //{
+    //    bool isNumeric = int.TryParse(bedTimeInput, out _);
+    //    if (isNumeric) bedTime = Int16.Parse(bedTimeInput);
+    //    else Debug.Log("Only ints can be passed in");
+    //}
 
-    public int GetBedtime()
-    {
-        int timeToReturn = bedTime;
-        bedTime = -1;
-        return timeToReturn;
-    }
+    ////wake up time input field
+    //public void WakeUpTimeInputField(string wakeUpInput)
+    //{
+    //    bool isNumeric = int.TryParse(wakeUpInput, out _);
+    //    if (isNumeric) wakeUpTime = Int16.Parse(wakeUpInput);
+    //    else Debug.Log("Only ints can be passed in");
+    //}
 
-    public int GetWakeUpTime()
-    {
-        int timeToReturn = wakeUpTime;
-        wakeUpTime= -1;
-        return timeToReturn;
-    }
+    
+    //public int GetBedtime() // DELETE
+    //{
+    //    int timeToReturn = bedTime;
+    //    bedTime = -1;
+    //    return timeToReturn;
+    //}
 
-    public void SetHoursSleptText(int hrsSlept)
-    {
-        hrsSleptNightOneText.text = hrsSlept.ToString();
-    }
+    //public int GetWakeUpTime() //DELETE
+    //{
+    //    int timeToReturn = wakeUpTime;
+    //    wakeUpTime= -1;
+    //    return timeToReturn;
+    //}
 
-    public void SetHoursSleptTextNightOneTwo(Vector2Int hrsSlept)
-    {
-        hrsSleptNightOneText.text = hrsSlept[0].ToString();
-        hrsSleptNightTwoText.text = hrsSlept[1].ToString();  
-        
-        //hrsSleptNightTwoText.text = hrsSleptNightTwo.ToString();
-        //hrsSleptNightOneText.text = hrsSleptNightOne.ToString();
-    }
+    //public void SetHoursSleptText(int hrsSlept)
+    //{
+    //    hrsSleptNightOneText.text = hrsSlept.ToString();
+    //}
+
+    //public void SetHoursSleptTextNightOneTwo(Vector2Int hrsSlept)
+    //{
+    //    hrsSleptNightOneText.text = hrsSlept[0].ToString();
+    //    hrsSleptNightTwoText.text = hrsSlept[1].ToString();  
+       
+    //}
 
     #endregion
 

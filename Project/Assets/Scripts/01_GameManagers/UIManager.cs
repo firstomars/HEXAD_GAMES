@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using System;
+using System.Linq;
+using UnityEngine.EventSystems;
 
 public class UIManager : MonoBehaviour
 {
@@ -64,6 +65,11 @@ public class UIManager : MonoBehaviour
     private bool isWalkFlyoutActivated = false;
     private bool isUpgradeFlyoutActivated = false;
     private bool isSettingsFlyoutActivated = false;
+    private int nextHoursPage = 0;
+    private readonly List<string> inputHours = new List<string> { "00:00", "01:00", "02:00", "03:00", "04:00", "05:00",
+                                                            "06:00", "07:00", "08:00", "09:00", "10:00", "11:00",
+                                                            "12:00", "13:00", "14:00", "15:00", "16:00", "17:00",
+                                                            "18:00", "19:00", "20:00", "21:00", "22:00", "23:00" };
 
     [Header("Navigation - UI")]
     [SerializeField] private GameObject kitchenBtnGO;
@@ -93,6 +99,25 @@ public class UIManager : MonoBehaviour
     private bool isRoomSet = false;
     private string currentRoom = "default";
 
+    [Header("Daily Report - UI")]
+    [SerializeField] private TextMeshProUGUI setBedTime;
+    [SerializeField] private TextMeshProUGUI setWakeTime;
+    [SerializeField] private TextMeshProUGUI hoursSleptLastNight;
+    [SerializeField] private TextMeshProUGUI hoursSleptPreviousNight;
+    [SerializeField] private TextMeshProUGUI trophyDescriptionText;
+
+    [Header("Pet Dialogue Text Panel")]
+    [SerializeField] private GameObject petDialoguePanel;
+    [SerializeField] private TextMeshProUGUI petDialogueText;
+    [SerializeField] private GameObject playerResponsePanel;
+    [SerializeField] private GameObject petColourPanel;
+    [SerializeField] private GameObject timeEntryPanel;
+    private DialogueManager DialogueManager;
+
+    [Header("Button Prefabs - Player Responses")]
+    [SerializeField] private GameObject playerResponseButtonPrefab;
+    [SerializeField] private GameObject colourSwatchButtonPrefab;
+    [SerializeField] private GameObject timeEntryButtonPrefab;
 
     [Header("Bedroom Interactables - UI")]
     [SerializeField] private GameObject sendToBedBtnGO;
@@ -118,6 +143,10 @@ public class UIManager : MonoBehaviour
     [Header("Upgrade Interactables UI")]
     [SerializeField] private GameObject upgradeBedBtnGO;
     private Button upgradeBedBtn;
+
+    [Header("UI Required Inputs - May Relocate")]
+    [SerializeField] private string[] petColours;
+    [SerializeField] private Material playerMaterial;
 
     //===
 
@@ -160,6 +189,8 @@ public class UIManager : MonoBehaviour
         //===
 
         #endregion
+
+        DialogueManager = DialogueManager.DialogueManagerInstance;
     }
 
     public void SwitchSceneUI(string sceneName)
@@ -656,6 +687,157 @@ public class UIManager : MonoBehaviour
         {
             benchPressBtn.onClick.RemoveAllListeners();
         }
+    }
+
+    #endregion
+
+    #region Dialogue UI
+
+    // Non overload method to be used for displaying pet dialogue
+    public void EnablePetDialogueText(string petDialogue)
+    {
+        petDialoguePanel.SetActive(true);
+        petDialogueText.text = petDialogue;
+    }
+
+    // Overload method to be used for displaying pet tips
+    public void EnablePetDialogueText(string petDialogue, int timeToDisplay)
+    {
+        petDialoguePanel.SetActive(true);
+        petDialogueText.text = petDialogue;
+        StartCoroutine(DisableUIElementsAfterSeconds(timeToDisplay, new[] { petDialoguePanel }));
+    }
+
+    // Player colour selection
+    // Only used when changing the pets colour
+    public void DisplayColourSelections()
+    {
+        Debug.Log("Lets pick a colour");
+        // Display pet colour swatch selection
+        petColourPanel.SetActive(true);
+        // Create a button for each pet colour listed in the UIManager
+        foreach (string colour in petColours)
+        {
+            GameObject newButton = Instantiate(colourSwatchButtonPrefab, petColourPanel.transform);
+            ColorUtility.TryParseHtmlString(colour, out Color col);
+            newButton.transform.GetChild(0).GetComponentInChildren<Image>().color = col;
+            newButton.GetComponent<Button>().onClick.AddListener(PetColourSelection);
+        }
+    }
+
+    private void PetColourSelection()
+    {
+        GameObject clickedButton = EventSystem.current.currentSelectedGameObject;
+
+        // This is not UI related
+        playerMaterial.color = clickedButton.transform.GetChild(0).gameObject.GetComponent<Image>().color;
+
+        // Reset the UI and move to the next conversation line
+        DestroyUIButtons(petColourPanel);
+        petColourPanel.SetActive(false);
+        petDialoguePanel.SetActive(false);
+        DialogueManager.AdvanceLine("colour");
+    }
+
+    // Player text response selection
+    // Accepts an array of strings to display text responses the player can choose
+    public void DisplayPlayerResponses(string[] responses)
+    {
+        // If the passed in array is too long then exit
+        if (responses.Length > 4)
+            return;
+        // Enable the player response panel
+        playerResponsePanel.SetActive(true);
+        // Display a button for each response the player can make
+        foreach (string response in responses)
+        {
+            GameObject newButton = Instantiate(playerResponseButtonPrefab, playerResponsePanel.transform);
+            newButton.GetComponentInChildren<TextMeshProUGUI>().text = response;
+            newButton.GetComponent<Button>().onClick.AddListener(StorePlayerResponse);
+        }
+    }
+
+    // When the player clicks a response button the text response is stored in a public variable
+    private void StorePlayerResponse()
+    {
+        string UIStoredPlayerResponse = EventSystem.current.currentSelectedGameObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text;
+        DestroyUIButtons(playerResponsePanel);
+        playerResponsePanel.SetActive(false);
+        petDialoguePanel.SetActive(false);
+        DialogueManager.AdvanceLine(UIStoredPlayerResponse);
+    }
+
+    // Used to reset a UI panels button options
+    private void DestroyUIButtons(GameObject UIParent)
+    {
+        foreach (Transform child in UIParent.transform)
+        {
+            Destroy(child.gameObject);
+        }
+    }
+
+    // Time input controller
+    // Used to input times for bed time and wake up time
+    public void DisplayTimeEntry()
+    {
+        Debug.Log("Lets enter some time variables");
+        // Enable the time entry panel
+        timeEntryPanel.SetActive(true);
+        PaginateHoursList(nextHoursPage);
+    }
+
+    // Pagination function to support scrolling through pages
+    private void PaginateHoursList(int pageToFetch)
+    {
+        Debug.Log("Fetching page" + pageToFetch);
+        int pageSize = 6;
+        // Set how many pages to skip based on current page
+        int pageCount = pageToFetch * pageSize;
+        IEnumerable<string> currentPage = inputHours.Skip(pageCount).Take(pageSize);
+        // Get the time button panel and create the new page of buttons
+        GameObject timeButtonPanel = timeEntryPanel.transform.GetChild(0).gameObject;
+        DestroyUIButtons(timeButtonPanel);
+        foreach (string hour in currentPage)
+        {
+            GameObject newButton = Instantiate(timeEntryButtonPrefab, timeButtonPanel.transform);
+            newButton.GetComponentInChildren<TextMeshProUGUI>().text = hour;
+            newButton.GetComponent<Button>().onClick.AddListener(StoreTimeEntry);
+        }
+    }
+
+    // Helper function to set current page for pagination
+    private void SetNextHoursPage(bool direction)
+    {
+        if (direction)
+            nextHoursPage++;
+        else
+            nextHoursPage--;
+        Debug.Log("Current page is " + nextHoursPage);
+        if (nextHoursPage > 3) nextHoursPage = 0;
+        if (nextHoursPage < 0) nextHoursPage = 3;
+    }
+
+    // Public button function to move forward a page
+    public void NextPageHoursList()
+    {
+        PaginateHoursList(nextHoursPage);
+        SetNextHoursPage(true);
+    }
+
+    // Public button function to move back a page
+    public void PreviousPageHoursList()
+    {
+        PaginateHoursList(nextHoursPage);
+        SetNextHoursPage(false);
+    }
+
+    //When the player clicks a time entry button the time is stored in a public variable
+    public void StoreTimeEntry()
+    {
+        string UIStoredInputTime = EventSystem.current.currentSelectedGameObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text;
+        timeEntryPanel.SetActive(false);
+        petDialoguePanel.SetActive(false);
+        DialogueManager.AdvanceLine(UIStoredInputTime);
     }
 
     #endregion

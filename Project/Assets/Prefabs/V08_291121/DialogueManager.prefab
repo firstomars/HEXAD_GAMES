@@ -1,0 +1,178 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7686106760894637248
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7686106760894637250}
+  - component: {fileID: 7686106760894637249}
+  m_Layer: 0
+  m_Name: DialogueManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7686106760894637250
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7686106760894637248}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7686106760894637249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7686106760894637248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82f8fe3092008ba41804917f742a433c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UIManager: {fileID: 0}
+  petTips:
+  - tipType: RandomTips
+    tipList:
+    - Circadian rhythms are your bodies internal clocks, the most important is your
+      'sleep-wake' cycle.
+    - Your chronotype, or when your body prefers to sleep is genetic. It can be trained
+      but it is built into your body clock.
+    - Sleep plays a role in our physical wellness but also affects our concentration,
+      memory, and ability to learn new things.
+    - Avoiding caffine after 6pm can aid in falling asleep later in the night. Coffee,
+      energy drinks, black and green tea, and chocolate all contain caffine.
+    - Studies have linked an increase in risk taking behaviour by young adults with
+      anxiety and poor sleep behaviour.
+    - Studies of students with academic excellence showed they had earlier bedtimes
+      than students with poor grades.
+    - The average 18-25 year old needs 7-9 hours of sleep a day. In fact all adults
+      need the same amount of sleep.
+  petConversations:
+  - conversationRoom: GameIntro
+    conversationChain:
+    - dialogueText: Hey there! My name is Chunky Peanut Butter, let's get to know
+        each other.
+      playerResponses:
+      - Hi there Chunky.
+    - dialogueText: Lets start by choosing our favourite colour.
+      playerResponses:
+      - colour
+    - dialogueText: Nice choice, I look excellent in that colour!
+      playerResponses:
+      - If you say so.
+    - dialogueText: I need to know some stuff to set everything up, is that ok?
+      playerResponses:
+      - Ask away little dude.
+    - dialogueText: What time do you usually go to bed at night?
+      playerResponses:
+      - time
+    - dialogueText: What time do you usually wake up in the morning?
+      playerResponses:
+      - time
+    - dialogueText: What time did you go to bed last night?
+      playerResponses:
+      - time
+    - dialogueText: What time did you wake up this morning?
+      playerResponses:
+      - time
+    - dialogueText: Great! Let me tell you a few things about how we can talk to
+        each other.
+      playerResponses:
+      - Please go on.
+    - dialogueText: At the top of the screen you will see my Spirit Level.
+      playerResponses:
+      - Go on...
+    - dialogueText: This will go up and down during the day depending on how tired
+        we are...
+      playerResponses:
+      - Go on...
+    - dialogueText: ... and how fulfilled, or balanced our activities are.
+      playerResponses:
+      - Go on...
+    - dialogueText: If you tap on my Spirit Level you will see a report that explains
+        the current level.
+      playerResponses:
+      - Go on...
+    - dialogueText: We want to try and keep that as high as we can each day.
+      playerResponses:
+      - Ok, I will keep an eye on it.
+    - dialogueText: At the bottom of the screen you will see the main menu.
+      playerResponses:
+      - Go on...
+    - dialogueText: If you press it you can move me around the house.
+      playerResponses:
+      - Go on...
+    - dialogueText: Each room has different activities that can affect my energy
+        and fullfillment.
+      playerResponses:
+      - Go on...
+    - dialogueText: I will let you experiment to find out what activities are good
+        or bad.
+      playerResponses:
+      - Gee, thanks!
+    - dialogueText: Shall we get on with our first day?
+      playerResponses:
+      - Yes lets do that!
+  - conversationRoom: Kitchen
+    conversationChain:
+    - dialogueText: What should we get to eat?
+      playerResponses:
+      - Chicken Salad
+      - Salami Pizza
+  - conversationRoom: Lounge
+    conversationChain:
+    - dialogueText: Do you want me to play a game?
+      playerResponses:
+      - Yeah lets play
+      - Not right now
+  - conversationRoom: Bedroom
+    conversationChain:
+    - dialogueText: Is it time for a nap?
+      playerResponses:
+      - Yep, take an hour
+      - Not right now
+  - conversationRoom: Gym
+    conversationChain:
+    - dialogueText: Time to get fit, what exercise should we do?
+      playerResponses:
+      - Pump some weights
+      - Go for a run
+  - conversationRoom: Daily Login
+    conversationChain:
+    - dialogueText: Hey, thanks for dropping by. How are you today?
+      playerResponses:
+      - I am good thanks Chunky.
+    - dialogueText: What time did we go to bed last night?
+      playerResponses:
+      - time
+    - dialogueText: And what time did we wake up this morning?
+      playerResponses:
+      - time
+    - dialogueText: Shall we get on with the day then...
+      playerResponses:
+      - Yep lets do this
+  - conversationRoom: Settings Menu
+    conversationChain:
+    - dialogueText: Select a new colour for me.
+      playerResponses:
+      - colour
+    - dialogueText: Change our goal bed time.
+      playerResponses:
+      - time
+    - dialogueText: Change our goal wake up time.
+      playerResponses:
+      - time

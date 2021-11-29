@@ -6,6 +6,20 @@ using UnityEngine;
 
 public class DialogueManager : MonoBehaviour
 {
+    #region Singelton
+
+    private static DialogueManager _DialogueManagerInstance;
+
+    public static DialogueManager DialogueManagerInstance { get { return _DialogueManagerInstance; } }
+
+    private void Awake()
+    {
+        if (_DialogueManagerInstance != null) Destroy(gameObject);
+        else _DialogueManagerInstance = this;
+    }
+    #endregion
+
+    #region Inspector Fields
     // Helper classes for dialogue database
     [System.Serializable]
     public class PetTips
@@ -29,9 +43,11 @@ public class DialogueManager : MonoBehaviour
     }
 
     // Inspector fields
+    /*
     [Header("Game Objects")]
     [SerializeField] private UIScript UIManager;
-
+    */
+    private UIManager UIManager;
     [Header("Dialogue Database")]
     [SerializeField] private PetTips[] petTips;
     [SerializeField] private ConversationLibrary[] petConversations;
@@ -42,6 +58,13 @@ public class DialogueManager : MonoBehaviour
     private int currentConversationID = 0;
     private int currentLineIndex = 0;
     private readonly List<int> tipsDisplayed = new List<int>();
+
+    #endregion
+
+    private void Start()
+    {
+        UIManager = UIManager.UIManagerInstance;
+    }
 
     #region Display Pet Tips
 
@@ -93,6 +116,7 @@ public class DialogueManager : MonoBehaviour
 
     #endregion
 
+    #region Pet Conversations
     // Pet conversations main function
     public void PetConversation(string room = default)
     {
@@ -181,6 +205,8 @@ public class DialogueManager : MonoBehaviour
             UIManager.DisplayPlayerResponses(playerResponses);
         }
     }
+
+    #endregion
 
     // Temporary functions to test functionality
     private void Update()

@@ -177,12 +177,20 @@ public class DialogueManager : MonoBehaviour
         Debug.Log("Player responded with " + response);
         Debug.Log("Current conversation node count is " + petConversations[currentConversationID].conversationChain.Length);
         currentLineIndex++;
+        // Check if the conversation chain has more nodes
         if (currentLineIndex < petConversations[currentConversationID].conversationChain.Length)
         {
+            // Call back to behaviour to save user response if required
+            if (response != "_")
+            {
+                // Call back here
+            }
+            // Display the next line of dialogue
             DisplayDialogueLine(petConversations[currentConversationID].conversationChain[currentLineIndex].dialogueText, petConversations[currentConversationID].conversationChain[currentLineIndex].playerResponses);
         }
         else
         {
+            // Reset the conversation status
             conversationStarted = false;
             currentLineIndex = 0;
         }

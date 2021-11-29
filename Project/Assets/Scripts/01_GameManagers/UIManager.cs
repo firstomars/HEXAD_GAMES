@@ -660,15 +660,15 @@ public class UIManager : MonoBehaviour
         {
             sendToBedBtn.onClick.AddListener(CurrentBehaviour.SendToBed);
             wakeUpBtn.onClick.AddListener(CurrentBehaviour.WakePetUp);
-            //miniGameBtn.onClick.AddListener(CurrentBehaviour.PlayMiniGame);
-            bedroomInteractBtn.onClick.AddListener(CurrentBehaviour.SendToBed);
+            miniGameBtn.onClick.AddListener(CurrentBehaviour.PlayMiniGame);
+            //bedroomInteractBtn.onClick.AddListener(CurrentBehaviour.SendToBed);
         }
         else
         {
             sendToBedBtn.onClick.RemoveAllListeners();
             wakeUpBtn.onClick.RemoveAllListeners();
-            //miniGameBtn.onClick.RemoveAllListeners();
-            bedroomInteractBtn.onClick.RemoveAllListeners();
+            miniGameBtn.onClick.RemoveAllListeners();
+            //bedroomInteractBtn.onClick.RemoveAllListeners();
         }
     }
 
@@ -697,9 +697,9 @@ public class UIManager : MonoBehaviour
     private void SetKitchenUI(bool value)
     {
         //Debug.Log("kitchen UI set to " + value);
-        //eatFoodBtnGO.SetActive(value);
-        //eatJunkFoodBtnGO.SetActive(value);
-        kitchenInteractBtnGO.SetActive(value);
+        eatFoodBtnGO.SetActive(value);
+        eatJunkFoodBtnGO.SetActive(value);
+        //kitchenInteractBtnGO.SetActive(value);
 
         SetKitchenUIListeners(value);
     }
@@ -708,15 +708,15 @@ public class UIManager : MonoBehaviour
     {
         if (value == true)
         {
-            //eatFoodBtn.onClick.AddListener(CurrentBehaviour.EatFood);
-            //eatJunkFoodBtn.onClick.AddListener(CurrentBehaviour.EatJunkFood);
-            kitchenInteractBtn.onClick.AddListener(CurrentBehaviour.EatFood);
+            eatFoodBtn.onClick.AddListener(CurrentBehaviour.EatFood);
+            eatJunkFoodBtn.onClick.AddListener(CurrentBehaviour.EatJunkFood);
+            //kitchenInteractBtn.onClick.AddListener(CurrentBehaviour.EatFood);
         }
         else
         {
-            //eatFoodBtn.onClick.RemoveAllListeners();
-            //eatJunkFoodBtn.onClick.RemoveAllListeners();
-            kitchenInteractBtn.onClick.RemoveAllListeners();
+            eatFoodBtn.onClick.RemoveAllListeners();
+            eatJunkFoodBtn.onClick.RemoveAllListeners();
+            //kitchenInteractBtn.onClick.RemoveAllListeners();
         }
     }
 
@@ -817,7 +817,7 @@ public class UIManager : MonoBehaviour
         DestroyUIButtons(petColourPanel);
         petColourPanel.SetActive(false);
         petDialoguePanel.SetActive(false);
-        DialogueManager.AdvanceLine("colour");
+        DialogueManager.AdvanceLine("_");
     }
 
     // Player text response selection

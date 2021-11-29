@@ -83,7 +83,11 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject livingRoomBtnGO;
     private Button livingRoomBtn;
 
+    [Header("Report Panel Background")]
+    [SerializeField] private GameObject playerReportBackgroundPanel;
+
     [Header("Player Statistics - UI")]
+    [SerializeField] private GameObject playerStatisticsPanel;
     [SerializeField] private Slider spiritSlider;
     [SerializeField] private Slider energySlider;
     [SerializeField] private Slider fulfilmentSlider;
@@ -93,18 +97,18 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI sleepGoalsValue;
     [SerializeField] private TextMeshProUGUI sleepDollarsValue;
     [SerializeField] private TextMeshProUGUI completionValue;
-    [SerializeField] private GameObject playerReportBackgroundPanel;
-    [SerializeField] private GameObject playerStatisticsPanel;
     private bool spiritLevelPressed;
     private bool isRoomSet = false;
     private string currentRoom = "default";
 
     [Header("Daily Report - UI")]
+    [SerializeField] private GameObject playerDailyReportPanel;
     [SerializeField] private TextMeshProUGUI setBedTime;
     [SerializeField] private TextMeshProUGUI setWakeTime;
     [SerializeField] private TextMeshProUGUI hoursSleptLastNight;
     [SerializeField] private TextMeshProUGUI hoursSleptPreviousNight;
     [SerializeField] private TextMeshProUGUI trophyDescriptionText;
+    [SerializeField] private GameObject trophyAwardPanel;
 
     [Header("Pet Dialogue Text Panel")]
     [SerializeField] private GameObject petDialoguePanel;
@@ -126,16 +130,26 @@ public class UIManager : MonoBehaviour
     private Button wakeUpBtn;
     [SerializeField] private GameObject miniGameBtnGO;
     private Button miniGameBtn;
+    [SerializeField] private GameObject bedroomInteractBtnGO;
+    private Button bedroomInteractBtn;
 
     [Header("Kitchen Interactables - UI")]
     [SerializeField] private GameObject eatFoodBtnGO;
     private Button eatFoodBtn;
     [SerializeField] private GameObject eatJunkFoodBtnGO;
     private Button eatJunkFoodBtn;
+    [SerializeField] private GameObject kitchenInteractBtnGO;
+    private Button kitchenInteractBtn;
 
     [Header("Gym Interactables - UI")]
     [SerializeField] private GameObject benchPressBtnGO;
     private Button benchPressBtn;
+    [SerializeField] private GameObject gymInteractBtnGO;
+    private Button gymInteractBtn;
+
+    [Header("Lounge Interactables - UI")]
+    [SerializeField] private GameObject loungeInteractBtnGO;
+    private Button loungeInteractBtn;
 
     [Header("Report Interactables UI")]
     [SerializeField] public GameObject UIMorningReportObj;
@@ -176,13 +190,19 @@ public class UIManager : MonoBehaviour
         sendToBedBtn = sendToBedBtnGO.GetComponent<Button>();
         wakeUpBtn = wakeUpBtnGO.GetComponent<Button>();
         miniGameBtn = miniGameBtnGO.GetComponent<Button>();
+        bedroomInteractBtn = bedroomInteractBtnGO.GetComponent<Button>();
 
         //kitchen UI
         eatFoodBtn = eatFoodBtnGO.GetComponent<Button>();
         eatJunkFoodBtn = eatJunkFoodBtnGO.GetComponent<Button>();
+        kitchenInteractBtn = kitchenInteractBtnGO.GetComponent<Button>();
 
         //gym UI
         benchPressBtn = benchPressBtnGO.GetComponent<Button>();
+        gymInteractBtn = gymInteractBtnGO.GetComponent<Button>();
+
+        //lounge UI
+        loungeInteractBtn = loungeInteractBtnGO.GetComponent<Button>();
 
         //upgrades UI
         upgradeBedBtn = upgradeBedBtnGO.GetComponent<Button>();
@@ -322,6 +342,7 @@ public class UIManager : MonoBehaviour
                 SetReportUI(false);
                 SetKitchenUI(false);
                 SetGymUI(false);
+                SetLoungeUI(false);
                 break;
 
             case "report":
@@ -329,6 +350,7 @@ public class UIManager : MonoBehaviour
                 SetReportUI(true);
                 SetKitchenUI(false);
                 SetGymUI(false);
+                SetLoungeUI(false);
                 break;
 
             case "kitchen":
@@ -336,6 +358,7 @@ public class UIManager : MonoBehaviour
                 SetReportUI(false);
                 SetKitchenUI(true);
                 SetGymUI(false);
+                SetLoungeUI(false);
                 break;
 
             case "gym":
@@ -343,6 +366,15 @@ public class UIManager : MonoBehaviour
                 SetReportUI(false);
                 SetKitchenUI(false);
                 SetGymUI(true);
+                SetLoungeUI(false);
+                break;
+
+            case "lounge":
+                SetBedroomUI(false);
+                SetReportUI(false);
+                SetKitchenUI(false);
+                SetGymUI(false);
+                SetLoungeUI(true);
                 break;
 
             default:
@@ -350,6 +382,7 @@ public class UIManager : MonoBehaviour
                 SetReportUI(false);
                 SetKitchenUI(false);
                 SetGymUI(false);
+                SetLoungeUI(false);
                 break;
         }
     }
@@ -525,6 +558,22 @@ public class UIManager : MonoBehaviour
         UIMorningReportObj.SetActive(value);
     }
 
+    // Non overload to display report without achievments
+    public void ViewDailyReport(string trophyText)
+    {
+        EnableUIElements(new[] { playerReportBackgroundPanel, playerDailyReportPanel });
+        trophyDescriptionText.text = trophyText;
+    }
+
+    // Overload to allow display with achievements
+    public void ViewDailyReport(string trophyText, string achievement, string achievementText)
+    {
+        EnableUIElements(new[] { playerReportBackgroundPanel, playerDailyReportPanel });
+        trophyDescriptionText.text = trophyText;
+        trophyAwardPanel.SetActive(true);
+
+    }
+
     //delete report fns
 
     //public void CloseReportButton()
@@ -562,7 +611,7 @@ public class UIManager : MonoBehaviour
     //    else Debug.Log("Only ints can be passed in");
     //}
 
-    
+
     //public int GetBedtime() // DELETE
     //{
     //    int timeToReturn = bedTime;
@@ -586,7 +635,7 @@ public class UIManager : MonoBehaviour
     //{
     //    hrsSleptNightOneText.text = hrsSlept[0].ToString();
     //    hrsSleptNightTwoText.text = hrsSlept[1].ToString();  
-       
+
     //}
 
     #endregion
@@ -598,6 +647,7 @@ public class UIManager : MonoBehaviour
         //Debug.Log("bedroom UI set to " + value);
         miniGameBtnGO.SetActive(value);
         sendToBedBtnGO.SetActive(value);
+        bedroomInteractBtnGO.SetActive(value);
 
         if (value == false) wakeUpBtnGO.SetActive(value);
 
@@ -610,13 +660,15 @@ public class UIManager : MonoBehaviour
         {
             sendToBedBtn.onClick.AddListener(CurrentBehaviour.SendToBed);
             wakeUpBtn.onClick.AddListener(CurrentBehaviour.WakePetUp);
-            miniGameBtn.onClick.AddListener(CurrentBehaviour.PlayMiniGame);
+            //miniGameBtn.onClick.AddListener(CurrentBehaviour.PlayMiniGame);
+            bedroomInteractBtn.onClick.AddListener(CurrentBehaviour.SendToBed);
         }
         else
         {
             sendToBedBtn.onClick.RemoveAllListeners();
             wakeUpBtn.onClick.RemoveAllListeners();
-            miniGameBtn.onClick.RemoveAllListeners();
+            //miniGameBtn.onClick.RemoveAllListeners();
+            bedroomInteractBtn.onClick.RemoveAllListeners();
         }
     }
 
@@ -645,8 +697,9 @@ public class UIManager : MonoBehaviour
     private void SetKitchenUI(bool value)
     {
         //Debug.Log("kitchen UI set to " + value);
-        eatFoodBtnGO.SetActive(value);
-        eatJunkFoodBtnGO.SetActive(value);
+        //eatFoodBtnGO.SetActive(value);
+        //eatJunkFoodBtnGO.SetActive(value);
+        kitchenInteractBtnGO.SetActive(value);
 
         SetKitchenUIListeners(value);
     }
@@ -655,13 +708,15 @@ public class UIManager : MonoBehaviour
     {
         if (value == true)
         {
-            eatFoodBtn.onClick.AddListener(CurrentBehaviour.EatFood);
-            eatJunkFoodBtn.onClick.AddListener(CurrentBehaviour.EatJunkFood);
+            //eatFoodBtn.onClick.AddListener(CurrentBehaviour.EatFood);
+            //eatJunkFoodBtn.onClick.AddListener(CurrentBehaviour.EatJunkFood);
+            kitchenInteractBtn.onClick.AddListener(CurrentBehaviour.EatFood);
         }
         else
         {
-            eatFoodBtn.onClick.RemoveAllListeners();
-            eatJunkFoodBtn.onClick.RemoveAllListeners();
+            //eatFoodBtn.onClick.RemoveAllListeners();
+            //eatJunkFoodBtn.onClick.RemoveAllListeners();
+            kitchenInteractBtn.onClick.RemoveAllListeners();
         }
     }
 
@@ -672,7 +727,8 @@ public class UIManager : MonoBehaviour
     private void SetGymUI(bool value)
     {
         //Debug.Log("gym UI set to " + value);
-        benchPressBtnGO.SetActive(value);
+        //benchPressBtnGO.SetActive(value);
+        gymInteractBtnGO.SetActive(value);
 
         SetGymUIListeners(value);
     }
@@ -681,11 +737,36 @@ public class UIManager : MonoBehaviour
     {
         if (value == true)
         {
-            benchPressBtn.onClick.AddListener(CurrentBehaviour.BenchPress);
+            //benchPressBtn.onClick.AddListener(CurrentBehaviour.BenchPress);
+            gymInteractBtn.onClick.AddListener(CurrentBehaviour.BenchPress);
         }
         else
         {
-            benchPressBtn.onClick.RemoveAllListeners();
+            //benchPressBtn.onClick.RemoveAllListeners();
+            gymInteractBtn.onClick.RemoveAllListeners();
+        }
+    }
+
+    #endregion
+
+    #region Lounge UI
+
+    private void SetLoungeUI(bool value)
+    {
+        loungeInteractBtnGO.SetActive(value);
+
+        SetLoungeUIListeners(value);
+    }
+
+    private void SetLoungeUIListeners(bool value)
+    {
+        if (value == true)
+        {
+            loungeInteractBtn.onClick.AddListener(CurrentBehaviour.PlayMiniGame);
+        }
+        else
+        {
+            loungeInteractBtn.onClick.RemoveAllListeners();
         }
     }
 
@@ -944,6 +1025,15 @@ public class UIManager : MonoBehaviour
         foreach (GameObject UIElement in UIElements)
         {
             UIElement.SetActive(false);
+        }
+    }
+
+    // Helper function to enable multiple UI elements at the same time
+    private void EnableUIElements(GameObject[] UIElements)
+    {
+        foreach (GameObject UIElement in UIElements)
+        {
+            UIElement.SetActive(true);
         }
     }
 }

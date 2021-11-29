@@ -3156,9 +3156,25 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 656363323}
     m_Modifications:
+    - target: {fileID: 5314723004599428762, guid: 9cd4e06deb8b7c24ebd21badc843f83e, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5314723004599428762, guid: 9cd4e06deb8b7c24ebd21badc843f83e, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5314723004926852352, guid: 9cd4e06deb8b7c24ebd21badc843f83e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5314723005128155598, guid: 9cd4e06deb8b7c24ebd21badc843f83e, type: 3}
       propertyPath: m_Name
       value: UI_Panel_ReportPanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 5314723005128155598, guid: 9cd4e06deb8b7c24ebd21badc843f83e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5314723005128155599, guid: 9cd4e06deb8b7c24ebd21badc843f83e, type: 3}
       propertyPath: m_Pivot.x
@@ -3242,6 +3258,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5314723005128155599, guid: 9cd4e06deb8b7c24ebd21badc843f83e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5314723005783420520, guid: 9cd4e06deb8b7c24ebd21badc843f83e, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5314723005783420520, guid: 9cd4e06deb8b7c24ebd21badc843f83e, type: 3}
+      propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -3354,6 +3378,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI_Panel_PetDialogue
       objectReference: {fileID: 0}
+    - target: {fileID: 5618063905842520980, guid: 826ae16cf79425040bc6389935bcb027, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5618063905842520981, guid: 826ae16cf79425040bc6389935bcb027, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -3436,6 +3464,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5618063905842520981, guid: 826ae16cf79425040bc6389935bcb027, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5618063906008288426, guid: 826ae16cf79425040bc6389935bcb027, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -4900051270032804729, guid: 8f6f070ba82f0254b97e9c2dfcfb1ff7, type: 2}
+    - target: {fileID: 5618063906008288426, guid: 826ae16cf79425040bc6389935bcb027, type: 3}
+      propertyPath: m_hasFontAssetChanged
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

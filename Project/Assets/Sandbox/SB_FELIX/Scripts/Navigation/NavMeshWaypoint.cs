@@ -66,15 +66,29 @@ public class NavMeshWaypoint : MonoBehaviour
             IdleToWalk();
         }
 
-        
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            GetIntoBed();
+            m_Animator.SetBool("IsIdle", false);
+        }
+
+
+
+        if (Input.GetKeyDown(KeyCode.Mouse1))
+        {
+            GetOutOfBed();
+        }
     }
+
+
+
 
     private void OnTriggerEnter(Collider other) 
     {
-        WalkToIdle();
+        m_Animator.SetBool("IsIdle", true);
     }
 
-    public void IdleToWalk()
+    public void IdleToWalk() 
     {
         m_Animator.SetBool("IsIdle", false);
     }
@@ -82,6 +96,19 @@ public class NavMeshWaypoint : MonoBehaviour
     public void WalkToIdle()
     {
         m_Animator.SetBool("IsIdle", true);
+    }
+
+    public void GetIntoBed()
+    {
+        m_Animator.SetBool("IntoBed", true);      
+    }
+
+
+    public void GetOutOfBed()
+    {
+        m_Animator.SetTrigger("GetOutOfBed");
+        m_Animator.SetBool("IsIdle", true);
+        m_Animator.SetBool("IntoBed", false);
     }
 
 

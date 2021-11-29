@@ -25,4 +25,15 @@ public class PlayerAnimations : MonoBehaviour
         anim.SetBool("IsIdle", true);
         //Debug.Log("idling");
     }
+
+    public void GetIntoBed()
+    {
+        anim.SetBool("IntoBed", true);
+    }
+
+    public void GetOutOfBed()
+    {
+        anim.SetBool("IsIdle", true);
+        anim.SetBool("IntoBed", false);
+    }
 }

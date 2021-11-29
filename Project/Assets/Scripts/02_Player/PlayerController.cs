@@ -50,6 +50,9 @@ public class PlayerController : BehaviourStateMachine
     private bool isPlayerInBathroom = false;
     private bool isPlayerAtTrophyCabinet = false;
 
+    //action pos checks
+    private bool isPlayerSleeping = false;
+
     //pet behaviour bools
     private bool isPetSleeping = false;
     private bool isReportDelivered = true;
@@ -307,6 +310,16 @@ public class PlayerController : BehaviourStateMachine
                 isPlayerInBedroom = true;
                 isPlayerInBathroom = false;
                 isPlayerAtTrophyCabinet = false;
+                isPlayerSleeping = false;
+                break;
+
+            case "bedroomSleep":
+                isPlayerInGym = false;
+                isPlayerInKitchen = false;
+                isPlayerInBedroom = false;
+                isPlayerInBathroom = false;
+                isPlayerAtTrophyCabinet = false;
+                isPlayerSleeping = true;
                 break;
 
             case "bathroom":

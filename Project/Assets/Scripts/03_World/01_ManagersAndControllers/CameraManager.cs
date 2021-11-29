@@ -5,7 +5,7 @@ using Cinemachine;
 
 public class CameraManager : MonoBehaviour
 {
-    [Header("Camera Setup")]    
+    [Header("Main Camera Setup")]    
     [SerializeField] private CinemachineVirtualCamera overworldCamera;
     [SerializeField] private CinemachineVirtualCamera kitchenCam;
     [SerializeField] private CinemachineVirtualCamera gymCam;
@@ -13,12 +13,23 @@ public class CameraManager : MonoBehaviour
     [SerializeField] private CinemachineVirtualCamera bathroomCam;
     [SerializeField] private CinemachineVirtualCamera trophyCam;
 
+    [Header("Action Camera Setup")]
+    [SerializeField] private CinemachineVirtualCamera actionEatingCam;
+    [SerializeField] private CinemachineVirtualCamera actionMinigameCam;
+    [SerializeField] private CinemachineVirtualCamera actionWorkoutCam;
+    [SerializeField] private CinemachineVirtualCamera actionCouchCam;
+    [SerializeField] private CinemachineVirtualCamera actionSleepCam;
+
+
     //player position checks
     private bool isPlayerInGym = false;
     private bool isPlayerInKitchen = false;
     private bool isPlayerInBedroom = false;
     private bool isPlayerInBathroom = false;
     private bool isPlayerAtTrophyCabinet = false;
+
+    //action pos checks
+    private bool isPlayerSleeping = false;
 
     public void SwitchCamera()
     {
@@ -48,6 +59,7 @@ public class CameraManager : MonoBehaviour
             bedroomCam.Priority = 1;
             bathroomCam.Priority = 0;
             trophyCam.Priority = 0;
+            actionSleepCam.Priority = 0;
         }
         else if (isPlayerInBathroom)
         {
@@ -67,6 +79,17 @@ public class CameraManager : MonoBehaviour
             bedroomCam.Priority = 0;
             bathroomCam.Priority = 0;
             trophyCam.Priority = 1;
+        }
+        else if (isPlayerSleeping)
+        {
+            Debug.Log("sleep camera switched on");
+            overworldCamera.Priority = 0;
+            kitchenCam.Priority = 0;
+            gymCam.Priority = 0;
+            bedroomCam.Priority = 0;
+            bathroomCam.Priority = 0;
+            trophyCam.Priority = 0;
+            actionSleepCam.Priority = 1;
         }
         else
         {
@@ -106,6 +129,16 @@ public class CameraManager : MonoBehaviour
                 isPlayerInBedroom = true;
                 isPlayerInBathroom = false;
                 isPlayerAtTrophyCabinet = false;
+                isPlayerSleeping = false;
+                break;            
+            
+            case "bedroomSleep":
+                isPlayerInGym = false;
+                isPlayerInKitchen = false;
+                isPlayerInBedroom = false;
+                isPlayerInBathroom = false;
+                isPlayerAtTrophyCabinet = false;
+                isPlayerSleeping = true;
                 break;
 
             case "bathroom":

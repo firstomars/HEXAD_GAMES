@@ -1574,6 +1574,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CharacterWalkCycle 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: 697086f5db886a947ac9cf9e42a8160a, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: d19b7846e1c8e124898a56ecbf4ec551, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 697086f5db886a947ac9cf9e42a8160a, type: 3}
 --- !u!4 &1011393709164321669 stripped

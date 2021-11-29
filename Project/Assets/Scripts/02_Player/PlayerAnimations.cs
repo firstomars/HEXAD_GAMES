@@ -46,4 +46,9 @@ public class PlayerAnimations : MonoBehaviour
     {
         anim.SetTrigger("Workout");
     }
+
+    public void Eat()
+    {
+        anim.SetTrigger("Eat");
+    }
 }

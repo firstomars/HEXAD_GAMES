@@ -5152,6 +5152,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3668884344819465833}
     m_Modifications:
+    - target: {fileID: 416389403044029084, guid: 5650c9cddbec65249b732458d2932cab, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 5069210358555427485}
+    - target: {fileID: 416389403044029084, guid: 5650c9cddbec65249b732458d2932cab, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SpiritLevelPressed
+      objectReference: {fileID: 0}
+    - target: {fileID: 416389403044029084, guid: 5650c9cddbec65249b732458d2932cab, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UIManager, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 416389403731158073, guid: 5650c9cddbec65249b732458d2932cab, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0

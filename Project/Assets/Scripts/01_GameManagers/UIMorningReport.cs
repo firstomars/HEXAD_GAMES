@@ -143,7 +143,7 @@ public class UIMorningReport : MonoBehaviour
     {
         int goalsNum = goals.Length;
 
-        for (int i = 0; i < goalsNum - 1; i++)
+        for (int i = 0; i < goalsNum; i++)
         {
             goalsText[i].text = goals[i];
         }

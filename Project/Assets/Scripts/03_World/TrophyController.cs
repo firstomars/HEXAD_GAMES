@@ -59,7 +59,6 @@ public class TrophyController : MonoBehaviour
     {
         string[] unlockedTrophyTitles = { "null", "null" };
 
-        //replace with actual trophy conditions
         if (!trophies[0].isConditionMet && IsTrophyOneConditionMet())
         {
             trophies[0].isConditionMet = true;
@@ -160,13 +159,19 @@ public class TrophyController : MonoBehaviour
         return true;
     }
 
+    //trophy conditions 4 - 9 required
+
     public string[] GetGoalsText()
     {
         string[] goalsText = { trophies[0].trophyConditions,
             trophies[1].trophyConditions,
             trophies[2].trophyConditions,
             trophies[3].trophyConditions,
-            trophies[4].trophyConditions };
+            trophies[4].trophyConditions, 
+            trophies[5].trophyConditions, 
+            trophies[6].trophyConditions, 
+            trophies[7].trophyConditions,
+            trophies[8].trophyConditions };
 
         return goalsText;
     }

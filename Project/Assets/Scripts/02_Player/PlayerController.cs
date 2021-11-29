@@ -5,8 +5,6 @@ using UnityEngine.AI;
 
 public class PlayerController : BehaviourStateMachine
 {
-    public PlayerAnimations PlayerAnimations;
-
     #region Behaviours Setup
 
     private Behaviour IntroductionBehaviour;
@@ -44,6 +42,8 @@ public class PlayerController : BehaviourStateMachine
     [HideInInspector] public TrophyController TrophyController { get; private set; }
     #endregion
 
+    [HideInInspector] public PlayerAnimations PlayerAnimations;
+
     //room trigger bools
     private bool isPlayerInGym = false;
     private bool isPlayerInKitchen = false;
@@ -77,7 +77,7 @@ public class PlayerController : BehaviourStateMachine
     [SerializeField] public int petBedTime;
     [SerializeField] public int petWakeUpTime;
 
-    private bool hasIntroHappened = false;
+    [SerializeField] private bool hasIntroHappened = false;
 
     // Start is called before the first frame update
     void Start()
@@ -179,11 +179,11 @@ public class PlayerController : BehaviourStateMachine
         if (agent.remainingDistance > (agent.stoppingDistance + 0.1f)) PetStartsWalking();
         else PetStopsWalking();
 
-        //if (!hasIntroHappened)
-        //{
-        //    nextBehaviour = IntroductionBehaviour;
-        //    hasIntroHappened = true;
-        //}
+        if (!hasIntroHappened)
+        {
+            nextBehaviour = IntroductionBehaviour;
+            hasIntroHappened = true;
+        }
         if (isPetSleeping)
         {
             return;

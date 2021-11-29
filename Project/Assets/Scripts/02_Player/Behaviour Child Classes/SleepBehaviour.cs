@@ -52,8 +52,6 @@ public class SleepBehaviour : Behaviour
     {
         if (PlayerController.TimeController.IsTimeAfter(PlayerController.petBedTime))
         {
-            //PlayerController.SetPlayerPosition("bedroomSleep");
-
             PlayerController.PlayerAnimations.GetIntoBed();
 
             Debug.Log("Pet sent to bed");
@@ -74,8 +72,6 @@ public class SleepBehaviour : Behaviour
 
     public override void WakePetUp()
     {
-        //PlayerController.SetPlayerPosition("bedroom");
-
         PlayerController.PlayerAnimations.GetOutOfBed();
 
         Debug.Log("pet woken up");
@@ -99,6 +95,8 @@ public class SleepBehaviour : Behaviour
 
     public override void PlayMiniGame()
     {
+        PlayerController.PlayerAnimations.PlayMinigame();
+        
         PlayerController.PlayerStatistics.MinigameStatsImpact();
     }
 }

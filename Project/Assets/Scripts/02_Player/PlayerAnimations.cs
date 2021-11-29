@@ -45,11 +45,25 @@ public class PlayerAnimations : MonoBehaviour
 
     public void Workout()
     {
-        anim.SetTrigger("Workout");
+        Debug.Log("Workout animation");
+        //anim.SetTrigger("Workout");
     }
 
     public void Eat()
     {
-        anim.SetTrigger("Eat");
+        Debug.Log("Eat animation");
+        //anim.SetTrigger("Eat");
+    }
+
+    public void EatJunkFood()
+    {
+        Debug.Log("Eat junk food animation");
+        //anim.SetTrigger("Eat");
+    }
+
+    public void PlayMinigame()
+    {
+        Debug.Log("Minigame animation");
+        //anim.SetTrigger("Eat");
     }
 }

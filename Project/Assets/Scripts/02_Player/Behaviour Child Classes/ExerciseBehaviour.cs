@@ -43,6 +43,9 @@ public class ExerciseBehaviour : Behaviour
     public override void BenchPress()
     {
         //Debug.Log("bench press called");
+
+        PlayerController.PlayerAnimations.Workout();
+
         PlayerController.PlayerStatistics.BenchPressStatsImpact();
         AudioManager.AudioManagerInstance.PlaySound("Gym");
     }

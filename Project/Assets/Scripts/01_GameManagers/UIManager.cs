@@ -647,7 +647,7 @@ public class UIManager : MonoBehaviour
         //Debug.Log("bedroom UI set to " + value);
         miniGameBtnGO.SetActive(value);
         sendToBedBtnGO.SetActive(value);
-        bedroomInteractBtnGO.SetActive(value);
+        //bedroomInteractBtnGO.SetActive(value);
 
         if (value == false) wakeUpBtnGO.SetActive(value);
 

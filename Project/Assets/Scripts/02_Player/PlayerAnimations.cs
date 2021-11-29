@@ -29,6 +29,7 @@ public class PlayerAnimations : MonoBehaviour
     public void GetIntoBed()
     {
         anim.SetBool("IntoBed", true);
+        anim.SetBool("IsIdle", false);
     }
 
     public void GetOutOfBed()

@@ -40,8 +40,6 @@ AnimatorState:
   - {fileID: 7042773615511791532}
   - {fileID: 9142085773866305511}
   - {fileID: -6444750981107501302}
-  - {fileID: -6826931836206231893}
-  - {fileID: 6622922850452651556}
   - {fileID: 8376374899884067930}
   m_StateMachineBehaviours: []
   m_Position: {x: 50, y: 50, z: 0}
@@ -186,12 +184,6 @@ AnimatorStateMachine:
   - serializedVersion: 1
     m_State: {fileID: -5042975926448409754}
     m_Position: {x: 900, y: -220, z: 0}
-  - serializedVersion: 1
-    m_State: {fileID: -9204960416671137092}
-    m_Position: {x: 840, y: -150, z: 0}
-  - serializedVersion: 1
-    m_State: {fileID: -186685213008347819}
-    m_Position: {x: 790, y: -280, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -6694420111487098458}
     m_Position: {x: 630, y: 50, z: 0}
@@ -373,26 +365,14 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: AnimController.V3
+  m_Name: AnimController.V3 1
   serializedVersion: 5
   m_AnimatorParameters:
-  - m_Name: IsWalking
-    m_Type: 4
-    m_DefaultFloat: 0
-    m_DefaultInt: 0
-    m_DefaultBool: 0
-    m_Controller: {fileID: 0}
   - m_Name: IsIdle
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 1
-    m_Controller: {fileID: 0}
-  - m_Name: Speed
-    m_Type: 1
-    m_DefaultFloat: 0
-    m_DefaultInt: 0
-    m_DefaultBool: 0
     m_Controller: {fileID: 0}
   - m_Name: IntoBed
     m_Type: 4
@@ -557,9 +537,6 @@ AnimatorStateTransition:
   m_Conditions:
   - m_ConditionMode: 2
     m_ConditionEvent: IsIdle
-    m_EventTreshold: 0
-  - m_ConditionMode: 2
-    m_ConditionEvent: IntoBed
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 2595789063737007221}

@@ -5,10 +5,11 @@ using UnityEngine.AI;
 
 public class PlayerController : BehaviourStateMachine
 {
-    private PlayerAnimations PlayerAnimations;
-    
+    public PlayerAnimations PlayerAnimations;
+
     #region Behaviours Setup
 
+    private Behaviour IntroductionBehaviour;
     private Behaviour ExerciseBehaviour;
     private Behaviour ConverseBehaviour;
     private Behaviour EatBehaviour;
@@ -76,13 +77,16 @@ public class PlayerController : BehaviourStateMachine
     [SerializeField] public int petBedTime;
     [SerializeField] public int petWakeUpTime;
 
+    private bool hasIntroHappened = false;
+
     // Start is called before the first frame update
     void Start()
     {
         PlayerAnimations = GetComponent<PlayerAnimations>();
-        
+
         #region Set Up Behaviour Classes
 
+        IntroductionBehaviour = new IntroductionBehaviour(this);
         ExerciseBehaviour = new ExerciseBehaviour(this);
         ConverseBehaviour = new ConverseBehaviour(this);
         EatBehaviour = new EatBehaviour(this);
@@ -175,6 +179,11 @@ public class PlayerController : BehaviourStateMachine
         if (agent.remainingDistance > (agent.stoppingDistance + 0.1f)) PetStartsWalking();
         else PetStopsWalking();
 
+        //if (!hasIntroHappened)
+        //{
+        //    nextBehaviour = IntroductionBehaviour;
+        //    hasIntroHappened = true;
+        //}
         if (isPetSleeping)
         {
             return;

@@ -210,7 +210,7 @@ Animator:
   m_GameObject: {fileID: 540303742199514401}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 697086f5db886a947ac9cf9e42a8160a, type: 3}
-  m_Controller: {fileID: 9100000, guid: 356ed4c60374108469d8bd2fc80b8ffa, type: 2}
+  m_Controller: {fileID: 9100000, guid: 312573789eda3c14aa38d7977ef19d07, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -909,6 +909,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c14427478ec737f4b88630d82756d850, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hrsSleptNightOne: 0
+  hrsSleptNightTwo: 0
+  hrsSleptNightThree: 0
+  hrsSleptNightFour: 0
+  hrsSleptNightFive: 0
   minSpiritLevel: 1
   maxSpiritLevel: 100
   spiritLevel: 0

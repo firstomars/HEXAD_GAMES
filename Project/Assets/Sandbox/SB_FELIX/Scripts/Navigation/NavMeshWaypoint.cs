@@ -76,7 +76,7 @@ public class NavMeshWaypoint : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Mouse1))
         {
-            GetOutOfBed();
+            Workout();
         }
     }
 
@@ -86,6 +86,8 @@ public class NavMeshWaypoint : MonoBehaviour
     private void OnTriggerEnter(Collider other) 
     {
         m_Animator.SetBool("IsIdle", true);
+        InsideGym();
+        
     }
 
     public void IdleToWalk() 
@@ -109,6 +111,16 @@ public class NavMeshWaypoint : MonoBehaviour
         m_Animator.SetTrigger("GetOutOfBed");
         m_Animator.SetBool("IsIdle", true);
         m_Animator.SetBool("IntoBed", false);
+    }
+
+    public void InsideGym()
+    {
+        m_Animator.SetBool("InsideGym", true);
+    }
+
+    public void Workout()
+    {
+        m_Animator.SetTrigger("Workout");
     }
 
 

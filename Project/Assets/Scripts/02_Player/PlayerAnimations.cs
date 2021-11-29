@@ -21,7 +21,7 @@ public class PlayerAnimations : MonoBehaviour
     public void WalkToIdle()
     {
         //Debug.Log(anim);
-        
+
         anim.SetBool("IsIdle", true);
         //Debug.Log("idling");
     }
@@ -35,5 +35,15 @@ public class PlayerAnimations : MonoBehaviour
     {
         anim.SetBool("IsIdle", true);
         anim.SetBool("IntoBed", false);
+    }
+
+    public void InsideGym()
+    {
+        anim.SetBool("InsideGym", true);
+    }  
+
+    public void Workout()
+    {
+        anim.SetTrigger("Workout");
     }
 }

@@ -15,7 +15,13 @@ public class DialogueManager : MonoBehaviour
     private void Awake()
     {
         if (_DialogueManagerInstance != null) Destroy(gameObject);
-        else _DialogueManagerInstance = this;
+        else
+        {
+            _DialogueManagerInstance = this;
+
+            UIManager = UIManager.UIManagerInstance;
+            UIManager.DialogueManager = this;
+        }
     }
     #endregion
 
@@ -42,11 +48,6 @@ public class DialogueManager : MonoBehaviour
         public Conversation[] conversationChain;
     }
 
-    // Inspector fields
-    /*
-    [Header("Game Objects")]
-    [SerializeField] private UIScript UIManager;
-    */
     private UIManager UIManager;
     [Header("Dialogue Database")]
     [SerializeField] private PetTips[] petTips;
@@ -62,11 +63,6 @@ public class DialogueManager : MonoBehaviour
     [HideInInspector] public bool currentConversationComplete = false;
 
     #endregion
-
-    private void Start()
-    {
-        UIManager = UIManager.UIManagerInstance;
-    }
 
     #region Display Pet Tips
 

@@ -116,7 +116,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject playerResponsePanel;
     [SerializeField] private GameObject petColourPanel;
     [SerializeField] private GameObject timeEntryPanel;
-    private DialogueManager DialogueManager;
+    [HideInInspector] public DialogueManager DialogueManager;
 
 
     [Header("Button Prefabs - Player Responses")]
@@ -212,8 +212,6 @@ public class UIManager : MonoBehaviour
         //===
 
         #endregion
-
-        DialogueManager = DialogueManager.DialogueManagerInstance;
     }
 
     public void SwitchSceneUI(string sceneName)
@@ -730,8 +728,8 @@ public class UIManager : MonoBehaviour
     private void SetGymUI(bool value)
     {
         //Debug.Log("gym UI set to " + value);
-        //benchPressBtnGO.SetActive(value);
-        gymInteractBtnGO.SetActive(value);
+        benchPressBtnGO.SetActive(value);
+        //gymInteractBtnGO.SetActive(value);
 
         SetGymUIListeners(value);
     }
@@ -740,13 +738,13 @@ public class UIManager : MonoBehaviour
     {
         if (value == true)
         {
-            //benchPressBtn.onClick.AddListener(CurrentBehaviour.BenchPress);
-            gymInteractBtn.onClick.AddListener(CurrentBehaviour.BenchPress);
+            benchPressBtn.onClick.AddListener(CurrentBehaviour.BenchPress);
+            //gymInteractBtn.onClick.AddListener(CurrentBehaviour.BenchPress);
         }
         else
         {
-            //benchPressBtn.onClick.RemoveAllListeners();
-            gymInteractBtn.onClick.RemoveAllListeners();
+            benchPressBtn.onClick.RemoveAllListeners();
+            //gymInteractBtn.onClick.RemoveAllListeners();
         }
     }
 

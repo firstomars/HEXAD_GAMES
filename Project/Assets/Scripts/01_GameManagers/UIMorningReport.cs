@@ -68,12 +68,15 @@ public class UIMorningReport : MonoBehaviour
         else Debug.Log("invalid wakeup time and bed times submitted");        
     }
 
-    public void DeliverMorningReport(Vector2Int hrsSlept)
+    //called by status report behaviour
+    public void DeliverMorningReport(Vector2Int hrsSlept, Vector2Int sleepTimeGoals)
     {
         submitTimesBtnObj.SetActive(false);
         timeEntryPanelObj.SetActive(false);
         reportPanelObj.SetActive(true);
         toggleBetweenGoalsAndSleepTimes.SetActive(true);
+
+        SetSleepTimeGoals(sleepTimeGoals);
         SetHoursSleptTextNightOneTwo(hrsSlept);
 
         if (isTrophyUnlocked)
@@ -132,11 +135,16 @@ public class UIMorningReport : MonoBehaviour
         viewSleepGoalsPanelObj.SetActive(value);
     }
 
-    //called by status report behaviour
     public void SetHoursSleptTextNightOneTwo(Vector2Int hrsSlept)
     {
         hrsSleptNightOneText.text = hrsSlept[0].ToString();
         hrsSleptNightTwoText.text = hrsSlept[1].ToString();
+    }
+
+    public void SetSleepTimeGoals(Vector2Int sleepTimeGoals)
+    {
+        goalBedTimeTxt.text = sleepTimeGoals[0].ToString();
+        goalWakeUpTimeTxt.text = sleepTimeGoals[1].ToString();
     }
 
     public void SetGoalsText(string[] goals)

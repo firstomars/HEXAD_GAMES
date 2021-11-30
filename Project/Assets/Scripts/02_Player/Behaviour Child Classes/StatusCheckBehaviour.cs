@@ -41,6 +41,7 @@ public class StatusCheckBehaviour : Behaviour
             //Debug.Log("Bedtime " + bedTime + "WakeUpTime " + wakeUpTime);
 
             Vector2Int hrsSlept = PlayerController.PlayerStatistics.CalculateHoursSleptNightOneTwo(bedTime, wakeUpTime);
+            Vector2Int sleepTimeGoals = PlayerController.PlayerStatistics.GetSleepTimeGoals();
 
             //if achievement unlcoked set trophy titles
             string[] trophyReceivedTitles = PlayerController.TrophyController.NEWTrophyConditionCheck();
@@ -48,7 +49,7 @@ public class StatusCheckBehaviour : Behaviour
             if (trophyReceivedTitles[0] != "null")
                 UIMorningReport.IsAchieveUnlocked(true, trophyReceivedTitles);
 
-            UIMorningReport.DeliverMorningReport(hrsSlept);
+            UIMorningReport.DeliverMorningReport(hrsSlept, sleepTimeGoals);
 
             //set goals text
             UIMorningReport.SetGoalsText(PlayerController.TrophyController.GetGoalsText());
@@ -114,32 +115,4 @@ public class StatusCheckBehaviour : Behaviour
         SetUI();
         base.EndBehaviour();
     }
-
-    /*
-    
-    new Update
-
-    if (UIMorningReport.hasTimesBeenSubmitted) && hasAlreadyBeenCalled?
-    {
-        //get and set hours slept
-        int bedTime = UIMorningReport.GetBedtime();
-        int wakeUpTime = UIMorningReport.GetWakeUpTime();
-        Vector2Int hrsSlept = PlayerController.PlayerStatistics.CalculateHoursSleptNightOneTwo(bedTime, wakeUpTime);
-        UIMorningReport.SetHoursSleptTextNightOneTwo(hrsSlept);    
-        
-        //if achievement unlcoked set trophy titles
-        string[] trophyReceivedTitles = PlayerController.TrophyController.NEWTrophyConditionCheck();
-        if (trophiesReceive > 0) UIMorningReport.ActivateUnlockAchievementButton(true, trophyReceivedTitles);
-        
-        //set goals text
-        UIMorningReport.SetGoalsText(PlayerController.TrophyController.GetGoalsText())
-    }
-
-
-    call later (close report button?)
-
-            PlayerController.TrophyController.InstantiateTrophy();
-
-     */
-
 }

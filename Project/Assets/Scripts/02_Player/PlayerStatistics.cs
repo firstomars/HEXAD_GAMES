@@ -280,4 +280,11 @@ public class PlayerStatistics : MonoBehaviour
         //Debug.Log("First Wake Time: " + firstWakeUpTime);
         //Debug.Log("Hours slept on first night " + hrsSleptNightOne);
     }
+
+    public Vector2Int GetSleepTimeGoals()
+    {
+        Vector2Int sleepTimeGoals = new Vector2Int(bedTimeGoal, wakeUpTimeGoal);
+
+        return sleepTimeGoals;
+    }
 }

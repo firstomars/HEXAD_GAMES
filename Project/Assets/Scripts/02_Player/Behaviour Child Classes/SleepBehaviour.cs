@@ -9,6 +9,8 @@ public class SleepBehaviour : Behaviour
     private bool hasBeenInBedroom = false;
     private bool isRoomUISet = false;
 
+    private bool isPlayingMinigame = false;
+
     public SleepBehaviour(PlayerController playerController) : base(playerController)
     {
         PlayerController = playerController;
@@ -52,12 +54,14 @@ public class SleepBehaviour : Behaviour
     {
         if (PlayerController.TimeController.IsTimeAfter(PlayerController.petBedTime))
         {
+            SwitchCamera("bedroomSleep");
+
             PlayerController.PlayerAnimations.GetIntoBed();
 
             Debug.Log("Pet sent to bed");
             if (dayFellAsleep == -1) dayFellAsleep = PlayerController.TimeController.GetGameDate();
             //PlayerController.IsPetSleeping(true);
-            PlayerController.SetPlayerDestination(PlayerController.bed.position);
+            PlayerController.SetPlayerDestination(PlayerController.bedPos.position);
 
             AudioManager.AudioManagerInstance.PlaySound("Sleeping");
             AudioManager.AudioManagerInstance.StopSound("FootStep");
@@ -72,9 +76,16 @@ public class SleepBehaviour : Behaviour
         }
     }
 
+    private void SwitchCamera(string room)
+    {
+        PlayerController.CameraManager.SetPlayerPosition(room);
+        PlayerController.CameraSwitch();
+    }
+
     public override void WakePetUp()
     {
         PlayerController.PlayerAnimations.GetOutOfBed();
+        SwitchCamera("bedroom");
 
         Debug.Log("pet woken up");
         //PlayerController.IsPetSleeping(false);
@@ -97,9 +108,22 @@ public class SleepBehaviour : Behaviour
 
     public override void PlayMiniGame()
     {
-        PlayerController.PlayerAnimations.PlayMinigame();
-        
-        PlayerController.PlayerStatistics.MinigameStatsImpact();
+        if (!isPlayingMinigame)
+        {
+            PlayerController.SetPlayerDestination(PlayerController.miniGamePos.position);
+            SwitchCamera("bedroomGame");
+            PlayerController.PlayerAnimations.PlayMinigame();
+            PlayerController.PlayerStatistics.MinigameStatsImpact();
+
+            isPlayingMinigame = true;
+        }
+        else
+        {
+            PlayerController.SetPlayerDestination(FindWaypointHelper("bedroom"));
+            SwitchCamera("bedroom");
+
+            isPlayingMinigame = false;
+        }
     }
 }
 

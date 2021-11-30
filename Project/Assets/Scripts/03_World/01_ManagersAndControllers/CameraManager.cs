@@ -30,6 +30,7 @@ public class CameraManager : MonoBehaviour
 
     //action pos checks
     private bool isPlayerSleeping = false;
+    private bool isPlayerPlayingGame = false;
 
     public void SwitchCamera()
     {
@@ -60,6 +61,7 @@ public class CameraManager : MonoBehaviour
             bathroomCam.Priority = 0;
             trophyCam.Priority = 0;
             actionSleepCam.Priority = 0;
+            actionMinigameCam.Priority = 0;
         }
         else if (isPlayerInBathroom)
         {
@@ -90,6 +92,19 @@ public class CameraManager : MonoBehaviour
             bathroomCam.Priority = 0;
             trophyCam.Priority = 0;
             actionSleepCam.Priority = 1;
+            actionMinigameCam.Priority = 0;
+        }
+        else if (isPlayerPlayingGame)
+        {
+            Debug.Log("game camera switched on");
+            overworldCamera.Priority = 0;
+            kitchenCam.Priority = 0;
+            gymCam.Priority = 0;
+            bedroomCam.Priority = 0;
+            bathroomCam.Priority = 0;
+            trophyCam.Priority = 0;
+            actionSleepCam.Priority = 0;
+            actionMinigameCam.Priority = 1;
         }
         else
         {
@@ -130,6 +145,7 @@ public class CameraManager : MonoBehaviour
                 isPlayerInBathroom = false;
                 isPlayerAtTrophyCabinet = false;
                 isPlayerSleeping = false;
+                isPlayerPlayingGame = false;
                 break;            
             
             case "bedroomSleep":
@@ -139,6 +155,17 @@ public class CameraManager : MonoBehaviour
                 isPlayerInBathroom = false;
                 isPlayerAtTrophyCabinet = false;
                 isPlayerSleeping = true;
+                isPlayerPlayingGame = false;
+                break;
+
+            case "bedroomGame":
+                isPlayerInGym = false;
+                isPlayerInKitchen = false;
+                isPlayerInBedroom = false;
+                isPlayerInBathroom = false;
+                isPlayerAtTrophyCabinet = false;
+                isPlayerSleeping = false;
+                isPlayerPlayingGame = true;
                 break;
 
             case "bathroom":

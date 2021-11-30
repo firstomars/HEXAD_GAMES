@@ -27,7 +27,7 @@ public class PlayerController : BehaviourStateMachine
 
     #region Camera Class
     private GameObject camMgr;
-    private CameraManager CameraManager;
+    [HideInInspector] public CameraManager CameraManager;
     #endregion
 
     #region Time Controller Class
@@ -63,7 +63,8 @@ public class PlayerController : BehaviourStateMachine
     private NavMeshAgent agent;
     [SerializeField] private LayerMask whatIsPlayer, whatIsGround;
     [SerializeField] public Vector3 targetPosition;
-    [HideInInspector] public Transform bed;
+    [HideInInspector] public Transform bedPos;
+    [HideInInspector] public Transform miniGamePos;
     [HideInInspector] public Transform trophyCabinetPosition; // DELETE
     [HideInInspector] public HouseWaypoints HouseWaypoints;
     [HideInInspector] public WanderWaypoints WanderWaypoints;

@@ -682,7 +682,7 @@ public class UIManager : MonoBehaviour
         wakeUpBtnGO.SetActive(true);
 
         CloseAllFlyouts();
-        flyoutButtonPanel.SetActive(false);
+        //flyoutButtonPanel.SetActive(false);
         miniGameBtnGO.SetActive(false);
     }
 
@@ -692,7 +692,7 @@ public class UIManager : MonoBehaviour
         wakeUpBtnGO.SetActive(false);
         miniGameBtnGO.SetActive(true);
         
-        flyoutButtonPanel.SetActive(true);
+        //flyoutButtonPanel.SetActive(true);
     }
 
     public void WakeUpNextDayBtnClicked()

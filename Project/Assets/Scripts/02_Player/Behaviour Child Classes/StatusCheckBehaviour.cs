@@ -8,7 +8,7 @@ public class StatusCheckBehaviour : Behaviour
     private bool isMorningReportDelivered = false;
 
     private UIMorningReport UIMorningReport;
-    
+
     public StatusCheckBehaviour(PlayerController playerController) : base(playerController)
     {
         PlayerController = playerController;
@@ -66,7 +66,16 @@ public class StatusCheckBehaviour : Behaviour
 
             UIMorningReport.IsMorningReportClosed = false;
 
-            PlayerController.IsReportDelivered(true); //leads to end behaviour
+            if (DeliverTipType() != "null")
+            {
+                DialogueManager.DialogueManagerInstance.DisplayTip(DeliverTipType());
+                PlayerController.IsReportDelivered(true); //leads to end behaviour
+            }
+            else
+            {
+                PlayerController.IsReportDelivered(true); //leads to end behaviour
+            }
+                
         }
 
         #region OLD REPORT UI
@@ -114,5 +123,14 @@ public class StatusCheckBehaviour : Behaviour
         Debug.Log("StatusCheckBehaviour End called");
         SetUI();
         base.EndBehaviour();
+    }
+
+    private string DeliverTipType()
+    {
+        int[] hrsSleptLastFiveNights = PlayerController.PlayerStatistics.GetHoursSleptLastFiveNights();
+
+        if (hrsSleptLastFiveNights[0] < 5 && hrsSleptLastFiveNights[1] < 5) return "2NightBadSleep";
+        else if (hrsSleptLastFiveNights[0] < 5) return "1NightBadSleep";
+        else return "null";
     }
 }

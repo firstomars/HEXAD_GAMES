@@ -109,7 +109,7 @@ public class DialogueManager : MonoBehaviour
             tipsDisplayed.Add(tipID);
         }
         // Display the tip for 3 seconds
-        UIManager.EnablePetDialogueText(petTips[tipDepth].tipList[tipID], 3);
+        UIManager.EnablePetDialogueText(petTips[tipDepth].tipList[tipID], 7);
     }
 
     #endregion

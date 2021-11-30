@@ -218,17 +218,7 @@ public class UIManager : MonoBehaviour
     {
         switch(sceneName)
         {
-            case "01_Splash":
-                SetSplashScreenUI(true);    //sceneIndex 0
-                SetMenuScreenUI(false);     //sceneIndex 1
-                SetPlayUI(false);           //sceneIndex 2
-                SetAssetStagingUI(false);   //sceneIndex 3
-                SetTimeUI(false);           //sceneIndex 4
-                SetPlayerStatsUI(false);    //sceneIndex 5
-                SetPlayerPrefsUI(false);    //sceneIndex 6
-                break;
-
-            case "02_Menu":
+            case "01_Menu":
                 SetSplashScreenUI(false);   //sceneIndex 0
                 SetMenuScreenUI(true);      //sceneIndex 1
                 SetPlayUI(false);           //sceneIndex 2
@@ -238,7 +228,7 @@ public class UIManager : MonoBehaviour
                 SetPlayerPrefsUI(false);    //sceneIndex 6
                 break;
 
-            case "03_Play_V02":
+            case "02_Play_V02":
                 SetSplashScreenUI(false);   //sceneIndex 0
                 SetMenuScreenUI(false);     //sceneIndex 1
                 SetPlayUI(true);            //sceneIndex 2
@@ -248,45 +238,58 @@ public class UIManager : MonoBehaviour
                 SetPlayerPrefsUI(false);    //sceneIndex 6
                 break;
 
-            case "04_AssetStaging":
-                SetSplashScreenUI(false);   //sceneIndex 0
-                SetMenuScreenUI(false);     //sceneIndex 1
-                SetPlayUI(false);           //sceneIndex 2
-                SetAssetStagingUI(true);    //sceneIndex 3
-                SetTimeUI(false);           //sceneIndex 4
-                SetPlayerStatsUI(false);    //sceneIndex 5
-                SetPlayerPrefsUI(false);    //sceneIndex 6
-                break;
+                #region ObsoleteScenes
+                //case "01_Splash":
+                //    SetSplashScreenUI(true);    //sceneIndex 0
+                //    SetMenuScreenUI(false);     //sceneIndex 1
+                //    SetPlayUI(false);           //sceneIndex 2
+                //    SetAssetStagingUI(false);   //sceneIndex 3
+                //    SetTimeUI(false);           //sceneIndex 4
+                //    SetPlayerStatsUI(false);    //sceneIndex 5
+                //    SetPlayerPrefsUI(false);    //sceneIndex 6
+                //    break;
 
-            case "05_Time":
-                SetSplashScreenUI(false);   //sceneIndex 0
-                SetMenuScreenUI(false);     //sceneIndex 1
-                SetPlayUI(false);           //sceneIndex 2
-                SetAssetStagingUI(false);   //sceneIndex 3
-                SetTimeUI(true);            //sceneIndex 4
-                SetPlayerStatsUI(false);    //sceneIndex 5
-                SetPlayerPrefsUI(false);    //sceneIndex 6
-                break;
 
-            case "06_PlayerStats":
-                SetSplashScreenUI(false);   //sceneIndex 0
-                SetMenuScreenUI(false);     //sceneIndex 1
-                SetPlayUI(false);           //sceneIndex 2
-                SetAssetStagingUI(false);   //sceneIndex 3
-                SetTimeUI(false);           //sceneIndex 4
-                SetPlayerStatsUI(true);     //sceneIndex 5
-                SetPlayerPrefsUI(false);    //sceneIndex 6
-                break;
+                //case "04_AssetStaging":
+                //    SetSplashScreenUI(false);   //sceneIndex 0
+                //    SetMenuScreenUI(false);     //sceneIndex 1
+                //    SetPlayUI(false);           //sceneIndex 2
+                //    SetAssetStagingUI(true);    //sceneIndex 3
+                //    SetTimeUI(false);           //sceneIndex 4
+                //    SetPlayerStatsUI(false);    //sceneIndex 5
+                //    SetPlayerPrefsUI(false);    //sceneIndex 6
+                //    break;
 
-            case "07_PlayerPrefs":
-                SetSplashScreenUI(false);   //sceneIndex 0
-                SetMenuScreenUI(false);     //sceneIndex 1
-                SetPlayUI(false);           //sceneIndex 2
-                SetAssetStagingUI(false);   //sceneIndex 3
-                SetTimeUI(false);           //sceneIndex 4
-                SetPlayerStatsUI(false);    //sceneIndex 5
-                SetPlayerPrefsUI(true);     //sceneIndex 6
-                break;
+                //case "05_Time":
+                //    SetSplashScreenUI(false);   //sceneIndex 0
+                //    SetMenuScreenUI(false);     //sceneIndex 1
+                //    SetPlayUI(false);           //sceneIndex 2
+                //    SetAssetStagingUI(false);   //sceneIndex 3
+                //    SetTimeUI(true);            //sceneIndex 4
+                //    SetPlayerStatsUI(false);    //sceneIndex 5
+                //    SetPlayerPrefsUI(false);    //sceneIndex 6
+                //    break;
+
+                //case "06_PlayerStats":
+                //    SetSplashScreenUI(false);   //sceneIndex 0
+                //    SetMenuScreenUI(false);     //sceneIndex 1
+                //    SetPlayUI(false);           //sceneIndex 2
+                //    SetAssetStagingUI(false);   //sceneIndex 3
+                //    SetTimeUI(false);           //sceneIndex 4
+                //    SetPlayerStatsUI(true);     //sceneIndex 5
+                //    SetPlayerPrefsUI(false);    //sceneIndex 6
+                //    break;
+
+                //case "07_PlayerPrefs":
+                //    SetSplashScreenUI(false);   //sceneIndex 0
+                //    SetMenuScreenUI(false);     //sceneIndex 1
+                //    SetPlayUI(false);           //sceneIndex 2
+                //    SetAssetStagingUI(false);   //sceneIndex 3
+                //    SetTimeUI(false);           //sceneIndex 4
+                //    SetPlayerStatsUI(false);    //sceneIndex 5
+                //    SetPlayerPrefsUI(true);     //sceneIndex 6
+                //    break;
+                #endregion
         }
     }
 

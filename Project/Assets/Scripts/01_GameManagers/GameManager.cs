@@ -70,12 +70,12 @@ public class GameManager : MonoBehaviour
 
     public void MenuScene()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(0);
     }
 
     public void PlayScene()
     {
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(1);
     }
 
     public void StagingScene()

@@ -796,7 +796,7 @@ public class UIManager : MonoBehaviour
     // Only used when changing the pets colour
     public void DisplayColourSelections()
     {
-        Debug.Log("Lets pick a colour");
+        //Debug.Log("Lets pick a colour");
         // Display pet colour swatch selection
         petColourPanel.SetActive(true);
         // Create a button for each pet colour listed in the UIManager
@@ -866,7 +866,7 @@ public class UIManager : MonoBehaviour
     // Used to input times for bed time and wake up time
     public void DisplayTimeEntry()
     {
-        Debug.Log("Lets enter some time variables");
+        //Debug.Log("Lets enter some time variables");
         // Enable the time entry panel
         timeEntryPanel.SetActive(true);
         PaginateHoursList(nextHoursPage);
@@ -898,7 +898,7 @@ public class UIManager : MonoBehaviour
             nextHoursPage++;
         else
             nextHoursPage--;
-        Debug.Log("Current page is " + nextHoursPage);
+        //Debug.Log("Current page is " + nextHoursPage);
         if (nextHoursPage > 3) nextHoursPage = 0;
         if (nextHoursPage < 0) nextHoursPage = 3;
     }
@@ -926,7 +926,7 @@ public class UIManager : MonoBehaviour
         DialogueManager.AdvanceLine(UIStoredInputTime);
 
         timeEntries.Add(UIStoredInputTime);
-        Debug.Log(UIStoredInputTime);
+        //Debug.Log(UIStoredInputTime);
     }
 
     #endregion

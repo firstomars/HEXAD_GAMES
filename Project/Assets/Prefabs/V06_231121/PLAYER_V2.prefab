@@ -213,7 +213,7 @@ Animator:
   m_GameObject: {fileID: 540303742199514401}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 697086f5db886a947ac9cf9e42a8160a, type: 3}
-  m_Controller: {fileID: 9100000, guid: 312573789eda3c14aa38d7977ef19d07, type: 2}
+  m_Controller: {fileID: 9100000, guid: ec83662a8bf0e5d43b3cfa517e55e8a1, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1577,6 +1577,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CharacterWalkCycle 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: 697086f5db886a947ac9cf9e42a8160a, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: ec83662a8bf0e5d43b3cfa517e55e8a1, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 697086f5db886a947ac9cf9e42a8160a, type: 3}
 --- !u!4 &1011393709164321669 stripped

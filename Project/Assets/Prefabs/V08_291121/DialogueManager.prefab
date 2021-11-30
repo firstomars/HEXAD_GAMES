@@ -43,7 +43,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82f8fe3092008ba41804917f742a433c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UIManager: {fileID: 0}
   petTips:
   - tipType: RandomTips
     tipList:
@@ -61,6 +60,39 @@ MonoBehaviour:
       than students with poor grades.
     - The average 18-25 year old needs 7-9 hours of sleep a day. In fact all adults
       need the same amount of sleep.
+  - tipType: 1NightBadSleep
+    tipList:
+    - While not recommended, it is possible to catch up on sleep slowly with an extra
+      1 or 2 hours a night. But the debt must be paid!
+    - If you have had a night of bad sleep, research suggests that a brief day time
+      nap of 20 minutes may be enough to restore alertfulness.
+  - tipType: 2NightBadSleep
+    tipList:
+    - Disrupted or lack of sleep has been linked to our abaility to manage emotions,
+      anxiety levels, and can even lead to depression.
+    - Your cardiovascular system and cholesterol levels can suffer long term effects
+      from sleep deprevation.
+    - Your bodies metabolism is linked to your sleep-wake cycle and not getting enough
+      sleep can affect your bodies ability to manage serum and glucose leading to
+      a high BMI score (weight gain).
+  - tipType: ExerciseAfter6
+    tipList:
+    - Exercise in the evening is not recommended for most people as it increases
+      your body temperature and effects the hormones that promote sleep.
+  - tipType: EraticLogin
+    tipList:
+    - "Your circadain rhythm is just that, a rhythm. It expects you to go to bed
+      at the same time every night\u2026 even on weekends."
+  - tipType: LoginAfterBedtime
+    tipList:
+    - Delayed Sleep Phase Disorder (DSPD) is where you fight your body clock to go
+      to sleep later. This affects your circadian rhythm and may require treatment.
+  - tipType: BluLightFilter
+    tipList:
+    - Blue light from LED screens supresses your bodies production of melatonin,
+      the hormone that promotes sleep.
+    - Cutting back on screen time for an hour before sleep can increase production
+      of the hormone melatonin helping to promote sleep.
   petConversations:
   - conversationRoom: GameIntro
     conversationChain:

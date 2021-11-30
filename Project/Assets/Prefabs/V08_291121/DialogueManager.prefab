@@ -163,7 +163,8 @@ MonoBehaviour:
     conversationChain:
     - dialogueText: What should we get to eat?
       playerResponses:
-      - Hmmm... healthy or satisfying?
+      - healthy
+      - unhealthy
   - conversationRoom: Lounge
     conversationChain:
     - dialogueText: Do you want me to play a game?

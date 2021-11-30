@@ -197,6 +197,9 @@ public class DialogueManager : MonoBehaviour
             if (response != "_")
             {
                 // Call back here
+
+                //if healthy food
+                //EatBehaviour.EatHealthFood();
             }
             // Display the next line of dialogue
             DisplayDialogueLine(petConversations[currentConversationID].conversationChain[currentLineIndex].dialogueText, petConversations[currentConversationID].conversationChain[currentLineIndex].playerResponses);

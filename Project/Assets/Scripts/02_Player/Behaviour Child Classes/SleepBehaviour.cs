@@ -56,6 +56,8 @@ public class SleepBehaviour : Behaviour
         {
             SwitchCamera("bedroomSleep");
 
+            PlayerController.IsPetSleeping(true);
+
             PlayerController.PlayerAnimations.GetIntoBed();
 
             Debug.Log("Pet sent to bed");
@@ -86,6 +88,8 @@ public class SleepBehaviour : Behaviour
     {
         PlayerController.PlayerAnimations.GetOutOfBed();
         SwitchCamera("bedroom");
+
+        PlayerController.IsPetSleeping(false);
 
         Debug.Log("pet woken up");
         //PlayerController.IsPetSleeping(false);

@@ -42,6 +42,8 @@ public class CameraManager : MonoBehaviour
             bedroomCam.Priority = 0;
             bathroomCam.Priority = 0;
             trophyCam.Priority = 0;
+            actionSleepCam.Priority = 0;
+            actionMinigameCam.Priority = 0;
         }
         else if (isPlayerInGym)
         {
@@ -51,6 +53,8 @@ public class CameraManager : MonoBehaviour
             bedroomCam.Priority = 0;
             bathroomCam.Priority = 0;
             trophyCam.Priority = 0;
+            actionSleepCam.Priority = 0;
+            actionMinigameCam.Priority = 0;
         }
         else if (isPlayerInBedroom)
         {
@@ -71,6 +75,8 @@ public class CameraManager : MonoBehaviour
             bedroomCam.Priority = 0;
             bathroomCam.Priority = 1;
             trophyCam.Priority = 0;
+            actionSleepCam.Priority = 0;
+            actionMinigameCam.Priority = 0;
         }
         else if (isPlayerAtTrophyCabinet)
         {
@@ -81,6 +87,8 @@ public class CameraManager : MonoBehaviour
             bedroomCam.Priority = 0;
             bathroomCam.Priority = 0;
             trophyCam.Priority = 1;
+            actionSleepCam.Priority = 0;
+            actionMinigameCam.Priority = 0;
         }
         else if (isPlayerSleeping)
         {
@@ -114,6 +122,8 @@ public class CameraManager : MonoBehaviour
             bedroomCam.Priority = 0;
             bathroomCam.Priority = 0;
             trophyCam.Priority = 0;
+            actionSleepCam.Priority = 0;
+            actionMinigameCam.Priority = 0;
             overworldCamera.LookAt = GameManager.Instance.player.transform;
         }
     }
@@ -136,6 +146,8 @@ public class CameraManager : MonoBehaviour
                 isPlayerInBedroom = false;
                 isPlayerInBathroom = false;
                 isPlayerAtTrophyCabinet = false;
+                isPlayerSleeping = false;
+                isPlayerPlayingGame = false;
                 break;
 
             case "bedroom":
@@ -174,6 +186,8 @@ public class CameraManager : MonoBehaviour
                 isPlayerInBedroom = false;
                 isPlayerInBathroom = true;
                 isPlayerAtTrophyCabinet = false;
+                isPlayerSleeping = false;
+                isPlayerPlayingGame = false;
                 break;
 
             case "trophycabinet":
@@ -183,6 +197,8 @@ public class CameraManager : MonoBehaviour
                 isPlayerInBedroom = false;
                 isPlayerInBathroom = false;
                 isPlayerAtTrophyCabinet = true;
+                isPlayerSleeping = false;
+                isPlayerPlayingGame = false;
                 break;
 
             default:
@@ -191,6 +207,8 @@ public class CameraManager : MonoBehaviour
                 isPlayerInBedroom = false;
                 isPlayerInBathroom = false;
                 isPlayerAtTrophyCabinet = false;
+                isPlayerSleeping = false;
+                isPlayerPlayingGame = false;
                 break;
         }
     }

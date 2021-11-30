@@ -203,6 +203,7 @@ MonoBehaviour:
   petWakeUpTime: 6
   hasIntroHappened: 0
   petBody: {fileID: 1981256453645959599}
+  petSkinnedMeshRenderer: {fileID: 0}
 --- !u!95 &221287215981909487
 Animator:
   serializedVersion: 3
@@ -912,11 +913,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c14427478ec737f4b88630d82756d850, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hrsSleptNightOne: 0
-  hrsSleptNightTwo: 0
-  hrsSleptNightThree: 0
-  hrsSleptNightFour: 0
-  hrsSleptNightFive: 0
   minSpiritLevel: 1
   maxSpiritLevel: 100
   spiritLevel: 0
@@ -936,6 +932,13 @@ MonoBehaviour:
   fulfilGainedFromBenchPress: 10
   sleepDollarsLevel: 0
   sleepDollarsIncrementPerGame: 10
+  bedTimeGoal: 0
+  wakeUpTimeGoal: 0
+  hrsSleptNightOne: 0
+  hrsSleptNightTwo: 0
+  hrsSleptNightThree: 0
+  hrsSleptNightFour: 0
+  hrsSleptNightFive: 0
 --- !u!1 &735632514512035433
 GameObject:
   m_ObjectHideFlags: 0

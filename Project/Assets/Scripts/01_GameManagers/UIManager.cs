@@ -687,7 +687,7 @@ public class UIManager : MonoBehaviour
     {
         sendToBedBtnGO.SetActive(true);
         wakeUpBtnGO.SetActive(false);
-        miniGameBtnGO.SetActive(false);
+        miniGameBtnGO.SetActive(true);
         
         flyoutButtonPanel.SetActive(true);
     }

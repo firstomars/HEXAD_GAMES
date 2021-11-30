@@ -20,10 +20,8 @@ public class SleepBehaviour : Behaviour
 
         UIManager.UIManagerInstance.CurrentBehaviour = this;
 
-        if (!hasBeenInBedroom)
-        {
-            DialogueManager.DialogueManagerInstance.PetConversation("NewBedroom");
-        }
+        if (!hasBeenInBedroom) DialogueManager.DialogueManagerInstance.PetConversation("NewBedroom");
+        else SetUI("bedroom");
 
         base.StartBehaviour();
     }
@@ -68,7 +66,9 @@ public class SleepBehaviour : Behaviour
         }
         else
         {
+            //refactor
             Debug.Log("it's not pet's bed time yet!");
+            DialogueManager.DialogueManagerInstance.PetConversation("DontNeedSleep");
         }
     }
 

@@ -12,7 +12,7 @@ public class DialogueManager : MonoBehaviour
 
     public static DialogueManager DialogueManagerInstance { get { return _DialogueManagerInstance; } }
 
-    private void Awake()
+    private void Start()
     {
         if (_DialogueManagerInstance != null) Destroy(gameObject);
         else
@@ -157,6 +157,14 @@ public class DialogueManager : MonoBehaviour
 
                 case "NewBedroom":
                     currentConversationID = 7;
+                    break;
+
+                case "DontNeedSleep":
+                    currentConversationID = 8;
+                    break;
+
+                case "AlreadyEaten":
+                    currentConversationID = 9;
                     break;
 
                 case "default":

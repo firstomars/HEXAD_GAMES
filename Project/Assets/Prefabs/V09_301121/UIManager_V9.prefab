@@ -311,8 +311,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 562, y: -1646}
-  m_SizeDelta: {x: 300, y: 300}
+  m_AnchoredPosition: {x: 958, y: -335}
+  m_SizeDelta: {x: 200, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6145303730272063667
 CanvasRenderer:
@@ -431,8 +431,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 550, y: -627}
-  m_SizeDelta: {x: 300, y: 300}
+  m_AnchoredPosition: {x: 550, y: -335}
+  m_SizeDelta: {x: 250, y: 250}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5882914408950775212
 CanvasRenderer:
@@ -759,8 +759,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 732, y: -703.99994}
-  m_SizeDelta: {x: 300, y: 300}
+  m_AnchoredPosition: {x: 958, y: -335}
+  m_SizeDelta: {x: 200, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &875662494895126588
 CanvasRenderer:
@@ -880,7 +880,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 440, y: 735}
+  m_AnchoredPosition: {x: 440, y: -306}
   m_SizeDelta: {x: 150, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5069210358223579552
@@ -1513,6 +1513,7 @@ MonoBehaviour:
   playerResponsePanel: {fileID: 3261644784950770368}
   petColourPanel: {fileID: 5798844017244772591}
   timeEntryPanel: {fileID: 3286321519253825804}
+  DialogueManager: {fileID: 0}
   playerResponseButtonPrefab: {fileID: 8956773815184725726, guid: 9fe05f4678b406144b014f2d06de6a75, type: 3}
   colourSwatchButtonPrefab: {fileID: 2694458834747469005, guid: 0dfa8697236c36244ab4670e53959294, type: 3}
   timeEntryButtonPrefab: {fileID: 2810438651983284288, guid: 68f2f06fa0351f2459e47e9419e83148, type: 3}
@@ -1535,7 +1536,7 @@ MonoBehaviour:
   - '#D35F9E'
   - '#C32C31'
   - '#227A47'
-  playerMaterial: {fileID: 2100000, guid: 36cd28ea36f72e74e801462f60201bfa, type: 2}
+  playerMaterial: {fileID: 2100000, guid: 6e11df7f15cdc2842b4a63193bd1eb1e, type: 2}
   isPetColourSet: 0
   timeEntries: []
 --- !u!1 &5069210358790963099
@@ -2613,8 +2614,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 382, y: -1359}
-  m_SizeDelta: {x: 300, y: 300}
+  m_AnchoredPosition: {x: 131, y: -335}
+  m_SizeDelta: {x: 200, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4426602489162793550
 CanvasRenderer:
@@ -2733,8 +2734,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 382, y: -1359}
-  m_SizeDelta: {x: 300, y: 300}
+  m_AnchoredPosition: {x: 131, y: -335}
+  m_SizeDelta: {x: 200, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6674835854168938248
 CanvasRenderer:
@@ -2853,8 +2854,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 732, y: -1359}
-  m_SizeDelta: {x: 300, y: 300}
+  m_AnchoredPosition: {x: 958, y: -335}
+  m_SizeDelta: {x: 200, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5998385372541303745
 CanvasRenderer:
@@ -2973,8 +2974,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 382, y: -704}
-  m_SizeDelta: {x: 300, y: 300}
+  m_AnchoredPosition: {x: 131, y: -335}
+  m_SizeDelta: {x: 200, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1742198788450107196
 CanvasRenderer:
@@ -3988,7 +3989,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5618063905842520981, guid: 826ae16cf79425040bc6389935bcb027, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 331
+      value: 569
       objectReference: {fileID: 0}
     - target: {fileID: 5618063905842520981, guid: 826ae16cf79425040bc6389935bcb027, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -4435,6 +4436,10 @@ PrefabInstance:
     - target: {fileID: 8867870055359841885, guid: 52ccb48e3d807bb4dbf18563a8c0788b, type: 3}
       propertyPath: m_Name
       value: UI_MorningReport_Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 8867870055359841885, guid: 52ccb48e3d807bb4dbf18563a8c0788b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8867870055359841887, guid: 52ccb48e3d807bb4dbf18563a8c0788b, type: 3}
       propertyPath: m_PresetInfoIsWorld

@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class ExerciseBehaviour : Behaviour
 {
+    private bool hasBeenInGym = false;
+    private bool isRoomUISet = false;
+
     public ExerciseBehaviour(PlayerController playerController) : base(playerController)
     {
         PlayerController = playerController;
@@ -13,7 +16,10 @@ public class ExerciseBehaviour : Behaviour
     {
         Debug.Log("ExerciseBehaviour Start called - press E to test update");
         UIManager.UIManagerInstance.CurrentBehaviour = this;
-        SetUI("gym");
+
+        if (!hasBeenInGym) DialogueManager.DialogueManagerInstance.PetConversation("Gym");
+        else SetUI("gym");
+
         base.StartBehaviour();
     }
 
@@ -21,14 +27,14 @@ public class ExerciseBehaviour : Behaviour
     {
         //Debug.Log("ExerciseBehaviour Update called");
 
-        if (Input.GetKeyDown(KeyCode.E))
+        if (DialogueManager.DialogueManagerInstance.currentConversationComplete) hasBeenInGym = true;
+
+        if (!isRoomUISet && hasBeenInGym)
         {
-            if (PlayerController.PlayerStatistics.energyLevel > PlayerController.minEnergyLevelToGym)
-                Debug.Log("key E has been pressed");
-            else
-                Debug.Log("Energy too low to work out");
+            SetUI("gym");
+            isRoomUISet = true;
         }
-            
+
         base.RunBehaviour();
     }
 

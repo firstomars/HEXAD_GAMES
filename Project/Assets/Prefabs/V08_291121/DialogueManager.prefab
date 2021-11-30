@@ -163,8 +163,7 @@ MonoBehaviour:
     conversationChain:
     - dialogueText: What should we get to eat?
       playerResponses:
-      - Chicken Salad
-      - Salami Pizza
+      - Hmmm... healthy or satisfying?
   - conversationRoom: Lounge
     conversationChain:
     - dialogueText: Do you want me to play a game?
@@ -179,10 +178,9 @@ MonoBehaviour:
       - Not right now
   - conversationRoom: Gym
     conversationChain:
-    - dialogueText: Time to get fit, what exercise should we do?
+    - dialogueText: Gym time huh?
       playerResponses:
-      - Pump some weights
-      - Go for a run
+      - Yeah buddy, gotta stay in shape right.
   - conversationRoom: Daily Login
     conversationChain:
     - dialogueText: Hey, thanks for dropping by. How are you today?
@@ -208,3 +206,19 @@ MonoBehaviour:
     - dialogueText: Change our goal wake up time.
       playerResponses:
       - time
+  - conversationRoom: NewBedroom
+    conversationChain:
+    - dialogueText: Do you want to sleep or play a game?
+      playerResponses:
+      - Thanks I'll think about it.
+  - conversationRoom: DontNeedSleep
+    conversationChain:
+    - dialogueText: I'm not tired. I'm not going to bed!
+      playerResponses:
+      - Ok jeez...
+  - conversationRoom: AlreadyEaten
+    conversationChain:
+    - dialogueText: Dude, I just ate.
+      playerResponses:
+      - Alright alright
+  currentConversationComplete: 0

@@ -6,7 +6,10 @@ public class EatBehaviour : Behaviour
 {
     private int timeLastEaten = -1;
     private int timesEatenToday = 0;
-    
+
+    private bool hasBeenInKitchen = false;
+    private bool isRoomUISet = false;
+
     public EatBehaviour(PlayerController playerController) : base(playerController)
     {
         PlayerController = playerController;
@@ -16,16 +19,23 @@ public class EatBehaviour : Behaviour
     {
         Debug.Log("EatBehaviour Start called - press A to test update");
         UIManager.UIManagerInstance.CurrentBehaviour = this;
-        SetUI("kitchen");
+
+        if (!hasBeenInKitchen) DialogueManager.DialogueManagerInstance.PetConversation("Kitchen");
+        else SetUI("kitchen");
+
+
         base.StartBehaviour();
     }
 
     public override void RunBehaviour()
     {
-        //Debug.Log("EatBehaviour Update called");
+        if (DialogueManager.DialogueManagerInstance.currentConversationComplete) hasBeenInKitchen = true;
 
-        if (Input.GetKeyDown(KeyCode.A))
-            Debug.Log("key A has been pressed");
+        if (!isRoomUISet && hasBeenInKitchen)
+        {
+            SetUI("kitchen");
+            isRoomUISet = true;
+        }
 
         base.RunBehaviour();
     }
@@ -46,7 +56,11 @@ public class EatBehaviour : Behaviour
         //Debug.Log(hoursSinceLastMeal);
 
         if (timeLastEaten == -1 || (hoursSinceLastMeal > 3 && timesEatenToday < 4)) EatSuccessful("food");
-        else Debug.Log("You've eaten in the last 4 hours OR you've already eaten 3 meals today!");
+        else
+        {
+            Debug.Log("You've eaten in the last 4 hours OR you've already eaten 3 meals today!");
+            DialogueManager.DialogueManagerInstance.PetConversation("AlreadyEaten");
+        }
     }
 
     public override void EatJunkFood()
@@ -56,7 +70,11 @@ public class EatBehaviour : Behaviour
         uint hoursSinceLastMeal = CalculateHoursPerLastMeal();
        
         if (timeLastEaten == -1 || (hoursSinceLastMeal > 3 && timesEatenToday < 4)) EatSuccessful("junkfood");
-        else Debug.Log("You've eaten in the last 4 hours OR you've already eaten 3 meals today!");
+        else
+        {
+            Debug.Log("You've eaten in the last 4 hours OR you've already eaten 3 meals today!");
+            DialogueManager.DialogueManagerInstance.PetConversation("AlreadyEaten");
+        }
     }
 
     private void EatSuccessful(string foodType)

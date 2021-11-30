@@ -833,6 +833,7 @@ public class UIManager : MonoBehaviour
         // Enable the player response panel
         playerResponsePanel.SetActive(true);
         // Display a button for each response the player can make
+
         foreach (string response in responses)
         {
             GameObject newButton = Instantiate(playerResponseButtonPrefab, playerResponsePanel.transform);

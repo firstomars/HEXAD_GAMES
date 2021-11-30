@@ -77,7 +77,10 @@ public class PlayerController : BehaviourStateMachine
     [SerializeField] public int petBedTime;
     [SerializeField] public int petWakeUpTime;
 
-    [SerializeField] private bool hasIntroHappened = false;
+    [SerializeField] public bool hasIntroHappened = false;
+
+    [SerializeField] private GameObject petBody;
+    [HideInInspector] public Renderer petSkinnedMeshRenderer;
 
     // Start is called before the first frame update
     void Start()
@@ -103,6 +106,9 @@ public class PlayerController : BehaviourStateMachine
 
         //set-up navmesh agent
         agent = GetComponent<NavMeshAgent>();
+
+        //set-up pet renderers
+        petSkinnedMeshRenderer = petBody.GetComponent<Renderer>();
 
         #region Connect Camera, Time, Trophy Classes
         //connect player stats
@@ -135,10 +141,6 @@ public class PlayerController : BehaviourStateMachine
 
     private void Update()
     {
-        //countDownTimer -= Time.deltaTime;
-
-        //Debug.Log(countDownTimer);
-
         //set new behaviour if required
         if (nextBehaviour != null && nextBehaviour != currentBehaviour)
         {
@@ -182,9 +184,8 @@ public class PlayerController : BehaviourStateMachine
         if (!hasIntroHappened)
         {
             nextBehaviour = IntroductionBehaviour;
-            hasIntroHappened = true;
         }
-        if (isPetSleeping)
+        else if (isPetSleeping)
         {
             return;
         }
@@ -192,10 +193,9 @@ public class PlayerController : BehaviourStateMachine
         {
             nextBehaviour = StatusCheckBehaviour;
         }
-        else if(isPetSeeking) //!isPlayerInBathroom && !isPlayerInBedroom && !isPlayerInGym && !isPlayerInKitchen && !isPlayerAtTrophyCabinet
+        else if(isPetSeeking)
         {
             nextBehaviour = SeekBehaviour;
-            //ResetCountDownTimer();
         }
         else if (isPlayerInKitchen)
         {
@@ -226,26 +226,6 @@ public class PlayerController : BehaviourStateMachine
             //Debug.Log("agent reached destination - call wander now");
             nextBehaviour = WanderBehaviour;
         }
-        //else if (Input.GetKeyDown(KeyCode.Alpha1)) // set to top - UNUSED BEHAVIOURS
-        //{
-        //    Debug.Log("key 1 pressed");
-        //    nextBehaviour = WanderBehaviour;
-        //}
-        //else if (Input.GetKeyDown(KeyCode.Alpha2))
-        //{
-        //    Debug.Log("key 2 pressed");
-        //    nextBehaviour = MoodBehaviour;
-        //}
-        //else if (Input.GetKeyDown(KeyCode.Alpha4))
-        //{
-        //    Debug.Log("key 4 pressed");
-        //    nextBehaviour = ConverseBehaviour;
-        //}
-        //else if (Input.GetKeyDown(KeyCode.Alpha9))
-        //{
-        //    Debug.Log("key 9 pressed");
-        //    nextBehaviour = EmoteBehaviour;
-        //}
     }
 
     //check whether input is valid movement target for player

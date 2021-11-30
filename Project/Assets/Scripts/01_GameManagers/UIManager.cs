@@ -118,6 +118,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject timeEntryPanel;
     private DialogueManager DialogueManager;
 
+
     [Header("Button Prefabs - Player Responses")]
     [SerializeField] private GameObject playerResponseButtonPrefab;
     [SerializeField] private GameObject colourSwatchButtonPrefab;
@@ -158,9 +159,10 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject upgradeBedBtnGO;
     private Button upgradeBedBtn;
 
-    [Header("UI Required Inputs - May Relocate")]
+    [Header("UI Required Inputs")]
     [SerializeField] private string[] petColours;
-    [SerializeField] private Material playerMaterial;
+    [SerializeField] public Material playerMaterial;
+    [HideInInspector] public bool isPetColourSet = false;
 
     //===
 
@@ -812,6 +814,8 @@ public class UIManager : MonoBehaviour
 
         // This is not UI related
         playerMaterial.color = clickedButton.transform.GetChild(0).gameObject.GetComponent<Image>().color;
+
+        isPetColourSet = true;
 
         // Reset the UI and move to the next conversation line
         DestroyUIButtons(petColourPanel);

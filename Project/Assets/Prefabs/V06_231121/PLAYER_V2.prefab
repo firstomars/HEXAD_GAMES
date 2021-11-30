@@ -185,6 +185,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b03eed681ea8cfc4391215fd4301aec7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PlayerAnimations: {fileID: 0}
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 64
@@ -200,6 +201,8 @@ MonoBehaviour:
   minEnergyLevelToGym: 75
   petBedTime: 21
   petWakeUpTime: 6
+  hasIntroHappened: 0
+  petBody: {fileID: 1981256453645959599}
 --- !u!95 &221287215981909487
 Animator:
   serializedVersion: 3
@@ -1579,5 +1582,10 @@ PrefabInstance:
 --- !u!4 &1011393709164321669 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 697086f5db886a947ac9cf9e42a8160a, type: 3}
+  m_PrefabInstance: {fileID: 685541399104371822}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1981256453645959599 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1368353741697465793, guid: 697086f5db886a947ac9cf9e42a8160a, type: 3}
   m_PrefabInstance: {fileID: 685541399104371822}
   m_PrefabAsset: {fileID: 0}

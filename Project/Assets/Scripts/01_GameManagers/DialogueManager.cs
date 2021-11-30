@@ -59,6 +59,8 @@ public class DialogueManager : MonoBehaviour
     private int currentLineIndex = 0;
     private readonly List<int> tipsDisplayed = new List<int>();
 
+    [HideInInspector] public bool currentConversationComplete = false;
+
     #endregion
 
     private void Start()
@@ -180,6 +182,8 @@ public class DialogueManager : MonoBehaviour
         // Check if the conversation chain has more nodes
         if (currentLineIndex < petConversations[currentConversationID].conversationChain.Length)
         {
+            currentConversationComplete = false;
+
             // Call back to behaviour to save user response if required
             if (response != "_")
             {
@@ -190,6 +194,8 @@ public class DialogueManager : MonoBehaviour
         }
         else
         {
+            currentConversationComplete = true;
+            
             // Reset the conversation status
             conversationStarted = false;
             currentLineIndex = 0;

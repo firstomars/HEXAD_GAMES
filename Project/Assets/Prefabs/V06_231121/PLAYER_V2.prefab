@@ -1576,6 +1576,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -6403013625641359547, guid: 697086f5db886a947ac9cf9e42a8160a, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c35a24d120a475842910ba35090e8b68, type: 2}
+    - target: {fileID: 451158905556667463, guid: 697086f5db886a947ac9cf9e42a8160a, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 6e11df7f15cdc2842b4a63193bd1eb1e, type: 2}
+    - target: {fileID: 708426816975842182, guid: 697086f5db886a947ac9cf9e42a8160a, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c35a24d120a475842910ba35090e8b68, type: 2}
     - target: {fileID: 919132149155446097, guid: 697086f5db886a947ac9cf9e42a8160a, type: 3}
       propertyPath: m_Name
       value: CharacterWalkCycle 1
@@ -1584,6 +1596,14 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: ec83662a8bf0e5d43b3cfa517e55e8a1, type: 2}
+    - target: {fileID: 5866666021909216657, guid: 697086f5db886a947ac9cf9e42a8160a, type: 3}
+      propertyPath: m_UpdateMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8047572751620062125, guid: 697086f5db886a947ac9cf9e42a8160a, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c35a24d120a475842910ba35090e8b68, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 697086f5db886a947ac9cf9e42a8160a, type: 3}
 --- !u!4 &1011393709164321669 stripped

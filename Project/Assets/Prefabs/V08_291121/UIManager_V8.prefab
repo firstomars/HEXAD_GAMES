@@ -1934,6 +1934,8 @@ MonoBehaviour:
   - '#C32C31'
   - '#227A47'
   playerMaterial: {fileID: 2100000, guid: 36cd28ea36f72e74e801462f60201bfa, type: 2}
+  isPetColourSet: 0
+  timeEntries: []
 --- !u!1 &5069210358790963099
 GameObject:
   m_ObjectHideFlags: 0
@@ -4395,11 +4397,59 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 224453692932741460, guid: 794908be0db937746995a69d381ead2a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224453692932741460, guid: 794908be0db937746995a69d381ead2a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224453692932741460, guid: 794908be0db937746995a69d381ead2a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 5069210358555427485}
+    - target: {fileID: 224453692932741460, guid: 794908be0db937746995a69d381ead2a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 224453692932741460, guid: 794908be0db937746995a69d381ead2a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PreviousPageHoursList
+      objectReference: {fileID: 0}
+    - target: {fileID: 224453692932741460, guid: 794908be0db937746995a69d381ead2a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UIManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 224453692932741460, guid: 794908be0db937746995a69d381ead2a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 224453693717496522, guid: 794908be0db937746995a69d381ead2a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224453693717496522, guid: 794908be0db937746995a69d381ead2a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224453693717496522, guid: 794908be0db937746995a69d381ead2a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 5069210358555427485}
+    - target: {fileID: 224453693717496522, guid: 794908be0db937746995a69d381ead2a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 224453693717496522, guid: 794908be0db937746995a69d381ead2a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: NextPageHoursList
+      objectReference: {fileID: 0}
+    - target: {fileID: 224453693717496522, guid: 794908be0db937746995a69d381ead2a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UIManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 224453693717496522, guid: 794908be0db937746995a69d381ead2a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 794908be0db937746995a69d381ead2a, type: 3}

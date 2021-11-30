@@ -163,6 +163,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private string[] petColours;
     [SerializeField] public Material playerMaterial;
     [HideInInspector] public bool isPetColourSet = false;
+    [HideInInspector] public List<string> timeEntries;
 
     //===
 
@@ -923,6 +924,9 @@ public class UIManager : MonoBehaviour
         timeEntryPanel.SetActive(false);
         petDialoguePanel.SetActive(false);
         DialogueManager.AdvanceLine(UIStoredInputTime);
+
+        timeEntries.Add(UIStoredInputTime);
+        Debug.Log(UIStoredInputTime);
     }
 
     #endregion

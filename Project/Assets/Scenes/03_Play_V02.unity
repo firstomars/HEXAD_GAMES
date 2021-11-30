@@ -130,6 +130,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3286321520900897028, guid: e670b141b8273b14eaef96cb57bdc355, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3286321520900897028, guid: e670b141b8273b14eaef96cb57bdc355, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3286321520900897028, guid: e670b141b8273b14eaef96cb57bdc355, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5069210358555427483, guid: e670b141b8273b14eaef96cb57bdc355, type: 3}
       propertyPath: m_Name
       value: UIManager_V8

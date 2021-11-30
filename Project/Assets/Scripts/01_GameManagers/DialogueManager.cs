@@ -53,7 +53,7 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private ConversationLibrary[] petConversations;
 
     // Local variables
-    private bool gameIntroComplete = false;
+    //private bool gameIntroComplete = false;
     private bool conversationStarted = false;
     private int currentConversationID = 0;
     private int currentLineIndex = 0;
@@ -176,8 +176,8 @@ public class DialogueManager : MonoBehaviour
     // Called from UI manager with player response
     public void AdvanceLine(string response)
     {
-        Debug.Log("Player responded with " + response);
-        Debug.Log("Current conversation node count is " + petConversations[currentConversationID].conversationChain.Length);
+        //Debug.Log("Player responded with " + response);
+        //Debug.Log("Current conversation node count is " + petConversations[currentConversationID].conversationChain.Length);
         currentLineIndex++;
         // Check if the conversation chain has more nodes
         if (currentLineIndex < petConversations[currentConversationID].conversationChain.Length)

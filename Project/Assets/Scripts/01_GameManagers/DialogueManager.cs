@@ -154,6 +154,11 @@ public class DialogueManager : MonoBehaviour
                 case "Settings":
                     currentConversationID = 6;
                     break;
+
+                case "NewBedroom":
+                    currentConversationID = 7;
+                    break;
+
                 case "default":
                     conversationStarted = false;
                     break;
@@ -190,11 +195,10 @@ public class DialogueManager : MonoBehaviour
         }
         else
         {
-            currentConversationComplete = true;
-            
             // Reset the conversation status
             conversationStarted = false;
             currentLineIndex = 0;
+            currentConversationComplete = true;
         }
     }
 
@@ -219,40 +223,40 @@ public class DialogueManager : MonoBehaviour
     #endregion
 
     // Temporary functions to test functionality
-    private void Update()
-    {        
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            Debug.Log("Display a tip from Random Tips");
-            DisplayTip("RandomTips");
-        }
-        else if (Input.GetKeyDown(KeyCode.I))
-        {
-            PetConversation("Intro");
-        }
-        else if (Input.GetKeyDown(KeyCode.K))
-        {
-            PetConversation("Kitchen");
-        }
-        else if (Input.GetKeyDown(KeyCode.G))
-        {
-            PetConversation("Gym");
-        }
-        else if (Input.GetKeyDown(KeyCode.L))
-        {
-            PetConversation("Lounge");
-        }
-        else if (Input.GetKeyDown(KeyCode.B))
-        {
-            PetConversation("Bedroom");
-        }
-        else if (Input.GetKeyDown(KeyCode.D))
-        {
-            PetConversation("Daily");
-        }
-        else if (Input.GetKeyDown(KeyCode.S))
-        {
-            PetConversation("Settings");
-        }
-    }
+    //private void Update()
+    //{        
+    //    if (Input.GetKeyDown(KeyCode.T))
+    //    {
+    //        Debug.Log("Display a tip from Random Tips");
+    //        DisplayTip("RandomTips");
+    //    }
+    //    else if (Input.GetKeyDown(KeyCode.I))
+    //    {
+    //        PetConversation("Intro");
+    //    }
+    //    else if (Input.GetKeyDown(KeyCode.K))
+    //    {
+    //        PetConversation("Kitchen");
+    //    }
+    //    else if (Input.GetKeyDown(KeyCode.G))
+    //    {
+    //        PetConversation("Gym");
+    //    }
+    //    else if (Input.GetKeyDown(KeyCode.L))
+    //    {
+    //        PetConversation("Lounge");
+    //    }
+    //    else if (Input.GetKeyDown(KeyCode.B))
+    //    {
+    //        PetConversation("Bedroom");
+    //    }
+    //    else if (Input.GetKeyDown(KeyCode.D))
+    //    {
+    //        PetConversation("Daily");
+    //    }
+    //    else if (Input.GetKeyDown(KeyCode.S))
+    //    {
+    //        PetConversation("Settings");
+    //    }
+    //}
 }

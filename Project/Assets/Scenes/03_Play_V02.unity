@@ -383,6 +383,54 @@ PrefabInstance:
       propertyPath: m_Name
       value: DialogueManager
       objectReference: {fileID: 0}
+    - target: {fileID: 7686106760894637249, guid: b4f10858265dbc4488fce4ea86d23172, type: 3}
+      propertyPath: petConversations.Array.size
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7686106760894637249, guid: b4f10858265dbc4488fce4ea86d23172, type: 3}
+      propertyPath: petConversations.Array.data[7].conversationRoom
+      value: NewBedroom
+      objectReference: {fileID: 0}
+    - target: {fileID: 7686106760894637249, guid: b4f10858265dbc4488fce4ea86d23172, type: 3}
+      propertyPath: petConversations.Array.data[7].conversationChain.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7686106760894637249, guid: b4f10858265dbc4488fce4ea86d23172, type: 3}
+      propertyPath: petConversations.Array.data[7].conversationChain.Array.data[0].dialogueText
+      value: Do you want to sleep or play a game?
+      objectReference: {fileID: 0}
+    - target: {fileID: 7686106760894637249, guid: b4f10858265dbc4488fce4ea86d23172, type: 3}
+      propertyPath: petConversations.Array.data[7].conversationChain.Array.data[1].dialogueText
+      value: Change our goal bed time.
+      objectReference: {fileID: 0}
+    - target: {fileID: 7686106760894637249, guid: b4f10858265dbc4488fce4ea86d23172, type: 3}
+      propertyPath: petConversations.Array.data[7].conversationChain.Array.data[2].dialogueText
+      value: Change our goal wake up time.
+      objectReference: {fileID: 0}
+    - target: {fileID: 7686106760894637249, guid: b4f10858265dbc4488fce4ea86d23172, type: 3}
+      propertyPath: petConversations.Array.data[7].conversationChain.Array.data[0].playerResponses.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7686106760894637249, guid: b4f10858265dbc4488fce4ea86d23172, type: 3}
+      propertyPath: petConversations.Array.data[7].conversationChain.Array.data[1].playerResponses.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7686106760894637249, guid: b4f10858265dbc4488fce4ea86d23172, type: 3}
+      propertyPath: petConversations.Array.data[7].conversationChain.Array.data[2].playerResponses.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7686106760894637249, guid: b4f10858265dbc4488fce4ea86d23172, type: 3}
+      propertyPath: petConversations.Array.data[7].conversationChain.Array.data[0].playerResponses.Array.data[0]
+      value: Thanks, I'll think about it.
+      objectReference: {fileID: 0}
+    - target: {fileID: 7686106760894637249, guid: b4f10858265dbc4488fce4ea86d23172, type: 3}
+      propertyPath: petConversations.Array.data[7].conversationChain.Array.data[1].playerResponses.Array.data[0]
+      value: time
+      objectReference: {fileID: 0}
+    - target: {fileID: 7686106760894637249, guid: b4f10858265dbc4488fce4ea86d23172, type: 3}
+      propertyPath: petConversations.Array.data[7].conversationChain.Array.data[2].playerResponses.Array.data[0]
+      value: time
+      objectReference: {fileID: 0}
     - target: {fileID: 7686106760894637250, guid: b4f10858265dbc4488fce4ea86d23172, type: 3}
       propertyPath: m_RootOrder
       value: 4

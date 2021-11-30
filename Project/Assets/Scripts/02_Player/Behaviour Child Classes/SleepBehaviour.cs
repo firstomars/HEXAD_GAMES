@@ -5,7 +5,10 @@ using UnityEngine;
 public class SleepBehaviour : Behaviour
 {
     private int dayFellAsleep = -1;
-    
+
+    private bool hasBeenInBedroom = false;
+    private bool isRoomUISet = false;
+
     public SleepBehaviour(PlayerController playerController) : base(playerController)
     {
         PlayerController = playerController;
@@ -17,23 +20,22 @@ public class SleepBehaviour : Behaviour
 
         UIManager.UIManagerInstance.CurrentBehaviour = this;
 
-        SetUI("bedroom");
+        if (!hasBeenInBedroom)
+        {
+            DialogueManager.DialogueManagerInstance.PetConversation("NewBedroom");
+        }
 
         base.StartBehaviour();
     }
 
     public override void RunBehaviour()
     {
-        if (Input.GetKeyDown(KeyCode.L))
+        if (DialogueManager.DialogueManagerInstance.currentConversationComplete) hasBeenInBedroom = true;
+        
+        if (!isRoomUISet && hasBeenInBedroom)
         {
-            if (PlayerController.TimeController.IsTimeAfter(PlayerController.petBedTime))
-            {
-                Debug.Log("player goes to sleep");
-            }
-            else
-            {
-                Debug.Log("it's not pet's bed time yet!");
-            }
+            SetUI("bedroom");
+            isRoomUISet = true;
         }
 
         base.RunBehaviour();

@@ -7,12 +7,6 @@ using UnityEngine.UI;
 public class PlayerStatistics : MonoBehaviour
 {
     private UIManager UIManager;
-    
-    [SerializeField] private int hrsSleptNightOne;
-    [SerializeField] private int hrsSleptNightTwo;
-    [SerializeField] private int hrsSleptNightThree;
-    [SerializeField] private int hrsSleptNightFour;
-    [SerializeField] private int hrsSleptNightFive;
 
     //set by intro scene
     private int wakeUpTime;
@@ -44,9 +38,17 @@ public class PlayerStatistics : MonoBehaviour
     [Header("SLEEP DOLLARS")]
     [SerializeField] private int sleepDollarsLevel = 0;
     [SerializeField] private int sleepDollarsIncrementPerGame = 10;
-
     private int minigamesPlayed = 0;
     private int mealsEatenToday = 0;
+
+    [Header("SLEEP TIMES")]
+    [SerializeField] private int bedTimeGoal;
+    [SerializeField] private int wakeUpTimeGoal;
+    [SerializeField] private int hrsSleptNightOne;
+    [SerializeField] private int hrsSleptNightTwo;
+    [SerializeField] private int hrsSleptNightThree;
+    [SerializeField] private int hrsSleptNightFour;
+    [SerializeField] private int hrsSleptNightFive;
 
     [HideInInspector] public int SleepTrophyGoals { get; set; }
 
@@ -191,20 +193,20 @@ public class PlayerStatistics : MonoBehaviour
         return spiritLevel.ToString();
     }
 
-    public int CalculateHoursSlept(int bedTime, int wakeUpTime)
-    {
-        hrsSleptNightTwo = hrsSleptNightOne;
+    //public int CalculateHoursSlept(int bedTime, int wakeUpTime)
+    //{
+    //    hrsSleptNightTwo = hrsSleptNightOne;
         
-        hrsSleptNightOne = (24 - bedTime) + wakeUpTime; //REFACTOR
-        energyLevel = maxEnergyLevel;
+    //    hrsSleptNightOne = (24 - bedTime) + wakeUpTime; //REFACTOR
+    //    energyLevel = maxEnergyLevel;
 
-        Debug.Log("PlayerStats " + hrsSleptNightOne);
+    //    Debug.Log("PlayerStats " + hrsSleptNightOne);
 
-        //add if statements to see what new energy levels are
-        SetNewEnergyLevels();
+    //    //add if statements to see what new energy levels are
+    //    SetNewEnergyLevels();
 
-        return hrsSleptNightOne;
-    }
+    //    return hrsSleptNightOne;
+    //}
 
     public Vector2Int CalculateHoursSleptNightOneTwo(int bedTime, int wakeUpTime)
     {
@@ -214,7 +216,9 @@ public class PlayerStatistics : MonoBehaviour
         hrsSleptNightThree = hrsSleptNightTwo;        
         hrsSleptNightTwo = hrsSleptNightOne;
 
-        hrsSleptNightOne = (24 - bedTime) + wakeUpTime; //REFACTOR
+
+        hrsSleptNightOne = CalculateHoursSlept(bedTime, wakeUpTime);
+        //hrsSleptNightOne = (24 - bedTime) + wakeUpTime; //REFACTOR
         energyLevel = maxEnergyLevel;
 
         //Debug.Log("PlayerStats " + hrsSleptNightOne);
@@ -225,6 +229,11 @@ public class PlayerStatistics : MonoBehaviour
         Vector2Int hrsSlept = new Vector2Int(hrsSleptNightOne, hrsSleptNightTwo);
 
         return hrsSlept;
+    }
+
+    private int CalculateHoursSlept(int bedTime, int wakeUpTime)
+    {
+        return (24 - bedTime) + wakeUpTime;
     }
 
     public int GetHrsSleptNightOne()
@@ -253,5 +262,22 @@ public class PlayerStatistics : MonoBehaviour
         Debug.Log("Sleep dollars " + sleepDollarsLevel + " reduced by " + reduceAmt);
         sleepDollarsLevel -= reduceAmt;
         Debug.Log("New sleep dollars is " + sleepDollarsLevel);
+    }
+
+    public void SetInitialSleepTimesAndGoals(List<string> sleepTimeEntries)
+    {
+        bedTimeGoal = Int32.Parse(sleepTimeEntries[0].Substring(0, 2));
+        wakeUpTimeGoal = Int32.Parse(sleepTimeEntries[1].Substring(0, 2));
+
+        Debug.Log("Bed Time Goal: " + bedTimeGoal);
+        Debug.Log("Wake Time Goal: " + wakeUpTimeGoal);
+
+        int firstBedTime = Int32.Parse(sleepTimeEntries[2].Substring(0, 2));
+        int firstWakeUpTime = Int32.Parse(sleepTimeEntries[3].Substring(0, 2));
+        hrsSleptNightOne = CalculateHoursSlept(firstBedTime, firstWakeUpTime);
+
+        //Debug.Log("First Bed Time: " + firstBedTime);
+        //Debug.Log("First Wake Time: " + firstWakeUpTime);
+        //Debug.Log("Hours slept on first night " + hrsSleptNightOne);
     }
 }

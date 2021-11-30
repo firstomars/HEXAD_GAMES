@@ -76,9 +76,7 @@ public class PlayerController : BehaviourStateMachine
     [SerializeField] public float minEnergyLevelToGym;
     [SerializeField] public int petBedTime;
     [SerializeField] public int petWakeUpTime;
-
     [SerializeField] public bool hasIntroHappened = false;
-
     [SerializeField] private GameObject petBody;
     [HideInInspector] public Renderer petSkinnedMeshRenderer;
 

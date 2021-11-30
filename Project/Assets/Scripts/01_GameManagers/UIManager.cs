@@ -875,7 +875,7 @@ public class UIManager : MonoBehaviour
     // Pagination function to support scrolling through pages
     private void PaginateHoursList(int pageToFetch)
     {
-        Debug.Log("Fetching page" + pageToFetch);
+        //Debug.Log("Fetching page" + pageToFetch);
         int pageSize = 6;
         // Set how many pages to skip based on current page
         int pageCount = pageToFetch * pageSize;

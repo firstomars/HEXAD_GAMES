@@ -36,6 +36,8 @@ public class IntroductionBehaviour : Behaviour
 
     public override void EndBehaviour()
     {
+        PlayerController.PlayerStatistics.SetInitialSleepTimesAndGoals(UIManager.UIManagerInstance.timeEntries);
+        
         Debug.Log("ExerciseBehaviour End called");
         base.EndBehaviour();
     }

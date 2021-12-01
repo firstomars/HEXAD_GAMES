@@ -42,8 +42,13 @@ public class PlayerAnimations : MonoBehaviour
 
     public void InsideGym()
     {
-        anim.SetBool("InsideGym", true);
-    }  
+        anim.SetBool("IsInGym", true);
+    }
+
+    public void OutsideGym()
+    {
+        anim.SetBool("IsInGym", false);
+    }
 
     public void Workout()
     {
@@ -67,7 +72,11 @@ public class PlayerAnimations : MonoBehaviour
 
     public void PlayMinigame()
     {
+        //anim.SetBool("IsPlaying", true);
+         anim.SetTrigger("PlayGame");
         Debug.Log("Minigame animation");
-        //anim.SetTrigger("Eat");
     }
 }
+
+
+

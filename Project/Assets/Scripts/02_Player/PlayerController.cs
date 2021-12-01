@@ -83,6 +83,15 @@ public class PlayerController : BehaviourStateMachine
     [SerializeField] private GameObject petBody;
     [HideInInspector] public Renderer petSkinnedMeshRenderer;
 
+    [Header("Player Cosmetics")]
+    // Gym
+    [SerializeField] private GameObject Sweatband;
+    [SerializeField] private GameObject RightDumbell;
+    [SerializeField] private GameObject LeftDumbell;
+    //Kitchen
+    [SerializeField] private GameObject UnhealthyFood;
+    [SerializeField] private GameObject HealthyFood;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -286,7 +295,7 @@ public class PlayerController : BehaviourStateMachine
         switch (room)
         {
             case "gym":
-                isPlayerInGym = true;
+                isPlayerInGym = true;     
                 isPlayerInKitchen = false;
                 isPlayerInBedroom = false;
                 isPlayerInBathroom = false;

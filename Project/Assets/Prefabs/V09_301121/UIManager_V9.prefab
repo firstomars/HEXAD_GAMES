@@ -1943,6 +1943,7 @@ MonoBehaviour:
   playerPrefsBtn: {fileID: 5069210359439300151}
   quitBtn: {fileID: 5069210358223579580}
   menuBG: {fileID: 3511167295474151852}
+  gameTitle: {fileID: 1482668577621122862}
   UpgradeManager: {fileID: 0}
   TimeController: {fileID: 0}
   interactablesUIGO: {fileID: 2771476892188511839}
@@ -2002,7 +2003,7 @@ MonoBehaviour:
   - '#D35F9E'
   - '#C32C31'
   - '#227A47'
-  playerMaterial: {fileID: 0}
+  playerMaterial: {fileID: 2100000, guid: 2c19785d24f3f1a40b989b1d3085fc8b, type: 2}
   isPetColourSet: 0
   timeEntries: []
 --- !u!1 &5069210358790963099

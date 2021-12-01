@@ -41,6 +41,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject playerPrefsBtn;
     [SerializeField] private GameObject quitBtn;
     [SerializeField] private GameObject menuBG;
+    [SerializeField] private GameObject gameTitle;
     #endregion
 
     //classes set during runtime
@@ -304,6 +305,7 @@ public class UIManager : MonoBehaviour
     {
         playBtn.SetActive(value);
         menuBG.SetActive(value);
+        gameTitle.SetActive(value);
     }
 
     private void SetAssetStagingUI(bool value)

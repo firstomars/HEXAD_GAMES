@@ -174,6 +174,18 @@ public class DialogueManager : MonoBehaviour
                     currentConversationID = 9;
                     break;
 
+                case "BedroomWakeUp":
+                    currentConversationID = 10;
+                    break;
+
+                case "BedroomMinigame":
+                    currentConversationID = 11;
+                    break;
+
+                case "BedroomTooTiredForGames":
+                    currentConversationID = 12;
+                    break;
+
                 case "default":
                     conversationStarted = false;
                     break;
@@ -188,9 +200,9 @@ public class DialogueManager : MonoBehaviour
         DisplayDialogueLine(petConversations[conversationID].conversationChain[0].dialogueText, petConversations[conversationID].conversationChain[0].playerResponses);
     }
 
-    // Advance to the next line in the current conversation chain if required
-    // Called from UI manager with player response
-    public void AdvanceLine(string response)
+        // Advance to the next line in the current conversation chain if required
+        // Called from UI manager with player response
+        public void AdvanceLine(string response)
     {
         //Debug.Log("Player responded with " + response);
         //Debug.Log("Current conversation node count is " + petConversations[currentConversationID].conversationChain.Length);
@@ -198,22 +210,13 @@ public class DialogueManager : MonoBehaviour
 
         int conversationIndexLength = petConversations[currentConversationID].conversationChain.Length;
 
-        #region NEW
         if (currentLineIndex == conversationIndexLength)
         {
             currentConversationComplete = false;
 
             // Call back to behaviour to save user response if required
-            if (response != "_")
-            {
-                // Call back here
-                if (response == "Healthy...")
-                {
-                    Debug.Log("healthy food option chosen");
-                    CurrentBehaviour.EatFood();
-                }
-                //else if (response == "")
-            }
+            if (response != "_") ChooseAction(response);
+
             // Display the next line of dialogue
             conversationStarted = false;
             currentLineIndex = 0;
@@ -230,40 +233,51 @@ public class DialogueManager : MonoBehaviour
             currentLineIndex = 0;
             currentConversationComplete = true;
         }
+    }
 
-        #endregion
+    private void ChooseAction(string response)
+    {
+        switch (response)
+        {
+            case "Healthy...":
+                Debug.Log("healthy food option chosen");
+                CurrentBehaviour.EatFood();
+                break;
 
-        #region OLD
-        // Check if the conversation chain has more nodes
-        //if (currentLineIndex < petConversations[currentConversationID].conversationChain.Length)
-        //{
-        //    currentConversationComplete = false;
+            case "I want pizza!":
+                Debug.Log("unhealthy food option chosen");
+                CurrentBehaviour.EatJunkFood();
+                break;
 
-        //    // Call back to behaviour to save user response if required
-        //    if (response != "_")
-        //    {
-        //        // Call back here
-        //        if (response == "Healthy...")
-        //        {
-        //            Debug.Log("healthy food option chosen");
-        //            CurrentBehaviour.EatFood();
-        //        }
+            case "Yeah buddy, grab those dumbbells.":
+                Debug.Log("pet asked to use dumbbells");
+                CurrentBehaviour.BenchPress();
+                break;
 
-        //        //if healthy food
-        //        //EatBehaviour.EatHealthFood();
-        //    }
-        //    // Display the next line of dialogue
-        //    DisplayDialogueLine(petConversations[currentConversationID].conversationChain[currentLineIndex].dialogueText, petConversations[currentConversationID].conversationChain[currentLineIndex].playerResponses);
-        //}
-        //else
-        //{
-        //    // Reset the conversation status
-        //    conversationStarted = false;
-        //    currentLineIndex = 0;
-        //    currentConversationComplete = true;
-        //}
+            case "Time for bed!":
+                Debug.Log("pet asked to go to sleep");
+                CurrentBehaviour.SendToBed();
+                break;
 
-        #endregion
+            case "Let's play a minigame.":
+                Debug.Log("pet asked to play minigame");
+                CurrentBehaviour.PlayMiniGame(); //starts minigame
+                break;
+
+            case "Yeah that's enough.":
+                Debug.Log("pet asked to play minigame");
+                CurrentBehaviour.PlayMiniGame(); //stops minigame
+                break;
+
+            case "Yep it's time to get up.":
+                Debug.Log("pet to wake up");
+                CurrentBehaviour.WakePetUp();
+                break;
+
+            default:
+                Debug.Log("Response did not match actions - no action taken");
+                break;
+        }
     }
 
     // Pet conversation display dialogue
@@ -285,42 +299,4 @@ public class DialogueManager : MonoBehaviour
     }
 
     #endregion
-
-    // Temporary functions to test functionality
-    //private void Update()
-    //{        
-    //    if (Input.GetKeyDown(KeyCode.T))
-    //    {
-    //        Debug.Log("Display a tip from Random Tips");
-    //        DisplayTip("RandomTips");
-    //    }
-    //    else if (Input.GetKeyDown(KeyCode.I))
-    //    {
-    //        PetConversation("Intro");
-    //    }
-    //    else if (Input.GetKeyDown(KeyCode.K))
-    //    {
-    //        PetConversation("Kitchen");
-    //    }
-    //    else if (Input.GetKeyDown(KeyCode.G))
-    //    {
-    //        PetConversation("Gym");
-    //    }
-    //    else if (Input.GetKeyDown(KeyCode.L))
-    //    {
-    //        PetConversation("Lounge");
-    //    }
-    //    else if (Input.GetKeyDown(KeyCode.B))
-    //    {
-    //        PetConversation("Bedroom");
-    //    }
-    //    else if (Input.GetKeyDown(KeyCode.D))
-    //    {
-    //        PetConversation("Daily");
-    //    }
-    //    else if (Input.GetKeyDown(KeyCode.S))
-    //    {
-    //        PetConversation("Settings");
-    //    }
-    //}
 }

@@ -54,10 +54,7 @@ public class EatBehaviour : Behaviour
 
 
     public override void EatFood()
-    {
-        PlayerController.PlayerAnimations.Eat();
-        
-        
+    {      
         uint hoursSinceLastMeal = CalculateHoursPerLastMeal();
         //Debug.Log(hoursSinceLastMeal);
 
@@ -71,8 +68,6 @@ public class EatBehaviour : Behaviour
 
     public override void EatJunkFood()
     {
-        //PlayerController.PlayerAnimations.EatJunkFood();
-
         uint hoursSinceLastMeal = CalculateHoursPerLastMeal();
        
         if (timeLastEaten == -1 || (hoursSinceLastMeal > 3 && timesEatenToday < 4)) EatSuccessful("junkfood");
@@ -85,8 +80,16 @@ public class EatBehaviour : Behaviour
 
     private void EatSuccessful(string foodType)
     {
-        if (foodType == "junkfood") PlayerController.PlayerStatistics.JunkFoodEatenStatsImpact();
-        else PlayerController.PlayerStatistics.FoodEatenStatsImpact();
+        if (foodType == "junkfood")
+        {
+            //PlayerController.PlayerAnimations.EatJunkFood();
+            PlayerController.PlayerStatistics.JunkFoodEatenStatsImpact();
+        }
+        else
+        {
+            PlayerController.PlayerAnimations.Eat();
+            PlayerController.PlayerStatistics.FoodEatenStatsImpact();
+        }
         
         timeLastEaten = PlayerController.TimeController.GetGameTime();
         timesEatenToday += 1;

@@ -125,5 +125,15 @@ public abstract class Behaviour
 
     }
 
+    public virtual void StartConversationWakeUp()
+    {
+
+    }
+
+    public virtual void StartConversationMinigame()
+    {
+
+    }
+
     #endregion
 }

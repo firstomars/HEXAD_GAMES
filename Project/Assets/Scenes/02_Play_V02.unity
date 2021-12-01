@@ -388,12 +388,56 @@ PrefabInstance:
       value: DialogueManager
       objectReference: {fileID: 0}
     - target: {fileID: 7686106760894637249, guid: b4f10858265dbc4488fce4ea86d23172, type: 3}
-      propertyPath: petConversations.Array.data[1].conversationChain.Array.data[0].playerResponses.Array.data[0]
-      value: Healthy...
+      propertyPath: petConversations.Array.size
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 7686106760894637249, guid: b4f10858265dbc4488fce4ea86d23172, type: 3}
-      propertyPath: petConversations.Array.data[1].conversationChain.Array.data[0].playerResponses.Array.data[1]
-      value: I want pizza.
+      propertyPath: petConversations.Array.data[11].conversationRoom
+      value: BedroomMinigame
+      objectReference: {fileID: 0}
+    - target: {fileID: 7686106760894637249, guid: b4f10858265dbc4488fce4ea86d23172, type: 3}
+      propertyPath: petConversations.Array.data[12].conversationRoom
+      value: BedroomTooTiredForGames
+      objectReference: {fileID: 0}
+    - target: {fileID: 7686106760894637249, guid: b4f10858265dbc4488fce4ea86d23172, type: 3}
+      propertyPath: petConversations.Array.data[11].conversationChain.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7686106760894637249, guid: b4f10858265dbc4488fce4ea86d23172, type: 3}
+      propertyPath: petConversations.Array.data[12].conversationChain.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7686106760894637249, guid: b4f10858265dbc4488fce4ea86d23172, type: 3}
+      propertyPath: petConversations.Array.data[11].conversationChain.Array.data[0].dialogueText
+      value: Want to stop playing?
+      objectReference: {fileID: 0}
+    - target: {fileID: 7686106760894637249, guid: b4f10858265dbc4488fce4ea86d23172, type: 3}
+      propertyPath: petConversations.Array.data[12].conversationChain.Array.data[0].dialogueText
+      value: I don't have the energy to keep playing games.
+      objectReference: {fileID: 0}
+    - target: {fileID: 7686106760894637249, guid: b4f10858265dbc4488fce4ea86d23172, type: 3}
+      propertyPath: petConversations.Array.data[11].conversationChain.Array.data[0].playerResponses.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7686106760894637249, guid: b4f10858265dbc4488fce4ea86d23172, type: 3}
+      propertyPath: petConversations.Array.data[12].conversationChain.Array.data[0].playerResponses.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7686106760894637249, guid: b4f10858265dbc4488fce4ea86d23172, type: 3}
+      propertyPath: petConversations.Array.data[11].conversationChain.Array.data[0].playerResponses.Array.data[0]
+      value: Yeah that's enough.
+      objectReference: {fileID: 0}
+    - target: {fileID: 7686106760894637249, guid: b4f10858265dbc4488fce4ea86d23172, type: 3}
+      propertyPath: petConversations.Array.data[11].conversationChain.Array.data[0].playerResponses.Array.data[1]
+      value: No let's keep going!
+      objectReference: {fileID: 0}
+    - target: {fileID: 7686106760894637249, guid: b4f10858265dbc4488fce4ea86d23172, type: 3}
+      propertyPath: petConversations.Array.data[12].conversationChain.Array.data[0].playerResponses.Array.data[0]
+      value: Okay okay, I get it.
+      objectReference: {fileID: 0}
+    - target: {fileID: 7686106760894637249, guid: b4f10858265dbc4488fce4ea86d23172, type: 3}
+      propertyPath: petConversations.Array.data[12].conversationChain.Array.data[0].playerResponses.Array.data[1]
+      value: No let's keep going!
       objectReference: {fileID: 0}
     - target: {fileID: 7686106760894637250, guid: b4f10858265dbc4488fce4ea86d23172, type: 3}
       propertyPath: m_RootOrder

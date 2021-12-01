@@ -16,9 +16,13 @@ public class ExerciseBehaviour : Behaviour
     {
         Debug.Log("ExerciseBehaviour Start called - press E to test update");
         UIManager.UIManagerInstance.CurrentBehaviour = this;
+        DialogueManager.DialogueManagerInstance.CurrentBehaviour = this;
 
-        if (!hasBeenInGym) DialogueManager.DialogueManagerInstance.PetConversation("Gym");
-        else SetUI("gym");
+
+        SetUI("gym");
+
+        //if (!hasBeenInGym) DialogueManager.DialogueManagerInstance.PetConversation("Gym");
+        //else SetUI("gym");
 
         base.StartBehaviour();
     }
@@ -27,13 +31,13 @@ public class ExerciseBehaviour : Behaviour
     {
         //Debug.Log("ExerciseBehaviour Update called");
 
-        if (DialogueManager.DialogueManagerInstance.currentConversationComplete) hasBeenInGym = true;
+        //if (DialogueManager.DialogueManagerInstance.currentConversationComplete) hasBeenInGym = true;
 
-        if (!isRoomUISet && hasBeenInGym)
-        {
-            SetUI("gym");
-            isRoomUISet = true;
-        }
+        //if (!isRoomUISet && hasBeenInGym)
+        //{
+        //    SetUI("gym");
+        //    isRoomUISet = true;
+        //}
 
         base.RunBehaviour();
     }
@@ -54,5 +58,10 @@ public class ExerciseBehaviour : Behaviour
 
         PlayerController.PlayerStatistics.BenchPressStatsImpact();
         AudioManager.AudioManagerInstance.PlaySound("Gym");
+    }
+
+    public override void StartConversation()
+    {
+        DialogueManager.DialogueManagerInstance.PetConversation("Gym");
     }
 }

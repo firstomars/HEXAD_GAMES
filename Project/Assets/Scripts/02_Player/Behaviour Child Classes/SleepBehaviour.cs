@@ -24,21 +24,23 @@ public class SleepBehaviour : Behaviour
         DialogueManager.DialogueManagerInstance.CurrentBehaviour = this;
 
 
-        if (!hasBeenInBedroom) DialogueManager.DialogueManagerInstance.PetConversation("NewBedroom");
-        else SetUI("bedroom");
+        SetUI("bedroom");
+
+        //if (!hasBeenInBedroom) DialogueManager.DialogueManagerInstance.PetConversation("NewBedroom");
+        //else SetUI("bedroom");
 
         base.StartBehaviour();
     }
 
     public override void RunBehaviour()
     {
-        if (DialogueManager.DialogueManagerInstance.currentConversationComplete) hasBeenInBedroom = true;
+        //if (DialogueManager.DialogueManagerInstance.currentConversationComplete) hasBeenInBedroom = true;
         
-        if (!isRoomUISet && hasBeenInBedroom)
-        {
-            SetUI("bedroom");
-            isRoomUISet = true;
-        }
+        //if (!isRoomUISet && hasBeenInBedroom)
+        //{
+        //    SetUI("bedroom");
+        //    isRoomUISet = true;
+        //}
 
         base.RunBehaviour();
     }
@@ -114,22 +116,71 @@ public class SleepBehaviour : Behaviour
 
     public override void PlayMiniGame()
     {
+
         if (!isPlayingMinigame)
+        {
+            if (PlayerController.PlayerStatistics.energyLevel >= 30)
+            {
+                PlayerController.SetPlayerDestination(PlayerController.miniGamePos.position);
+                SwitchCamera("bedroomGame");
+                PlayerController.PlayerAnimations.PlayMinigame();
+                PlayerController.PlayerStatistics.MinigameStatsImpact();
+                UIManager.UIManagerInstance.MinigameClicked(true);
+
+                isPlayingMinigame = true;
+            }
+            else
+            {
+                Debug.Log("pet too tired to play minigames");
+                DialogueManager.DialogueManagerInstance.PetConversation("BedroomTooTiredForGames");
+            }
+        }
+        else
+        {
+            PlayerController.SetPlayerDestination(FindWaypointHelper("bedroom"));
+            UIManager.UIManagerInstance.MinigameClicked(false);
+            SwitchCamera("bedroom");
+
+            isPlayingMinigame = false;
+        }
+
+
+        //OLD
+        /*
+         if (!isPlayingMinigame)
         {
             PlayerController.SetPlayerDestination(PlayerController.miniGamePos.position);
             SwitchCamera("bedroomGame");
             PlayerController.PlayerAnimations.PlayMinigame();
             PlayerController.PlayerStatistics.MinigameStatsImpact();
+            UIManager.UIManagerInstance.MinigameClicked(true);
 
             isPlayingMinigame = true;
         }
         else
         {
             PlayerController.SetPlayerDestination(FindWaypointHelper("bedroom"));
+            UIManager.UIManagerInstance.MinigameClicked(false);
             SwitchCamera("bedroom");
 
             isPlayingMinigame = false;
         }
+         */
+    }
+
+    public override void StartConversation()
+    {
+        DialogueManager.DialogueManagerInstance.PetConversation("Bedroom");
+    }
+
+    public override void StartConversationWakeUp()
+    {
+        DialogueManager.DialogueManagerInstance.PetConversation("BedroomWakeUp");
+    }
+
+    public override void StartConversationMinigame()
+    {
+        DialogueManager.DialogueManagerInstance.PetConversation("BedroomMinigame");
     }
 }
 

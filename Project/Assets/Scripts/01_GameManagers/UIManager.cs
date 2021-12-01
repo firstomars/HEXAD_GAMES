@@ -133,6 +133,7 @@ public class UIManager : MonoBehaviour
     private Button miniGameBtn;
     [SerializeField] private GameObject bedroomInteractBtnGO;
     private Button bedroomInteractBtn;
+    private bool isMinigameBeingPlayed = false;
 
     [Header("Kitchen Interactables - UI")]
     [SerializeField] private GameObject eatFoodBtnGO;
@@ -648,9 +649,21 @@ public class UIManager : MonoBehaviour
 
     private void SetBedroomUI(bool value)
     {
+        if (value == true)
+        {
+            if (isMinigameBeingPlayed)
+                miniGameBtnGO.SetActive(value);
+            else sendToBedBtnGO.SetActive(value);
+        }
+        else
+        {
+            miniGameBtnGO.SetActive(value);
+            sendToBedBtnGO.SetActive(value);
+        }
+
+
         //Debug.Log("bedroom UI set to " + value);
-        miniGameBtnGO.SetActive(value);
-        sendToBedBtnGO.SetActive(value);
+        //sendToBedBtnGO.SetActive(value);
         //bedroomInteractBtnGO.SetActive(value);
 
         if (value == false) wakeUpBtnGO.SetActive(value);
@@ -662,18 +675,26 @@ public class UIManager : MonoBehaviour
     {
         if (value == true)
         {
-            sendToBedBtn.onClick.AddListener(CurrentBehaviour.SendToBed);
-            wakeUpBtn.onClick.AddListener(CurrentBehaviour.WakePetUp);
-            miniGameBtn.onClick.AddListener(CurrentBehaviour.PlayMiniGame);
+            sendToBedBtn.onClick.AddListener(CurrentBehaviour.StartConversation);
+            wakeUpBtn.onClick.AddListener(CurrentBehaviour.StartConversationWakeUp);
+            miniGameBtn.onClick.AddListener(CurrentBehaviour.StartConversationMinigame);
             //bedroomInteractBtn.onClick.AddListener(CurrentBehaviour.SendToBed);
         }
         else
         {
             sendToBedBtn.onClick.RemoveAllListeners();
             wakeUpBtn.onClick.RemoveAllListeners();
-            miniGameBtn.onClick.RemoveAllListeners();
+            //miniGameBtn.onClick.RemoveAllListeners();
             //bedroomInteractBtn.onClick.RemoveAllListeners();
         }
+    }
+
+    public void MinigameClicked(bool value)
+    {
+        isMinigameBeingPlayed = value;
+        
+        miniGameBtnGO.SetActive(value);
+        sendToBedBtnGO.SetActive(!value);
     }
 
     public void SendToBedBtnClicked()
@@ -683,14 +704,14 @@ public class UIManager : MonoBehaviour
 
         CloseAllFlyouts();
         //flyoutButtonPanel.SetActive(false);
-        miniGameBtnGO.SetActive(false);
+        //miniGameBtnGO.SetActive(false);
     }
 
     public void WakeUpBtnClicked()
     {
         sendToBedBtnGO.SetActive(true);
         wakeUpBtnGO.SetActive(false);
-        miniGameBtnGO.SetActive(true);
+        //miniGameBtnGO.SetActive(true);
         
         //flyoutButtonPanel.SetActive(true);
     }
@@ -720,15 +741,15 @@ public class UIManager : MonoBehaviour
         if (value == true)
         {
             eatJunkFoodBtn.onClick.AddListener(CurrentBehaviour.StartConversation);
-            //eatFoodBtn.onClick.AddListener(CurrentBehaviour.EatFood);
-            //eatJunkFoodBtn.onClick.AddListener(CurrentBehaviour.EatJunkFood);
-            //kitchenInteractBtn.onClick.AddListener(CurrentBehaviour.EatFood);
+            //eatFoodBtn.onClick.AddListener(CurrentBehaviour.EatFood);         DELETE
+            //eatJunkFoodBtn.onClick.AddListener(CurrentBehaviour.EatJunkFood); DELETE
+            //kitchenInteractBtn.onClick.AddListener(CurrentBehaviour.EatFood); DELETE
         }
         else
         {
-            eatFoodBtn.onClick.RemoveAllListeners();
             eatJunkFoodBtn.onClick.RemoveAllListeners();
-            //kitchenInteractBtn.onClick.RemoveAllListeners();
+            //eatFoodBtn.onClick.RemoveAllListeners();          DELETE
+            //kitchenInteractBtn.onClick.RemoveAllListeners();  DELETE
         }
     }
 
@@ -749,7 +770,8 @@ public class UIManager : MonoBehaviour
     {
         if (value == true)
         {
-            benchPressBtn.onClick.AddListener(CurrentBehaviour.BenchPress);
+            benchPressBtn.onClick.AddListener(CurrentBehaviour.StartConversation);
+            //benchPressBtn.onClick.AddListener(CurrentBehaviour.BenchPress);
             //gymInteractBtn.onClick.AddListener(CurrentBehaviour.BenchPress);
         }
         else

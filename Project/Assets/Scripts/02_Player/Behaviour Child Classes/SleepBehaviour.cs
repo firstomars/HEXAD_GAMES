@@ -132,6 +132,7 @@ public class SleepBehaviour : Behaviour
 
     public override void StopMiniGame()
     {
+        PlayerAnimations.StopMinigame();
         PlayerController.SetPlayerDestination(FindWaypointHelper("bedroom"));
         UIManager.MinigameClicked(false);
         SwitchCamera("bedroom");

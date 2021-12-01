@@ -11,6 +11,11 @@ public abstract class Behaviour
 
     //returns GO attached to BehaviourStateMachine (see line 18 in ExerciseBehaviour.cs)
     protected GameObject GameObject { get; private set; }
+    protected UIManager UIManager;
+    protected DialogueManager DialogueManager;
+    protected PlayerAnimations PlayerAnimations;
+    protected PlayerStatistics PlayerStatistics;
+    protected TimeController TimeController;
 
     public Behaviour(BehaviourStateMachine behaviourStateMachine)
     {

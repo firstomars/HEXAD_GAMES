@@ -87,7 +87,7 @@ MonoBehaviour:
     tipList:
     - Delayed Sleep Phase Disorder (DSPD) is where you fight your body clock to go
       to sleep later. This affects your circadian rhythm and may require treatment.
-  - tipType: BluLightFilter
+  - tipType: BlueLightFilter
     tipList:
     - Blue light from LED screens supresses your bodies production of melatonin,
       the hormone that promotes sleep.
@@ -229,4 +229,15 @@ MonoBehaviour:
       playerResponses:
       - Yep it's time to get up.
       - Ahh you keep sleeping
+  - conversationRoom: BedroomMinigame
+    conversationChain:
+    - dialogueText: Want to stop playing?
+      playerResponses:
+      - Yeah that's enough.
+      - No let's keep going!
+  - conversationRoom: BedroomTooTiredForGames
+    conversationChain:
+    - dialogueText: I don't have the energy to keep playing games.
+      playerResponses:
+      - Okay okay, I get it.
   currentConversationComplete: 0

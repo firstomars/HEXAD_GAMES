@@ -5,10 +5,6 @@ using UnityEngine;
 public class SleepBehaviour : Behaviour
 {
     private int dayFellAsleep = -1;
-
-    private bool hasBeenInBedroom = false;
-    private bool isRoomUISet = false;
-
     private bool isPlayingMinigame = false;
 
     public SleepBehaviour(PlayerController playerController) : base(playerController)
@@ -18,30 +14,23 @@ public class SleepBehaviour : Behaviour
 
     public override void StartBehaviour()
     {
-        //Debug.Log("SleepBehaviour Start called - press L to test update");
+        Debug.Log("SleepBehaviour Start called");
 
-        UIManager.UIManagerInstance.CurrentBehaviour = this;
-        DialogueManager.DialogueManagerInstance.CurrentBehaviour = this;
+        UIManager = UIManager.UIManagerInstance;
+        DialogueManager = DialogueManager.DialogueManagerInstance;
+        PlayerAnimations = PlayerController.PlayerAnimations;
+        PlayerStatistics = PlayerController.PlayerStatistics;
+        TimeController = PlayerController.TimeController;
 
+        UIManager.CurrentBehaviour = this;
+        DialogueManager.CurrentBehaviour = this;
 
         SetUI("bedroom");
-
-        //if (!hasBeenInBedroom) DialogueManager.DialogueManagerInstance.PetConversation("NewBedroom");
-        //else SetUI("bedroom");
-
         base.StartBehaviour();
     }
 
     public override void RunBehaviour()
     {
-        //if (DialogueManager.DialogueManagerInstance.currentConversationComplete) hasBeenInBedroom = true;
-        
-        //if (!isRoomUISet && hasBeenInBedroom)
-        //{
-        //    SetUI("bedroom");
-        //    isRoomUISet = true;
-        //}
-
         base.RunBehaviour();
     }
 
@@ -56,29 +45,29 @@ public class SleepBehaviour : Behaviour
 
     public override void SendToBed()
     {
-        if (PlayerController.TimeController.IsTimeAfter(PlayerController.petBedTime))
+        if (TimeController.IsTimeAfter(PlayerController.petBedTime))
         {
             SwitchCamera("bedroomSleep");
 
             PlayerController.IsPetSleeping(true);
 
-            PlayerController.PlayerAnimations.GetIntoBed();
+            PlayerAnimations.GetIntoBed();
 
             Debug.Log("Pet sent to bed");
-            if (dayFellAsleep == -1) dayFellAsleep = PlayerController.TimeController.GetGameDate();
-            //PlayerController.IsPetSleeping(true);
+            if (dayFellAsleep == -1) dayFellAsleep = TimeController.GetGameDate();
             PlayerController.SetPlayerDestination(PlayerController.bedPos.position);
 
+            //PLACE IN PLAYERANIMATIONS
             AudioManager.AudioManagerInstance.PlaySound("Sleeping");
             AudioManager.AudioManagerInstance.StopSound("FootStep");
 
-            UIManager.UIManagerInstance.SendToBedBtnClicked();
+            UIManager.SendToBedBtnClicked();
         }
         else
         {
             //refactor
             Debug.Log("it's not pet's bed time yet!");
-            DialogueManager.DialogueManagerInstance.PetConversation("DontNeedSleep");
+            DialogueManager.PetConversation("DontNeedSleep");
         }
     }
 
@@ -90,21 +79,19 @@ public class SleepBehaviour : Behaviour
 
     public override void WakePetUp()
     {
-        PlayerController.PlayerAnimations.GetOutOfBed();
+        PlayerAnimations.GetOutOfBed();
         SwitchCamera("bedroom");
 
         PlayerController.IsPetSleeping(false);
-
         Debug.Log("pet woken up");
-        //PlayerController.IsPetSleeping(false);
-        AudioManager.AudioManagerInstance.StopSound("Sleeping");
-        UIManager.UIManagerInstance.WakeUpBtnClicked();
 
-        if (PlayerController.TimeController.IsNextDay(dayFellAsleep) && 
-            PlayerController.TimeController.IsTimeAfter(PlayerController.petWakeUpTime))
+        AudioManager.AudioManagerInstance.StopSound("Sleeping");
+        UIManager.WakeUpBtnClicked();
+
+        if (TimeController.IsNextDay(dayFellAsleep) && 
+            TimeController.IsTimeAfter(PlayerController.petWakeUpTime))
         {
-            //UIManager.UIManagerInstance.WakeUpBtnClicked();
-            UIManager.UIManagerInstance.WakeUpNextDayBtnClicked();
+            UIManager.WakeUpNextDayBtnClicked();
             PlayerController.IsReportDelivered(false);
             dayFellAsleep = -1;
         }
@@ -116,71 +103,47 @@ public class SleepBehaviour : Behaviour
 
     public override void PlayMiniGame()
     {
-
         if (!isPlayingMinigame)
         {
-            if (PlayerController.PlayerStatistics.energyLevel >= 30)
+            if (PlayerStatistics.energyLevel >= 30)
             {
                 PlayerController.SetPlayerDestination(PlayerController.miniGamePos.position);
                 SwitchCamera("bedroomGame");
-                PlayerController.PlayerAnimations.PlayMinigame();
-                PlayerController.PlayerStatistics.MinigameStatsImpact();
-                UIManager.UIManagerInstance.MinigameClicked(true);
+                PlayerAnimations.PlayMinigame();
+                PlayerStatistics.MinigameStatsImpact();
+                UIManager.MinigameClicked(true);
 
                 isPlayingMinigame = true;
             }
             else
             {
                 Debug.Log("pet too tired to play minigames");
-                DialogueManager.DialogueManagerInstance.PetConversation("BedroomTooTiredForGames");
+                DialogueManager.PetConversation("BedroomTooTiredForGames");
             }
         }
         else
         {
             PlayerController.SetPlayerDestination(FindWaypointHelper("bedroom"));
-            UIManager.UIManagerInstance.MinigameClicked(false);
+            UIManager.MinigameClicked(false);
             SwitchCamera("bedroom");
 
             isPlayingMinigame = false;
         }
-
-
-        //OLD
-        /*
-         if (!isPlayingMinigame)
-        {
-            PlayerController.SetPlayerDestination(PlayerController.miniGamePos.position);
-            SwitchCamera("bedroomGame");
-            PlayerController.PlayerAnimations.PlayMinigame();
-            PlayerController.PlayerStatistics.MinigameStatsImpact();
-            UIManager.UIManagerInstance.MinigameClicked(true);
-
-            isPlayingMinigame = true;
-        }
-        else
-        {
-            PlayerController.SetPlayerDestination(FindWaypointHelper("bedroom"));
-            UIManager.UIManagerInstance.MinigameClicked(false);
-            SwitchCamera("bedroom");
-
-            isPlayingMinigame = false;
-        }
-         */
     }
 
     public override void StartConversation()
     {
-        DialogueManager.DialogueManagerInstance.PetConversation("Bedroom");
+        DialogueManager.PetConversation("Bedroom");
     }
 
     public override void StartConversationWakeUp()
     {
-        DialogueManager.DialogueManagerInstance.PetConversation("BedroomWakeUp");
+        DialogueManager.PetConversation("BedroomWakeUp");
     }
 
     public override void StartConversationMinigame()
     {
-        DialogueManager.DialogueManagerInstance.PetConversation("BedroomMinigame");
+        DialogueManager.PetConversation("BedroomMinigame");
     }
 }
 

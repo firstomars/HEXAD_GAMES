@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class ExerciseBehaviour : Behaviour
 {
-    private bool hasBeenInGym = false;
-    private bool isRoomUISet = false;
-
     public ExerciseBehaviour(PlayerController playerController) : base(playerController)
     {
         PlayerController = playerController;
@@ -14,31 +11,21 @@ public class ExerciseBehaviour : Behaviour
 
     public override void StartBehaviour()
     {
-        Debug.Log("ExerciseBehaviour Start called - press E to test update");
-        UIManager.UIManagerInstance.CurrentBehaviour = this;
-        DialogueManager.DialogueManagerInstance.CurrentBehaviour = this;
+        UIManager = UIManager.UIManagerInstance;
+        DialogueManager = DialogueManager.DialogueManagerInstance;
+        PlayerAnimations = PlayerController.PlayerAnimations;
+        PlayerStatistics = PlayerController.PlayerStatistics;
 
+        UIManager.CurrentBehaviour = this;
+        DialogueManager.CurrentBehaviour = this;
 
         SetUI("gym");
-
-        //if (!hasBeenInGym) DialogueManager.DialogueManagerInstance.PetConversation("Gym");
-        //else SetUI("gym");
 
         base.StartBehaviour();
     }
 
     public override void RunBehaviour()
     {
-        //Debug.Log("ExerciseBehaviour Update called");
-
-        //if (DialogueManager.DialogueManagerInstance.currentConversationComplete) hasBeenInGym = true;
-
-        //if (!isRoomUISet && hasBeenInGym)
-        //{
-        //    SetUI("gym");
-        //    isRoomUISet = true;
-        //}
-
         base.RunBehaviour();
     }
 
@@ -52,16 +39,14 @@ public class ExerciseBehaviour : Behaviour
 
     public override void BenchPress()
     {
-        //Debug.Log("bench press called");
+        PlayerAnimations.Workout();
 
-        PlayerController.PlayerAnimations.Workout();
-
-        PlayerController.PlayerStatistics.BenchPressStatsImpact();
+        PlayerStatistics.BenchPressStatsImpact();
         AudioManager.AudioManagerInstance.PlaySound("Gym");
     }
 
     public override void StartConversation()
     {
-        DialogueManager.DialogueManagerInstance.PetConversation("Gym");
+        DialogueManager.PetConversation("Gym");
     }
 }

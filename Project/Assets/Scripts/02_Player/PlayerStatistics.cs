@@ -92,9 +92,14 @@ public class PlayerStatistics : MonoBehaviour
         mealsEatenToday = 0;
         minigamesPlayed = 0;
 
-        StartCoroutine(ReduceEnergyOverTime());
-
+        RestartEnergyReduction();
         ResetFulfilment();
+    }
+
+    public void RestartEnergyReduction()
+    {
+        StopCoroutine(ReduceEnergyOverTime());
+        StartCoroutine(ReduceEnergyOverTime());
     }
 
     public void MinigameStatsImpact()
@@ -193,21 +198,6 @@ public class PlayerStatistics : MonoBehaviour
         return spiritLevel.ToString();
     }
 
-    //public int CalculateHoursSlept(int bedTime, int wakeUpTime)
-    //{
-    //    hrsSleptNightTwo = hrsSleptNightOne;
-        
-    //    hrsSleptNightOne = (24 - bedTime) + wakeUpTime; //REFACTOR
-    //    energyLevel = maxEnergyLevel;
-
-    //    Debug.Log("PlayerStats " + hrsSleptNightOne);
-
-    //    //add if statements to see what new energy levels are
-    //    SetNewEnergyLevels();
-
-    //    return hrsSleptNightOne;
-    //}
-
     public Vector2Int CalculateHoursSleptNightOneTwo(int bedTime, int wakeUpTime)
     {
         //REFACTOR
@@ -218,7 +208,6 @@ public class PlayerStatistics : MonoBehaviour
 
 
         hrsSleptNightOne = CalculateHoursSlept(bedTime, wakeUpTime);
-        //hrsSleptNightOne = (24 - bedTime) + wakeUpTime; //REFACTOR
         energyLevel = maxEnergyLevel;
 
         //Debug.Log("PlayerStats " + hrsSleptNightOne);

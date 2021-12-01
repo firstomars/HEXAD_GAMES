@@ -202,8 +202,8 @@ MonoBehaviour:
   minEnergyLevelToGym: 75
   petBedTime: 21
   petWakeUpTime: 6
-  hasIntroHappened: 0
-  petBody: {fileID: 0}
+  hasIntroHappened: 1
+  petBody: {fileID: 4250567693411245173}
   petSkinnedMeshRenderer: {fileID: 0}
 --- !u!114 &4022050521528767903
 MonoBehaviour:
@@ -1591,5 +1591,10 @@ GameObject:
 --- !u!4 &3425809731762914911 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 9367a4ac2ec99114e954fd69024de5e2, type: 3}
+  m_PrefabInstance: {fileID: 2882394684354945460}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4250567693411245173 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1368353741697465793, guid: 9367a4ac2ec99114e954fd69024de5e2, type: 3}
   m_PrefabInstance: {fileID: 2882394684354945460}
   m_PrefabAsset: {fileID: 0}

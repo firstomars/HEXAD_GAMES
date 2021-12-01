@@ -179,8 +179,15 @@ public class PlayerController : BehaviourStateMachine
 
     private void RunBehaviourLogic()
     {
-        if (agent.remainingDistance > (agent.stoppingDistance + 0.1f)) PetStartsWalking();
-        else PetStopsWalking();
+        if (agent.remainingDistance > (agent.stoppingDistance + 0.1f))
+        {
+            PetStartsWalking();
+            Debug.Log("Navmesh agent walking");
+        }
+        else
+        {
+            PetStopsWalking();
+        }
 
         if (!hasIntroHappened)
         {

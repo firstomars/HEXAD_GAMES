@@ -15,7 +15,8 @@ public class PlayerAnimations : MonoBehaviour
     public void IdleToWalk()
     {
         anim.SetBool("IsIdle", false);
-        //Debug.Log("walking");
+        anim.SetBool("IsWalking", true);
+        Debug.Log("walking");
     }
 
     public void WalkToIdle()
@@ -23,7 +24,8 @@ public class PlayerAnimations : MonoBehaviour
         //Debug.Log(anim);
 
         anim.SetBool("IsIdle", true);
-        //Debug.Log("idling");
+        anim.SetBool("IsWalking", false);
+        Debug.Log("idling");
     }
 
     public void GetIntoBed()
@@ -53,7 +55,7 @@ public class PlayerAnimations : MonoBehaviour
     public void Eat()
     {
         Debug.Log("Eat animation");
-        anim.SetBool("IsEating", true);
+        anim.SetTrigger("Eat");
     }
 
     public void EatJunkFood()

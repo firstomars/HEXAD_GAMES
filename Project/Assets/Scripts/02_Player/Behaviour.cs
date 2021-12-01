@@ -70,6 +70,11 @@ public abstract class Behaviour
 
     }
 
+    public virtual void StopMiniGame()
+    {
+
+    }
+
     public virtual void SeekKitchen()
     {
 

@@ -79,10 +79,10 @@ public class DialogueManager : MonoBehaviour
             {
                 return i;
             }
-            else
-            {
-                return 0;
-            }
+            //else
+            //{
+            //    return 0;
+            //}
         }
         Debug.LogError("Error displaying tip. Check that " + tipType + " tip type exists in the dialogue database");
         return 99;
@@ -266,7 +266,7 @@ public class DialogueManager : MonoBehaviour
 
             case "Yeah that's enough.":
                 Debug.Log("pet asked to play minigame");
-                CurrentBehaviour.PlayMiniGame(); //stops minigame
+                CurrentBehaviour.StopMiniGame(); //stops minigame
                 break;
 
             case "Yep it's time to get up.":

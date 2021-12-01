@@ -20,6 +20,7 @@ public class EatBehaviour : Behaviour
         DialogueManager = DialogueManager.DialogueManagerInstance;
         PlayerAnimations = PlayerController.PlayerAnimations;
         PlayerStatistics = PlayerController.PlayerStatistics;
+        //TimeController = PlayerController.TimeController; - currently unused
 
         UIManager.CurrentBehaviour = this;
         DialogueManager.CurrentBehaviour = this;

@@ -15,11 +15,14 @@ public class ExerciseBehaviour : Behaviour
         DialogueManager = DialogueManager.DialogueManagerInstance;
         PlayerAnimations = PlayerController.PlayerAnimations;
         PlayerStatistics = PlayerController.PlayerStatistics;
+        TimeController = PlayerController.TimeController;
 
         UIManager.CurrentBehaviour = this;
         DialogueManager.CurrentBehaviour = this;
 
         SetUI("gym");
+
+        if (TimeController.IsTimeAfter(18)) DialogueManager.DisplayTip("ExerciseAfter6");
 
         base.StartBehaviour();
     }

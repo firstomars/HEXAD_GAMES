@@ -5,7 +5,6 @@ using UnityEngine;
 public class SleepBehaviour : Behaviour
 {
     private int dayFellAsleep = -1;
-    private bool isPlayingMinigame = false;
 
     public SleepBehaviour(PlayerController playerController) : base(playerController)
     {
@@ -103,32 +102,39 @@ public class SleepBehaviour : Behaviour
 
     public override void PlayMiniGame()
     {
-        if (!isPlayingMinigame)
-        {
-            if (PlayerStatistics.energyLevel >= 30)
-            {
-                PlayerController.SetPlayerDestination(PlayerController.miniGamePos.position);
-                SwitchCamera("bedroomGame");
-                PlayerAnimations.PlayMinigame();
-                PlayerStatistics.MinigameStatsImpact();
-                UIManager.MinigameClicked(true);
+        PlayerController.SetPlayerDestination(PlayerController.miniGamePos.position);
+        SwitchCamera("bedroomGame");
+        PlayerAnimations.PlayMinigame();
+        PlayerStatistics.MinigameStatsImpact();
 
-                isPlayingMinigame = true;
-            }
-            else
-            {
-                Debug.Log("pet too tired to play minigames");
-                DialogueManager.PetConversation("BedroomTooTiredForGames");
-            }
+        if (TimeController.IsTimeAfter(16))
+        {
+            DialogueManager.DisplayTip("BlueLightFilter");
+            PlayerController.StartCoroutine(ExecuteMiniGameUI(6));
+        }
+        else PlayerController.StartCoroutine(ExecuteMiniGameUI(0));
+    }
+
+    IEnumerator ExecuteMiniGameUI(float secsToWait)
+    {
+        yield return new WaitForSeconds(3);
+
+        if (PlayerStatistics.energyLevel >= 30)
+        {
+            UIManager.MinigameClicked(true);
         }
         else
         {
-            PlayerController.SetPlayerDestination(FindWaypointHelper("bedroom"));
-            UIManager.MinigameClicked(false);
-            SwitchCamera("bedroom");
-
-            isPlayingMinigame = false;
+            Debug.Log("pet too tired to play minigames");
+            DialogueManager.PetConversation("BedroomTooTiredForGames");
         }
+    }
+
+    public override void StopMiniGame()
+    {
+        PlayerController.SetPlayerDestination(FindWaypointHelper("bedroom"));
+        UIManager.MinigameClicked(false);
+        SwitchCamera("bedroom");
     }
 
     public override void StartConversation()

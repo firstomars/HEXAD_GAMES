@@ -140,6 +140,11 @@ public abstract class Behaviour
 
     }
 
+    public virtual void StartConversationStopWorkour()
+    {
+
+    }
+
     public virtual void StartConversationWakeUp()
     {
 

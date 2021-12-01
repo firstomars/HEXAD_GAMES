@@ -769,24 +769,32 @@ public class UIManager : MonoBehaviour
     {
         //Debug.Log("gym UI set to " + value);
         benchPressBtnGO.SetActive(value);
-        //gymInteractBtnGO.SetActive(value);
+        gymInteractBtnGO.SetActive(false);
 
         SetGymUIListeners(value);
     }
+    
 
     private void SetGymUIListeners(bool value)
     {
         if (value == true)
         {
             benchPressBtn.onClick.AddListener(CurrentBehaviour.StartConversation);
+            gymInteractBtn.onClick.AddListener(CurrentBehaviour.StartConversationStopWorkour);
             //benchPressBtn.onClick.AddListener(CurrentBehaviour.BenchPress);
-            //gymInteractBtn.onClick.AddListener(CurrentBehaviour.BenchPress);
+
         }
         else
         {
             benchPressBtn.onClick.RemoveAllListeners();
             //gymInteractBtn.onClick.RemoveAllListeners();
         }
+    }
+
+    public void ActivateWorkingOutUI(bool value)
+    {
+        benchPressBtnGO.SetActive(!value);
+        gymInteractBtnGO.SetActive(value);
     }
 
     #endregion

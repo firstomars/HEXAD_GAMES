@@ -84,7 +84,7 @@ public class PlayerAnimations : MonoBehaviour
 
     public void StopMinigame()
     {
-        anim.SetBool("IsPlaying", false);       
+        anim.SetBool("IsPlaying", false);
         Debug.Log("Exit Minigame animation");
     }
 

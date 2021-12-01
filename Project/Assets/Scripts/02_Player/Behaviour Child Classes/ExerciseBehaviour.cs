@@ -51,8 +51,8 @@ public class ExerciseBehaviour : Behaviour
     public override void StartWorkout()
     {
         PlayerController.ActivateGymGearObjs(true);
-
-            PlayerAnimations.StartWorkout();
+        UIManager.ActivateWorkingOutUI(true);
+        PlayerAnimations.StartWorkout();
 
         PlayerStatistics.BenchPressStatsImpact();
         AudioManager.AudioManagerInstance.PlaySound("Gym");
@@ -83,6 +83,8 @@ public class ExerciseBehaviour : Behaviour
 
     public override void StopWorkout()
     {
+        PlayerAnimations.StopWorkout();
+        UIManager.ActivateWorkingOutUI(false);
         PlayerController.ActivateGymGearObjs(false);
         AudioManager.AudioManagerInstance.StopSound("Gym");
 
@@ -93,4 +95,10 @@ public class ExerciseBehaviour : Behaviour
     {
         DialogueManager.PetConversation("Gym");
     }
+
+    public override void StartConversationStopWorkour()
+    {
+        DialogueManager.PetConversation("GymStopWorkout");
+    }
+
 }

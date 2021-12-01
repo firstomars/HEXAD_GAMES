@@ -2003,7 +2003,7 @@ MonoBehaviour:
   - '#D35F9E'
   - '#C32C31'
   - '#227A47'
-  playerMaterial: {fileID: 2100000, guid: c35a24d120a475842910ba35090e8b68, type: 2}
+  playerMaterial: {fileID: 2100000, guid: 8966669af3f01f645af3525bd7944935, type: 2}
   isPetColourSet: 0
   timeEntries: []
 --- !u!1 &5069210358790963099
@@ -3461,7 +3461,7 @@ GameObject:
   - component: {fileID: 6261708980642933458}
   - component: {fileID: 227871149847840756}
   m_Layer: 5
-  m_Name: Btn_Gym_Interact
+  m_Name: Btn_StopBenchPress
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3481,9 +3481,9 @@ RectTransform:
   m_Father: {fileID: 8472867410778238296}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -225, y: 140}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 958, y: -335}
   m_SizeDelta: {x: 200, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3547863441651346025

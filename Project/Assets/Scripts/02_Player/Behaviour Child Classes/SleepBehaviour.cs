@@ -102,34 +102,35 @@ public class SleepBehaviour : Behaviour
 
     public override void PlayMiniGame()
     {
-        PlayerController.SetPlayerDestination(PlayerController.miniGamePos.position);
-        UIManager.ActivateBedroomControl(false);
-
-        SwitchCamera("bedroomGame");
-        PlayerAnimations.PlayMinigame();
-        PlayerStatistics.MinigameStatsImpact();
-
-        if (TimeController.IsTimeAfter(16))
-        {
-            DialogueManager.DisplayTip("BlueLightFilter");
-            PlayerController.StartCoroutine(ExecuteMiniGameUI(6));
-        }
-        else PlayerController.StartCoroutine(ExecuteMiniGameUI(0));
-    }
-
-    IEnumerator ExecuteMiniGameUI(float secsToWait)
-    {
-        yield return new WaitForSeconds(secsToWait);
-
         if (PlayerStatistics.energyLevel >= 30)
         {
-            UIManager.MinigameClicked(true);
+            PlayerController.SetPlayerDestination(PlayerController.miniGamePos.position);
+            UIManager.ActivateBedroomControl(false);
+
+            SwitchCamera("bedroomGame");
+            PlayerAnimations.PlayMinigame();
+            PlayerStatistics.MinigameStatsImpact();
+
+            if (TimeController.IsTimeAfter(16))
+            {
+                DialogueManager.DisplayTip("BlueLightFilter");
+                PlayerController.StartCoroutine(ExecuteMiniGameUI(6));
+            }
+            else PlayerController.StartCoroutine(ExecuteMiniGameUI(0));
         }
         else
         {
             Debug.Log("pet too tired to play minigames");
             DialogueManager.PetConversation("BedroomTooTiredForGames");
         }
+
+    }
+
+    IEnumerator ExecuteMiniGameUI(float secsToWait)
+    {
+        yield return new WaitForSeconds(secsToWait);
+
+        UIManager.MinigameClicked(true);
     }
 
     public override void StopMiniGame()

@@ -150,7 +150,7 @@ AnimatorStateTransition:
     m_ConditionEvent: IsInGym
     m_EventTreshold: 0
   - m_ConditionMode: 1
-    m_ConditionEvent: IsLifting
+    m_ConditionEvent: Workout
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 921448942966810248}
@@ -700,9 +700,6 @@ AnimatorStateTransition:
   m_Conditions:
   - m_ConditionMode: 1
     m_ConditionEvent: IsInGym
-    m_EventTreshold: 0
-  - m_ConditionMode: 2
-    m_ConditionEvent: IsLifting
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -6946446408848565052}

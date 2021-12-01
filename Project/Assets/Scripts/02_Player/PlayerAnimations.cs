@@ -53,8 +53,8 @@ public class PlayerAnimations : MonoBehaviour
     public void Workout()
     {
         Debug.Log("Workout animation");
-        anim.SetBool("IsLifting", true);   
-        //anim.SetTrigger("Workout");
+        //anim.SetBool("IsLifting", true);   
+        anim.SetTrigger("Workout");
     } 
 
     public void Eat()

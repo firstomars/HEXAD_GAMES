@@ -186,6 +186,10 @@ public class DialogueManager : MonoBehaviour
                     currentConversationID = 12;
                     break;
 
+                case "GymStopWorkout":
+                    currentConversationID = 13;
+                    break;
+
                 case "default":
                     conversationStarted = false;
                     break;
@@ -251,7 +255,7 @@ public class DialogueManager : MonoBehaviour
 
             case "Yeah buddy, grab those dumbbells.":
                 Debug.Log("pet asked to use dumbbells");
-                CurrentBehaviour.BenchPress();
+                CurrentBehaviour.StartWorkout();
                 break;
 
             case "Time for bed!":
@@ -272,6 +276,11 @@ public class DialogueManager : MonoBehaviour
             case "Yep it's time to get up.":
                 Debug.Log("pet to wake up");
                 CurrentBehaviour.WakePetUp();
+                break;
+
+            case "Alright let's take a break.":
+                Debug.Log("pet stops working out");
+                CurrentBehaviour.StopWorkout();
                 break;
 
             default:

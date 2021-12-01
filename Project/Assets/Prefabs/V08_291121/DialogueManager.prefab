@@ -240,4 +240,10 @@ MonoBehaviour:
     - dialogueText: I don't have the energy to keep playing games.
       playerResponses:
       - Okay okay, I get it.
+  - conversationRoom: GymStopWorkout
+    conversationChain:
+    - dialogueText: I'm puffed. Stop working out?
+      playerResponses:
+      - Keep going buddy!
+      - Alright let's take a break.
   currentConversationComplete: 0

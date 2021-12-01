@@ -123,7 +123,12 @@ public abstract class Behaviour
 
     }
 
-    public virtual void BenchPress()
+    public virtual void StartWorkout()
+    {
+
+    }
+
+    public virtual void StopWorkout()
     {
 
     }

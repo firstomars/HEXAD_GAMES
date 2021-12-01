@@ -48,26 +48,45 @@ public class ExerciseBehaviour : Behaviour
         base.EndBehaviour();
     }
 
-    public override void BenchPress()
+    public override void StartWorkout()
     {
-        if (!isExercising)
-        {
-            PlayerController.ActivateGymGearObjs(true);
+        PlayerController.ActivateGymGearObjs(true);
 
             PlayerAnimations.StartWorkout();
 
-            PlayerStatistics.BenchPressStatsImpact();
-            AudioManager.AudioManagerInstance.PlaySound("Gym");
+        PlayerStatistics.BenchPressStatsImpact();
+        AudioManager.AudioManagerInstance.PlaySound("Gym");
 
-            isExercising = true;
-        }
-        else
-        {
-            PlayerController.ActivateGymGearObjs(false);
-            AudioManager.AudioManagerInstance.StopSound("Gym");
+        //isExercising = true;
 
-            isExercising = false;
-        }
+        #region OLD
+        //if (!isExercising)
+        //{
+        //    PlayerController.ActivateGymGearObjs(true);
+
+        //    PlayerAnimations.Workout();
+
+        //    PlayerStatistics.BenchPressStatsImpact();
+        //    AudioManager.AudioManagerInstance.PlaySound("Gym");
+
+        //    isExercising = true;
+        //}
+        //else
+        //{
+        //    PlayerController.ActivateGymGearObjs(false);
+        //    AudioManager.AudioManagerInstance.StopSound("Gym");
+
+        //    isExercising = false;
+        //}
+        #endregion
+    }
+
+    public override void StopWorkout()
+    {
+        PlayerController.ActivateGymGearObjs(false);
+        AudioManager.AudioManagerInstance.StopSound("Gym");
+
+        //isExercising = false;
     }
 
     public override void StartConversation()

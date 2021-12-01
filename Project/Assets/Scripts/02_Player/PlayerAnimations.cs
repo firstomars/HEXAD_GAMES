@@ -82,6 +82,17 @@ public class PlayerAnimations : MonoBehaviour
         anim.SetBool("IsPlaying", false);       
         Debug.Log("Exit Minigame animation");
     }
+
+    public void SitDown()
+    {
+        anim.SetBool("IsSitting", true);
+
+    }
+
+    public void SitUp()
+    {
+        anim.SetBool("IsSitting", false);
+    }
 }
 
 

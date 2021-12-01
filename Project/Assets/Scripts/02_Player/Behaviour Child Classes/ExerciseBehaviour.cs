@@ -54,7 +54,7 @@ public class ExerciseBehaviour : Behaviour
         {
             PlayerController.ActivateGymGearObjs(true);
 
-            PlayerAnimations.Workout();
+            PlayerAnimations.StartWorkout();
 
             PlayerStatistics.BenchPressStatsImpact();
             AudioManager.AudioManagerInstance.PlaySound("Gym");

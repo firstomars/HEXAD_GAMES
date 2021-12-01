@@ -50,12 +50,17 @@ public class PlayerAnimations : MonoBehaviour
         anim.SetBool("IsInGym", false);
     }
 
-    public void Workout()
+    public void StartWorkout()
     {
+        anim.SetBool("IsLifting", true);
         Debug.Log("Workout animation");
-        //anim.SetBool("IsLifting", true);   
-        anim.SetTrigger("Workout");
-    } 
+        //anim.SetTrigger("Workout");
+    }
+
+    public void StopWorkout()
+    {   
+        anim.SetBool("IsLifting", false);       
+    }
 
     public void Eat()
     {

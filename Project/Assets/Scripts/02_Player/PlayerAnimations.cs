@@ -67,7 +67,7 @@ public class PlayerAnimations : MonoBehaviour
     {
         Debug.Log("Eat junk food animation");
         
-        //anim.SetTrigger("Eat");
+        anim.SetTrigger("Eat");
     }
 
     public void PlayMinigame()

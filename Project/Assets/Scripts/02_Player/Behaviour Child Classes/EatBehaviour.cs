@@ -39,6 +39,7 @@ public class EatBehaviour : Behaviour
     {
         Debug.Log("EatBehaviour End called");
         SetUI();
+
         base.EndBehaviour();
     }
 
@@ -63,11 +64,13 @@ public class EatBehaviour : Behaviour
     {
         if (foodType == "junkfood")
         {
-            //PlayerAnimations.EatJunkFood();
+            PlayerController.ActivateFoodObj("unhealthy", true);
+            PlayerAnimations.EatJunkFood();
             PlayerStatistics.JunkFoodEatenStatsImpact();
         }
         else
         {
+            PlayerController.ActivateFoodObj("healthy", true);
             PlayerAnimations.Eat();
             PlayerStatistics.FoodEatenStatsImpact();
         }

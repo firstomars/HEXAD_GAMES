@@ -22,6 +22,8 @@ public class ExerciseBehaviour : Behaviour
 
         SetUI("gym");
 
+        PlayerAnimations.InsideGym();
+
         if (TimeController.IsTimeAfter(18)) DialogueManager.DisplayTip("ExerciseAfter6");
 
         base.StartBehaviour();
@@ -37,11 +39,16 @@ public class ExerciseBehaviour : Behaviour
         Debug.Log("ExerciseBehaviour End called");
         AudioManager.AudioManagerInstance.StopSound("Gym");
         SetUI();
+
+        PlayerAnimations.OutsideGym();
+
         base.EndBehaviour();
     }
 
     public override void BenchPress()
     {
+        PlayerController.ActivateGymGearObjs(true);
+
         PlayerAnimations.Workout();
 
         PlayerStatistics.BenchPressStatsImpact();

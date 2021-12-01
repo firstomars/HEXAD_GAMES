@@ -408,4 +408,17 @@ public class PlayerController : BehaviourStateMachine
         Quaternion rotation = Quaternion.LookRotation(lookPos);
         transform.rotation = Quaternion.Slerp(transform.rotation, rotation, 0.05f);
     }
+
+    public void ActivateGymGearObjs(bool value)
+    {
+        Sweatband.SetActive(value);
+        RightDumbell.SetActive(value);
+        LeftDumbell.SetActive(value);
+    }
+
+    public void ActivateFoodObj(string foodType, bool value)
+    {
+        if (foodType == "healthy") HealthyFood.SetActive(value);
+        if (foodType == "unhealthy") UnhealthyFood.SetActive(value);
+    }
 }

@@ -9,7 +9,7 @@ public class PlayerAnimations : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        anim = GetComponent<Animator>();
+        anim = GetComponentInChildren<Animator>();
     }
 
     public void IdleToWalk()
@@ -48,7 +48,7 @@ public class PlayerAnimations : MonoBehaviour
         Debug.Log("Workout animation");
         anim.SetBool("IsLifting", true);
         //anim.SetTrigger("Workout");
-    }
+    } 
 
     public void Eat()
     {

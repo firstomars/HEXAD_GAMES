@@ -19,9 +19,13 @@ public class EatBehaviour : Behaviour
     {
         Debug.Log("EatBehaviour Start called - press A to test update");
         UIManager.UIManagerInstance.CurrentBehaviour = this;
+        DialogueManager.DialogueManagerInstance.CurrentBehaviour = this;
 
-        if (!hasBeenInKitchen) DialogueManager.DialogueManagerInstance.PetConversation("Kitchen");
-        else SetUI("kitchen");
+        SetUI("kitchen");
+
+
+        //if (!hasBeenInKitchen) DialogueManager.DialogueManagerInstance.PetConversation("Kitchen");
+        //else SetUI("kitchen");
 
 
         base.StartBehaviour();
@@ -29,13 +33,13 @@ public class EatBehaviour : Behaviour
 
     public override void RunBehaviour()
     {
-        if (DialogueManager.DialogueManagerInstance.currentConversationComplete) hasBeenInKitchen = true;
+        //if (DialogueManager.DialogueManagerInstance.currentConversationComplete) hasBeenInKitchen = true;
 
-        if (!isRoomUISet && hasBeenInKitchen)
-        {
-            SetUI("kitchen");
-            isRoomUISet = true;
-        }
+        //if (!isRoomUISet && hasBeenInKitchen)
+        //{
+        //    SetUI("kitchen");
+        //    isRoomUISet = true;
+        //}
 
         base.RunBehaviour();
     }
@@ -46,6 +50,8 @@ public class EatBehaviour : Behaviour
         SetUI();
         base.EndBehaviour();
     }
+
+
 
     public override void EatFood()
     {
@@ -89,5 +95,10 @@ public class EatBehaviour : Behaviour
     private uint CalculateHoursPerLastMeal()
     {
         return (uint)(PlayerController.TimeController.GetGameTime() - timeLastEaten);
+    }
+
+    public override void StartConversation()
+    {
+        DialogueManager.DialogueManagerInstance.PetConversation("Kitchen");
     }
 }

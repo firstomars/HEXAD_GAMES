@@ -708,7 +708,7 @@ public class UIManager : MonoBehaviour
     private void SetKitchenUI(bool value)
     {
         //Debug.Log("kitchen UI set to " + value);
-        eatFoodBtnGO.SetActive(value);
+        eatFoodBtnGO.SetActive(false);
         eatJunkFoodBtnGO.SetActive(value);
         //kitchenInteractBtnGO.SetActive(value);
 
@@ -719,8 +719,9 @@ public class UIManager : MonoBehaviour
     {
         if (value == true)
         {
-            eatFoodBtn.onClick.AddListener(CurrentBehaviour.EatFood);
-            eatJunkFoodBtn.onClick.AddListener(CurrentBehaviour.EatJunkFood);
+            eatJunkFoodBtn.onClick.AddListener(CurrentBehaviour.StartConversation);
+            //eatFoodBtn.onClick.AddListener(CurrentBehaviour.EatFood);
+            //eatJunkFoodBtn.onClick.AddListener(CurrentBehaviour.EatJunkFood);
             //kitchenInteractBtn.onClick.AddListener(CurrentBehaviour.EatFood);
         }
         else

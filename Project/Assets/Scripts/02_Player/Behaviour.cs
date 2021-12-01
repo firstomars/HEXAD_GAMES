@@ -117,4 +117,13 @@ public abstract class Behaviour
     {
 
     }
+
+    #region Conversations
+
+    public virtual void StartConversation()
+    {
+
+    }
+
+    #endregion
 }

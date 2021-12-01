@@ -25,6 +25,10 @@ public class DialogueManager : MonoBehaviour
     }
     #endregion
 
+    [HideInInspector] public Behaviour CurrentBehaviour;
+
+    private string previousConversationRoom = " ";
+
     #region Inspector Fields
     // Helper classes for dialogue database
     [System.Serializable]
@@ -118,9 +122,12 @@ public class DialogueManager : MonoBehaviour
     // Pet conversations main function
     public void PetConversation(string room = default)
     {
+        if (room != previousConversationRoom) conversationStarted = false;
+        
         if (!conversationStarted)
         {
             conversationStarted = true;
+            previousConversationRoom = room;
             Debug.Log("Player started " + room + " conversation");
             /* Object Key
              * 0 - Game Intro
@@ -188,8 +195,11 @@ public class DialogueManager : MonoBehaviour
         //Debug.Log("Player responded with " + response);
         //Debug.Log("Current conversation node count is " + petConversations[currentConversationID].conversationChain.Length);
         currentLineIndex++;
-        // Check if the conversation chain has more nodes
-        if (currentLineIndex < petConversations[currentConversationID].conversationChain.Length)
+
+        int conversationIndexLength = petConversations[currentConversationID].conversationChain.Length;
+
+        #region NEW
+        if (currentLineIndex == conversationIndexLength)
         {
             currentConversationComplete = false;
 
@@ -197,11 +207,20 @@ public class DialogueManager : MonoBehaviour
             if (response != "_")
             {
                 // Call back here
-
-                //if healthy food
-                //EatBehaviour.EatHealthFood();
+                if (response == "Healthy...")
+                {
+                    Debug.Log("healthy food option chosen");
+                    CurrentBehaviour.EatFood();
+                }
+                //else if (response == "")
             }
             // Display the next line of dialogue
+            conversationStarted = false;
+            currentLineIndex = 0;
+            currentConversationComplete = true;
+        }
+        else if (currentLineIndex < conversationIndexLength)
+        {
             DisplayDialogueLine(petConversations[currentConversationID].conversationChain[currentLineIndex].dialogueText, petConversations[currentConversationID].conversationChain[currentLineIndex].playerResponses);
         }
         else
@@ -211,6 +230,40 @@ public class DialogueManager : MonoBehaviour
             currentLineIndex = 0;
             currentConversationComplete = true;
         }
+
+        #endregion
+
+        #region OLD
+        // Check if the conversation chain has more nodes
+        //if (currentLineIndex < petConversations[currentConversationID].conversationChain.Length)
+        //{
+        //    currentConversationComplete = false;
+
+        //    // Call back to behaviour to save user response if required
+        //    if (response != "_")
+        //    {
+        //        // Call back here
+        //        if (response == "Healthy...")
+        //        {
+        //            Debug.Log("healthy food option chosen");
+        //            CurrentBehaviour.EatFood();
+        //        }
+
+        //        //if healthy food
+        //        //EatBehaviour.EatHealthFood();
+        //    }
+        //    // Display the next line of dialogue
+        //    DisplayDialogueLine(petConversations[currentConversationID].conversationChain[currentLineIndex].dialogueText, petConversations[currentConversationID].conversationChain[currentLineIndex].playerResponses);
+        //}
+        //else
+        //{
+        //    // Reset the conversation status
+        //    conversationStarted = false;
+        //    currentLineIndex = 0;
+        //    currentConversationComplete = true;
+        //}
+
+        #endregion
     }
 
     // Pet conversation display dialogue

@@ -185,6 +185,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b03eed681ea8cfc4391215fd4301aec7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CameraManager: {fileID: 0}
   PlayerAnimations: {fileID: 0}
   whatIsPlayer:
     serializedVersion: 2
@@ -193,7 +194,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   targetPosition: {x: 0, y: 0, z: 0}
-  bed: {fileID: 0}
+  bedPos: {fileID: 0}
+  miniGamePos: {fileID: 0}
   trophyCabinetPosition: {fileID: 0}
   HouseWaypoints: {fileID: 0}
   WanderWaypoints: {fileID: 0}
@@ -1583,7 +1585,7 @@ PrefabInstance:
     - target: {fileID: 451158905556667463, guid: 697086f5db886a947ac9cf9e42a8160a, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 6e11df7f15cdc2842b4a63193bd1eb1e, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 708426816975842182, guid: 697086f5db886a947ac9cf9e42a8160a, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 

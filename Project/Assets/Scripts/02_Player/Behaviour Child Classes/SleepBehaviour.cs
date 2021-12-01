@@ -21,6 +21,8 @@ public class SleepBehaviour : Behaviour
         //Debug.Log("SleepBehaviour Start called - press L to test update");
 
         UIManager.UIManagerInstance.CurrentBehaviour = this;
+        DialogueManager.DialogueManagerInstance.CurrentBehaviour = this;
+
 
         if (!hasBeenInBedroom) DialogueManager.DialogueManagerInstance.PetConversation("NewBedroom");
         else SetUI("bedroom");

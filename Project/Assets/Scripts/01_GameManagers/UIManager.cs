@@ -693,12 +693,16 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    public void ActivateBedroomControl(bool value)
+    {
+        sendToBedBtnGO.SetActive(value);
+    }
+
     public void MinigameClicked(bool value)
     {
         isMinigameBeingPlayed = value;
         
         miniGameBtnGO.SetActive(value);
-        sendToBedBtnGO.SetActive(!value);
     }
 
     public void SendToBedBtnClicked()

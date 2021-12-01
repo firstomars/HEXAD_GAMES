@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ExerciseBehaviour : Behaviour
 {
+    private bool isExercising = false;
+
     public ExerciseBehaviour(PlayerController playerController) : base(playerController)
     {
         PlayerController = playerController;
@@ -40,6 +42,7 @@ public class ExerciseBehaviour : Behaviour
         AudioManager.AudioManagerInstance.StopSound("Gym");
         SetUI();
 
+        PlayerController.ActivateGymGearObjs(false);
         PlayerAnimations.OutsideGym();
 
         base.EndBehaviour();
@@ -47,12 +50,24 @@ public class ExerciseBehaviour : Behaviour
 
     public override void BenchPress()
     {
-        PlayerController.ActivateGymGearObjs(true);
+        if (!isExercising)
+        {
+            PlayerController.ActivateGymGearObjs(true);
 
-        PlayerAnimations.Workout();
+            PlayerAnimations.Workout();
 
-        PlayerStatistics.BenchPressStatsImpact();
-        AudioManager.AudioManagerInstance.PlaySound("Gym");
+            PlayerStatistics.BenchPressStatsImpact();
+            AudioManager.AudioManagerInstance.PlaySound("Gym");
+
+            isExercising = true;
+        }
+        else
+        {
+            PlayerController.ActivateGymGearObjs(false);
+            AudioManager.AudioManagerInstance.StopSound("Gym");
+
+            isExercising = false;
+        }
     }
 
     public override void StartConversation()

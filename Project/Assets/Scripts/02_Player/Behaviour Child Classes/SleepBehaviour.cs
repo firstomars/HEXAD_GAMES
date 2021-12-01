@@ -103,6 +103,8 @@ public class SleepBehaviour : Behaviour
     public override void PlayMiniGame()
     {
         PlayerController.SetPlayerDestination(PlayerController.miniGamePos.position);
+        UIManager.ActivateBedroomControl(false);
+
         SwitchCamera("bedroomGame");
         PlayerAnimations.PlayMinigame();
         PlayerStatistics.MinigameStatsImpact();
@@ -117,7 +119,7 @@ public class SleepBehaviour : Behaviour
 
     IEnumerator ExecuteMiniGameUI(float secsToWait)
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(secsToWait);
 
         if (PlayerStatistics.energyLevel >= 30)
         {
@@ -135,6 +137,7 @@ public class SleepBehaviour : Behaviour
         PlayerAnimations.StopMinigame();
         PlayerController.SetPlayerDestination(FindWaypointHelper("bedroom"));
         UIManager.MinigameClicked(false);
+        UIManager.ActivateBedroomControl(true);
         SwitchCamera("bedroom");
     }
 

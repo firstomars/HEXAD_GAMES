@@ -40,6 +40,9 @@ public class EatBehaviour : Behaviour
         Debug.Log("EatBehaviour End called");
         SetUI();
 
+        PlayerController.ActivateFoodObj("unhealthy", false);
+        PlayerController.ActivateFoodObj("healthy", false);
+
         base.EndBehaviour();
     }
 

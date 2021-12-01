@@ -183,7 +183,8 @@ public class PlayerController : BehaviourStateMachine
         if (AudioManager.AudioManagerInstance.IsAudioPlaying("FootStep"))
             AudioManager.AudioManagerInstance.StopSound("FootStep");
 
-        FaceTarget(Camera.main.transform.position);
+        if (isPetSleeping) FaceTarget(bedPos.position);
+        else FaceTarget(Camera.main.transform.position);
     }
 
     private void RunBehaviourLogic()

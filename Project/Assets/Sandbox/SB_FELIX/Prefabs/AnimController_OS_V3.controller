@@ -267,7 +267,7 @@ AnimatorStateMachine:
     m_Position: {x: 1140, y: -410, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 921448942966810248}
-    m_Position: {x: -170, y: -350, z: 0}
+    m_Position: {x: -230, y: -390, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -8869880519311470238}
     m_Position: {x: 1240, y: -290, z: 0}
@@ -276,13 +276,13 @@ AnimatorStateMachine:
     m_Position: {x: 1240, y: -130, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -7494825871032620628}
-    m_Position: {x: 930, y: -30, z: 0}
+    m_Position: {x: 960, y: -80, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -8372687007434291132}
     m_Position: {x: 790, y: 70, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -6946446408848565052}
-    m_Position: {x: -170, y: -480, z: 0}
+    m_Position: {x: -130, y: -520, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions:
@@ -495,6 +495,18 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
+  - m_Name: IsPlaying
+    m_Type: 4
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
+  - m_Name: PlayGame
+    m_Type: 9
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -515,7 +527,10 @@ AnimatorStateTransition:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: 
-  m_Conditions: []
+  m_Conditions:
+  - m_ConditionMode: 2
+    m_ConditionEvent: IsPlaying
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -8372687007434291132}
   m_Solo: 0
@@ -537,7 +552,10 @@ AnimatorStateTransition:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: 
-  m_Conditions: []
+  m_Conditions:
+  - m_ConditionMode: 1
+    m_ConditionEvent: IsIdle
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -8977266220392484886}
   m_Solo: 0
@@ -804,10 +822,13 @@ AnimatorStateTransition:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: 
-  m_Conditions: []
+  m_Conditions:
+  - m_ConditionMode: 1
+    m_ConditionEvent: IsPlaying
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -7494825871032620628}
-  m_Solo: 0
+  m_Solo: 1
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3

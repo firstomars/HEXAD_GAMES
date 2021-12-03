@@ -176,6 +176,7 @@ MonoBehaviour:
     - dialogueText: What would you like to do?
       playerResponses:
       - Time for bed!
+      - I'll take a quick nap.
       - Let's play a minigame.
       - Mmmm nothing right now.
   - conversationRoom: Gym
@@ -246,4 +247,10 @@ MonoBehaviour:
       playerResponses:
       - Keep going buddy!
       - Alright let's take a break.
+  - conversationRoom: BedroomWakeUpFromNap
+    conversationChain:
+    - dialogueText: It hasn't been two hours yet... wake me up?
+      playerResponses:
+      - Yep - nap time over!
+      - Nah keep napping
   currentConversationComplete: 0

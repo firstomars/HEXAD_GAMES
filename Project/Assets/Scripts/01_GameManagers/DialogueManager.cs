@@ -190,13 +190,17 @@ public class DialogueManager : MonoBehaviour
                     currentConversationID = 13;
                     break;
 
+                case "BedroomWakeUpFromNap":
+                    currentConversationID = 14;
+                    break;
+
                 case "default":
                     conversationStarted = false;
                     break;
             }
             StartConversation(currentConversationID);
         }
-    }
+    } 
 
     // Start conversation with current conversation ID
     private void StartConversation(int conversationID)
@@ -263,13 +267,23 @@ public class DialogueManager : MonoBehaviour
                 CurrentBehaviour.SendToBed();
                 break;
 
+            case "I'll take a quick nap.":
+                Debug.Log("pet asked to take a nap");
+                CurrentBehaviour.SendToBedForNap();
+                break;
+
+            case "Yep - nap time over!":
+                Debug.Log("pet wakes from nap");
+                CurrentBehaviour.WakePetUpFromNap();
+                break;
+
             case "Let's play a minigame.":
                 Debug.Log("pet asked to play minigame");
                 CurrentBehaviour.PlayMiniGame(); //starts minigame
                 break;
 
             case "Yeah that's enough.":
-                Debug.Log("pet asked to play minigame");
+                Debug.Log("pet asked to stop playing minigame");
                 CurrentBehaviour.StopMiniGame(); //stops minigame
                 break;
 
@@ -286,7 +300,7 @@ public class DialogueManager : MonoBehaviour
             default:
                 Debug.Log("Response did not match actions - no action taken");
                 break;
-        }
+        } 
     }
 
     // Pet conversation display dialogue

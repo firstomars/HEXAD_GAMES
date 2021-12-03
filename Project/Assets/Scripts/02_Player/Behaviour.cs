@@ -60,7 +60,17 @@ public abstract class Behaviour
 
     }
 
+    public virtual void SendToBedForNap()
+    {
+
+    }
+
     public virtual void WakePetUp()
+    {
+
+    }
+
+    public virtual void WakePetUpFromNap()
     {
 
     }
@@ -146,6 +156,11 @@ public abstract class Behaviour
     }
 
     public virtual void StartConversationWakeUp()
+    {
+
+    }
+
+    public virtual void StartConversationWakeUpFromNap()
     {
 
     }

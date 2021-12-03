@@ -131,6 +131,8 @@ public class UIManager : MonoBehaviour
     private Button sendToBedBtn;
     [SerializeField] private GameObject wakeUpBtnGO;
     private Button wakeUpBtn;
+    [SerializeField] private GameObject wakeUpFromNapBtnGO;
+    private Button wakeUpFromNapBtn;
     [SerializeField] private GameObject miniGameBtnGO;
     private Button miniGameBtn;
     [SerializeField] private GameObject bedroomInteractBtnGO;
@@ -195,6 +197,7 @@ public class UIManager : MonoBehaviour
         //bedroom UI
         sendToBedBtn = sendToBedBtnGO.GetComponent<Button>();
         wakeUpBtn = wakeUpBtnGO.GetComponent<Button>();
+        wakeUpFromNapBtn = wakeUpFromNapBtnGO.GetComponent<Button>();
         miniGameBtn = miniGameBtnGO.GetComponent<Button>();
         bedroomInteractBtn = bedroomInteractBtnGO.GetComponent<Button>();
 
@@ -670,7 +673,11 @@ public class UIManager : MonoBehaviour
         //sendToBedBtnGO.SetActive(value);
         //bedroomInteractBtnGO.SetActive(value);
 
-        if (value == false) wakeUpBtnGO.SetActive(value);
+        if (value == false)
+        {
+            wakeUpBtnGO.SetActive(value);
+            wakeUpFromNapBtnGO.SetActive(value);
+        }
 
         SetBedroomUIListeners(value);
     }
@@ -681,6 +688,7 @@ public class UIManager : MonoBehaviour
         {
             sendToBedBtn.onClick.AddListener(CurrentBehaviour.StartConversation);
             wakeUpBtn.onClick.AddListener(CurrentBehaviour.StartConversationWakeUp);
+            wakeUpFromNapBtn.onClick.AddListener(CurrentBehaviour.StartConversationWakeUpFromNap);
             miniGameBtn.onClick.AddListener(CurrentBehaviour.StartConversationMinigame);
             //bedroomInteractBtn.onClick.AddListener(CurrentBehaviour.SendToBed);
         }
@@ -688,6 +696,7 @@ public class UIManager : MonoBehaviour
         {
             sendToBedBtn.onClick.RemoveAllListeners();
             wakeUpBtn.onClick.RemoveAllListeners();
+            wakeUpFromNapBtn.onClick.RemoveAllListeners();
             //miniGameBtn.onClick.RemoveAllListeners();
             //bedroomInteractBtn.onClick.RemoveAllListeners();
         }
@@ -708,11 +717,21 @@ public class UIManager : MonoBehaviour
     public void SendToBedBtnClicked()
     {
         sendToBedBtnGO.SetActive(false);
+        wakeUpFromNapBtnGO.SetActive(false);
         wakeUpBtnGO.SetActive(true);
 
         CloseAllFlyouts();
         //flyoutButtonPanel.SetActive(false);
         //miniGameBtnGO.SetActive(false);
+    }
+
+    public void SendToBedForNapBtnClicked()
+    {
+        sendToBedBtnGO.SetActive(false);
+        wakeUpFromNapBtnGO.SetActive(true);
+        wakeUpBtnGO.SetActive(false);
+
+        CloseAllFlyouts();
     }
 
     public void WakeUpBtnClicked()

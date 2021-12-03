@@ -5,6 +5,9 @@ using UnityEngine;
 public class SleepBehaviour : Behaviour
 {
     private int dayFellAsleep = -1;
+    private bool isPetNapping = false;
+    private int napStartTime = -1;
+
 
     public SleepBehaviour(PlayerController playerController) : base(playerController)
     {
@@ -30,6 +33,11 @@ public class SleepBehaviour : Behaviour
 
     public override void RunBehaviour()
     {
+        if (isPetNapping && 
+            TimeController.GetGameTime() >= napStartTime + 2)
+        {
+            WakePetUpFromNap();
+        }
         base.RunBehaviour();
     }
 
@@ -47,7 +55,6 @@ public class SleepBehaviour : Behaviour
         if (PlayerStatistics.energyLevel <= PlayerStatistics.energyLevelSleepThreshold)
         {
             Debug.Log("Pet sent to bed");
-            PlayerController.IsPetSleeping(true);
 
             if (dayFellAsleep == -1)
             {
@@ -57,12 +64,14 @@ public class SleepBehaviour : Behaviour
                 // logic breaks if game date is 1st day of month
             }
 
-            PlayerController.SetPlayerDestination(PlayerController.bedPos.position);
-            SwitchCamera("bedroomSleep");
-            PlayerAnimations.GetIntoBed();
+            SendToBedSequence();
 
-            AudioManager.AudioManagerInstance.PlaySound("Sleeping");
-            AudioManager.AudioManagerInstance.StopSound("FootStep");
+            //PlayerController.SetPlayerDestination(PlayerController.bedPos.position);
+            //SwitchCamera("bedroomSleep");
+            //PlayerAnimations.GetIntoBed();
+
+            //AudioManager.AudioManagerInstance.PlaySound("Sleeping");
+            //AudioManager.AudioManagerInstance.StopSound("FootStep");
 
             UIManager.SendToBedBtnClicked();
         }
@@ -74,13 +83,29 @@ public class SleepBehaviour : Behaviour
         }
     }
 
-    private void SwitchCamera(string room)
+    public override void SendToBedForNap()
     {
-        PlayerController.CameraManager.SetPlayerPosition(room);
-        PlayerController.CameraSwitch();
+        Debug.Log("sleep behaviour.cs nap");
+        isPetNapping = true;
+
+        SendToBedSequence();
+
+        napStartTime = TimeController.GetGameTime();
+        UIManager.SendToBedForNapBtnClicked();
     }
 
-    public override void WakePetUp()
+    private void SendToBedSequence()
+    {
+        PlayerController.IsPetSleeping(true);
+        PlayerController.SetPlayerDestination(PlayerController.bedPos.position);
+        SwitchCamera("bedroomSleep");
+        PlayerAnimations.GetIntoBed();
+
+        AudioManager.AudioManagerInstance.PlaySound("Sleeping");
+        AudioManager.AudioManagerInstance.StopSound("FootStep");
+    }
+
+    private void WakeUpSequence()
     {
         PlayerAnimations.GetOutOfBed();
         SwitchCamera("bedroom");
@@ -90,17 +115,40 @@ public class SleepBehaviour : Behaviour
 
         AudioManager.AudioManagerInstance.StopSound("Sleeping");
         UIManager.WakeUpBtnClicked();
+    }
 
-        if (TimeController.IsNextDay(dayFellAsleep) && 
+    public override void WakePetUpFromNap()
+    {
+        PlayerController.SetPlayerDestination(FindWaypointHelper("bedroom"));
+        napStartTime = -1;
+        isPetNapping = false;
+
+        WakeUpSequence();
+    }
+
+    public override void WakePetUp()
+    {
+        //check if nap or if sleeping
+        //if sleeping only able to wake up when it's morning
+
+        WakeUpSequence();
+
+        //PlayerAnimations.GetOutOfBed();
+        //SwitchCamera("bedroom");
+
+        //PlayerController.IsPetSleeping(false);
+        //Debug.Log("pet woken up");
+
+        //AudioManager.AudioManagerInstance.StopSound("Sleeping");
+        //UIManager.WakeUpBtnClicked();
+
+        if (TimeController.IsNextDay(dayFellAsleep) &&
             TimeController.IsTimeBefore(13))
         {
             UIManager.WakeUpNextDayBtnClicked();
             PlayerController.IsReportDelivered(false);
         }
-        else
-        {
-            PlayerController.SetPlayerDestination(FindWaypointHelper("bedroom"));
-        }
+        else PlayerController.SetPlayerDestination(FindWaypointHelper("bedroom"));
 
         dayFellAsleep = -1;
     }
@@ -157,9 +205,23 @@ public class SleepBehaviour : Behaviour
         DialogueManager.PetConversation("BedroomWakeUp");
     }
 
+    public override void StartConversationWakeUpFromNap()
+    {
+        DialogueManager.PetConversation("BedroomWakeUpFromNap");
+        
+        //DialogueManager.PetConversation("BedroomWakeUp");
+    }
+
     public override void StartConversationMinigame()
     {
         DialogueManager.PetConversation("BedroomMinigame");
     }
+
+    private void SwitchCamera(string room)
+    {
+        PlayerController.CameraManager.SetPlayerPosition(room);
+        PlayerController.CameraSwitch();
+    }
+
 }
 

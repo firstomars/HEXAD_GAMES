@@ -222,7 +222,10 @@ public class PlayerStatistics : MonoBehaviour
 
     private int CalculateHoursSlept(int bedTime, int wakeUpTime)
     {
-        return (24 - bedTime) + wakeUpTime;
+        //return (24 - bedTime) + wakeUpTime;
+        
+        if (wakeUpTime > bedTime)   return wakeUpTime - bedTime;
+        else                        return (24 - bedTime) + wakeUpTime;
     }
 
     public int GetHrsSleptNightOne()

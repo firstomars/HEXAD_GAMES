@@ -49,6 +49,7 @@ public class PlayerStatistics : MonoBehaviour
     [SerializeField] private int hrsSleptNightThree;
     [SerializeField] private int hrsSleptNightFour;
     [SerializeField] private int hrsSleptNightFive;
+    [SerializeField] public int energyLevelSleepThreshold;
 
     [HideInInspector] public int SleepTrophyGoals { get; set; }
 

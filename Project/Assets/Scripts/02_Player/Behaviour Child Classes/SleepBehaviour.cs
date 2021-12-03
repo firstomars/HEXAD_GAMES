@@ -44,19 +44,23 @@ public class SleepBehaviour : Behaviour
 
     public override void SendToBed()
     {
-        if (TimeController.IsTimeAfter(PlayerController.petBedTime))
+        if (PlayerStatistics.energyLevel <= PlayerStatistics.energyLevelSleepThreshold)
         {
-            SwitchCamera("bedroomSleep");
-
+            Debug.Log("Pet sent to bed");
             PlayerController.IsPetSleeping(true);
 
+            if (dayFellAsleep == -1)
+            {
+                if (TimeController.GetGameTime() > 12)
+                    dayFellAsleep = TimeController.GetGameDate();
+                else dayFellAsleep = TimeController.GetGameDate() - 1; 
+                // logic breaks if game date is 1st day of month
+            }
+
+            PlayerController.SetPlayerDestination(PlayerController.bedPos.position);
+            SwitchCamera("bedroomSleep");
             PlayerAnimations.GetIntoBed();
 
-            Debug.Log("Pet sent to bed");
-            if (dayFellAsleep == -1) dayFellAsleep = TimeController.GetGameDate();
-            PlayerController.SetPlayerDestination(PlayerController.bedPos.position);
-
-            //PLACE IN PLAYERANIMATIONS
             AudioManager.AudioManagerInstance.PlaySound("Sleeping");
             AudioManager.AudioManagerInstance.StopSound("FootStep");
 
@@ -88,16 +92,17 @@ public class SleepBehaviour : Behaviour
         UIManager.WakeUpBtnClicked();
 
         if (TimeController.IsNextDay(dayFellAsleep) && 
-            TimeController.IsTimeAfter(PlayerController.petWakeUpTime))
+            TimeController.IsTimeBefore(13))
         {
             UIManager.WakeUpNextDayBtnClicked();
             PlayerController.IsReportDelivered(false);
-            dayFellAsleep = -1;
         }
         else
         {
             PlayerController.SetPlayerDestination(FindWaypointHelper("bedroom"));
         }
+
+        dayFellAsleep = -1;
     }
 
     public override void PlayMiniGame()

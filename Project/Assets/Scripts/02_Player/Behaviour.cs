@@ -55,7 +55,7 @@ public abstract class Behaviour
 
     }
 
-    public virtual void SendToBed()
+    public virtual void SendToBedForTheDay()
     {
 
     }
@@ -66,6 +66,11 @@ public abstract class Behaviour
     }
 
     public virtual void WakePetUp()
+    {
+
+    }
+
+    public virtual void TryToWakePetUpOnNewDay()
     {
 
     }

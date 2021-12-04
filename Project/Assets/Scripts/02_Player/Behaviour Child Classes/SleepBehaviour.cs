@@ -7,7 +7,8 @@ public class SleepBehaviour : Behaviour
     private int dayFellAsleep = -1;
     private bool isPetNapping = false;
     private int napStartTime = -1;
-
+    private bool isPetSleeping = false;
+    private bool isEnergyIncreasing = false;
 
     public SleepBehaviour(PlayerController playerController) : base(playerController)
     {
@@ -38,6 +39,32 @@ public class SleepBehaviour : Behaviour
         {
             WakePetUpFromNap();
         }
+
+        if (isPetSleeping &&
+            TimeController.IsNextDay(dayFellAsleep) &&
+            TimeController.IsTimeAfter(7) &&
+            PlayerStatistics.energyLevel > 99)
+        {
+            PetWakesUpOnNewDay();
+        }
+
+        if (!isEnergyIncreasing &&
+            (isPetNapping || isPetSleeping))
+        {
+            Debug.Log("Called coroutine");
+            PlayerStatistics.IsPetAsleep(true);
+            isEnergyIncreasing = true;
+        }
+
+        if (isEnergyIncreasing &&
+            !isPetSleeping &&
+            !isPetNapping)
+        {
+            Debug.Log("Called coroutine");
+            PlayerStatistics.IsPetAsleep(false);
+            isEnergyIncreasing = false;
+        }
+            
         base.RunBehaviour();
     }
 
@@ -50,36 +77,32 @@ public class SleepBehaviour : Behaviour
         base.EndBehaviour();
     }
 
-    public override void SendToBed()
+    public override void SendToBedForTheDay()
     {
-        if (PlayerStatistics.energyLevel <= PlayerStatistics.energyLevelSleepThreshold)
+        if (PlayerStatistics.energyLevel > PlayerStatistics.energyLevelSleepThreshold)
+        {
+            Debug.Log("i'm not tired");
+            DialogueManager.PetConversation("DontNeedSleep");
+        }
+        else if (TimeController.IsTimeAfter(7) && TimeController.IsTimeBefore(18))
+        {
+            Debug.Log("too early to call it a day");
+            DialogueManager.PetConversation("BedroomTooEarlyToCallItADay");
+        }
+        else
         {
             Debug.Log("Pet sent to bed");
+            isPetSleeping = true;
 
             if (dayFellAsleep == -1)
             {
-                if (TimeController.GetGameTime() > 12)
-                    dayFellAsleep = TimeController.GetGameDate();
-                else dayFellAsleep = TimeController.GetGameDate() - 1; 
-                // logic breaks if game date is 1st day of month
+                if (TimeController.IsTimeBefore(7)) dayFellAsleep = TimeController.GetGameDate() - 1;
+                else                                dayFellAsleep = TimeController.GetGameDate();
             }
 
             SendToBedSequence();
 
-            //PlayerController.SetPlayerDestination(PlayerController.bedPos.position);
-            //SwitchCamera("bedroomSleep");
-            //PlayerAnimations.GetIntoBed();
-
-            //AudioManager.AudioManagerInstance.PlaySound("Sleeping");
-            //AudioManager.AudioManagerInstance.StopSound("FootStep");
-
             UIManager.SendToBedBtnClicked();
-        }
-        else
-        {
-            //refactor
-            Debug.Log("it's not pet's bed time yet!");
-            DialogueManager.PetConversation("DontNeedSleep");
         }
     }
 
@@ -117,6 +140,34 @@ public class SleepBehaviour : Behaviour
         UIManager.WakeUpBtnClicked();
     }
 
+    public override void TryToWakePetUpOnNewDay()
+    {
+        if (PlayerStatistics.energyLevel < 80)
+        {
+            Debug.Log("I'm not even at 80% energy yet, I need more sleep");
+            DialogueManager.PetConversation("BedroomStillTooTired");
+        }
+        else if (TimeController.IsTimeAfter(18) || TimeController.IsTimeBefore(5))
+        {
+            Debug.Log("It's not even 5 yet, I want to stay in bed for awhile");
+            DialogueManager.PetConversation("BedroomItsTooEarlyToWakeUp");
+
+        }
+        else
+        {
+            PetWakesUpOnNewDay();
+        }
+    }
+
+    private void PetWakesUpOnNewDay()
+    {
+        WakeUpSequence();
+        UIManager.WakeUpNextDayBtnClicked();
+        PlayerController.IsReportDelivered(false);
+        isPetSleeping = false;
+        dayFellAsleep = -1;
+    }
+
     public override void WakePetUpFromNap()
     {
         PlayerController.SetPlayerDestination(FindWaypointHelper("bedroom"));
@@ -128,27 +179,9 @@ public class SleepBehaviour : Behaviour
 
     public override void WakePetUp()
     {
-        //check if nap or if sleeping
-        //if sleeping only able to wake up when it's morning
-
         WakeUpSequence();
-
-        //PlayerAnimations.GetOutOfBed();
-        //SwitchCamera("bedroom");
-
-        //PlayerController.IsPetSleeping(false);
-        //Debug.Log("pet woken up");
-
-        //AudioManager.AudioManagerInstance.StopSound("Sleeping");
-        //UIManager.WakeUpBtnClicked();
-
-        if (TimeController.IsNextDay(dayFellAsleep) &&
-            TimeController.IsTimeBefore(13))
-        {
-            UIManager.WakeUpNextDayBtnClicked();
-            PlayerController.IsReportDelivered(false);
-        }
-        else PlayerController.SetPlayerDestination(FindWaypointHelper("bedroom"));
+        PlayerController.SetPlayerDestination(FindWaypointHelper("bedroom"));
+        isPetSleeping = false;
 
         dayFellAsleep = -1;
     }
@@ -208,8 +241,6 @@ public class SleepBehaviour : Behaviour
     public override void StartConversationWakeUpFromNap()
     {
         DialogueManager.PetConversation("BedroomWakeUpFromNap");
-        
-        //DialogueManager.PetConversation("BedroomWakeUp");
     }
 
     public override void StartConversationMinigame()

@@ -202,7 +202,7 @@ MonoBehaviour:
   minEnergyLevelToGym: 75
   petBedTime: 21
   petWakeUpTime: 6
-  hasIntroHappened: 0
+  hasIntroHappened: 1
   petBody: {fileID: 4250567693411245173}
   petSkinnedMeshRenderer: {fileID: 0}
   Sweatband: {fileID: 2769830341343559757}
@@ -907,7 +907,9 @@ MonoBehaviour:
   maxEnergyLevel: 100
   minEnergyLevel: 10
   energyReductionAmount: 1
-  secsToWaitBeforeEnergyReduction: 1
+  secsToWaitBeforeEnergyReduction: 2
+  energyIncreaseAmount: 1
+  secsToWaitBeforeEnergyIncrease: 3
   energyGainedFromFood: 5
   energyReducedFromBenchPress: 10
   fulfilLevel: 0
@@ -926,7 +928,7 @@ MonoBehaviour:
   hrsSleptNightThree: 0
   hrsSleptNightFour: 0
   hrsSleptNightFive: 0
-  energyLevelSleepThreshold: 75
+  energyLevelSleepThreshold: 90
 --- !u!1 &735632514512035433
 GameObject:
   m_ObjectHideFlags: 0

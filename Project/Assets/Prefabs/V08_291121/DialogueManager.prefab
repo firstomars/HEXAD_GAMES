@@ -175,7 +175,7 @@ MonoBehaviour:
     conversationChain:
     - dialogueText: What would you like to do?
       playerResponses:
-      - Time for bed!
+      - Lets call it a day - good night!
       - I'll take a quick nap.
       - Let's play a minigame.
       - Mmmm nothing right now.
@@ -216,7 +216,7 @@ MonoBehaviour:
       - Thanks I'll think about it.
   - conversationRoom: DontNeedSleep
     conversationChain:
-    - dialogueText: I'm not tired. I'm not going to bed!
+    - dialogueText: I'm at 90% energy. I don't need to go to bed!
       playerResponses:
       - Ok jeez...
   - conversationRoom: AlreadyEaten
@@ -228,7 +228,8 @@ MonoBehaviour:
     conversationChain:
     - dialogueText: Do you really want to wake me up?
       playerResponses:
-      - Yep it's time to get up.
+      - Yep, let's start the day!
+      - I'll just get up for a little bit.
       - Ahh you keep sleeping
   - conversationRoom: BedroomMinigame
     conversationChain:
@@ -253,4 +254,19 @@ MonoBehaviour:
       playerResponses:
       - Yep - nap time over!
       - Nah keep napping
+  - conversationRoom: BedroomTooEarlyToCallItADay
+    conversationChain:
+    - dialogueText: It's not even past 6 and you want to call it a day??
+      playerResponses:
+      - Alright... maybe we can try napping.
+  - conversationRoom: BedroomStillTooTired
+    conversationChain:
+    - dialogueText: I'm not even at 80% energy yet, I need more sleep
+      playerResponses:
+      - Ok sorry, sleep tight.
+  - conversationRoom: BedroomItsTooEarlyToWakeUp
+    conversationChain:
+    - dialogueText: It's not even 5 yet, I want to stay in bed for awhile
+      playerResponses:
+      - Ok sorry, sleep tight.
   currentConversationComplete: 0

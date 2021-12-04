@@ -23,6 +23,8 @@ public class PlayerStatistics : MonoBehaviour
     [SerializeField] private float minEnergyLevel;
     [SerializeField] private float energyReductionAmount;
     [SerializeField] private float secsToWaitBeforeEnergyReduction;
+    [SerializeField] private float energyIncreaseAmount;
+    [SerializeField] private float secsToWaitBeforeEnergyIncrease;
     [SerializeField] private int energyGainedFromFood = 5;
     [SerializeField] private int energyReducedFromBenchPress = 10;
 
@@ -57,7 +59,7 @@ public class PlayerStatistics : MonoBehaviour
     void Start()
     {
         UIManager = UIManager.UIManagerInstance;
-        StartCoroutine(ReduceEnergyOverTime());
+        StartCoroutine("ReduceEnergyOverTime");
 
         SleepTrophyGoals = 0;
     }
@@ -65,6 +67,7 @@ public class PlayerStatistics : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         UIManager.StatisticsUpdate(
             CalculateEnergySliderLevel(),
             CalculateFulfillmentSliderLevel(),
@@ -86,10 +89,32 @@ public class PlayerStatistics : MonoBehaviour
         }
     }
 
+    private IEnumerator IncreaseEnergyOverTime()
+    {
+        while (energyLevel < maxEnergyLevel)
+        {
+            Debug.Log("coroutine triggered");
+            energyLevel += energyIncreaseAmount;
+            yield return new WaitForSeconds(secsToWaitBeforeEnergyIncrease);
+        }
+    }
+
+    public void IsPetAsleep(bool value)
+    {
+        if (value == true)
+        {
+            StopCoroutine("ReduceEnergyOverTime");
+            StartCoroutine("IncreaseEnergyOverTime");
+        }
+        else
+        {
+            StartCoroutine("ReduceEnergyOverTime");
+            StopCoroutine("IncreaseEnergyOverTime");
+        }
+    }
+
     public void SetNewEnergyLevels()
     {
-        energyLevel = maxEnergyLevel;
-        
         mealsEatenToday = 0;
         minigamesPlayed = 0;
 
@@ -99,8 +124,8 @@ public class PlayerStatistics : MonoBehaviour
 
     public void RestartEnergyReduction()
     {
-        StopCoroutine(ReduceEnergyOverTime());
-        StartCoroutine(ReduceEnergyOverTime());
+        StopCoroutine("ReduceEnergyOverTime");
+        StartCoroutine("ReduceEnergyOverTime");
     }
 
     public void MinigameStatsImpact()
@@ -190,15 +215,6 @@ public class PlayerStatistics : MonoBehaviour
         return spiritLevel / maxSpiritLevel;
     }
 
-
-    private string CalculateSpiritLevel()
-    {
-        spiritLevel = (energyLevel - 10) + fulfilLevel;
-        if (spiritLevel > 100) spiritLevel = 100;
-
-        return spiritLevel.ToString();
-    }
-
     public Vector2Int CalculateHoursSleptNightOneTwo(int bedTime, int wakeUpTime)
     {
         //REFACTOR
@@ -207,13 +223,8 @@ public class PlayerStatistics : MonoBehaviour
         hrsSleptNightThree = hrsSleptNightTwo;        
         hrsSleptNightTwo = hrsSleptNightOne;
 
-
         hrsSleptNightOne = CalculateHoursSlept(bedTime, wakeUpTime);
-        energyLevel = maxEnergyLevel;
 
-        //Debug.Log("PlayerStats " + hrsSleptNightOne);
-
-        //add if statements to see what new energy levels are
         SetNewEnergyLevels();
 
         Vector2Int hrsSlept = new Vector2Int(hrsSleptNightOne, hrsSleptNightTwo);
@@ -223,8 +234,6 @@ public class PlayerStatistics : MonoBehaviour
 
     private int CalculateHoursSlept(int bedTime, int wakeUpTime)
     {
-        //return (24 - bedTime) + wakeUpTime;
-        
         if (wakeUpTime > bedTime)   return wakeUpTime - bedTime;
         else                        return (24 - bedTime) + wakeUpTime;
     }

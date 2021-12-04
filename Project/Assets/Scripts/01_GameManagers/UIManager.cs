@@ -138,6 +138,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject bedroomInteractBtnGO;
     private Button bedroomInteractBtn;
     private bool isMinigameBeingPlayed = false;
+    private bool isPetNapping = false;
+    private bool isPetSleeping = false;
 
     [Header("Kitchen Interactables - UI")]
     [SerializeField] private GameObject eatFoodBtnGO;
@@ -583,72 +585,7 @@ public class UIManager : MonoBehaviour
         EnableUIElements(new[] { playerReportBackgroundPanel, playerDailyReportPanel });
         trophyDescriptionText.text = trophyText;
         trophyAwardPanel.SetActive(true);
-
     }
-
-    //delete report fns
-
-    //public void CloseReportButton()
-    //{
-    //    reportUiObj.SetActive(false);
-    //}
-
-    //public void ViewGoalsButton()
-    //{
-    //    goals.SetActive(true);
-    //}
-
-    //public void SetGoalsText(string[] goalsText)
-    //{
-    //    goalOneText.text = goalsText[0];
-    //    goalTwoText.text = goalsText[1];
-    //    goalThreeText.text = goalsText[2];
-    //    goalFourText.text = goalsText[3];
-    //    goalFiveText.text = goalsText[4];
-    //}
-
-    ////bedtime input field
-    //public void BedtimeInputField(string bedTimeInput)
-    //{
-    //    bool isNumeric = int.TryParse(bedTimeInput, out _);
-    //    if (isNumeric) bedTime = Int16.Parse(bedTimeInput);
-    //    else Debug.Log("Only ints can be passed in");
-    //}
-
-    ////wake up time input field
-    //public void WakeUpTimeInputField(string wakeUpInput)
-    //{
-    //    bool isNumeric = int.TryParse(wakeUpInput, out _);
-    //    if (isNumeric) wakeUpTime = Int16.Parse(wakeUpInput);
-    //    else Debug.Log("Only ints can be passed in");
-    //}
-
-
-    //public int GetBedtime() // DELETE
-    //{
-    //    int timeToReturn = bedTime;
-    //    bedTime = -1;
-    //    return timeToReturn;
-    //}
-
-    //public int GetWakeUpTime() //DELETE
-    //{
-    //    int timeToReturn = wakeUpTime;
-    //    wakeUpTime= -1;
-    //    return timeToReturn;
-    //}
-
-    //public void SetHoursSleptText(int hrsSlept)
-    //{
-    //    hrsSleptNightOneText.text = hrsSlept.ToString();
-    //}
-
-    //public void SetHoursSleptTextNightOneTwo(Vector2Int hrsSlept)
-    //{
-    //    hrsSleptNightOneText.text = hrsSlept[0].ToString();
-    //    hrsSleptNightTwoText.text = hrsSlept[1].ToString();  
-
-    //}
 
     #endregion
 
@@ -658,27 +595,18 @@ public class UIManager : MonoBehaviour
     {
         if (value == true)
         {
-            if (isMinigameBeingPlayed)
-                miniGameBtnGO.SetActive(value);
-            else sendToBedBtnGO.SetActive(value);
+            if (isMinigameBeingPlayed)  miniGameBtnGO.SetActive(value);         //minigame played
+            else if (isPetNapping)      wakeUpFromNapBtnGO.SetActive(value);    //napping
+            else if (isPetSleeping)     wakeUpBtnGO.SetActive(value);            //sleeping
+            else                        sendToBedBtnGO.SetActive(value);        //in bedroom
         }
         else
         {
             miniGameBtnGO.SetActive(value);
             sendToBedBtnGO.SetActive(value);
-        }
-
-
-        //Debug.Log("bedroom UI set to " + value);
-        //sendToBedBtnGO.SetActive(value);
-        //bedroomInteractBtnGO.SetActive(value);
-
-        if (value == false)
-        {
             wakeUpBtnGO.SetActive(value);
             wakeUpFromNapBtnGO.SetActive(value);
         }
-
         SetBedroomUIListeners(value);
     }
 
@@ -690,15 +618,13 @@ public class UIManager : MonoBehaviour
             wakeUpBtn.onClick.AddListener(CurrentBehaviour.StartConversationWakeUp);
             wakeUpFromNapBtn.onClick.AddListener(CurrentBehaviour.StartConversationWakeUpFromNap);
             miniGameBtn.onClick.AddListener(CurrentBehaviour.StartConversationMinigame);
-            //bedroomInteractBtn.onClick.AddListener(CurrentBehaviour.SendToBed);
         }
         else
         {
             sendToBedBtn.onClick.RemoveAllListeners();
             wakeUpBtn.onClick.RemoveAllListeners();
             wakeUpFromNapBtn.onClick.RemoveAllListeners();
-            //miniGameBtn.onClick.RemoveAllListeners();
-            //bedroomInteractBtn.onClick.RemoveAllListeners();
+            miniGameBtn.onClick.RemoveAllListeners();
         }
     }
 
@@ -720,9 +646,9 @@ public class UIManager : MonoBehaviour
         wakeUpFromNapBtnGO.SetActive(false);
         wakeUpBtnGO.SetActive(true);
 
+        isPetSleeping = true;
+
         CloseAllFlyouts();
-        //flyoutButtonPanel.SetActive(false);
-        //miniGameBtnGO.SetActive(false);
     }
 
     public void SendToBedForNapBtnClicked()
@@ -731,6 +657,8 @@ public class UIManager : MonoBehaviour
         wakeUpFromNapBtnGO.SetActive(true);
         wakeUpBtnGO.SetActive(false);
 
+        isPetNapping = true;
+
         CloseAllFlyouts();
     }
 
@@ -738,15 +666,18 @@ public class UIManager : MonoBehaviour
     {
         sendToBedBtnGO.SetActive(true);
         wakeUpBtnGO.SetActive(false);
-        //miniGameBtnGO.SetActive(true);
-        
-        //flyoutButtonPanel.SetActive(true);
+        wakeUpFromNapBtnGO.SetActive(false);
+
+        isPetSleeping = false;
+        isPetNapping = false;
     }
 
     public void WakeUpNextDayBtnClicked()
     {
         sendToBedBtnGO.SetActive(false);
         wakeUpBtnGO.SetActive(false);
+
+        isPetSleeping = false;
     }
 
     #endregion

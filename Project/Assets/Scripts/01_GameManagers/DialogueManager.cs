@@ -194,6 +194,18 @@ public class DialogueManager : MonoBehaviour
                     currentConversationID = 14;
                     break;
 
+                case "BedroomTooEarlyToCallItADay":
+                    currentConversationID = 15;
+                    break;
+
+                case "BedroomStillTooTired":
+                    currentConversationID = 16;
+                    break;
+
+                case "BedroomItsTooEarlyToWakeUp":
+                    currentConversationID = 17;
+                    break;
+
                 case "default":
                     conversationStarted = false;
                     break;
@@ -262,9 +274,9 @@ public class DialogueManager : MonoBehaviour
                 CurrentBehaviour.StartWorkout();
                 break;
 
-            case "Time for bed!":
+            case "Lets call it a day - good night!":
                 Debug.Log("pet asked to go to sleep");
-                CurrentBehaviour.SendToBed();
+                CurrentBehaviour.SendToBedForTheDay();
                 break;
 
             case "I'll take a quick nap.":
@@ -287,9 +299,14 @@ public class DialogueManager : MonoBehaviour
                 CurrentBehaviour.StopMiniGame(); //stops minigame
                 break;
 
-            case "Yep it's time to get up.":
+            case "I'll just get up for a little bit.":
                 Debug.Log("pet to wake up");
                 CurrentBehaviour.WakePetUp();
+                break;
+
+            case "Yep, let's start the day!":
+                Debug.Log("pet starts day");
+                CurrentBehaviour.TryToWakePetUpOnNewDay();
                 break;
 
             case "Alright let's take a break.":

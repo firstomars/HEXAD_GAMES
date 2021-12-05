@@ -331,7 +331,7 @@ public class DialogueManager : MonoBehaviour
                 CurrentBehaviour.StopWorkout();
                 break;
 
-            case "Upgrade the bed for 10 sleepdollars.":
+            case "Upgrade the bed for 10 sleepdollars":
                 Debug.Log("upgrade bed");
                 UIManager.UpgradeBed();
                 break;

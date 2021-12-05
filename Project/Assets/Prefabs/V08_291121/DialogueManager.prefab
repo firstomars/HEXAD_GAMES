@@ -286,7 +286,14 @@ MonoBehaviour:
       - I won't upgrade anything right now.
   - conversationRoom: UpgradeHouse
     conversationChain:
-    - dialogueText: What would you like to upgrade?
+    - dialogueText: Upgrade your house with SleepDollars! What would you like to
+        upgrade?
       playerResponses:
       - Upgrade the bed for 10 sleepdollars
+      - I won't upgrade anything right now.
+  - conversationRoom: UpgradeNotEnoughMoney
+    conversationChain:
+    - dialogueText: You don't have enough sleep dollars. Earn money through the minigame!
+      playerResponses:
+      - Okay (that's right, minigame is in the bedroom)
   currentConversationComplete: 0

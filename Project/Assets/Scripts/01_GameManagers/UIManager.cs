@@ -457,17 +457,10 @@ public class UIManager : MonoBehaviour
     {
         isUpgradeFlyoutActivated = !isUpgradeFlyoutActivated;
 
-        if(!hasUpgradeBeenCalled)
-        {
-            DialogueManager.PetConversation("UpgradeHouseFirstTime");
-            hasUpgradeBeenCalled = true;
-        }
-        else DialogueManager.PetConversation("UpgradeHouse");
-
-        //upgradeBedBtnGO.SetActive(isUpgradeFlyoutActivated);
-
         if (isUpgradeFlyoutActivated)
         {
+            DialogueManager.PetConversation("UpgradeHouse");
+            CloseAllFlyouts();
             if (isWalkFlyoutActivated) ActivateWalkFlyoutMenu();
             if (isSettingsFlyoutActivated) ActivateSettingsFlyoutMenu();
         }

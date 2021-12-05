@@ -84,6 +84,7 @@ public class ExerciseBehaviour : Behaviour
     public override void StopWorkout()
     {
         PlayerAnimations.StopWorkout();
+        PlayerAnimations.InsideGym();
         UIManager.ActivateWorkingOutUI(false);
         PlayerController.ActivateGymGearObjs(false);
         AudioManager.AudioManagerInstance.StopSound("Gym");

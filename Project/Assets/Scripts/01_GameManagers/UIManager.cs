@@ -743,6 +743,8 @@ public class UIManager : MonoBehaviour
 
     public void ActivateWorkingOutUI(bool value)
     {
+        CloseAllFlyouts();
+        flyoutButtonPanel.SetActive(!value);
         benchPressBtnGO.SetActive(!value);
         gymInteractBtnGO.SetActive(value);
     }

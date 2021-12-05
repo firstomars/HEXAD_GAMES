@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -423,4 +424,16 @@ public class PlayerController : BehaviourStateMachine
         if (foodType == "healthy") HealthyFood.SetActive(value);
         if (foodType == "unhealthy") UnhealthyFood.SetActive(value);
     }
+
+    public void WaitForTimeBeforeSettingDestination(float secs, Vector3 destination)
+    {
+        StartCoroutine(WaitDest(secs, destination));
+    }
+
+    private IEnumerator WaitDest(float secs, Vector3 destination)
+    {
+        yield return new WaitForSeconds(secs);
+        SetPlayerDestination(destination);
+    }
+
 }

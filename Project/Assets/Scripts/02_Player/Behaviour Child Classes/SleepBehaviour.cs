@@ -170,11 +170,14 @@ public class SleepBehaviour : Behaviour
 
     public override void WakePetUpFromNap()
     {
-        PlayerController.SetPlayerDestination(FindWaypointHelper("bedroom"));
+        //PlayerController.StartCoroutine("")
+        WakeUpSequence();
+
+        PlayerController.WaitForTimeBeforeSettingDestination(4.0f, FindWaypointHelper("bedroom"));
+        
+        //PlayerController.SetPlayerDestination(FindWaypointHelper("bedroom"));
         napStartTime = -1;
         isPetNapping = false;
-
-        WakeUpSequence();
     }
 
     public override void WakePetUp()

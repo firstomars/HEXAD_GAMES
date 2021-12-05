@@ -16,13 +16,12 @@ public class PlayerAnimations : MonoBehaviour
     {
         anim.SetBool("IsIdle", false);
         anim.SetBool("IsWalking", true);
+        //anim.SetBool("IsInGym", false);
         Debug.Log("walking");
     }
 
     public void WalkToIdle()
-    {
-        //Debug.Log(anim);
-
+    {     
         anim.SetBool("IsIdle", true);
         anim.SetBool("IsWalking", false);
         Debug.Log("idling");
@@ -43,6 +42,7 @@ public class PlayerAnimations : MonoBehaviour
     public void InsideGym()
     {
         anim.SetBool("IsInGym", true);
+        anim.SetBool("IsIdle", false);
     }
 
     public void OutsideGym()

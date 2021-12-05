@@ -206,6 +206,10 @@ public class DialogueManager : MonoBehaviour
                     currentConversationID = 17;
                     break;
 
+                case "BedroomTriggerMorningReport":
+                    currentConversationID = 18;
+                    break;
+
                 case "default":
                     conversationStarted = false;
                     break;
@@ -287,6 +291,11 @@ public class DialogueManager : MonoBehaviour
             case "Yep - nap time over!":
                 Debug.Log("pet wakes from nap");
                 CurrentBehaviour.WakePetUpFromNap();
+                break;
+
+            case "Yep, morning report time!":
+                Debug.Log("pet wakes from nap");
+                CurrentBehaviour.StartMorningReportProcess();
                 break;
 
             case "Let's play a minigame.":

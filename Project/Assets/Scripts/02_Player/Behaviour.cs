@@ -80,6 +80,11 @@ public abstract class Behaviour
 
     }
 
+    public virtual void StartMorningReportProcess()
+    {
+
+    }
+
     public virtual void PlayMiniGame()
     {
 

@@ -269,4 +269,9 @@ MonoBehaviour:
     - dialogueText: It's not even 5 yet, I want to stay in bed for awhile
       playerResponses:
       - Ok sorry, sleep tight.
+  - conversationRoom: BedroomTriggerMorningReport
+    conversationChain:
+    - dialogueText: Morning! Time to get our sleep report.
+      playerResponses:
+      - Yep, morning report time!
   currentConversationComplete: 0

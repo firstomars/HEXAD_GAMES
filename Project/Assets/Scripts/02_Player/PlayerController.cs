@@ -425,15 +425,22 @@ public class PlayerController : BehaviourStateMachine
         if (foodType == "unhealthy") UnhealthyFood.SetActive(value);
     }
 
-    public void WaitForTimeBeforeSettingDestination(float secs, Vector3 destination)
+    public void WaitForTimeBeforeSettingDestination(float secs, Vector3 destination = default)
     {
-        StartCoroutine(WaitDest(secs, destination));
+        StartCoroutine(WaitBeforeSleepEnds(secs, destination));
     }
 
-    private IEnumerator WaitDest(float secs, Vector3 destination)
+    private IEnumerator WaitBeforeSleepEnds(float secs, Vector3 destination)
     {
         yield return new WaitForSeconds(secs);
+        IsPetSleeping(false);
         SetPlayerDestination(destination);
     }
 
+    public IEnumerator DelayedCallback(Action<bool> callBack)
+    {
+        Debug.Log("Delayed Callback successfully called");
+        yield return new WaitForSeconds(4);
+        callBack(true);
+    }
 }

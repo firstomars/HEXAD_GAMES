@@ -274,4 +274,15 @@ MonoBehaviour:
     - dialogueText: Morning! Time to get our sleep report.
       playerResponses:
       - Yep, morning report time!
+  - conversationRoom: UpgradeHouseFirstTime
+    conversationChain:
+    - dialogueText: You can upgrade your house with sleep dollars you earn by playing
+        the minigame.
+      playerResponses:
+      - Oh cool, that's in the bedroom right?
+  - conversationRoom: UpgradeHouse
+    conversationChain:
+    - dialogueText: What would you like to upgrade?
+      playerResponses:
+      - Upgrade the bed for 10 sleepdollars
   currentConversationComplete: 0

@@ -17,14 +17,14 @@ public class PlayerAnimations : MonoBehaviour
         anim.SetBool("IsIdle", false);
         anim.SetBool("IsWalking", true);
         //anim.SetBool("IsInGym", false);
-        Debug.Log("walking");
+        //Debug.Log("walking");
     }
 
     public void WalkToIdle()
     {     
         anim.SetBool("IsIdle", true);
         anim.SetBool("IsWalking", false);
-        Debug.Log("idling");
+        //bug.Log("idling");
     }
 
     public void GetIntoBed()

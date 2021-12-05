@@ -279,7 +279,11 @@ MonoBehaviour:
     - dialogueText: You can upgrade your house with sleep dollars you earn by playing
         the minigame.
       playerResponses:
-      - Oh cool, that's in the bedroom right?
+      - Oh cool, minigame is in the bedroom right?
+    - dialogueText: Yep! So, what would you like to upgrade?
+      playerResponses:
+      - Upgrade the bed for 10 sleepdollars
+      - I won't upgrade anything right now.
   - conversationRoom: UpgradeHouse
     conversationChain:
     - dialogueText: What would you like to upgrade?

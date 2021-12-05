@@ -180,7 +180,7 @@ public class PlayerController : BehaviourStateMachine
     private void PetStopsWalking()
     {
         PlayerAnimations.WalkToIdle();
-        Debug.Log("Walk to Idle called");
+        //bug.Log("Walk to Idle called");
 
         if (AudioManager.AudioManagerInstance.IsAudioPlaying("FootStep"))
             AudioManager.AudioManagerInstance.StopSound("FootStep");

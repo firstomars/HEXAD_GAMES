@@ -210,6 +210,14 @@ public class DialogueManager : MonoBehaviour
                     currentConversationID = 18;
                     break;
 
+                case "UpgradeHouseFirstTime":
+                    currentConversationID = 19;
+                    break;
+
+                case "UpgradeHouse":
+                    currentConversationID = 20;
+                    break;
+
                 case "default":
                     conversationStarted = false;
                     break;
@@ -322,6 +330,12 @@ public class DialogueManager : MonoBehaviour
                 Debug.Log("pet stops working out");
                 CurrentBehaviour.StopWorkout();
                 break;
+
+            case "Upgrade the bed for 10 sleepdollars.":
+                Debug.Log("upgrade bed");
+                UIManager.UpgradeBed();
+                break;
+
 
             default:
                 Debug.Log("Response did not match actions - no action taken");

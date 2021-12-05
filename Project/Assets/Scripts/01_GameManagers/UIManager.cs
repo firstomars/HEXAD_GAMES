@@ -67,6 +67,7 @@ public class UIManager : MonoBehaviour
     private bool isWalkFlyoutActivated = false;
     private bool isUpgradeFlyoutActivated = false;
     private bool isSettingsFlyoutActivated = false;
+    private bool hasUpgradeBeenCalled = false;
     private int nextHoursPage = 0;
     private readonly List<string> inputHours = new List<string> { "00:00", "01:00", "02:00", "03:00", "04:00", "05:00",
                                                             "06:00", "07:00", "08:00", "09:00", "10:00", "11:00",
@@ -455,7 +456,15 @@ public class UIManager : MonoBehaviour
     public void ActivateUpgradeFlyoutMenu()
     {
         isUpgradeFlyoutActivated = !isUpgradeFlyoutActivated;
-        upgradeBedBtnGO.SetActive(isUpgradeFlyoutActivated);
+
+        if(!hasUpgradeBeenCalled)
+        {
+            DialogueManager.PetConversation("UpgradeHouseFirstTime");
+            hasUpgradeBeenCalled = true;
+        }
+        else DialogueManager.PetConversation("UpgradeHouse");
+
+        //upgradeBedBtnGO.SetActive(isUpgradeFlyoutActivated);
 
         if (isUpgradeFlyoutActivated)
         {

@@ -218,6 +218,10 @@ public class DialogueManager : MonoBehaviour
                     currentConversationID = 20;
                     break;
 
+                case "UpgradeNotEnoughMoney":
+                    currentConversationID = 21;
+                    break;
+
                 case "default":
                     conversationStarted = false;
                     break;

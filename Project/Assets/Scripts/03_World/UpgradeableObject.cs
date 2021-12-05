@@ -35,10 +35,9 @@ public class UpgradeableObject : MonoBehaviour
         }
         else
         {
-            //DialogueManager.DialogueManagerInstance.PetConversation("UpgradeNotEnoughMoney");
+            DialogueManager.DialogueManagerInstance.PetConversation("UpgradeNotEnoughMoney");
             Debug.Log("not enough money");
         }
-
     }
 
     public virtual void CreateObjectOnStartUp()

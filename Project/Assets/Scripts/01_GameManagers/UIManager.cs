@@ -496,6 +496,11 @@ public class UIManager : MonoBehaviour
         flyoutButtonPanel.transform.GetChild(0).GetComponentInChildren<Image>().sprite = activateFlyoutImage;
     }
 
+    //public void DeactivateMainMenu()
+    //{
+
+    //}
+
     #endregion
 
     #region UpgradesUI

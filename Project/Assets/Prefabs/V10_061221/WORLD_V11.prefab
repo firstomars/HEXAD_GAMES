@@ -5371,6 +5371,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bedroom
       objectReference: {fileID: 0}
+    - target: {fileID: 6067743531495786017, guid: b8729d08935e90a44ba0b79b7f19ba0b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -13.18
+      objectReference: {fileID: 0}
+    - target: {fileID: 6067743531495786017, guid: b8729d08935e90a44ba0b79b7f19ba0b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6323758854272658639, guid: b8729d08935e90a44ba0b79b7f19ba0b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -11.950188
+      objectReference: {fileID: 0}
+    - target: {fileID: 6323758854272658639, guid: b8729d08935e90a44ba0b79b7f19ba0b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.2832582
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b8729d08935e90a44ba0b79b7f19ba0b, type: 3}
 --- !u!4 &5181459495441226694 stripped

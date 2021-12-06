@@ -84,6 +84,8 @@ public class EatBehaviour : Behaviour
         isEatAnimationPlaying = true;
         UIManager.ActivateMainMenu(false);
 
+        AudioManager.AudioManagerInstance.PlaySound("Eat");
+
         if (foodType == "junkfood")
         {
             PlayerController.ActivateFoodObj("unhealthy", true);

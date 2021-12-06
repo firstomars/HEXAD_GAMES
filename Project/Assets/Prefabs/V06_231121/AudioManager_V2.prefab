@@ -46,7 +46,6 @@ MonoBehaviour:
   sounds:
   - name: BackgroundMusic
     clip: {fileID: 8300000, guid: 29ab4d7cb1ce8e545b1b06ed3769b7d0, type: 3}
-    volume: 0.616
     pitch: 1
     loop: 1
     source: {fileID: 0}
@@ -59,7 +58,7 @@ MonoBehaviour:
   - name: FootStep
     clip: {fileID: 8300000, guid: 06c0f51ee46f3f5428630e8861d372f4, type: 3}
     volume: 1
-    pitch: 0.581
+    pitch: 1
     loop: 1
     source: {fileID: 0}
   - name: Gym
@@ -70,18 +69,6 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: Eat
     clip: {fileID: 8300000, guid: 6bdf53c3e04c12743b5ebd2779d3a84b, type: 3}
-    volume: 1
-    pitch: 1
-    loop: 0
-    source: {fileID: 0}
-  - name: UI Button
-    clip: {fileID: 8300000, guid: e0356a359981d6a4cb201577a16d02dc, type: 3}
-    volume: 1
-    pitch: 1
-    loop: 0
-    source: {fileID: 0}
-  - name: Daily Report
-    clip: {fileID: 8300000, guid: 914fc92465966674f9b065580e44eb23, type: 3}
     volume: 1
     pitch: 1
     loop: 0

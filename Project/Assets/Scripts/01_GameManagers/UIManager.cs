@@ -57,6 +57,12 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject flyoutButtonPanel;
     [SerializeField] private GameObject mainFlyoutPanel;
     [SerializeField] private GameObject walkFlyoutPanel;
+    [SerializeField] private Button walkBtn;
+    [SerializeField] private Button achievementsBtn;
+    [SerializeField] private Button upgradesBtn;
+    [SerializeField] private Button settingsBtn;
+
+    private bool hasMainMenuBeenClickedForFirstTime = false;
 
     [Header("Flyout Button Images")]
     [SerializeField] private Sprite activateFlyoutImage;
@@ -420,9 +426,39 @@ public class UIManager : MonoBehaviour
 
     #region Main Menu
 
+    public void ActivateMainMenuButtonsOnFirstClick(bool value)
+    {
+        walkBtn.enabled = value;
+        upgradesBtn.enabled = value;
+        achievementsBtn.enabled = value;
+        settingsBtn.enabled = value;
+
+        if (value == true) DialogueManager.isMainMenuFirstClick = false;
+    }
+
     public void ActivateMainFlyoutMenu()
     {
-        if (!isMainFlyoutActivated)
+        if(!hasMainMenuBeenClickedForFirstTime)
+        {
+            //if statement passes if main menu clicked for first time
+            hasMainMenuBeenClickedForFirstTime = true;
+            DialogueManager.isMainMenuFirstClick = true;
+
+            //deactive spirit level if open
+            if (spiritLevelPressed) SpiritLevelPressed();
+
+            //activate main menu panel
+            mainFlyoutPanel.SetActive(true);
+            isMainFlyoutActivated = true;
+            flyoutButtonPanel.transform.GetChild(0).GetComponentInChildren<Image>().sprite = deactivateFlyoutImage;
+
+            //deactivate main menu buttons
+            ActivateMainMenuButtonsOnFirstClick(false);
+            
+            //being conversation
+            DialogueManager.PetConversation("MainMenuFirstClick");
+        }
+        else if (!isMainFlyoutActivated)
         {
             mainFlyoutPanel.SetActive(true);
             isMainFlyoutActivated = true;

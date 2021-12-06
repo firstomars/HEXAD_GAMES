@@ -130,6 +130,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3812193518599952955, guid: 695a7433cc55e8a4a8cc24a9e01fee3b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3812193519941802321, guid: 695a7433cc55e8a4a8cc24a9e01fee3b, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5069210358555427483, guid: 695a7433cc55e8a4a8cc24a9e01fee3b, type: 3}
       propertyPath: m_Name
       value: UIManager_V9
@@ -178,6 +186,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5069210358555427485, guid: 695a7433cc55e8a4a8cc24a9e01fee3b, type: 3}
+      propertyPath: walkBtn
+      value: 
+      objectReference: {fileID: 742377896}
+    - target: {fileID: 5069210358555427485, guid: 695a7433cc55e8a4a8cc24a9e01fee3b, type: 3}
+      propertyPath: settingsBtn
+      value: 
+      objectReference: {fileID: 1664342047}
+    - target: {fileID: 5069210358555427485, guid: 695a7433cc55e8a4a8cc24a9e01fee3b, type: 3}
+      propertyPath: upgradesBtn
+      value: 
+      objectReference: {fileID: 2029063471}
+    - target: {fileID: 5069210358555427485, guid: 695a7433cc55e8a4a8cc24a9e01fee3b, type: 3}
+      propertyPath: achievementsBtn
+      value: 
+      objectReference: {fileID: 630452456}
     - target: {fileID: 8570172863203983937, guid: 695a7433cc55e8a4a8cc24a9e01fee3b, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -306,6 +330,28 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f17a1438d6ddba04f96f80b19898cc17, type: 3}
+--- !u!114 &630452456 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3812193518562932973, guid: 695a7433cc55e8a4a8cc24a9e01fee3b, type: 3}
+  m_PrefabInstance: {fileID: 292504754}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &742377896 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3812193519941802321, guid: 695a7433cc55e8a4a8cc24a9e01fee3b, type: 3}
+  m_PrefabInstance: {fileID: 292504754}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &891418418
 GameObject:
   m_ObjectHideFlags: 0
@@ -382,10 +428,6 @@ PrefabInstance:
     - target: {fileID: 7686106760894637248, guid: b4f10858265dbc4488fce4ea86d23172, type: 3}
       propertyPath: m_Name
       value: DialogueManager
-      objectReference: {fileID: 0}
-    - target: {fileID: 7686106760894637249, guid: b4f10858265dbc4488fce4ea86d23172, type: 3}
-      propertyPath: petConversations.Array.data[20].conversationChain.Array.data[0].dialogueText
-      value: What would you like to upgrade?
       objectReference: {fileID: 0}
     - target: {fileID: 7686106760894637250, guid: b4f10858265dbc4488fce4ea86d23172, type: 3}
       propertyPath: m_RootOrder
@@ -468,6 +510,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2335622106296003388, guid: f17a1438d6ddba04f96f80b19898cc17, type: 3}
   m_PrefabInstance: {fileID: 452321281}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1664342047 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3812193518771329706, guid: 695a7433cc55e8a4a8cc24a9e01fee3b, type: 3}
+  m_PrefabInstance: {fileID: 292504754}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1704088157
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -553,3 +606,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8fb2eb5e9fbbd1f4f8c17fe93bd1101d, type: 3}
+--- !u!114 &2029063471 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3812193519933389394, guid: 695a7433cc55e8a4a8cc24a9e01fee3b, type: 3}
+  m_PrefabInstance: {fileID: 292504754}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

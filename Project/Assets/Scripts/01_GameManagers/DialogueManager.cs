@@ -29,6 +29,8 @@ public class DialogueManager : MonoBehaviour
 
     private string previousConversationRoom = " ";
 
+    public bool isMainMenuFirstClick = false;
+
     #region Inspector Fields
     // Helper classes for dialogue database
     [System.Serializable]
@@ -222,6 +224,11 @@ public class DialogueManager : MonoBehaviour
                     currentConversationID = 21;
                     break;
 
+                case "MainMenuFirstClick":
+                    currentConversationID = 22;
+                    break;
+
+
                 case "default":
                     conversationStarted = false;
                     break;
@@ -233,7 +240,7 @@ public class DialogueManager : MonoBehaviour
     // Start conversation with current conversation ID
     private void StartConversation(int conversationID)
     {
-        UIManager.ActivateMainMenu(false);
+        if(!isMainMenuFirstClick) UIManager.ActivateMainMenu(false);
         UIManager.ActivateSpiritBarButton(false);
         UIManager.isConversationHappening = true;
         DisplayDialogueLine(petConversations[conversationID].conversationChain[0].dialogueText, petConversations[conversationID].conversationChain[0].playerResponses);
@@ -347,6 +354,11 @@ public class DialogueManager : MonoBehaviour
                 UIManager.UpgradeBed();
                 break;
 
+
+            case "ok got it, this is the main menu":
+                Debug.Log("upgrade bed");
+                UIManager.ActivateMainMenuButtonsOnFirstClick(true);
+                break;
 
             default:
                 Debug.Log("Response did not match actions - no action taken");

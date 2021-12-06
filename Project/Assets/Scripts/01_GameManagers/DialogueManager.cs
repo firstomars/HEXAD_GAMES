@@ -228,6 +228,9 @@ public class DialogueManager : MonoBehaviour
                     currentConversationID = 22;
                     break;
 
+                case "SpiritLevelFirstClick":
+                    currentConversationID = 23;
+                    break;
 
                 case "default":
                     conversationStarted = false;

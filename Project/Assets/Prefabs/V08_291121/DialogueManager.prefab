@@ -43,6 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82f8fe3092008ba41804917f742a433c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isMainMenuFirstClick: 0
   petTips:
   - tipType: RandomTips
     tipList:
@@ -300,4 +301,9 @@ MonoBehaviour:
     - dialogueText: this is the main menu first click
       playerResponses:
       - ok got it, this is the main menu
+  - conversationRoom: SpiritLevelFirstClick
+    conversationChain:
+    - dialogueText: this is the spirit level first click
+      playerResponses:
+      - ok got it, this is the spirit level
   currentConversationComplete: 0

@@ -108,6 +108,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI completionValue;
     [SerializeField] private GameObject spiritLevelBtnGO;
     private bool spiritLevelPressed;
+    private bool hasSpiritLevelBeenPressedForFirstTime = false;
     private bool isRoomSet = false;
     private string currentRoom = "default";
 
@@ -576,7 +577,13 @@ public class UIManager : MonoBehaviour
 
     public void SpiritLevelPressed()
     {
-        if (!spiritLevelPressed)
+        if (!hasSpiritLevelBeenPressedForFirstTime)
+        {
+            CloseAllFlyouts();
+            hasSpiritLevelBeenPressedForFirstTime = true;
+            DialogueManager.PetConversation("SpiritLevelFirstClick");
+        }
+        else if (!spiritLevelPressed)
         {
             //close flyouts
             CloseAllFlyouts();

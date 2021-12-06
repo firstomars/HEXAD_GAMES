@@ -225,6 +225,8 @@ public class SleepBehaviour : Behaviour
             PlayerAnimations.PlayMinigame();
             PlayerStatistics.MinigameStatsImpact();
 
+            AudioManager.AudioManagerInstance.PlaySound("Video Game");
+
             if (TimeController.IsTimeAfter(16))
             {
                 DialogueManager.DisplayTip("BlueLightFilter");
@@ -250,6 +252,7 @@ public class SleepBehaviour : Behaviour
     public override void StopMiniGame()
     {
         PlayerAnimations.StopMinigame();
+        AudioManager.AudioManagerInstance.StopSound("Video Game");
         PlayerController.SetPlayerDestination(FindWaypointHelper("bedroom"));
         UIManager.ActivateMainMenu(true);
         UIManager.MinigameClicked(false);

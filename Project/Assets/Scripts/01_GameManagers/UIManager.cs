@@ -108,7 +108,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI completionValue;
     [SerializeField] private GameObject spiritLevelBtnGO;
     private bool spiritLevelPressed;
-    private bool hasSpiritLevelBeenPressedForFirstTime = false;
+    public bool hasSpiritLevelBeenPressedForFirstTime = false;
     private bool isRoomSet = false;
     private string currentRoom = "default";
 
@@ -573,6 +573,11 @@ public class UIManager : MonoBehaviour
         sleepGoalsValue.text = sleepGoalsMet;
         sleepDollarsValue.text = sleepDollarsAmt;
         //add completion value
+    }
+
+    public void SetSpiritLevelFirstClick()
+    {
+        hasSpiritLevelBeenPressedForFirstTime = true;
     }
 
     public void SpiritLevelPressed()

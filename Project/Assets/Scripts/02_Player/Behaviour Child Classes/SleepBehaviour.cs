@@ -29,6 +29,8 @@ public class SleepBehaviour : Behaviour
         UIManager.CurrentBehaviour = this;
         DialogueManager.CurrentBehaviour = this;
 
+        PlayerController.IncreaseRoomCounter();
+
         SetUI("bedroom");
         base.StartBehaviour();
     }

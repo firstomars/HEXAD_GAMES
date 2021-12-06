@@ -22,6 +22,8 @@ public class ExerciseBehaviour : Behaviour
         UIManager.CurrentBehaviour = this;
         DialogueManager.CurrentBehaviour = this;
 
+        PlayerController.IncreaseRoomCounter();
+
         SetUI("gym");
 
         PlayerAnimations.InsideGym();

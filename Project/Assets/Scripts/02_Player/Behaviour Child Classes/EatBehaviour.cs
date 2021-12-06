@@ -27,6 +27,8 @@ public class EatBehaviour : Behaviour
         UIManager.CurrentBehaviour = this;
         DialogueManager.CurrentBehaviour = this;
 
+        PlayerController.IncreaseRoomCounter();
+
         SetUI("kitchen");
 
         base.StartBehaviour();

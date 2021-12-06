@@ -93,6 +93,9 @@ public class PlayerController : BehaviourStateMachine
     [SerializeField] private GameObject UnhealthyFood;
     [SerializeField] private GameObject HealthyFood;
 
+
+    private int roomCounter = 0;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -194,7 +197,7 @@ public class PlayerController : BehaviourStateMachine
         if (agent.remainingDistance > (agent.stoppingDistance + 0.1f))
         {
             PetStartsWalking();
-            Debug.Log("Navmesh agent walking");
+            //Debug.Log("Navmesh agent walking");
         }
         else
         {
@@ -230,7 +233,6 @@ public class PlayerController : BehaviourStateMachine
         {
             //Debug.Log("sleep behaviour set");
             nextBehaviour = SleepBehaviour;
-
         }
         else if (isPlayerInBathroom)
         {
@@ -442,5 +444,17 @@ public class PlayerController : BehaviourStateMachine
         Debug.Log("Delayed Callback successfully called");
         yield return new WaitForSeconds(secs);
         callBack(true);
+    }
+
+    public void IncreaseRoomCounter()
+    {
+        roomCounter++;
+        Debug.Log(roomCounter);
+
+        //if (roomCounter > 2 && !UIManager.UIManagerInstance.hasSpiritLevelBeenPressedForFirstTime)
+        //{
+        //    DialogueManager.DialogueManagerInstance.PetConversation("SpiritLevelFirstClick");
+        //    UIManager.UIManagerInstance.SetSpiritLevelFirstClick();
+        //}
     }
 }

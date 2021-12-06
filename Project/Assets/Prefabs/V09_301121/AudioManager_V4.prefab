@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4298700424349279779}
   - component: {fileID: 2932668634554816137}
   m_Layer: 0
-  m_Name: AudioManager_V2
+  m_Name: AudioManager_V4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -59,7 +59,7 @@ MonoBehaviour:
   - name: FootStep
     clip: {fileID: 8300000, guid: 06c0f51ee46f3f5428630e8861d372f4, type: 3}
     volume: 1
-    pitch: 0.581
+    pitch: 0.67
     loop: 1
     source: {fileID: 0}
   - name: Gym
@@ -85,4 +85,10 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     loop: 0
+    source: {fileID: 0}
+  - name: Video Game
+    clip: {fileID: 8300000, guid: 8b498dbf1c9187d46a95671112b1e7ce, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
     source: {fileID: 0}

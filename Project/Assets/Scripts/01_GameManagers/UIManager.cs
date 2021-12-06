@@ -459,7 +459,14 @@ public class UIManager : MonoBehaviour
 
         if (isUpgradeFlyoutActivated)
         {
-            DialogueManager.PetConversation("UpgradeHouse");
+            if (!hasUpgradeBeenCalled)
+            {
+                DialogueManager.PetConversation("UpgradeHouseFirstTime");
+                hasUpgradeBeenCalled = true;
+            }
+            else
+                DialogueManager.PetConversation("UpgradeHouse");
+
             CloseAllFlyouts();
             if (isWalkFlyoutActivated) ActivateWalkFlyoutMenu();
             if (isSettingsFlyoutActivated) ActivateSettingsFlyoutMenu();

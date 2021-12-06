@@ -169,6 +169,12 @@ public class PlayerController : BehaviourStateMachine
 
         //behaviour decision logic
         RunBehaviourLogic();
+
+        //debug functions to trigger onversations or behaviours
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            DialogueManager.DialogueManagerInstance.DisplayTip("RandomTips");
+        }
     }
 
     private void PetStartsWalking()

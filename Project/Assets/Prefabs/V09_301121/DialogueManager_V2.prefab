@@ -1,0 +1,291 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7686106760894637248
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7686106760894637250}
+  - component: {fileID: 7686106760894637249}
+  m_Layer: 0
+  m_Name: DialogueManager_V2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7686106760894637250
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7686106760894637248}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7686106760894637249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7686106760894637248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82f8fe3092008ba41804917f742a433c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isMainMenuFirstClick: 0
+  petTips:
+  - tipType: RandomTips
+    tipList:
+    - Circadian rhythms are your bodies internal clocks, the most important is your
+      'sleep-wake' cycle.
+    - Your chronotype, or when your body prefers to sleep is genetic. It can be trained
+      but it is built into your body clock.
+    - Sleep plays a role in our physical wellness but also affects our concentration,
+      memory, and ability to learn new things.
+    - Avoiding caffine after 6pm can aid in falling asleep later in the night. Coffee,
+      energy drinks, black and green tea, and chocolate all contain caffine.
+    - Studies have linked an increase in risk taking behaviour by young adults with
+      anxiety and poor sleep behaviour.
+    - Studies of students with academic excellence showed they had earlier bedtimes
+      than students with poor grades.
+    - The average 18-25 year old needs 7-9 hours of sleep a day. In fact all adults
+      need the same amount of sleep.
+  - tipType: 1NightBadSleep
+    tipList:
+    - While not recommended, it is possible to catch up on sleep slowly with an extra
+      1 or 2 hours a night. But the debt must be paid!
+    - If you have had a night of bad sleep, research suggests that a brief day time
+      nap of 20 minutes may be enough to restore alertfulness.
+  - tipType: 2NightBadSleep
+    tipList:
+    - Disrupted or lack of sleep has been linked to our abaility to manage emotions,
+      anxiety levels, and can even lead to depression.
+    - Your cardiovascular system and cholesterol levels can suffer long term effects
+      from sleep deprevation.
+    - Your bodies metabolism is linked to your sleep-wake cycle and not getting enough
+      sleep can affect your bodies ability to manage serum and glucose leading to
+      a high BMI score (weight gain).
+  - tipType: ExerciseAfter6
+    tipList:
+    - Exercise in the evening is not recommended for most people as it increases
+      your body temperature and effects the hormones that promote sleep.
+  - tipType: EraticLogin
+    tipList:
+    - "Your circadain rhythm is just that, a rhythm. It expects you to go to bed
+      at the same time every night\u2026 even on weekends."
+  - tipType: LoginAfterBedtime
+    tipList:
+    - Delayed Sleep Phase Disorder (DSPD) is where you fight your body clock to go
+      to sleep later. This affects your circadian rhythm and may require treatment.
+  - tipType: BlueLightFilter
+    tipList:
+    - Blue light from LED screens supresses your bodies production of melatonin,
+      the hormone that promotes sleep.
+    - Cutting back on screen time for an hour before sleep can increase production
+      of the hormone melatonin helping to promote sleep.
+  petConversations:
+  - conversationRoom: GameIntro
+    conversationChain:
+    - dialogueText: Hey there! My name is Chunky Peanut Butter, let's get to know
+        each other.
+      playerResponses:
+      - Hi there Chunky.
+    - dialogueText: Lets start by choosing our favourite colour.
+      playerResponses:
+      - colour
+    - dialogueText: Nice choice, I look excellent in that colour!
+      playerResponses:
+      - If you say so.
+    - dialogueText: I need to know some stuff to set everything up, is that ok?
+      playerResponses:
+      - Ask away little dude.
+    - dialogueText: What time do you usually go to bed at night?
+      playerResponses:
+      - time
+    - dialogueText: What time do you usually wake up in the morning?
+      playerResponses:
+      - time
+    - dialogueText: What time did you go to bed last night?
+      playerResponses:
+      - time
+    - dialogueText: What time did you wake up this morning?
+      playerResponses:
+      - time
+  - conversationRoom: Kitchen
+    conversationChain:
+    - dialogueText: What should we get to eat?
+      playerResponses:
+      - Healthy...
+      - I want pizza!
+  - conversationRoom: Lounge
+    conversationChain:
+    - dialogueText: Do you want me to play a game?
+      playerResponses:
+      - Yeah lets play
+      - Not right now
+  - conversationRoom: Bedroom
+    conversationChain:
+    - dialogueText: What would you like to do?
+      playerResponses:
+      - Lets call it a day - good night!
+      - I'll take a quick nap.
+      - Let's play a minigame.
+      - Mmmm nothing right now.
+  - conversationRoom: Gym
+    conversationChain:
+    - dialogueText: Gym time huh?
+      playerResponses:
+      - Yeah buddy, grab those dumbbells.
+  - conversationRoom: Daily Login
+    conversationChain:
+    - dialogueText: Hey, thanks for dropping by. How are you today?
+      playerResponses:
+      - I am good thanks Chunky.
+    - dialogueText: What time did we go to bed last night?
+      playerResponses:
+      - time
+    - dialogueText: And what time did we wake up this morning?
+      playerResponses:
+      - time
+    - dialogueText: Shall we get on with the day then...
+      playerResponses:
+      - Yep lets do this
+  - conversationRoom: Settings Menu
+    conversationChain:
+    - dialogueText: Select a new colour for me.
+      playerResponses:
+      - colour
+    - dialogueText: Change our goal bed time.
+      playerResponses:
+      - time
+    - dialogueText: Change our goal wake up time.
+      playerResponses:
+      - time
+  - conversationRoom: NewBedroom
+    conversationChain:
+    - dialogueText: Do you want to sleep or play a game?
+      playerResponses:
+      - Thanks I'll think about it.
+  - conversationRoom: DontNeedSleep
+    conversationChain:
+    - dialogueText: I'm at 90% energy. I don't need to go to bed!
+      playerResponses:
+      - Ok jeez...
+  - conversationRoom: AlreadyEaten
+    conversationChain:
+    - dialogueText: Dude, I just ate.
+      playerResponses:
+      - Alright alright
+  - conversationRoom: BedroomWakeUp
+    conversationChain:
+    - dialogueText: Do you really want to wake me up?
+      playerResponses:
+      - Yep, let's start the day!
+      - I'll just get up for a little bit.
+      - Ahh you keep sleeping
+  - conversationRoom: BedroomMinigame
+    conversationChain:
+    - dialogueText: Want to stop playing?
+      playerResponses:
+      - Yeah that's enough.
+      - No let's keep going!
+  - conversationRoom: BedroomTooTiredForGames
+    conversationChain:
+    - dialogueText: I don't have the energy to keep playing games.
+      playerResponses:
+      - Okay okay, I get it.
+  - conversationRoom: GymStopWorkout
+    conversationChain:
+    - dialogueText: I'm puffed. Stop working out?
+      playerResponses:
+      - Keep going buddy!
+      - Alright let's take a break.
+  - conversationRoom: BedroomWakeUpFromNap
+    conversationChain:
+    - dialogueText: It hasn't been two hours yet... wake me up?
+      playerResponses:
+      - Yep - nap time over!
+      - Nah keep napping
+  - conversationRoom: BedroomTooEarlyToCallItADay
+    conversationChain:
+    - dialogueText: It's not even past 6 and you want to call it a day??
+      playerResponses:
+      - Alright... maybe we can try napping.
+  - conversationRoom: BedroomStillTooTired
+    conversationChain:
+    - dialogueText: I'm not even at 80% energy yet, I need more sleep
+      playerResponses:
+      - Ok sorry, sleep tight.
+  - conversationRoom: BedroomItsTooEarlyToWakeUp
+    conversationChain:
+    - dialogueText: It's not even 5 yet, I want to stay in bed for awhile
+      playerResponses:
+      - Ok sorry, sleep tight.
+  - conversationRoom: BedroomTriggerMorningReport
+    conversationChain:
+    - dialogueText: Morning! Time to get our sleep report.
+      playerResponses:
+      - Yep, morning report time!
+  - conversationRoom: UpgradeHouseFirstTime
+    conversationChain:
+    - dialogueText: You can upgrade your house with sleep dollars you earn by playing
+        the minigame.
+      playerResponses:
+      - Oh cool, minigame is in the bedroom right?
+    - dialogueText: Yep! So, what would you like to upgrade?
+      playerResponses:
+      - Upgrade the bed for 10 sleepdollars
+      - I won't upgrade anything right now.
+  - conversationRoom: UpgradeHouse
+    conversationChain:
+    - dialogueText: What would you like to upgrade?
+      playerResponses:
+      - Upgrade the bed for 10 sleepdollars
+      - I won't upgrade anything right now.
+  - conversationRoom: UpgradeNotEnoughMoney
+    conversationChain:
+    - dialogueText: You don't have enough sleep dollars. Earn money through the minigame!
+      playerResponses:
+      - Okay (that's right, minigame is in the bedroom)
+  - conversationRoom: MainMenuFirstClick
+    conversationChain:
+    - dialogueText: this is the main menu first click
+      playerResponses:
+      - ok got it, this is the main menu
+  - conversationRoom: SpiritLevelFirstClick
+    conversationChain:
+    - dialogueText: Let me tell you a few things about taking care of me...
+      playerResponses:
+      - Please go on.
+    - dialogueText: At the top of the screen you will see my Spirit Level, a representation
+        of my phisical and mental state.
+      playerResponses:
+      - How does it work?
+    - dialogueText: The Spirit bar fluxuates throughout the day based on actions
+        you take.
+      playerResponses:
+      - What could I do to change the spirit level?
+    - dialogueText: Well, at the start of the day the Spirit Level will fill based
+        on how much sleep you got.
+      playerResponses:
+      - Go on...
+    - dialogueText: Doings things like eating or playing a minigame can Increase
+        or decrease the Spirit Level.
+      playerResponses:
+      - Ok, I think I get it.
+    - dialogueText: By clicking on the Spirit Level you can keep track of the details,
+        try to keep it as high as possible.
+      playerResponses:
+      - Ok, I will keep an eye on it.
+  currentConversationComplete: 0

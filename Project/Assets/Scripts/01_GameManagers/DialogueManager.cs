@@ -358,7 +358,8 @@ public class DialogueManager : MonoBehaviour
                 break;
 
 
-            case "ok got it, this is the main menu":
+            //case "ok got it, this is the main menu":
+            case "Yeah lets go!":
                 Debug.Log("upgrade bed");
                 UIManager.ActivateMainMenuButtonsOnFirstClick(true);
                 break;

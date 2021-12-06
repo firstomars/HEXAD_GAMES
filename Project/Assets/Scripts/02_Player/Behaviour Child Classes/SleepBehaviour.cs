@@ -66,14 +66,14 @@ public class SleepBehaviour : Behaviour
 
         if (shouldRunMorningReport)
         {
+            shouldRunMorningReport = false;
             PlayerController.StartCoroutine(PlayerController.DelayedCallback(callBack =>
             {
                 if (callBack)
                 {
                     DialogueManager.PetConversation("BedroomTriggerMorningReport");
-                    shouldRunMorningReport = false;
                 }
-            }));
+            }, 4.0f));
 
         }
 
@@ -135,6 +135,8 @@ public class SleepBehaviour : Behaviour
         PlayerController.SetPlayerDestination(PlayerController.bedPos.position);
         SwitchCamera("bedroomSleep");
         PlayerAnimations.GetIntoBed();
+
+        //UIManager.ActivateMainMenu(false);
 
         AudioManager.AudioManagerInstance.PlaySound("Sleeping");
         AudioManager.AudioManagerInstance.StopSound("FootStep");
@@ -201,7 +203,11 @@ public class SleepBehaviour : Behaviour
         //coroutine
 
         PlayerController.WaitForTimeBeforeSettingDestination(4.5f, FindWaypointHelper("bedroom"));
-        if (isUIRequired) UIManager.WakeUpBtnClicked();
+        if (isUIRequired)
+        {
+            //UIManager.ActivateMainMenu(true);
+            UIManager.WakeUpBtnClicked();
+        }
     }
 
     public override void PlayMiniGame()
@@ -210,6 +216,8 @@ public class SleepBehaviour : Behaviour
         {
             PlayerController.SetPlayerDestination(PlayerController.miniGamePos.position);
             UIManager.ActivateBedroomControl(false);
+
+            UIManager.ActivateMainMenu(false);
 
             SwitchCamera("bedroomGame");
             PlayerAnimations.PlayMinigame();
@@ -241,6 +249,7 @@ public class SleepBehaviour : Behaviour
     {
         PlayerAnimations.StopMinigame();
         PlayerController.SetPlayerDestination(FindWaypointHelper("bedroom"));
+        UIManager.ActivateMainMenu(true);
         UIManager.MinigameClicked(false);
         UIManager.ActivateBedroomControl(true);
         SwitchCamera("bedroom");

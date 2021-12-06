@@ -437,10 +437,10 @@ public class PlayerController : BehaviourStateMachine
         SetPlayerDestination(destination);
     }
 
-    public IEnumerator DelayedCallback(Action<bool> callBack)
+    public IEnumerator DelayedCallback(Action<bool> callBack, float secs)
     {
         Debug.Log("Delayed Callback successfully called");
-        yield return new WaitForSeconds(4);
+        yield return new WaitForSeconds(secs);
         callBack(true);
     }
 }

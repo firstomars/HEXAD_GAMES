@@ -51,6 +51,7 @@ public class ExerciseBehaviour : Behaviour
     public override void StartWorkout()
     {
         PlayerController.ActivateGymGearObjs(true);
+        UIManager.ActivateMainMenu(false);
         UIManager.ActivateWorkingOutUI(true);
         PlayerAnimations.StartWorkout();
 
@@ -85,6 +86,7 @@ public class ExerciseBehaviour : Behaviour
     {
         PlayerAnimations.StopWorkout();
         PlayerAnimations.InsideGym();
+        UIManager.ActivateMainMenu(true);
         UIManager.ActivateWorkingOutUI(false);
         PlayerController.ActivateGymGearObjs(false);
         AudioManager.AudioManagerInstance.StopSound("Gym");

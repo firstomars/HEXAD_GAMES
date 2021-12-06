@@ -503,10 +503,11 @@ public class UIManager : MonoBehaviour
         flyoutButtonPanel.transform.GetChild(0).GetComponentInChildren<Image>().sprite = activateFlyoutImage;
     }
 
-    //public void DeactivateMainMenu()
-    //{
-
-    //}
+    public void ActivateMainMenu(bool value)
+    {
+        CloseAllFlyouts();
+        flyoutButtonPanel.SetActive(value);
+    }
 
     #endregion
 
@@ -757,8 +758,8 @@ public class UIManager : MonoBehaviour
 
     public void ActivateWorkingOutUI(bool value)
     {
-        CloseAllFlyouts();
-        flyoutButtonPanel.SetActive(!value);
+        //CloseAllFlyouts();
+        //flyoutButtonPanel.SetActive(!value);
         benchPressBtnGO.SetActive(!value);
         gymInteractBtnGO.SetActive(value);
     }

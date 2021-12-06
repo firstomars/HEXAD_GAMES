@@ -7,6 +7,8 @@ public class EatBehaviour : Behaviour
     private int timeLastEaten = -1;
     private int timesEatenToday = 0;
 
+    private bool isEatAnimationPlaying = false;
+
     public EatBehaviour(PlayerController playerController) : base(playerController)
     {
         PlayerController = playerController;
@@ -32,6 +34,18 @@ public class EatBehaviour : Behaviour
 
     public override void RunBehaviour()
     {
+        if (isEatAnimationPlaying)
+        {
+            isEatAnimationPlaying = false;
+            PlayerController.StartCoroutine(PlayerController.DelayedCallback(callBack =>
+            {
+                if (callBack)
+                {
+                    UIManager.ActivateMainMenu(true);
+                }
+            }, 5.0f));
+        }
+
         base.RunBehaviour();
     }
 
@@ -65,6 +79,9 @@ public class EatBehaviour : Behaviour
 
     private void EatSuccessful(string foodType)
     {
+        isEatAnimationPlaying = true;
+        UIManager.ActivateMainMenu(false);
+
         if (foodType == "junkfood")
         {
             PlayerController.ActivateFoodObj("unhealthy", true);

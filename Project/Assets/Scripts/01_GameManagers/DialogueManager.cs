@@ -233,12 +233,13 @@ public class DialogueManager : MonoBehaviour
     // Start conversation with current conversation ID
     private void StartConversation(int conversationID)
     {
+        UIManager.ActivateMainMenu(false);
         DisplayDialogueLine(petConversations[conversationID].conversationChain[0].dialogueText, petConversations[conversationID].conversationChain[0].playerResponses);
     }
 
-        // Advance to the next line in the current conversation chain if required
-        // Called from UI manager with player response
-        public void AdvanceLine(string response)
+    // Advance to the next line in the current conversation chain if required
+    // Called from UI manager with player response
+    public void AdvanceLine(string response)
     {
         //Debug.Log("Player responded with " + response);
         //Debug.Log("Current conversation node count is " + petConversations[currentConversationID].conversationChain.Length);
@@ -248,6 +249,7 @@ public class DialogueManager : MonoBehaviour
 
         if (currentLineIndex == conversationIndexLength)
         {
+            UIManager.ActivateMainMenu(true);
             currentConversationComplete = false;
 
             // Call back to behaviour to save user response if required
@@ -268,6 +270,7 @@ public class DialogueManager : MonoBehaviour
             conversationStarted = false;
             currentLineIndex = 0;
             currentConversationComplete = true;
+            UIManager.ActivateMainMenu(true);
         }
     }
 

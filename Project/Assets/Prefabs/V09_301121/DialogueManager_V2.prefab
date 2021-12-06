@@ -260,9 +260,28 @@ MonoBehaviour:
       - Okay (that's right, minigame is in the bedroom)
   - conversationRoom: MainMenuFirstClick
     conversationChain:
-    - dialogueText: this is the main menu first click
+    - dialogueText: This is the main menu.
       playerResponses:
-      - ok got it, this is the main menu
+      - Yeah? What does it do.
+    - dialogueText: From the main menu you can look at your achievements and move
+        around the house
+      playerResponses:
+      - Neat.
+    - dialogueText: If you press the walking icon you can select a room you want
+        to go to
+      playerResponses:
+      - Then what can I do?
+    - dialogueText: Each room has different activities that can affect my energy
+        and fullfillment.
+      playerResponses:
+      - Got it.
+    - dialogueText: Doing an activity will always give you some benefit but some
+        doing actions sequentially will give a reward
+      playerResponses:
+      - Gee, thanks!
+    - dialogueText: Now, are you ready to explore the house!
+      playerResponses:
+      - Yeah lets go!
   - conversationRoom: SpiritLevelFirstClick
     conversationChain:
     - dialogueText: Let me tell you a few things about taking care of me...

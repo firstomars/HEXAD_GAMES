@@ -234,6 +234,8 @@ public class DialogueManager : MonoBehaviour
     private void StartConversation(int conversationID)
     {
         UIManager.ActivateMainMenu(false);
+        UIManager.ActivateSpiritBarButton(false);
+        UIManager.isConversationHappening = true;
         DisplayDialogueLine(petConversations[conversationID].conversationChain[0].dialogueText, petConversations[conversationID].conversationChain[0].playerResponses);
     }
 
@@ -250,6 +252,8 @@ public class DialogueManager : MonoBehaviour
         if (currentLineIndex == conversationIndexLength)
         {
             UIManager.ActivateMainMenu(true);
+            UIManager.ActivateSpiritBarButton(true);
+            UIManager.isConversationHappening = false;
             currentConversationComplete = false;
 
             // Call back to behaviour to save user response if required

@@ -100,6 +100,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI sleepGoalsValue;
     [SerializeField] private TextMeshProUGUI sleepDollarsValue;
     [SerializeField] private TextMeshProUGUI completionValue;
+    [SerializeField] private GameObject spiritLevelBtnGO;
     private bool spiritLevelPressed;
     private bool isRoomSet = false;
     private string currentRoom = "default";
@@ -114,12 +115,14 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject trophyAwardPanel;
 
     [Header("Pet Dialogue Text Panel")]
+    [SerializeField] private GameObject petDialogueObj;
     [SerializeField] private GameObject petDialoguePanel;
     [SerializeField] private TextMeshProUGUI petDialogueText;
     [SerializeField] private GameObject playerResponsePanel;
     [SerializeField] private GameObject petColourPanel;
     [SerializeField] private GameObject timeEntryPanel;
     [HideInInspector] public DialogueManager DialogueManager;
+    [HideInInspector] public bool isConversationHappening = false;
 
 
     [Header("Button Prefabs - Player Responses")]
@@ -464,8 +467,7 @@ public class UIManager : MonoBehaviour
                 DialogueManager.PetConversation("UpgradeHouseFirstTime");
                 hasUpgradeBeenCalled = true;
             }
-            else
-                DialogueManager.PetConversation("UpgradeHouse");
+            else DialogueManager.PetConversation("UpgradeHouse");
 
             CloseAllFlyouts();
             if (isWalkFlyoutActivated) ActivateWalkFlyoutMenu();
@@ -567,6 +569,11 @@ public class UIManager : MonoBehaviour
     {
         playerReportBackgroundPanel.SetActive(true);
         playerStatisticsPanel.SetActive(true);
+    }
+
+    public void ActivateSpiritBarButton(bool value)
+    {
+        spiritLevelBtnGO.SetActive(value);
     }
 
     #endregion

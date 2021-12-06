@@ -357,6 +357,9 @@ public class DialogueManager : MonoBehaviour
                 UIManager.UpgradeBed();
                 break;
 
+            case "Keep going buddy!":
+                UIManager.ActivateMainMenu(false);
+                break;
 
             //case "ok got it, this is the main menu":
             case "Yeah lets go!":

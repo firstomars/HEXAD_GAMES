@@ -5315,6 +5315,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5214854779654434795}
     m_Modifications:
+    - target: {fileID: 520391265703261093, guid: b8729d08935e90a44ba0b79b7f19ba0b, type: 3}
+      propertyPath: upgrades.Array.data[1]
+      value: 
+      objectReference: {fileID: 919132149155446097, guid: f6c4fe48e4970e2429822dffc51d30c5, type: 3}
+    - target: {fileID: 520391265703261093, guid: b8729d08935e90a44ba0b79b7f19ba0b, type: 3}
+      propertyPath: upgrades.Array.data[2]
+      value: 
+      objectReference: {fileID: 919132149155446097, guid: d098eff691c888f4fb92b44958899174, type: 3}
     - target: {fileID: 2592184024978135090, guid: b8729d08935e90a44ba0b79b7f19ba0b, type: 3}
       propertyPath: miniGamePos
       value: 

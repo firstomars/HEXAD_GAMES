@@ -10,7 +10,7 @@ public class PlayerController : BehaviourStateMachine
 
     private Behaviour IntroductionBehaviour;
     private Behaviour ExerciseBehaviour;
-    private Behaviour ConverseBehaviour;
+    //private Behaviour ConverseBehaviour;
     private Behaviour EatBehaviour;
     private Behaviour StatusCheckBehaviour;
     private Behaviour BathroomBehaviour;
